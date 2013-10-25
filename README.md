@@ -20,12 +20,12 @@ this section is to be finished
 
 ##subz n viewz;
 ####Developers:
-+ Matt (synth92)
-+ Aaron (AMD)
++ Matt ([Synth92](http://github.com/Synth92))
++ Aaron ([amd7](http://github.com/amd7))
 
 ####Contributors:
-+ Lord Zedd
-+ kornman
-+ Alex (Xerax)
-+ TJ (Thunder)
++ Lord Zedd ([Lord-Zedd](http://github.com/Lord-Zedd))
++ kornman ([Kornman00](http://github.com/Kornman00))
++ Alex ([Xerax](http://github.com/Xerax))
++ TJ ([ThunderWaffle](http://github.com/ThunderWaffle))
 + The [XboxChaos](http://xboxchaos.com) Community
