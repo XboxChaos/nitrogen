@@ -1,0 +1,21 @@
+CRASHES:
+
+	- Respawn time > secondary respawn time
+
+	- Respawn Traits Duration > 60
+
+	- Invalid Vehicle Set
+
+	- Invalid Weapon Set
+
+	- Invalid Armor Ability Set
+
+	- killfeed_sound_message hud_position set to false
+
+	- killfeed_message sound_index != -1
+
+
+ISSUES
+
+- Add to required object types for all vehicles (including sentry turret) if they are used in
+  any object creation action:

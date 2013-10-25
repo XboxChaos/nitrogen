@@ -1,0 +1,186 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="Definitions">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" name="Definition">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:choice maxOccurs="unbounded">
+                <xs:element name="Parameters">
+                  <xs:complexType>
+                    <xs:sequence>
+                      <xs:choice maxOccurs="unbounded">
+                        <xs:element name="TargetReference">
+                          <xs:complexType>
+                            <xs:attribute name="Name" type="xs:string" use="optional" />
+                          </xs:complexType>
+                        </xs:element>
+                        <xs:element name="Integer">
+                          <xs:complexType>
+                            <xs:sequence minOccurs="0">
+                              <xs:element name="Constraints">
+                                <xs:complexType>
+                                  <xs:sequence>
+                                    <xs:element minOccurs="0" name="MinValueConstraint" type="xs:byte" />
+                                    <xs:element minOccurs="0" name="MaxValueConstraint" type="xs:short" />
+                                    <xs:element minOccurs="0" name="IndexOfConstraint" type="xs:string" />
+                                    <xs:element minOccurs="0" name="EnumConstraint" type="xs:string" />
+                                  </xs:sequence>
+                                </xs:complexType>
+                              </xs:element>
+                            </xs:sequence>
+                            <xs:attribute name="Size" type="xs:unsignedByte" use="required" />
+                            <xs:attribute name="Unsigned" type="xs:string" use="optional" />
+                            <xs:attribute name="Name" type="xs:string" use="optional" />
+                            <xs:attribute name="Nullable" type="xs:string" use="optional" />
+                            <xs:attribute name="IsCoordinate" type="xs:string" use="optional" />
+                            <xs:attribute name="MultiplyByOneTenth" type="xs:string" use="optional" />
+                            <xs:attribute name="PlusOneEncoding" type="xs:string" use="optional" />
+                            <xs:attribute name="Default" type="xs:string" use="optional" />
+                          </xs:complexType>
+                        </xs:element>
+                        <xs:element maxOccurs="unbounded" name="ObjectReference">
+                          <xs:complexType>
+                            <xs:attribute name="Usage" type="xs:string" use="optional" />
+                            <xs:attribute name="IsPrimaryResult" type="xs:string" use="optional" />
+                            <xs:attribute name="Name" type="xs:string" use="optional" />
+                          </xs:complexType>
+                        </xs:element>
+                        <xs:element name="IntegerReference">
+                          <xs:complexType>
+                            <xs:sequence minOccurs="0">
+                              <xs:element name="Constraints">
+                                <xs:complexType>
+                                  <xs:sequence>
+                                    <xs:choice maxOccurs="unbounded">
+                                      <xs:element name="MaxValueConstraint" type="xs:unsignedShort" />
+                                      <xs:element name="MinValueConstraint" type="xs:byte" />
+                                      <xs:element name="IndexOfConstraint" type="xs:string" />
+                                    </xs:choice>
+                                  </xs:sequence>
+                                </xs:complexType>
+                              </xs:element>
+                            </xs:sequence>
+                            <xs:attribute name="Name" type="xs:string" use="optional" />
+                            <xs:attribute name="IsPrimaryResult" type="xs:string" use="optional" />
+                            <xs:attribute name="Usage" type="xs:string" use="optional" />
+                            <xs:attribute name="IsPercentage" type="xs:string" use="optional" />
+                            <xs:attribute name="Size" type="xs:unsignedByte" use="optional" />
+                            <xs:attribute name="Unsigned" type="xs:string" use="optional" />
+                            <xs:attribute name="Default" type="xs:unsignedByte" use="optional" />
+                          </xs:complexType>
+                        </xs:element>
+                        <xs:element name="EntityFilter" />
+                        <xs:element name="WaypointIcon" />
+                        <xs:element name="TeamReference">
+                          <xs:complexType>
+                            <xs:attribute name="Usage" type="xs:string" use="optional" />
+                            <xs:attribute name="IsPrimaryResult" type="xs:string" use="optional" />
+                            <xs:attribute name="Name" type="xs:string" use="optional" />
+                          </xs:complexType>
+                        </xs:element>
+                        <xs:element name="GenericReference">
+                          <xs:complexType>
+                            <xs:attribute name="Usage" type="xs:string" use="optional" />
+                            <xs:attribute name="IsPrimaryResult" type="xs:string" use="optional" />
+                            <xs:attribute name="Name" type="xs:string" use="required" />
+                          </xs:complexType>
+                        </xs:element>
+                        <xs:element name="Shape" />
+                        <xs:element name="StringReferenceMultiToken">
+                          <xs:complexType>
+                            <xs:attribute name="Name" type="xs:string" use="optional" />
+                          </xs:complexType>
+                        </xs:element>
+                        <xs:element name="TimerReference">
+                          <xs:complexType>
+                            <xs:attribute name="Usage" type="xs:string" use="optional" />
+                          </xs:complexType>
+                        </xs:element>
+                        <xs:element name="PlayerReference">
+                          <xs:complexType>
+                            <xs:attribute name="Usage" type="xs:string" use="optional" />
+                            <xs:attribute name="IsPrimaryResult" type="xs:string" use="optional" />
+                            <xs:attribute name="Name" type="xs:string" use="optional" />
+                          </xs:complexType>
+                        </xs:element>
+                        <xs:element name="VirtualTrigger" />
+                        <xs:element name="MeterInfo" />
+                        <xs:element name="StringReferenceSingleToken" />
+                        <xs:element name="Float">
+                          <xs:complexType>
+                            <xs:sequence>
+                              <xs:element name="Constraints">
+                                <xs:complexType>
+                                  <xs:sequence>
+                                    <xs:element name="MinValueConstraint" type="xs:decimal" />
+                                    <xs:element name="MaxValueConstraint" type="xs:decimal" />
+                                  </xs:sequence>
+                                </xs:complexType>
+                              </xs:element>
+                            </xs:sequence>
+                            <xs:attribute name="Size" type="xs:unsignedByte" use="required" />
+                            <xs:attribute name="Unsigned" type="xs:string" use="required" />
+                            <xs:attribute name="FloatFlag" type="xs:string" use="required" />
+                            <xs:attribute name="Name" type="xs:string" use="optional" />
+                          </xs:complexType>
+                        </xs:element>
+                        <xs:element name="StringReference">
+                          <xs:complexType>
+                            <xs:attribute name="Name" type="xs:string" use="required" />
+                          </xs:complexType>
+                        </xs:element>
+                      </xs:choice>
+                    </xs:sequence>
+                  </xs:complexType>
+                </xs:element>
+                <xs:element name="Description" type="xs:string" />
+                <xs:element name="Remarks" type="xs:string" />
+                <xs:element name="Deprecated" />
+                <xs:element name="PlayerReference" />
+                <xs:element name="IntegerReference">
+                  <xs:complexType>
+                    <xs:sequence minOccurs="0">
+                      <xs:element name="Constraints">
+                        <xs:complexType>
+                          <xs:sequence>
+                            <xs:element name="MinValueConstraint" type="xs:unsignedByte" />
+                            <xs:element name="MaxValueConstraint" type="xs:unsignedByte" />
+                          </xs:sequence>
+                        </xs:complexType>
+                      </xs:element>
+                    </xs:sequence>
+                  </xs:complexType>
+                </xs:element>
+                <xs:element name="Integer">
+                  <xs:complexType>
+                    <xs:sequence minOccurs="0">
+                      <xs:element name="Constraints">
+                        <xs:complexType>
+                          <xs:sequence>
+                            <xs:element minOccurs="0" name="EnumConstraint" type="xs:string" />
+                            <xs:element minOccurs="0" name="IndexOfConstraint" type="xs:string" />
+                          </xs:sequence>
+                        </xs:complexType>
+                      </xs:element>
+                    </xs:sequence>
+                    <xs:attribute name="Size" type="xs:unsignedByte" use="required" />
+                    <xs:attribute name="Unsigned" type="xs:string" use="required" />
+                    <xs:attribute name="Name" type="xs:string" use="required" />
+                    <xs:attribute name="Nullable" type="xs:string" use="optional" />
+                  </xs:complexType>
+                </xs:element>
+                <xs:element name="StringReferenceMultiToken" />
+                <xs:element name="TeamReference" />
+                <xs:element name="PossiblyDeprecated" />
+              </xs:choice>
+            </xs:sequence>
+            <xs:attribute name="Opcode" type="xs:unsignedByte" use="required" />
+            <xs:attribute name="Name" type="xs:string" use="optional" />
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

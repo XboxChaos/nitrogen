@@ -1,0 +1,12 @@
+Blob
+ReadOnlyBlob : Blob
+
+Chunk
+	- payload
+ReadOnlyChunk : Chunk
+ProtectedChunk : Chunk (maybe?)
+
+Korn's suggestion:
+
+	Have Blob object observe whether it's hashed and allow the specialized Blob classes to handle it
+	(Implement pre- and post- processing methods)
