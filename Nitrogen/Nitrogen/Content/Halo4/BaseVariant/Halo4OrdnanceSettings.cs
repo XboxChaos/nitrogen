@@ -34,9 +34,6 @@ namespace Nitrogen.Content.Halo4.BaseVariant
         [PropertyBinding("ObjectiveOrdnanceEnabled")]
         public bool ObjectiveOrdnanceEnabled { get; set; }
 
-        [PropertyBinding("PersonalOrdnanceEnabled")]
-        public bool PersonalOrdnanceEnabled { get; set; }
-
         [PropertyBinding("OrdnanceSystemEnabled")]
         public bool OrdnanceSystemEnabled { get; set; }
 
@@ -54,9 +51,6 @@ namespace Nitrogen.Content.Halo4.BaseVariant
 
         [PropertyBinding("RandomDropSet")]
         public string RandomOrdnanceSet { get; set; }
-
-        [PropertyBinding("PersonalDropSet")]
-        public string PersonalOrdnanceSet { get; set; }
 
         [PropertyBinding("SubstitutionSet")]
         public string SubstitutionSet { get; set; }

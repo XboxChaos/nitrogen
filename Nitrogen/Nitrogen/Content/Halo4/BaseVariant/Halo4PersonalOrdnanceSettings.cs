@@ -32,8 +32,21 @@ namespace Nitrogen.Content.Halo4.BaseVariant
         [PropertyBinding("PointIncreaseMultiplier")]
         public float PointIncreaseMultiplier { get; set; }
 
+        [PropertyBinding("IsEnabled")]
+        public bool PersonalOrdnanceEnabled { get; set; }
+
+        [PropertyBinding("DropSet")]
+        public string PersonalOrdnanceSet { get; set; }
+
         [PropertyBinding("IsCustomized")]
         public bool OverrideDefaultSet { get; set; }
+
+        [PropertyBinding("IsEnabled")]
+        public bool IsEnabled { get; set; }
+
+        [PropertyBinding("DropSet")]
+        public string DropSet { get; set; }
+
         /*
         [PropertyBinding("Top")]
         public Halo4OrdnanceSet Top { get; set; }

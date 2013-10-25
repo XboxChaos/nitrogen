@@ -293,7 +293,7 @@ namespace Nitrogen.Blob.Transport.BinaryTemplates.Halo4
             Register<bool>("InitialOrdnanceEnabled");
             Register<bool>("RandomOrdnanceEnabled");
             Register<bool>("ObjectiveOrdnanceEnabled");
-            Register<bool>("PersonalOrdnanceEnabled");
+            Group("Personal", () => Register<bool>("IsEnabled"));
             Register<bool>("OrdnanceSystemEnabled");
             Register<sbyte>(); // timer or distance? -2 in forge like the other unknown int16's. -1 disables initial ordnance
             Register<short>("RandomOrdnanceMinTimer");
@@ -303,7 +303,7 @@ namespace Nitrogen.Blob.Transport.BinaryTemplates.Halo4
             Register<short>(); // timer
             Register<short>("InitialDropDelay");
             Register<string>("RandomDropSet", encoding: Encoding.ASCII, length: 32, padded: false, nullTerminated: true);
-            Register<string>("PersonalDropSet", encoding: Encoding.ASCII, length: 32, padded: false, nullTerminated: true);
+            Group("Personal", () => Register<string>("DropSet", encoding: Encoding.ASCII, length: 32, padded: false, nullTerminated: true));
             Register<string>("SubstitutionSet", encoding: Encoding.ASCII, length: 32, padded: false, nullTerminated: true);
 
             Group("Personal", () =>
