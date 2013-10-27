@@ -42,6 +42,9 @@ namespace Nitrogen.Content.Halo4.BaseVariant
             SuicidePenalty = 5;
             BetrayalPenalty = 5;
             RespawnTimeGrowth = 0;
+            RespawnAtTeammate = false;
+            RespawnInPlace = false;
+            InitialLoadoutDuration = 0;
         }
 
         [PropertyBinding("SyncWithTeam")]
@@ -76,5 +79,14 @@ namespace Nitrogen.Content.Halo4.BaseVariant
 
         [PropertyBinding("RespawnTraits")]
         public TraitSetWithDuration<Halo4PlayerTraitSet> RespawnTraits { get; set; }
+
+        [PropertyBinding("RespawnAtTeammate")]
+        private bool RespawnAtTeammate { get; set; }
+
+        [PropertyBinding("RespawnInPlace")]
+        private bool RespawnInPlace { get; set; }
+
+        [PropertyBinding("InitialLoadoutDuration")]
+        private byte InitialLoadoutDuration { get; set; }
     }
 }

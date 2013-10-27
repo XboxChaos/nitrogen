@@ -26,17 +26,24 @@ namespace Nitrogen.Content.Halo4.BaseVariant
     [Synchronizable]
     public class Halo4PersonalOrdnanceSettings
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Halo4PersonalOrdnanceSettings"/> class
+        /// with default values.
+        /// </summary>
+        public Halo4PersonalOrdnanceSettings()
+        {
+            PointRequirement = 70.0f;
+            PointIncreaseMultiplier = 0.30f;
+            IsEnabled = true;
+            OverrideDefaultSet = false;
+            DropSet = "?";
+        }
+
         [PropertyBinding("PointRequirement")]
         public float PointRequirement { get; set; }
 
         [PropertyBinding("PointIncreaseMultiplier")]
         public float PointIncreaseMultiplier { get; set; }
-
-        [PropertyBinding("IsEnabled")]
-        public bool PersonalOrdnanceEnabled { get; set; }
-
-        [PropertyBinding("DropSet")]
-        public string PersonalOrdnanceSet { get; set; }
 
         [PropertyBinding("IsCustomized")]
         public bool OverrideDefaultSet { get; set; }

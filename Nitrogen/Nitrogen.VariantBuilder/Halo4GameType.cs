@@ -1,5 +1,7 @@
-﻿using Nitrogen.Content.Halo4.BaseVariant;
+﻿using Nitrogen.Content.Halo4;
+using Nitrogen.Content.Halo4.BaseVariant;
 using System;
+using System.IO;
 
 namespace Nitrogen.VariantBuilder
 {
@@ -21,5 +23,28 @@ namespace Nitrogen.VariantBuilder
         public abstract void InitOrdnance(Halo4OrdnanceSettings ordnanceSettings);
 
         public abstract void InitTeams(Halo4TeamSettings teamSettings);
+
+        public override void Build(string output)
+        {
+            using (var stream = File.Create(output))
+            {
+                var gt = Halo4MegaloVariant.Create(stream);
+
+                // Base variant stuff ----------
+                InitGeneralSettings(gt.GeneralSettings);
+                InitRespawnSettings(gt.RespawnSettings);
+                InitSocialSettings(gt.SocialSettings);
+                InitMapOverrides(gt.MapOverrides);
+                InitPowerups(gt.Powerups);
+                InitLoadouts(gt.Loadouts);
+                InitOrdnance(gt.OrdnanceSettings);
+                InitTeams(gt.Teams);
+
+                // Megalo stuff ----------------
+
+
+                //gt.SaveChanges();
+            }
+        }
     }
 }

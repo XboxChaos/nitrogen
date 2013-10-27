@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Threading;
 
 namespace Nitrogen.VariantBuilder
 {
@@ -8,14 +9,12 @@ namespace Nitrogen.VariantBuilder
     {
         public static void Main(string[] args)
         {
-            args = new string[] { "2", "C:/Users/Matt/Desktop/race.game" };
-
             Console.Title = "Nitrogen Variant Builder";
             var originalColor = Console.ForegroundColor;
 
             // Print header.
             Console.ForegroundColor = ConsoleColor.Cyan;
-            Console.WriteLine("Nitrogen Variant Builder");
+            Console.WriteLine("Nitrogen Variant Builder" + '\u008D' + "test");
             Console.WriteLine();
             Console.ForegroundColor = originalColor;
 
@@ -29,7 +28,7 @@ namespace Nitrogen.VariantBuilder
             Console.WriteLine();
             Console.ForegroundColor = originalColor;
 
-            // Get selected variant.
+            // Get the selected variant.
             int index = 0;
             while (index <= 0 || index > vault.Length)
             {
@@ -49,6 +48,7 @@ namespace Nitrogen.VariantBuilder
                 if (args.Length > 0)
                     args[0] = "";
             }
+            index--;
 
             // Get output path.
             string output = null;
@@ -86,17 +86,18 @@ namespace Nitrogen.VariantBuilder
             Console.WriteLine("Building {0}...", vault[index].Name);
             Console.ForegroundColor = originalColor;
 
-            // TODO: Build the selected variant.
+            // Build the selected variant.
+            vault[index].Build(output);
 
-            while (true) { }
+            Console.WriteLine("Done!");
+            Thread.Sleep(500);
         }
 
         private static Variant[] FindVariants()
         {
+            // Temp code; TODO: Use Reflection to find all variants.
             return new List<Variant>()
             {
-                new Vault.Race(),
-                new Vault.Race(),
                 new Vault.Race(),
             }.ToArray();
         }

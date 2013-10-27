@@ -25,6 +25,25 @@ namespace Nitrogen.Content.Halo4.BaseVariant
     [Synchronizable]
     public class Halo4OrdnanceSettings
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Halo4OrdnanceSettings"/> class with default
+        /// values.
+        /// </summary>
+        public Halo4OrdnanceSettings()
+        {
+            Personal = new Halo4PersonalOrdnanceSettings();
+            InitialOrdnanceEnabled = true;
+            RandomOrdnanceEnabled = true;
+            ObjectiveOrdnanceEnabled = false;
+            OrdnanceSystemEnabled = true;
+            RandomOrdnanceMinTimer = 90;
+            RandomOrdnanceMaxTimer = 100;
+            InitialDropLabel = "initial_drop";
+            InitialDropDelay = 0;
+            RandomOrdnanceSet = "?";
+            SubstitutionSet = "";
+        }
+
         [PropertyBinding("InitialOrdnanceEnabled")]
         public bool InitialOrdnanceEnabled { get; set; }
 

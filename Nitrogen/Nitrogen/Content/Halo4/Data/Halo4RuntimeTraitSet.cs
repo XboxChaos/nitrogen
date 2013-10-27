@@ -21,9 +21,14 @@
 using Nitrogen.Content.Halo4.Enums;
 using Nitrogen.Content.Shared.Enums;
 using System;
+using System.Drawing;
 
 namespace Nitrogen.Content.Halo4.Data
 {
+    /// <summary>
+    /// Represents a set of traits which will be applied to a player at runtime. Initial weapons,
+    /// armor ability, grenades, tactical package, and support upgrade options are not available.
+    /// </summary>
     [Synchronizable]
     public class Halo4RuntimeTraitSet
     {
@@ -31,6 +36,8 @@ namespace Nitrogen.Content.Halo4.Data
         {
             DeathEffect = Halo4ArmorEffect.MapDefault;
             LoopingEffect = Halo4ArmorEffect.MapDefault;
+            PrimaryColor = null;
+            SecondaryColor = null;
         }
 
         [PropertyBinding("DamageResistance")]
@@ -86,6 +93,9 @@ namespace Nitrogen.Content.Halo4.Data
 
         [PropertyBinding("DamageMultiplier")]
         public float? DamageMultiplier { get; set; }
+
+        [PropertyBinding("MeleeDamageMultiplier")]
+        public float? MeleeDamageMultiplier { get; set; }
 
         [PropertyBinding("FragGrenadeRegenDuration")]
         public float? FragGrenadeRegenDuration { get; set; }
@@ -248,5 +258,118 @@ namespace Nitrogen.Content.Halo4.Data
 
         [PropertyBinding("Nemesis")]
         public bool? Nemesis { get; set; }
+
+        /// <summary>
+        /// Gets or sets the primary armor color. A value of null indicates that the color should be
+        /// inherited.
+        /// </summary>
+        public Color? PrimaryColor
+        {
+            get
+            {
+                return Color.FromArgb(PrimaryColorRed, PrimaryColorGreen, PrimaryColorBlue);
+            }
+
+            set
+            {
+                if (value == null)
+                {
+                    PrimaryColorRed = 255;
+                    PrimaryColorGreen = 255;
+                    PrimaryColorBlue = 255;
+                    UseDefaultPrimaryColor = true;
+                }
+                else
+                {
+                    Color color = value.Value;
+                    PrimaryColorRed = color.R;
+                    PrimaryColorGreen = color.G;
+                    PrimaryColorBlue = color.B;
+                    UseDefaultPrimaryColor = false;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the secondary armor color. A value of null indicates that the color should
+        /// be inherited.
+        /// </summary>
+        public Color? SecondaryColor
+        {
+            get
+            {
+                return Color.FromArgb(SecondaryColorRed, SecondaryColorGreen, SecondaryColorBlue);
+            }
+
+            set
+            {
+                if (value == null)
+                {
+                    SecondaryColorRed = 255;
+                    SecondaryColorGreen = 255;
+                    SecondaryColorBlue = 255;
+                    UseDefaultSecondaryColor = true;
+                }
+                else
+                {
+                    Color color = value.Value;
+                    SecondaryColorRed = color.R;
+                    SecondaryColorGreen = color.G;
+                    SecondaryColorBlue = color.B;
+                    UseDefaultSecondaryColor = false;
+                }
+            }
+        }
+
+        [PropertyBinding("PrimaryColor/UseDefault")]
+        private bool UseDefaultPrimaryColor { get; set; }
+
+        [PropertyBinding("PrimaryColor/Red")]
+        private byte PrimaryColorRed { get; set; }
+
+        [PropertyBinding("PrimaryColor/Green")]
+        private byte PrimaryColorGreen { get; set; }
+
+        [PropertyBinding("PrimaryColor/Blue")]
+        private byte PrimaryColorBlue { get; set; }
+
+        [PropertyBinding("SecondaryColor/UseDefault")]
+        private bool UseDefaultSecondaryColor { get; set; }
+
+        [PropertyBinding("SecondaryColor/Red")]
+        private byte SecondaryColorRed { get; set; }
+
+        [PropertyBinding("SecondaryColor/Green")]
+        private byte SecondaryColorGreen { get; set; }
+
+        [PropertyBinding("SecondaryColor/Blue")]
+        private byte SecondaryColorBlue { get; set; }
+
+        [PropertyBinding("FastTrack")]
+        private bool? FastTrack { get; set; }
+
+        [PropertyBinding("ArmorAbilityUsageExceptAutoturret")]
+        private bool? ArmorAbilityUsageExcludingAutoTurret { get; set; }
+
+        [PropertyBinding("FirepowerUpgradeEnabled")]
+        private bool? FirepowerUpgradeEnabled { get; set; }
+
+        [PropertyBinding("DoubleJump")]
+        private bool? DoubleJump { get; set; }
+
+        [PropertyBinding("AutomaticMomentumUsage")]
+        private bool? AutomaticMomentumUsage { get; set; }
+
+        [PropertyBinding("Vaulting")]
+        private bool? Vaulting { get; set; }
+
+        [PropertyBinding("Aura")]
+        private byte Aura { get; set; }
+
+        [PropertyBinding("VisionMode")]
+        private byte VisionMode { get; set; }
+
+        [PropertyBinding("ThreatView")]
+        private byte ThreatView { get; set; }
     }
 }

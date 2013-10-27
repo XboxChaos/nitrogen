@@ -49,7 +49,7 @@ namespace Nitrogen.Blob.Transport.BinaryTemplates.Halo4.Shared
                 AddBoolTrait("HeadshotImmunity");
                 AddBoolTrait("AssassinationImmunity");
                 AddBoolTrait("Invincibility");
-                AddBoolTrait("FastTrack"); // Please be respectful towards 343 and avoid using this trait.
+                AddBoolTrait("FastTrack");
                 AddBoolTrait("CancelCurrentPowerup");
 
                 // Weapon and Equipment
@@ -165,11 +165,18 @@ namespace Nitrogen.Blob.Transport.BinaryTemplates.Halo4.Shared
             }
             else
             {
-                var value = GetValue<float?>(name);
-                Write(value.HasValue);
-                if (value.HasValue)
+                if (IsRegistered(name))
                 {
-                    WriteEncodedFloat(value.Value, n: 16, minValue: -200.0f, maxValue: 200.0f, isSigned: true, flag: true, roundFloat: true);
+                    var value = GetValue<float?>(name);
+                    Write(value.HasValue);
+                    if (value.HasValue)
+                    {
+                        WriteEncodedFloat(value.Value, n: 16, minValue: -200.0f, maxValue: 200.0f, isSigned: true, flag: true, roundFloat: true);
+                    }
+                }
+                else
+                {
+                    Write(false);
                 }
             }
         }
@@ -195,9 +202,12 @@ namespace Nitrogen.Blob.Transport.BinaryTemplates.Halo4.Shared
             {
                 encodedValue = 0;
 
-                value = GetValue<bool?>(name);
-                if (value.HasValue)
-                    encodedValue = (byte)(value.Value ? 2 : 1);
+                if (IsRegistered(name))
+                {
+                    value = GetValue<bool?>(name);
+                    if (value.HasValue)
+                        encodedValue = (byte)(value.Value ? 2 : 1);
+                }
 
                 Write(encodedValue, n: 2);
             }

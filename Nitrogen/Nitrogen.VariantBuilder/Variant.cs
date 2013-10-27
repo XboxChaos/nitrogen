@@ -7,5 +7,7 @@ namespace Nitrogen.VariantBuilder
         public abstract string Name { get; }
 
         public abstract string Author { get; }
+
+        public abstract void Build(string output);
     }
 }

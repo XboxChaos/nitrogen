@@ -57,5 +57,11 @@ namespace Nitrogen.Content.Halo4.Data
 
         [PropertyBinding("GrenadeType")]
         public Halo4GrenadeCount Grenades { get; set; }
+
+        [PropertyBinding("PrimaryWeaponSkin")]
+        private byte PrimaryWeaponSkin { get; set; }
+
+        [PropertyBinding("SecondaryWeaponSkin")]
+        private byte SecondaryWeaponSkin { get; set; }
     }
 }

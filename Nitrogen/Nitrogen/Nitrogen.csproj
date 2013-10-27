@@ -107,6 +107,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -126,14 +127,17 @@
     <Compile Include="Content\Halo4\BaseVariant\Halo4SocialSettings.cs" />
     <Compile Include="Content\Halo4\BaseVariant\Halo4TeamSettings.cs" />
     <Compile Include="Content\Halo4\Data\Halo4Loadout.cs" />
+    <Compile Include="Content\Halo4\Data\Halo4LoadoutPalette.cs" />
     <Compile Include="Content\Halo4\Data\Halo4OrdnanceSet.cs" />
     <Compile Include="Content\Halo4\Data\Halo4PlayerTraitSet.cs" />
     <Compile Include="Content\Halo4\Data\Halo4Powerup.cs" />
     <Compile Include="Content\Halo4\Data\Halo4RuntimeTraitSet.cs" />
     <Compile Include="Content\Halo4\Data\Halo4Team.cs" />
+    <Compile Include="Content\Halo4\Enums\Halo4ArmorAbilitySet.cs" />
     <Compile Include="Content\Halo4\Enums\Halo4GrenadeCount.cs" />
     <Compile Include="Content\Halo4\Enums\Halo4Weapon.cs" />
     <Compile Include="Content\Halo4\Enums\Halo4WeaponSet.cs" />
+    <Compile Include="Content\Halo4\Halo4MegaloVariant.cs" />
     <Compile Include="Content\ICustomSynchronizable.cs" />
     <Compile Include="Content\PropertySynchronizer.cs" />
     <Compile Include="Blob\Transport\BinaryTemplates\Halo4\WeaponBarrelProperties.cs" />

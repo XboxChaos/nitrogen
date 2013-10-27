@@ -36,8 +36,9 @@ namespace Nitrogen.Content.Halo4.BaseVariant
             FriendlyFire = true;
             BetrayalBooting = true;
             EnemyPlayerVoice = true;
-            OpenChannelVoice = true;
-            DeadPlayerVoice = true;
+            OpenChannelVoice = false;
+            DeadPlayerVoice = false;
+            ObserverTeamEnabled = false;
         }
 
         [PropertyBinding("TeamChangingMode")]
@@ -57,5 +58,8 @@ namespace Nitrogen.Content.Halo4.BaseVariant
 
         [PropertyBinding("DeadPlayerVoice")]
         public bool DeadPlayerVoice { get; set; }
+
+        [PropertyBinding("ObserverTeamEnabled")]
+        private bool ObserverTeamEnabled { get; set; }
     }
 }

@@ -32,11 +32,17 @@ namespace Nitrogen.Content.Halo4.BaseVariant
         /// </summary>
         public Halo4MapOverrides()
         {
+            IndestructibleVehicles = false;
             ArmorAbilitiesOnMap = true;
             GrenadesOnMap = true;
             BasePlayerTraits = new Halo4PlayerTraitSet();
             VehiclesOnMap = Halo4VehicleSet.MapDefault;
             WeaponsOnMap = Halo4WeaponSet.MapDefault;
+
+            TurretsOnMap = true;
+            PowerupsOnMap = true;
+            ShortcutsOnMap = true;
+            ArmorAbilitySet = Halo4ArmorAbilitySet.MapDefault;
         }
 
         [PropertyBinding("IndestructibleVehicles")]
@@ -56,5 +62,17 @@ namespace Nitrogen.Content.Halo4.BaseVariant
 
         [PropertyBinding("WeaponSet")]
         public Halo4WeaponSet WeaponsOnMap { get; set; }
+
+        [PropertyBinding("ArmorAbilitySet")]
+        private Halo4ArmorAbilitySet ArmorAbilitySet { get; set; }
+
+        [PropertyBinding("TurretsOnMap")]
+        private bool TurretsOnMap { get; set; }
+
+        [PropertyBinding("PowerupsOnMap")]
+        private bool PowerupsOnMap { get; set; }
+
+        [PropertyBinding("ShortcutsOnMap")]
+        private bool ShortcutsOnMap { get; set; }
     }
 }

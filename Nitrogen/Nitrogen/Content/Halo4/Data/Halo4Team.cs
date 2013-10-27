@@ -30,5 +30,13 @@ namespace Nitrogen.Content.Halo4.Data
         /// </summary>
         [PropertyBinding("IsEnabled")]
         public bool IsEnabled { get; set; }
+
+        public static Halo4Team CreateDefault(int teamIndex)
+        {
+            return new Halo4Team
+            {
+                IsEnabled = true,
+            };
+        }
     }
 }

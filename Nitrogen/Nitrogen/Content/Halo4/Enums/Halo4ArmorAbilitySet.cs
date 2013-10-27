@@ -18,27 +18,13 @@
  *   along with Nitrogen.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-using Nitrogen.Content.Shared;
-using System;
-
-namespace Nitrogen.Content.Halo4.Data
+namespace Nitrogen.Content.Halo4.Enums
 {
-    [Synchronizable]
-    public class Halo4Powerup
+    public enum Halo4ArmorAbilitySet
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Halo4Powerup"/> class with default values.
-        /// </summary>
-        public Halo4Powerup()
-        {
-            AlphaPhaseTraits = new TraitSetWithDuration<Halo4RuntimeTraitSet>();
-            BetaPhaseTraits = new TraitSetWithDuration<Halo4RuntimeTraitSet>();
-        }
-
-        [PropertyBinding("AlphaPhaseTraits")]
-        public TraitSetWithDuration<Halo4RuntimeTraitSet> AlphaPhaseTraits { get; set; }
-
-        [PropertyBinding("BetaPhaseTraits")]
-        public TraitSetWithDuration<Halo4RuntimeTraitSet> BetaPhaseTraits { get; set; }
+        MapDefault = -2,
+        Disabled,
+        AllArmorAbilities,
+        SpartanOps,
     }
 }

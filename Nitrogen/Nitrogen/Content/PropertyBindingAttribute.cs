@@ -50,12 +50,18 @@ namespace Nitrogen.Content
         /// </summary>
         public IEnumerable<string> Path { get; private set; }
 
+        /// <summary>
+        /// Gets a boolean value indicating whether +1 encoding should be used.
+        /// </summary>
         public bool UsePlusOneEncoding { get; private set; }
 
         public string CountPropertyName { get; set; }
 
-        public uint? Count { get; set; }
+        public uint Count { get; set; }
 
+        /// <summary>
+        /// When bound to a list, gets or sets the prefix for each element.
+        /// </summary>
         public string Prefix { get; set; }
 
         public string ValueName { get; set; }
@@ -65,7 +71,7 @@ namespace Nitrogen.Content
         /// </summary>
         public bool IsListBinding
         {
-            get { return CountPropertyName != null || Count != null; }
+            get { return CountPropertyName != null || Count > 0; }
         }
     }
 }

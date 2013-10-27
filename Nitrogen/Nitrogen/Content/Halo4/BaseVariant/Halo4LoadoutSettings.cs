@@ -18,14 +18,28 @@
  *   along with Nitrogen.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+using Nitrogen.Content.Halo4.Data;
 using Nitrogen.Content.Halo4.Enums;
 using System;
+using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 
 namespace Nitrogen.Content.Halo4.BaseVariant
 {
     [Synchronizable]
     public class Halo4LoadoutSettings
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Halo4LoadoutSettings"/> class with default
+        /// values.
+        /// </summary>
+        public Halo4LoadoutSettings()
+        {
+            LoadoutUsage = Halo4LoadoutUsage.Personal;
+            MapLoadoutsEnabled = true;
+            Palettes = new List<Halo4LoadoutPalette>();
+        }
+
         public Halo4LoadoutUsage LoadoutUsage
         {
             get { return PersonalLoadoutsEnabled ? Halo4LoadoutUsage.Personal : Halo4LoadoutUsage.Game; }
@@ -35,7 +49,26 @@ namespace Nitrogen.Content.Halo4.BaseVariant
         [PropertyBinding("MapLoadoutsEnabled")]
         public bool MapLoadoutsEnabled { get; set; }
 
+        [PropertyBinding("LoadoutPalettes", Count = 6, Prefix = "Palette")]
+        public List<Halo4LoadoutPalette> Palettes { get; set; }
+
+        public Halo4LoadoutPalette GameLoadouts
+        {
+            get { return Palettes[0]; }
+            set
+            {
+                Contract.Requires<ArgumentNullException>(value == null);
+                Palettes[0] = value;
+            }
+        }
+
         [PropertyBinding("PersonalLoadoutsEnabled")]
         private bool PersonalLoadoutsEnabled { get; set; }
+
+        [PropertyBinding("__unnamed_0")]
+        private bool Unknown0 { get; set; }
+
+        [PropertyBinding("__unnamed_1")]
+        private bool Unknown1 { get; set; }
     }
 }

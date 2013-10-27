@@ -214,8 +214,8 @@ namespace Nitrogen.Content
             {
                 // Obtain list size.
                 uint count;
-                if (binding.Count.HasValue)
-                    count = binding.Count.Value;
+                if (binding.Count > 0)
+                    count = binding.Count;
                 else
                     count = chunk.Data.GetValueByPath<uint>(countPath);
 

@@ -68,7 +68,7 @@ namespace Nitrogen.VariantBuilder.Vault
         public override void InitOrdnance(Halo4OrdnanceSettings ordnanceSettings)
         {
             ordnanceSettings.OrdnanceSystemEnabled = false;
-            ordnanceSettings.Personal.PersonalOrdnanceEnabled = false;
+            ordnanceSettings.Personal.IsEnabled = false;
         }
 
         // Customize teams here

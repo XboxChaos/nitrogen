@@ -104,7 +104,7 @@ namespace Nitrogen.Blob.Transport.BinaryTemplates.Halo4
             Register<byte>("SuicidePenalty");
             Register<byte>("BetrayalPenalty");
             Register<byte>("RespawnTimeGrowth", n: 4);
-            Register<byte>("InitialLoadoutDuration", n: 4); // broken in H4; the lowest you can go is 7.
+            Register<byte>("InitialLoadoutDuration", n: 4); // broken in H4
 
             Group("RespawnTraits", () =>
             {
@@ -140,7 +140,7 @@ namespace Nitrogen.Blob.Transport.BinaryTemplates.Halo4
 
         private void DefinePowerups()
         {
-            // Extracted from Map Overrides for simplicity.
+            // Powerups are extracted from Map Overrides for simplicity.
 
             Action<string> powerup = (string name) =>
             {
@@ -173,7 +173,7 @@ namespace Nitrogen.Blob.Transport.BinaryTemplates.Halo4
             {
                 for (int i = 0; i < count; i++)
                 {
-                    Group("Settings[" + i + "]", () =>
+                    Group("Settings" + i, () =>
                     {
                         Register<byte>("PaletteIndex");
                         Register<bool>();
@@ -199,74 +199,77 @@ namespace Nitrogen.Blob.Transport.BinaryTemplates.Halo4
             Register<byte>("TeamModelOverride", n: 3);
             Register<byte>("DesignatorSwitchType", n: 2);
 
-            for (int i = 0; i < 8; i++)
+            Group("Teams", () =>
             {
-                Group("Team[" + i + "]", () =>
+                for (int i = 0; i < 8; i++)
                 {
-                    Register<bool>("OverrideEmblem");
-                    Register<bool>("OverrideUIColor");
-                    Register<bool>("OverrideTextColor");
-                    Register<bool>("OverridePrimaryColor");
-                    Register<bool>("OverrideSecondaryColor");
-                    Register<bool>("IsEnabled");
+                    Group("Team" + i, () =>
+                    {
+                        Register<bool>("OverrideEmblem");
+                        Register<bool>("OverrideUIColor");
+                        Register<bool>("OverrideTextColor");
+                        Register<bool>("OverridePrimaryColor");
+                        Register<bool>("OverrideSecondaryColor");
+                        Register<bool>("IsEnabled");
 
-                    Group("Name", () => Import<StringTable>(new Context
+                        Group("Name", () => Import<StringTable>(new Context
                     {
                         { "OffsetSize", 10 },
                         { "LengthSize", 10 },
                         { "CountSize", 1 },
                     }));
 
-                    Register<uint>("Index", n: 4);
-                    Register<bool>("OverrideTeamModel");
+                        Register<uint>("Index", n: 4);
+                        Register<bool>("OverrideTeamModel");
 
-                    Group("PrimaryColor", () =>
-                    {
-                        Register<byte>("Alpha");
-                        Register<byte>("Red");
-                        Register<byte>("Green");
-                        Register<byte>("Blue");
+                        Group("PrimaryColor", () =>
+                        {
+                            Register<byte>("Alpha");
+                            Register<byte>("Red");
+                            Register<byte>("Green");
+                            Register<byte>("Blue");
+                        });
+
+                        Group("SecondaryColor", () =>
+                        {
+                            Register<byte>("Alpha");
+                            Register<byte>("Red");
+                            Register<byte>("Green");
+                            Register<byte>("Blue");
+                        });
+
+                        Group("TextColor", () =>
+                        {
+                            Register<byte>("Alpha");
+                            Register<byte>("Red");
+                            Register<byte>("Green");
+                            Register<byte>("Blue");
+                        });
+
+                        Group("UIColor", () =>
+                        {
+                            Register<byte>("Alpha");
+                            Register<byte>("Red");
+                            Register<byte>("Green");
+                            Register<byte>("Blue");
+                        });
+
+                        Register<uint>("FireTeamCount", n: 5);
+
+                        Group("Emblem", () =>
+                        {
+                            Register<byte>("ForegroundIndex");
+                            Register<byte>("BackgroundIndex");
+                            Register<bool>();
+                            Register<bool>("BackgroundToggle");
+                            Register<bool>("ForegroundToggle");
+                            Register<uint>("PrimaryColorIndex", n: 6);
+                            Register<uint>("SecondaryColorIndex", n: 6);
+                            Register<uint>("BackgroundColorIndex", n: 6);
+                        });
                     });
-
-                    Group("SecondaryColor", () =>
-                    {
-                        Register<byte>("Alpha");
-                        Register<byte>("Red");
-                        Register<byte>("Green");
-                        Register<byte>("Blue");
-                    });
-
-                    Group("TextColor", () =>
-                    {
-                        Register<byte>("Alpha");
-                        Register<byte>("Red");
-                        Register<byte>("Green");
-                        Register<byte>("Blue");
-                    });
-
-                    Group("UIColor", () =>
-                    {
-                        Register<byte>("Alpha");
-                        Register<byte>("Red");
-                        Register<byte>("Green");
-                        Register<byte>("Blue");
-                    });
-
-                    Register<uint>("FireTeamCount", n: 5);
-
-                    Group("Emblem", () =>
-                    {
-                        Register<byte>("ForegroundIndex");
-                        Register<byte>("BackgroundIndex");
-                        Register<bool>();
-                        Register<bool>("BackgroundToggle");
-                        Register<bool>("ForegroundToggle");
-                        Register<uint>("PrimaryColorIndex", n: 6);
-                        Register<uint>("SecondaryColorIndex", n: 6);
-                        Register<uint>("BackgroundColorIndex", n: 6);
-                    });
-                });
-            }
+                }
+            });
         }
 
         private void DefineLoadouts()
@@ -276,16 +279,19 @@ namespace Nitrogen.Blob.Transport.BinaryTemplates.Halo4
             Register<bool>();
             Register<bool>("MapLoadoutsEnabled");
 
-            for (int i = 0; i < 6; i++)
+            Group("LoadoutPalettes", () =>
             {
-                Group("Palette[" + i + "]", () =>
+                for (int i = 0; i < 6; i++)
                 {
-                    for (int j = 0; j < 5; j++)
+                    Group("Palette" + i, () =>
                     {
-                        Group("Loadout" + j, () => Import<Halo4.Shared.Halo4Loadout>());
-                    }
-                });
-            }
+                        for (int j = 0; j < 5; j++)
+                        {
+                            Group("Loadout" + j, () => Import<Halo4.Shared.Halo4Loadout>());
+                        }
+                    });
+                }
+            });
         }
 
         private void DefineOrdnanceSettings()
@@ -295,12 +301,12 @@ namespace Nitrogen.Blob.Transport.BinaryTemplates.Halo4
             Register<bool>("ObjectiveOrdnanceEnabled");
             Group("Personal", () => Register<bool>("IsEnabled"));
             Register<bool>("OrdnanceSystemEnabled");
-            Register<sbyte>(); // timer or distance? -2 in forge like the other unknown int16's. -1 disables initial ordnance
+            Register<sbyte>(); // duration or distance? -2 in forge like the other unknown int16's. -1 disables initial ordnance, 50 by default
             Register<short>("RandomOrdnanceMinTimer");
             Register<short>("RandomOrdnanceMaxTimer");
-            Register<short>(); // timer
+            Register<short>(); // duration
             Register<string>("InitialDropObjectFilterName", encoding: Encoding.ASCII, length: 32, padded: false, nullTerminated: true);
-            Register<short>(); // timer
+            Register<short>(); // duration
             Register<short>("InitialDropDelay");
             Register<string>("RandomDropSet", encoding: Encoding.ASCII, length: 32, padded: false, nullTerminated: true);
             Group("Personal", () => Register<string>("DropSet", encoding: Encoding.ASCII, length: 32, padded: false, nullTerminated: true));
@@ -325,7 +331,7 @@ namespace Nitrogen.Blob.Transport.BinaryTemplates.Halo4
                     {
                         for (int j = 0; j < 8; j++)
                         {
-                            Group("Item[" + j + "]", () =>
+                            Group("Item" + j , () =>
                             {
                                 Register<string>("Item", encoding: Encoding.ASCII, length: 32, padded: false, nullTerminated: true);
                                 Register<float>("Weight", n: 30, minValue: 0, maxValue: 10000, isSigned: false, flag: true);

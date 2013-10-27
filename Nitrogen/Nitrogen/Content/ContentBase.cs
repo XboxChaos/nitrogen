@@ -51,6 +51,7 @@ namespace Nitrogen.Content
         public static T Load(Stream stream)
         {
             Contract.Requires<ArgumentNullException>(stream != null);
+            Contract.Requires<IOException>(stream.CanRead);
 
             var content = new T() as ContentBase<T>;
 
@@ -83,6 +84,22 @@ namespace Nitrogen.Content
             // Deserialize stream and bind data to this instance.
             content.chunks = content.transport.Deserialize();
             content.Synchronize(SynchronizationMode.UpdateProperties);
+
+            return content as T;
+        }
+
+        public static T Create(Stream outputStream)
+        {
+            Contract.Requires<ArgumentNullException>(outputStream != null);
+            Contract.Requires<IOException>(outputStream.CanWrite);
+
+            var content = new T() as ContentBase<T>;
+
+            var blf = new BlfTransport(outputStream, BlfTransportFlags.LeaveOpen | BlfTransportFlags.ReallocateChunks);
+            blf.RegisterTemplateSet(content.BlfTemplateSet);
+            content.baseStream = outputStream;
+            content.transport = blf;
+            content.chunks = new ChunkCollection(new Chunk[0]);
 
             return content as T;
         }

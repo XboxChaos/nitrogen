@@ -41,6 +41,11 @@ namespace Nitrogen.Content.Halo4.BaseVariant
             PointsSystemEnabled = true;
             FinalKillCamEnabled = false;
             SuddenDeathDuration = 90;
+
+            Unknown0 = false;
+            Unknown1 = false;
+            Unknown2 = false;
+            MoshDifficulty = 0;
         }
 
         [PropertyBinding("TeamsEnabled")]
@@ -75,5 +80,17 @@ namespace Nitrogen.Content.Halo4.BaseVariant
 
         [PropertyBinding("SuddenDeathDuration")]
         public byte SuddenDeathDuration { get; set; }
+
+        [PropertyBinding("__unnamed_0")]
+        private bool Unknown0 { get; set; }
+
+        [PropertyBinding("__unnamed_1")]
+        private bool Unknown1 { get; set; }
+
+        [PropertyBinding("__unnamed_2")]
+        private bool Unknown2 { get; set; }
+
+        [PropertyBinding("MoshDifficulty")]
+        private byte MoshDifficulty { get; set; }
     }
 }

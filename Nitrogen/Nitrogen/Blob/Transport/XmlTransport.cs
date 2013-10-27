@@ -94,17 +94,9 @@ namespace Nitrogen.Blob.Transport
         }
 
         /// <summary>
-        /// Finalizes an instance of the <see cref="XmlTransport"/> class.
+        /// Gets the flags applied to this instance of the <see cref="XmlTransport"/> class as
+        /// initially defined in the constructor.
         /// </summary>
-        ~XmlTransport()
-        {
-            Dispose(false);
-        }
-
-         /// <summary>
-         /// Gets the flags applied to this instance of the <see cref="XmlTransport"/> class as
-         /// initially defined in the constructor.
-         /// </summary>
         public virtual XmlTransportFlags TransportFlags { get; protected set; }
 
         /// <summary>

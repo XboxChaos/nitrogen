@@ -105,14 +105,6 @@ namespace Nitrogen.Blob.Transport
         }
 
         /// <summary>
-        /// Finalizes an instance of the <see cref="BlfTransport"/> class.
-        /// </summary>
-        ~BlfTransport()
-        {
-            Dispose(false);
-        }
-
-        /// <summary>
         /// Gets the flags applied to this instance of the <see cref="BlfTransport"/> class as
         /// initially defined in the constructor.
         /// </summary>

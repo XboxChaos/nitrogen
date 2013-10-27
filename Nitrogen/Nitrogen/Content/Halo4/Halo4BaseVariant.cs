@@ -28,7 +28,21 @@ namespace Nitrogen.Content.Halo4
             ContentHeader = new ContentHeader();
             GeneralSettings = new Halo4GeneralSettings();
             RespawnSettings = new Halo4RespawnSettings();
+            SocialSettings = new Halo4SocialSettings();
+            MapOverrides = new Halo4MapOverrides();
+            Powerups = new Halo4PowerupSettings();
+            Teams = new Halo4TeamSettings();
+            Loadouts = new Halo4LoadoutSettings();
+            OrdnanceSettings = new Halo4OrdnanceSettings();
             HasWeaponTuningData = false;
+
+            Unknown0 = true;
+            Unknown1 = false;
+            PrometheanEnergyKill = 3;
+            PrometheanEnergyTime = 3;
+            PrometheanEnergyMedal = 3;
+            PrometheanDuration = 3;
+            PrototypeUnknown0 = false;
         }
 
         [PropertyBinding]
@@ -58,17 +72,46 @@ namespace Nitrogen.Content.Halo4
         [PropertyBinding("mpvr", "BaseVariant/Ordnance")]
         public Halo4OrdnanceSettings OrdnanceSettings { get; set; }
 
+        /// <summary>
+        /// Gets or sets whether this variant has weapon tuning data.
+        /// </summary>
         public bool HasWeaponTuningData
         {
             get { return MoshMode == 1; }
             set { MoshMode = value ? 1 : 0; }
         }
 
+        [PropertyBinding("mpvr", "BaseVariant/__unnamed_0")]
+        private bool Unknown0 { get; set; }
+
+        [PropertyBinding("mpvr", "BaseVariant/__unnamed_1")]
+        private bool Unknown1 { get; set; }
+
         [PropertyBinding("mpvr", "BaseVariant/Prototype/Mode")]
         private int MoshMode { get; set; }
 
+        [PropertyBinding("mpvr", "BaseVariant/Prototype/PrometheanEnergyKill")]
+        private byte PrometheanEnergyKill { get; set; }
+
+        [PropertyBinding("mpvr", "BaseVariant/Prototype/PrometheanEnergyTime")]
+        private byte PrometheanEnergyTime { get; set; }
+
+        [PropertyBinding("mpvr", "BaseVariant/Prototype/PrometheanEnergyMedal")]
+        private byte PrometheanEnergyMedal { get; set; }
+
+        [PropertyBinding("mpvr", "BaseVariant/Prototype/PrometheanDuration")]
+        private byte PrometheanDuration { get; set; }
+
+        [PropertyBinding("mpvr", "BaseVariant/Prototype/__unnamed_0")]
+        private bool PrototypeUnknown0 { get; set; }
+
         protected override void OnSerialize(Stream stream)
         {
+            /*
+             * Matt: This is a HUGE hack. I need to think of a better way to rehash gametypes and
+             *       recalculate the data length.
+             */
+
             // Don't mess with the stream if it isn't binary.
             if (stream == null)
                 return;
