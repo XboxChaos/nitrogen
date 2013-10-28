@@ -1,5 +1,6 @@
 ﻿using Nitrogen.Content.Halo4;
 using Nitrogen.Content.Halo4.BaseVariant;
+using Nitrogen.Content.Shared.Enums;
 using System;
 using System.IO;
 
@@ -30,6 +31,10 @@ namespace Nitrogen.VariantBuilder
             {
                 var gt = Halo4MegaloVariant.Create(stream);
 
+                gt.ContentHeader.BuildNumber = 0x5399;
+                gt.ContentHeader.CategoryIndex = 25;
+                gt.ContentHeader.ContentType = ContentType.GameVariant;
+
                 // Base variant stuff ----------
                 InitGeneralSettings(gt.GeneralSettings);
                 InitRespawnSettings(gt.RespawnSettings);
@@ -43,7 +48,7 @@ namespace Nitrogen.VariantBuilder
                 // Megalo stuff ----------------
 
 
-                //gt.SaveChanges();
+                gt.SaveChanges();
             }
         }
     }

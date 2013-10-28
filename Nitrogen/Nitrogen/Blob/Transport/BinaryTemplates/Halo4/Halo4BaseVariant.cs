@@ -213,11 +213,11 @@ namespace Nitrogen.Blob.Transport.BinaryTemplates.Halo4
                         Register<bool>("IsEnabled");
 
                         Group("Name", () => Import<StringTable>(new Context
-                    {
-                        { "OffsetSize", 10 },
-                        { "LengthSize", 10 },
-                        { "CountSize", 1 },
-                    }));
+                        {
+                            { "OffsetSize", 10 },
+                            { "LengthSize", 10 },
+                            { "CountSize", 1 },
+                        }));
 
                         Register<uint>("Index", n: 4);
                         Register<bool>("OverrideTeamModel");

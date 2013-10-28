@@ -99,7 +99,7 @@ namespace Nitrogen.Content
             blf.RegisterTemplateSet(content.BlfTemplateSet);
             content.baseStream = outputStream;
             content.transport = blf;
-            content.chunks = new ChunkCollection(new Chunk[0]);
+            content.chunks = content.CreateDefaultChunkCollection();
 
             return content as T;
         }
@@ -115,6 +115,11 @@ namespace Nitrogen.Content
         protected virtual void OnSerialize(Stream stream)
         {
             // Do nothing by default.
+        }
+
+        protected virtual ChunkCollection CreateDefaultChunkCollection()
+        {
+            return null;
         }
 
         protected virtual void Dispose(bool disposing)

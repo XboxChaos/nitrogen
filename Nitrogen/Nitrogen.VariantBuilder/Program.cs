@@ -9,6 +9,9 @@ namespace Nitrogen.VariantBuilder
     {
         public static void Main(string[] args)
         {
+            // debug
+            args = new[] { "1", "C:/users/matt/desktop/race.game" };
+
             Console.Title = "Nitrogen Variant Builder";
             var originalColor = Console.ForegroundColor;
 

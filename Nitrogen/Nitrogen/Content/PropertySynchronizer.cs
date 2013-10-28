@@ -167,7 +167,7 @@ namespace Nitrogen.Content
             if (childInstance == null || !PropertySynchronizer.Synchronize(childInstance, mode, chunk, userData, path))
             {
                 // Don't overwrite a DataTable
-                if (mode == SynchronizationMode.UpdateDataTable && (chunk.Data.GetValueByPath(path) is DataTable))
+                if (mode == SynchronizationMode.UpdateDataTable && path != null && (chunk.Data.GetValueByPath(path) is DataTable))
                     return false;
 
                 if (value != null && requestedType != null)
@@ -247,7 +247,7 @@ namespace Nitrogen.Content
             {
                 // Update count property.
                 var list = property.GetValue(instance) as IList;
-                if (binding.Count == null)
+                if (binding.Count == 0)
                     chunk.Data.SetValueByPath(countPath, list.Count);
 
                 // Update each object.

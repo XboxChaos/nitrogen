@@ -57,8 +57,8 @@ namespace Nitrogen
         internal static Game Halo4 = new Game
         {
             Name = "Halo 4",
-            MegaloConditionsDatabase = new MegaloScriptDatabase(new XmlDefinitionsTransport("Nitrogen.Assets.Halo4.H4_Megalo_Conditions.xml", true)),
-            MegaloActionsDatabase = new MegaloScriptDatabase(new XmlDefinitionsTransport("Nitrogen.Assets.Halo4.H4_Megalo_Actions.xml", true)),
+            MegaloConditionsDatabase = new MegaloScriptDatabase(new XmlDefinitionsTransport("Nitrogen.Assets.Halo4.H4_Megalo_Conditions.xml", isEmbeddedResource: true)),
+            MegaloActionsDatabase = new MegaloScriptDatabase(new XmlDefinitionsTransport("Nitrogen.Assets.Halo4.H4_Megalo_Actions.xml", isEmbeddedResource: true)),
             InitialBuildNumber = 20810,
             Sha1Salt = new byte[] {
                 0xED, 0xD4, 0x30, 0x09, 0x66, 0x6D, 0x5C, 0x4A, 0x5C, 0x36, 0x57,
@@ -94,7 +94,7 @@ namespace Nitrogen
             internal int InitialBuildNumber { get; set; }
 
             /// <summary>
-            /// Gets or sets the salt used for the SHA-1 hash.
+            /// Gets or sets the salt used for the SHA-1 hash in user-generated files.
             /// </summary>
             internal byte[] Sha1Salt { get; set; }
         }

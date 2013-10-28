@@ -117,6 +117,8 @@
   <ItemGroup>
     <Compile Include="Blob\Chunk.cs" />
     <Compile Include="Blob\ChunkCollection.cs" />
+    <Compile Include="Blob\Transport\BinaryTemplates\Chunks\BlfTemplate.cs" />
+    <Compile Include="Blob\Transport\BinaryTemplates\Chunks\EofTemplate.cs" />
     <Compile Include="Content\ContentBase.cs" />
     <Compile Include="Content\Halo4\BaseVariant\Halo4LoadoutSettings.cs" />
     <Compile Include="Content\Halo4\BaseVariant\Halo4MapOverrides.cs" />
@@ -203,7 +205,7 @@
     <Compile Include="Blob\Transport\BinaryTemplates\HaloReach\HaloReachBaseVariant.cs" />
     <Compile Include="Blob\Transport\BinaryTemplates\HaloReach\HaloReachForgeSettings.cs" />
     <Compile Include="Blob\Transport\BinaryTemplates\Shared\StringTable.cs" />
-    <Compile Include="Blob\Transport\BinaryTemplates\TemplateSet.cs" />
+    <Compile Include="Blob\Transport\BinaryTemplates\TemplateSets.cs" />
     <Compile Include="Blob\Transport\BlfTransport.cs" />
     <Compile Include="Blob\Transport\IBlobTransport.cs" />
     <Compile Include="GameRegistry.cs" />

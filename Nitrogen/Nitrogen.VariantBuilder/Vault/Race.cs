@@ -37,9 +37,12 @@ namespace Nitrogen.VariantBuilder.Vault
         // Customize social settings here
         public override void InitSocialSettings(Halo4SocialSettings socialSettings)
         {
-            socialSettings.DeadPlayerVoice = true;
+            socialSettings.DeadPlayerVoice = false;
             socialSettings.EnemyPlayerVoice = true;
-            socialSettings.OpenChannelVoice = true;
+            socialSettings.OpenChannelVoice = false;
+            socialSettings.BetrayalBooting = false;
+            socialSettings.FriendlyFire = false;
+            socialSettings.TeamChanging = TeamChangingMode.Disabled;
         }
 
         // Customize base player traits, vehicle set, etc here

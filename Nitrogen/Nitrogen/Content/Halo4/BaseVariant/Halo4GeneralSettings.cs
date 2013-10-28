@@ -48,49 +48,49 @@ namespace Nitrogen.Content.Halo4.BaseVariant
             MoshDifficulty = 0;
         }
 
-        [PropertyBinding("TeamsEnabled")]
+        [PropertyBinding("mpvr", "BaseVariant/General/TeamsEnabled")]
         public bool TeamsEnabled { get; set; }
 
-        [PropertyBinding("RoundsResetPlayers")]
+        [PropertyBinding("mpvr", "BaseVariant/General/RoundsResetPlayers")]
         public bool RoundsResetPlayers { get; set; }
 
-        [PropertyBinding("RoundsResetMap")]
+        [PropertyBinding("mpvr", "BaseVariant/General/RoundsResetMap")]
         public bool RoundsResetMap { get; set; }
 
-        [PropertyBinding("RoundsResetEverythingElse")]
+        [PropertyBinding("mpvr", "BaseVariant/General/RoundsResetEverythingElse")]
         public bool RoundsResetEverythingElse { get; set; }
 
-        [PropertyBinding("RoundTimeLimit")]
+        [PropertyBinding("mpvr", "BaseVariant/General/RoundTimeLimit")]
         public byte RoundTimeLimit { get; set; }
 
-        [PropertyBinding("NumberOfRounds")]
+        [PropertyBinding("mpvr", "BaseVariant/General/NumberOfRounds")]
         public byte NumberOfRounds { get; set; }
 
-        [PropertyBinding("EarlyVictoryWinCount")]
+        [PropertyBinding("mpvr", "BaseVariant/General/EarlyVictoryWinCount")]
         public byte EarlyVictoryWinCount { get; set; }
 
-        [PropertyBinding("DeathCamEnabled")]
+        [PropertyBinding("mpvr", "BaseVariant/General/DeathCamEnabled")]
         public bool KillCamEnabled { get; set; }
 
-        [PropertyBinding("PointsSystemEnabled")]
+        [PropertyBinding("mpvr", "BaseVariant/General/PointsSystemEnabled")]
         public bool PointsSystemEnabled { get; set; }
 
-        [PropertyBinding("FinalKillCamEnabled")]
+        [PropertyBinding("mpvr", "BaseVariant/General/FinalKillCamEnabled")]
         public bool FinalKillCamEnabled { get; set; }
 
-        [PropertyBinding("SuddenDeathDuration")]
+        [PropertyBinding("mpvr", "BaseVariant/General/SuddenDeathDuration")]
         public byte SuddenDeathDuration { get; set; }
 
-        [PropertyBinding("__unnamed_0")]
+        [PropertyBinding("mpvr", "BaseVariant/General/__unnamed_0")]
         private bool Unknown0 { get; set; }
 
-        [PropertyBinding("__unnamed_1")]
+        [PropertyBinding("mpvr", "BaseVariant/General/__unnamed_1")]
         private bool Unknown1 { get; set; }
 
-        [PropertyBinding("__unnamed_2")]
+        [PropertyBinding("mpvr", "BaseVariant/General/__unnamed_2")]
         private bool Unknown2 { get; set; }
 
-        [PropertyBinding("MoshDifficulty")]
+        [PropertyBinding("mpvr", "BaseVariant/General/MoshDifficulty")]
         private byte MoshDifficulty { get; set; }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Nitrogen.Blob.Transport.BinaryTemplates;
+﻿using Nitrogen.Blob;
+using Nitrogen.Blob.Transport.BinaryTemplates;
 using Nitrogen.Content.Halo4.BaseVariant;
 using Nitrogen.Content.Shared;
 using Nitrogen.Utilities;
@@ -48,7 +49,7 @@ namespace Nitrogen.Content.Halo4
         [PropertyBinding]
         public ContentHeader ContentHeader { get; set; }
 
-        [PropertyBinding("mpvr", "BaseVariant/General")]
+        [PropertyBinding]
         public Halo4GeneralSettings GeneralSettings { get; set; }
 
         [PropertyBinding("mpvr", "BaseVariant/Respawn")]
@@ -139,6 +140,18 @@ namespace Nitrogen.Content.Halo4
             // Write the new hash to the stream.
             stream.Position = 0x2FC;
             stream.Write(hasher.Hash, 0, hasher.Hash.Length);
+        }
+
+        protected override ChunkCollection CreateDefaultChunkCollection()
+        {
+            var chunks = new Chunk[] {
+                new Chunk("_blf", 0x01, ChunkFlags.IsHeader, new DataTable()) { Offset = 0 },
+                new Chunk("chdr", 0x0A, ChunkFlags.IsHeader, new DataTable()) { Offset = 0x30 },
+                new Chunk("mpvr", 0x84, ChunkFlags.IsInitialized, new DataTable()) { Offset = 0x2F0 },
+                new Chunk("_eof", 0x01, ChunkFlags.IsInitialized, new DataTable()) { Offset = 0x7F18 },
+            };
+
+            return new ChunkCollection(chunks);
         }
     }
 }
