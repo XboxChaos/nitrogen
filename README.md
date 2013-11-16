@@ -1,10 +1,10 @@
-#Nitrogen - Halo Gametype API
+#Nitrogen - Halo Content API
 
 ##about;
 Nitrogen is a .NET library with the ultimate goal of making it super duper easy to modify user-generated files in Halo. The current focus is on Halo 4 gametypes but there are plans to extend Nitrogen to support other games and content types such as map variants.
 
 ##disclaimer;
-We love Halo. We love Bungie. We love 343 Industries. It took over a year and a handful of dedicated Halo fans to get to this point. Please don't be dumb and ruin it for the rest of us.
+We love Halo. We love Bungie. We love 343 Industries. It took a handful of dedicated Halo fans over a year to get to this point. Please don't be dumb and ruin it for the rest of us.
 
 Nitrogen is licensed under GPLv3. The full license text is available in the LICENSE file.
 
