@@ -19,6 +19,7 @@
  */
 
 using Nitrogen.Core.ContentData;
+using Nitrogen.Core.IO;
 using Nitrogen.Halo4.ContentData.MapVariants;
 using System;
 using System.Diagnostics.Contracts;
@@ -40,7 +41,7 @@ namespace Nitrogen.Halo4.ContentData
             this.data = new Halo4MapVariantData();
         }
 
-        public new Halo4MapVariantData Data
+        public Halo4MapVariantData Data
         {
             get { return this.data; }
             set
@@ -49,5 +50,14 @@ namespace Nitrogen.Halo4.ContentData
                 this.data = value;
             }
         }
+
+        #region MapVariant Members
+
+        protected override void SerializeData(BitStream s)
+        {
+            this.data.Serialize(s);
+        }
+
+        #endregion
     }
 }

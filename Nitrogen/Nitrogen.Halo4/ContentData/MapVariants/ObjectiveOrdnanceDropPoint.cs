@@ -13,7 +13,7 @@ namespace Nitrogen.Halo4.ContentData.MapVariants
 
         #region Halo4MapVariantObject Members
 
-        protected override void SerializeOrdnanceData(BitStream s)
+        protected void SerializeOrdnanceData(BitStream s)
         {
 
             /*byte

@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Nitrogen.Core.ContentData.Localization
 {
-    public abstract class LocalizedString
+    public class LocalizedString
         : ISerializable<EndianStream>
     {
         private Dictionary<Language, string> table;
@@ -47,6 +47,9 @@ namespace Nitrogen.Core.ContentData.Localization
             return this.table[language];
         }
 
-        public abstract void Serialize(EndianStream s);
+        public virtual void Serialize(EndianStream s)
+        {
+
+        }
     }
 }

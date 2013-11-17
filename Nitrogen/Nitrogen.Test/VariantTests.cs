@@ -29,11 +29,11 @@ namespace Nitrogen.Test
         {
             Halo4MapVariantBlob map;
 
-            using (var buffer = new MemoryStream(File.ReadAllBytes("C:/Users/Matt/Desktop/test.map")))
+            using (var buffer = new MemoryStream(File.ReadAllBytes("C:/Users/Matt/Desktop/haven.map")))
                 map = Blob.Load<Halo4MapVariantBlob>(buffer);
 
-            using (var output = File.Create("C:/Users/matt/Desktop/test.map"))
-                Blob.Save<Halo4MapVariantBlob>(output, map);
+            /*using (var output = File.Create("C:/Users/matt/Desktop/test.map"))
+                Blob.Save<Halo4MapVariantBlob>(output, map);*/
         }
 
         [TestMethod]

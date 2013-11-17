@@ -128,6 +128,7 @@
     <Compile Include="ContentData\Localization\LocalizedDescription.cs" />
     <Compile Include="ContentData\Localization\LocalizedName.cs" />
     <Compile Include="ContentData\ContentHeader.cs" />
+    <Compile Include="ContentData\Localization\StringTable.cs" />
     <Compile Include="ContentData\MapVariants\Box.cs" />
     <Compile Include="ContentData\MapVariants\Cylinder.cs" />
     <Compile Include="ContentData\MapVariants\IBoundary.cs" />

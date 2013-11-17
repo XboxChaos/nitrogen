@@ -29,7 +29,7 @@ namespace Nitrogen.Halo4.ContentData.MapVariants
     /// Represents the data in a Halo 4 map variant. 
     /// </summary>
     public class Halo4MapVariantData
-        : MapVariantData
+        : MapVariantData<Halo4MapVariantObject>
     {
         public const int MaximumObjectCount = 651;
 

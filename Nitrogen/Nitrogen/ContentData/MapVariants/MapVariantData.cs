@@ -18,18 +18,21 @@
  *   along with Nitrogen.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+using Nitrogen.Core.ContentData.Localization;
 using Nitrogen.Core.ContentData.Metadata;
 using Nitrogen.Core.IO;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 
 namespace Nitrogen.Core.ContentData.MapVariants
 {
     /// <summary>
     /// Represents the data in a map variant. 
     /// </summary>
-    public class MapVariantData
+    public class MapVariantData<TMapObject>
         : ISerializable<BitStream>
+        where TMapObject : MapVariantObject, new()
     {
         private ContentMetadata metadata;
         private byte encodingVersion;
@@ -41,6 +44,7 @@ namespace Nitrogen.Core.ContentData.MapVariants
         private int unk4, unk5;
         private MapVariantObject[] objects;
         private int maxObjects;
+        private StringTable stringTable;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MapVariantData"/> class with default values.
@@ -49,6 +53,9 @@ namespace Nitrogen.Core.ContentData.MapVariants
         {
             this.metadata = new MapVariantMetadata();
             this.boundaries = new int[6];
+
+            var table = new LanguageTable(new[] { Language.English });
+            this.stringTable = new StringTable(table);
         }
 
         public MapVariantData(MapVariantObject[] objectTable)
@@ -56,6 +63,19 @@ namespace Nitrogen.Core.ContentData.MapVariants
         {
             this.objects = objectTable;
             this.maxObjects = objectTable.Length;
+        }
+
+        /// <summary>
+        /// Gets or sets the table of object labels referenced by objects in this map variant.
+        /// </summary>
+        public StringTable Labels
+        {
+            get { return this.stringTable; }
+            set
+            {
+                Contract.Requires<ArgumentNullException>(value != null);
+                this.stringTable = value;
+            }
         }
 
         #region ISerializable<BitStream> Members
@@ -74,31 +94,29 @@ namespace Nitrogen.Core.ContentData.MapVariants
             s.Stream(ref this.unk4);
             s.Stream(ref this.unk5);
 
-            // TODO: String table goes here
+            this.stringTable.Serialize(s, 12, 13, 9);
 
-            if (this.objects != null)
+            for (int i = 0; i < this.objects.Length; i++)
             {
-                foreach (var obj in this.objects)
+                bool exists = false;
+                if (s.State == StreamState.Read)
                 {
-                    bool exists = false;
-                    if (s.State == StreamState.Read)
-                    {
-                        (s.Reader as BitReader).Read(out exists);
-                    }
-                    else if (s.State == StreamState.Write)
-                    {
-                        exists = (obj != null);
-                        (s.Writer as BitWriter).Write(exists);
-                    }
-
-                    if (exists)
-                    {
-                        s.Serialize(obj);
-                    }
+                    (s.Reader as BitReader).Read(out exists);
+                    this.objects[i] = new TMapObject();
+                }
+                else if (s.State == StreamState.Write)
+                {
+                    exists = (this.objects[i] != null);
+                    (s.Writer as BitWriter).Write(exists);
                 }
 
-                // TODO: Object count table goes here
+                if (exists)
+                {
+                    s.Serialize(this.objects[i]);
+                }
             }
+
+            // TODO: Object count table goes here
         }
 
         #endregion

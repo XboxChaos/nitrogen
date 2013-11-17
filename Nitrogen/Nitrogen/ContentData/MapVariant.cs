@@ -37,7 +37,6 @@ namespace Nitrogen.Core.ContentData
         : Chunk
     {
         private MemoryStream dataBuffer;
-        private MapVariantData data;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MapVariant"/> class with the specified
@@ -48,18 +47,9 @@ namespace Nitrogen.Core.ContentData
             : base("mvar", version, 0x7028)
         {
             this.dataBuffer = new MemoryStream();
-            this.data = new MapVariantData();
         }
 
-        public MapVariantData Data
-        {
-            get { return this.data; }
-            set
-            {
-                Contract.Requires<ArgumentNullException>(value != null);
-                this.data = value;
-            }
-        }
+        protected abstract void SerializeData(BitStream s);
 
         #region Chunk Members
 
@@ -68,7 +58,7 @@ namespace Nitrogen.Core.ContentData
             int length;
             s.Position += 20; // Skip hash for now.
 
-            // Read map variant data data into the buffer when deserializing.
+            // Read map variant data into the buffer when deserializing.
             if (s.State == StreamState.Read)
             {
                 s.Reader.Read(out length);
@@ -88,7 +78,7 @@ namespace Nitrogen.Core.ContentData
             // Stream the encoded map variant data to/from the buffer.
             using (var bitStream = new BitStream(this.dataBuffer, s.State, true))
             {
-                this.data.Serialize(bitStream);
+                SerializeData(bitStream);
             }
             length = (int)this.dataBuffer.Length;
 
