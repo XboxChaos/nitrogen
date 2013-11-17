@@ -40,7 +40,7 @@ namespace Nitrogen.Halo4.ContentData
         private const int LanguageCount = 17;
 
         private string mapImageFileName, mapFileName;
-        private int unk0, unk1;
+        private int mapIndex, unk1;
         private byte unk2, unk3, unk4, unk5;
         private int unk6, unk7;
         private int[] mpObjectTable;
@@ -116,6 +116,15 @@ namespace Nitrogen.Halo4.ContentData
             }
         }
 
+        /// <summary>
+        /// Gets or sets the map index.
+        /// </summary>
+        public int MapIndex
+        {
+            get { return this.mapIndex; }
+            set { this.mapIndex = value; }
+        }
+
         #region Level Members
 
         protected override void SerializeEndianStreamData(EndianStream s)
@@ -124,7 +133,7 @@ namespace Nitrogen.Halo4.ContentData
 
             s.Stream(ref this.mapImageFileName, Encoding.ASCII, 256);
             s.Stream(ref this.mapFileName, Encoding.ASCII, 256);
-            s.Stream(ref this.unk0);
+            s.Stream(ref this.mapIndex);
             s.Stream(ref this.unk1);
             s.Stream(ref this.unk2);
             s.Stream(ref this.unk3);

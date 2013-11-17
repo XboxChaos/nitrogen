@@ -18,30 +18,31 @@
  *   along with Nitrogen.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+using Nitrogen.Core.IO;
 using System;
-using System.Collections.Generic;
-using System.IO;
 
-namespace Nitrogen.Blob.Transport.BinaryTemplates.Chunks
+namespace Nitrogen.Core.ContentData.MapVariants
 {
     /// <summary>
-    /// Defines the structure of the '_blf' (blob file? blam file?) header chunk.
+    /// Represents a cubic boundary.
     /// </summary>
-    public class BlfTemplate
-        : ChunkTemplate
+    public struct Box
+        : IBoundary
     {
-        public override string ChunkSignature { get { return "_blf"; } }
+        private short width, length, top, bottom;
 
-        public override bool IsWellDefined { get { return true; } }
+        #region IBoundary Members
 
-        protected override void Initialize(Dictionary<int, Action> supportedVersions)
+        byte IBoundary.BoundaryIndex { get { return 3; } }
+
+        public void Serialize(BitStream s)
         {
-            supportedVersions[0x01] = Define;
+            s.Stream(ref this.width);
+            s.Stream(ref this.length);
+            s.Stream(ref this.top);
+            s.Stream(ref this.bottom);
         }
 
-        protected override void Define()
-        {
-            
-        }
+        #endregion
     }
 }

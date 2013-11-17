@@ -18,27 +18,30 @@
  *   along with Nitrogen.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-using Nitrogen.Content.Shared;
+using Nitrogen.Core.IO;
 using System;
 
-namespace Nitrogen.Content.Halo4.Data
+namespace Nitrogen.Core.ContentData.MapVariants
 {
-    [Synchronizable]
-    public class Halo4Powerup
+    /// <summary>
+    /// Represents a cylindrical boundary.
+    /// </summary>
+    public struct Cylinder
+        : IBoundary
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Halo4Powerup"/> class with default values.
-        /// </summary>
-        public Halo4Powerup()
+        private short radius, top, bottom;
+
+        #region IBoundary Members
+
+        byte IBoundary.BoundaryIndex { get { return 2; } }
+
+        public void Serialize(BitStream s)
         {
-            AlphaPhaseTraits = new TraitSetWithDuration<Halo4RuntimeTraitSet>();
-            BetaPhaseTraits = new TraitSetWithDuration<Halo4RuntimeTraitSet>();
+            s.Stream(ref this.radius);
+            s.Stream(ref this.top);
+            s.Stream(ref this.bottom);
         }
 
-        [PropertyBinding("AlphaPhaseTraits")]
-        public TraitSetWithDuration<Halo4RuntimeTraitSet> AlphaPhaseTraits { get; set; }
-
-        [PropertyBinding("BetaPhaseTraits")]
-        public TraitSetWithDuration<Halo4RuntimeTraitSet> BetaPhaseTraits { get; set; }
+        #endregion
     }
 }

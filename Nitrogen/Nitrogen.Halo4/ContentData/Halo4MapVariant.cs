@@ -19,7 +19,9 @@
  */
 
 using Nitrogen.Core.ContentData;
+using Nitrogen.Halo4.ContentData.MapVariants;
 using System;
+using System.Diagnostics.Contracts;
 
 namespace Nitrogen.Halo4.ContentData
 {
@@ -30,9 +32,22 @@ namespace Nitrogen.Halo4.ContentData
     public sealed class Halo4MapVariant
         : MapVariant
     {
+        private Halo4MapVariantData data;
+
         public Halo4MapVariant()
-            : base(50)
+            : base(version: 50)
         {
+            this.data = new Halo4MapVariantData();
+        }
+
+        public new Halo4MapVariantData Data
+        {
+            get { return this.data; }
+            set
+            {
+                Contract.Requires<ArgumentNullException>(value != null);
+                this.data = value;
+            }
         }
     }
 }

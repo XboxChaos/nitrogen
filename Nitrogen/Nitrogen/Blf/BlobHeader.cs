@@ -42,7 +42,7 @@ namespace Nitrogen.Core.Blf
         protected override void SerializeEndianStreamData(IO.EndianStream s)
         {
             s.Stream(ref byteOrderMark);
-            s.StreamBlock(32, () => s.Stream(ref this.fileSummary, Encoding.ASCII));
+            s.Stream(ref this.fileSummary, Encoding.ASCII, 32);
 
             if (this.byteOrderMark != -2)
                 s.SetEndianness(ByteOrder.LittleEndian);

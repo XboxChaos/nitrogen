@@ -18,30 +18,37 @@
  *   along with Nitrogen.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+using Nitrogen.Core.IO;
 using System;
-using System.Collections.Generic;
 
-namespace Nitrogen.Blob.Transport.BinaryTemplates
+namespace Nitrogen.Core.ContentData.MapVariants
 {
     /// <summary>
-    /// Contains a set of chunk templates.
+    /// Represents a spherical boundary.
     /// </summary>
-    public class TemplateSet : List<ChunkTemplate> { }
-
-    /// <summary>
-    /// Contains references to template sets.
-    /// </summary>
-    public static class TemplateSets
+    public struct Sphere
+        : IBoundary
     {
+        private short radius;
+
         /// <summary>
-        /// Provides a set of templates for game variants.
+        /// Gets or sets the radius of this sphere.
         /// </summary>
-        public static TemplateSet GameVariant = new TemplateSet
+        public short Radius
         {
-            { new Chunks.BlfTemplate() },
-            { new Chunks.ChdrTemplate() },
-            { new Chunks.MpvrTemplate() },
-            { new Chunks.EofTemplate() },
-        };
+            get { return this.radius; }
+            set { this.radius = value; }
+        }
+
+        #region IBoundary Members
+
+        byte IBoundary.BoundaryIndex { get { return 1; } }
+
+        public void Serialize(BitStream s)
+        {
+            s.Stream(ref this.radius);
+        }
+
+        #endregion
     }
 }

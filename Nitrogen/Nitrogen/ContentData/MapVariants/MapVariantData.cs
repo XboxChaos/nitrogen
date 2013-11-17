@@ -39,6 +39,8 @@ namespace Nitrogen.Core.ContentData.MapVariants
         private bool unk2, unk3;
         private int[] boundaries;
         private int unk4, unk5;
+        private MapVariantObject[] objects;
+        private int maxObjects;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MapVariantData"/> class with default values.
@@ -49,13 +51,16 @@ namespace Nitrogen.Core.ContentData.MapVariants
             this.boundaries = new int[6];
         }
 
-        public int Unk0 { get { return this.unk0; } set { this.unk0 = value; } }
-
-        public int Unk1 { get { return this.unk1; } set { this.unk1 = value; } }
+        public MapVariantData(MapVariantObject[] objectTable)
+            : this()
+        {
+            this.objects = objectTable;
+            this.maxObjects = objectTable.Length;
+        }
 
         #region ISerializable<BitStream> Members
 
-        public void Serialize(BitStream s)
+        public virtual void Serialize(BitStream s)
         {
             s.Serialize(this.metadata);
             s.Stream(ref this.encodingVersion);
@@ -68,6 +73,32 @@ namespace Nitrogen.Core.ContentData.MapVariants
             s.Stream(this.boundaries, 0, this.boundaries.Length);
             s.Stream(ref this.unk4);
             s.Stream(ref this.unk5);
+
+            // TODO: String table goes here
+
+            if (this.objects != null)
+            {
+                foreach (var obj in this.objects)
+                {
+                    bool exists = false;
+                    if (s.State == StreamState.Read)
+                    {
+                        (s.Reader as BitReader).Read(out exists);
+                    }
+                    else if (s.State == StreamState.Write)
+                    {
+                        exists = (obj != null);
+                        (s.Writer as BitWriter).Write(exists);
+                    }
+
+                    if (exists)
+                    {
+                        s.Serialize(obj);
+                    }
+                }
+
+                // TODO: Object count table goes here
+            }
         }
 
         #endregion

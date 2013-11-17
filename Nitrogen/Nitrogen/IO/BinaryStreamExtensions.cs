@@ -50,39 +50,5 @@ namespace Nitrogen.Core.IO
                 valueList[i].Serialize(s);
             }
         }
-
-        public static void StreamBlock<T>(this T s, int length, Action data)
-            where T : BinaryStream
-        {
-            Contract.Requires<ArgumentNullException>(s != null);
-            Contract.Requires<ArgumentOutOfRangeException>(length > 0);
-
-            long start = s.Position;
-
-            data.Invoke();
-
-            int remaining = length - (int)(s.Position - start);
-            if (remaining < 0) 
-            {
-                throw new InvalidOperationException("Data was larger than the block size"); 
-            }
-
-            s.Position += remaining;
-        }
-
-        public static void StreamPlusOne<T>(this T s, ref sbyte value, int bitLength = 8)
-            where T : BitStream
-        {
-            if (s.State == StreamState.Read)
-            {
-                long temp;
-                (s.Reader as BitReader).Read(out temp, bitLength);
-                value = (sbyte)(temp - 1);
-            }
-            else if (s.State == StreamState.Write)
-            {
-                (s.Writer as BitWriter).Write(value, bitLength);
-            }
-        }
     }
 }

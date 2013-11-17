@@ -41,14 +41,14 @@ namespace Nitrogen.Test
         {
             Halo4MapInfoBlob map;
 
-            using (var buffer = new MemoryStream(File.ReadAllBytes("C:/Users/Matt/Desktop/m10_crash.mapinfo")))
+            using (var buffer = new MemoryStream(File.ReadAllBytes("C:/Users/Matt/Desktop/m40_invasion.mapinfo")))
             {
                 map = Blob.Load<Halo4MapInfoBlob>(buffer);
             }
 
             using (var output = File.Create("C:/Users/matt/Desktop/m10_crash_resave.mapinfo"))
             {
-                Blob.Save<Halo4MapInfoBlob>(output, map);
+                //Blob.Save<Halo4MapInfoBlob>(output, map);
             }
         }
 

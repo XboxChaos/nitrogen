@@ -18,12 +18,35 @@
  *   along with Nitrogen.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+using Nitrogen.Core.ContentData.MapVariants;
+using Nitrogen.Core.IO;
 using System;
+using System.Collections.Generic;
 
-namespace Nitrogen.Content.Halo4.Data
+namespace Nitrogen.Halo4.ContentData.MapVariants
 {
-    [Synchronizable]
-    public class Halo4OrdnanceSet
+    /// <summary>
+    /// Represents the data in a Halo 4 map variant. 
+    /// </summary>
+    public class Halo4MapVariantData
+        : MapVariantData
     {
+        public const int MaximumObjectCount = 651;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Halo4MapVariantData"/> class with default values.
+        /// </summary>
+        public Halo4MapVariantData()
+            : base(new Halo4MapVariantObject[MaximumObjectCount])
+        {
+            
+        }
+
+        public override void Serialize(BitStream s)
+        {
+            base.Serialize(s);
+
+            // TODO: trait zones
+        }
     }
 }

@@ -105,6 +105,10 @@
     <DocumentationFile>..\..\Builds\Release\Nitrogen.Core.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Ionic.Zlib.CF, Version=1.9.1.8, Culture=neutral, PublicKeyToken=edbe51ad942a3f5c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Dependencies\Ionic.Zlib.CF.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -124,6 +128,11 @@
     <Compile Include="ContentData\Localization\LocalizedDescription.cs" />
     <Compile Include="ContentData\Localization\LocalizedName.cs" />
     <Compile Include="ContentData\ContentHeader.cs" />
+    <Compile Include="ContentData\MapVariants\Box.cs" />
+    <Compile Include="ContentData\MapVariants\Cylinder.cs" />
+    <Compile Include="ContentData\MapVariants\IBoundary.cs" />
+    <Compile Include="ContentData\MapVariants\MapVariantObject.cs" />
+    <Compile Include="ContentData\MapVariants\Sphere.cs" />
     <Compile Include="ContentData\Metadata\Author.cs" />
     <Compile Include="ContentData\Metadata\ContentMetadata.cs" />
     <Compile Include="ContentData\MapVariants\MapVariantData.cs" />
@@ -131,6 +140,7 @@
     <Compile Include="ContentData\Metadata\MetadataEnums.cs" />
     <Compile Include="IO\BitReader.cs" />
     <Compile Include="IO\BitStream.cs" />
+    <Compile Include="IO\BitStreamExtensions.cs" />
     <Compile Include="IO\BitWriter.cs" />
     <Compile Include="IO\ByteOrder.cs" />
     <Compile Include="IO\EndianReader.cs" />

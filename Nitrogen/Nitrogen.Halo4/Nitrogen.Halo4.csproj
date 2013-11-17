@@ -112,6 +112,17 @@
   <ItemGroup>
     <Compile Include="ContentData\Halo4Level.cs" />
     <Compile Include="ContentData\Halo4MapVariant.cs" />
+    <Compile Include="ContentData\MapVariants\SoftKillBoundary.cs" />
+    <Compile Include="ContentData\MapVariants\Halo4MapVariantData.cs" />
+    <Compile Include="ContentData\MapVariants\InitialLoadoutCamera.cs" />
+    <Compile Include="ContentData\MapVariants\InitialOrdnanceDropPoint.cs" />
+    <Compile Include="ContentData\MapVariants\KillBoundary.cs" />
+    <Compile Include="ContentData\MapVariants\MapVariantEnums.cs" />
+    <Compile Include="ContentData\MapVariants\Halo4MapVariantObject.cs" />
+    <Compile Include="ContentData\MapVariants\ObjectiveOrdnanceDropPoint.cs" />
+    <Compile Include="ContentData\MapVariants\RandomOrdnanceDropPoint.cs" />
+    <Compile Include="ContentData\MapVariants\SafeBoundary.cs" />
+    <Compile Include="ContentData\MapVariants\TraitZone.cs" />
     <Compile Include="ContentData\Metadata\CampaignVariantMetadata.cs" />
     <Compile Include="ContentData\Metadata\MetadataEnums.cs" />
     <Compile Include="ContentData\Metadata\SpartanOpsVariantMetadata.cs" />
