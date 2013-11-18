@@ -53,8 +53,8 @@ namespace Nitrogen.HaloReach.ContentData
         public HaloReachLevel()
             : base(version: 7)
         {
-            Name = new LocalizedName(GameData.Languages, "");
-            Description = new LocalizedDescription(GameData.Languages, "");
+            Name = new LocalizedName(HaloReachProperties.Languages, "");
+            Description = new LocalizedDescription(HaloReachProperties.Languages, "");
 
             this.mapImageFileName = "";
             this.mapFileName = "";
@@ -168,8 +168,8 @@ namespace Nitrogen.HaloReach.ContentData
             /// </summary>
             public InsertionPoint()
             {
-                this.name = new LocalizedName(GameData.Languages, "");
-                this.description = new LocalizedDescription(GameData.Languages, "");
+                this.name = new LocalizedName(HaloReachProperties.Languages, "");
+                this.description = new LocalizedDescription(HaloReachProperties.Languages, "");
                 this.zoneName = "";
             }
 

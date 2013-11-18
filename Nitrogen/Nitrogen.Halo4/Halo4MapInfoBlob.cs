@@ -32,7 +32,7 @@ namespace Nitrogen.Halo4
         : MapInfoBlob
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="Halo4MapInfoBlob"/> with default values.
+        /// Initializes a new instance of the <see cref="Halo4MapInfoBlob"/> class with default values.
         /// </summary>
         public Halo4MapInfoBlob()
             : base(new Halo4Level()) { }

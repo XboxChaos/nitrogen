@@ -111,7 +111,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ContentData\Halo3ODSTLevel.cs" />
-    <Compile Include="GameData.cs" />
+    <Compile Include="Halo3ODSTProperties.cs" />
     <Compile Include="Halo3ODSTMapInfoBlob.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

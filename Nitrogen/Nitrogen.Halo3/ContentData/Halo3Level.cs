@@ -50,8 +50,8 @@ namespace Nitrogen.Halo3.ContentData
         public Halo3Level()
             : base(version: 3)
         {
-            Name = new LocalizedName(GameData.Languages, "");
-            Description = new LocalizedDescription(GameData.Languages, "");
+            Name = new LocalizedName(Halo3Properties.Languages, "");
+            Description = new LocalizedDescription(Halo3Properties.Languages, "");
 
             this.mapImageFileName = "";
             this.mapFileName = "";
@@ -278,8 +278,8 @@ namespace Nitrogen.Halo3.ContentData
             /// </summary>
             public InsertionPoint()
             {
-                this.name = new LocalizedName(GameData.Languages, "");
-                this.description = new LocalizedDescription(GameData.Languages, "");
+                this.name = new LocalizedName(Halo3Properties.Languages, "");
+                this.description = new LocalizedDescription(Halo3Properties.Languages, "");
             }
 
             /// <summary>

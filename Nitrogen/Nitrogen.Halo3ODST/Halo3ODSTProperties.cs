@@ -18,36 +18,33 @@
  *   along with Nitrogen.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-using Nitrogen.Core;
-using Nitrogen.Halo3ODST.ContentData;
+using Nitrogen.Core.ContentData.Localization;
 using System;
-using System.Diagnostics.Contracts;
+using System.Collections.Generic;
 
 namespace Nitrogen.Halo3ODST
 {
     /// <summary>
-    /// Represents a map info blob for Halo 3: ODST maps.
+    /// Contains various static properties specific to Halo 3: ODST.
     /// </summary>
-    public class Halo3ODSTMapInfoBlob
-        : MapInfoBlob
+    public static class Halo3ODSTProperties
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="Halo3ODSTMapInfoBlob"/> class with default values.
+        /// Provides a table of supported languages in Halo 3: ODST.
         /// </summary>
-        public Halo3ODSTMapInfoBlob()
-            : base(new Halo3ODSTLevel()) { }
-
-        /// <summary>
-        /// Gets or sets the level (map) information.
-        /// </summary>
-        public new Halo3ODSTLevel Level
-        {
-            get { return base.Level as Halo3ODSTLevel; }
-            set
-            {
-                Contract.Requires<ArgumentNullException>(value != null);
-                base.Level = value;
-            }
-        }
+        public static LanguageTable Languages = new LanguageTable(new [] {
+            Language.English,
+            Language.Japanese,
+            Language.German,
+            Language.French,
+            Language.Spanish,
+            Language.SpanishMexican,
+            Language.Italian,
+            Language.Korean,
+            Language.Chinese,
+            Language.Unused,
+            Language.Portuguese,
+            Language.Polish,
+        });
     }
 }

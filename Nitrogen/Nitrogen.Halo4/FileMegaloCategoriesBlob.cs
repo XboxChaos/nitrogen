@@ -18,36 +18,50 @@
  *   along with Nitrogen.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-using Nitrogen.Core;
-using Nitrogen.Halo3ODST.ContentData;
+using Nitrogen.Core.Blf;
+using Nitrogen.Halo4.ContentData;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics.Contracts;
 
-namespace Nitrogen.Halo3ODST
+namespace Nitrogen.Halo4
 {
     /// <summary>
-    /// Represents a map info blob for Halo 3: ODST maps.
+    /// Represents a blob containing an instance of <see cref="FileMegaloCategories"/>.
     /// </summary>
-    public class Halo3ODSTMapInfoBlob
-        : MapInfoBlob
+    public class FileMegaloCategoriesBlob
+        : Blob
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Halo3ODSTMapInfoBlob"/> class with default values.
-        /// </summary>
-        public Halo3ODSTMapInfoBlob()
-            : base(new Halo3ODSTLevel()) { }
+        private FileMegaloCategories data;
 
         /// <summary>
-        /// Gets or sets the level (map) information.
+        /// Initializes a new instance of the <see cref="FileMegaloCategoriesBlob"/> class with default values.
         /// </summary>
-        public new Halo3ODSTLevel Level
+        public FileMegaloCategoriesBlob()
         {
-            get { return base.Level as Halo3ODSTLevel; }
+            this.data = new FileMegaloCategories();
+        }
+
+        /// <summary>
+        /// Gets or sets the categories contained in this blob.
+        /// </summary>
+        public FileMegaloCategories Categories
+        {
+            get { return this.data; }
             set
             {
                 Contract.Requires<ArgumentNullException>(value != null);
-                base.Level = value;
+                this.data = value;
             }
         }
+
+        #region Blob Members
+
+        protected override void Initialize(IList<Chunk> contents)
+        {
+            contents.Add(this.data);
+        }
+
+        #endregion
     }
 }

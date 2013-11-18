@@ -32,7 +32,7 @@ namespace Nitrogen.HaloReachBeta
         : MapInfoBlob
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="HaloReachBetaMapInfoBlob"/> with default values.
+        /// Initializes a new instance of the <see cref="HaloReachBetaMapInfoBlob"/> class with default values.
         /// </summary>
         public HaloReachBetaMapInfoBlob()
             : base(new HaloReachBetaLevel()) { }

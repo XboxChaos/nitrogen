@@ -18,36 +18,52 @@
  *   along with Nitrogen.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-using Nitrogen.Core;
-using Nitrogen.Halo3ODST.ContentData;
+using Nitrogen.Core.Blf;
+using Nitrogen.Core.ContentData;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics.Contracts;
 
-namespace Nitrogen.Halo3ODST
+namespace Nitrogen.Core
 {
     /// <summary>
-    /// Represents a map info blob for Halo 3: ODST maps.
+    /// Represents a blob containing a map image.
     /// </summary>
-    public class Halo3ODSTMapInfoBlob
-        : MapInfoBlob
+    public class MapImageBlob
+        : Blob
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Halo3ODSTMapInfoBlob"/> class with default values.
-        /// </summary>
-        public Halo3ODSTMapInfoBlob()
-            : base(new Halo3ODSTLevel()) { }
+        private MapImage image;
 
         /// <summary>
-        /// Gets or sets the level (map) information.
+        /// Initializes a new instance of the <see cref="MapImageBlob"/> class with default values.
         /// </summary>
-        public new Halo3ODSTLevel Level
+        public MapImageBlob()
         {
-            get { return base.Level as Halo3ODSTLevel; }
+            this.image = new MapImage();
+        }
+
+        /// <summary>
+        /// Gets or sets the map image data contained in this blob.
+        /// </summary>
+        public MapImage ImageData
+        {
+            get { return this.image; }
             set
             {
                 Contract.Requires<ArgumentNullException>(value != null);
-                base.Level = value;
+                this.image = value;
             }
         }
+
+        #region Blob Members
+
+        protected override bool IsSigned { get { return true; } }
+
+        protected override void Initialize(IList<Chunk> contents)
+        {
+            contents.Add(this.image);
+        }
+
+        #endregion
     }
 }

@@ -110,7 +110,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ContentData\HaloReachLevel.cs" />
-    <Compile Include="GameData.cs" />
+    <Compile Include="HaloReachProperties.cs" />
     <Compile Include="HaloReachMapInfoBlob.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

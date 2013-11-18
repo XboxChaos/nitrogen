@@ -52,8 +52,8 @@ namespace Nitrogen.HaloReachBeta.ContentData
         public HaloReachBetaLevel()
             : base(version: 5)
         {
-            Name = new LocalizedName(GameData.Languages, "");
-            Description = new LocalizedDescription(GameData.Languages, "");
+            Name = new LocalizedName(HaloReachBetaProperties.Languages, "");
+            Description = new LocalizedDescription(HaloReachBetaProperties.Languages, "");
 
             this.mapImageFileName = "";
             this.mapFileName = "";
@@ -152,8 +152,8 @@ namespace Nitrogen.HaloReachBeta.ContentData
             /// </summary>
             public InsertionPoint()
             {
-                this.name = new LocalizedName(GameData.Languages, "");
-                this.description = new LocalizedDescription(GameData.Languages, "");
+                this.name = new LocalizedName(HaloReachBetaProperties.Languages, "");
+                this.description = new LocalizedDescription(HaloReachBetaProperties.Languages, "");
                 this.zoneName = "";
             }
 

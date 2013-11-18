@@ -123,12 +123,14 @@
     <Compile Include="Blf\BlobHeader.cs" />
     <Compile Include="Blf\Blob.cs" />
     <Compile Include="Blf\Chunk.cs" />
+    <Compile Include="ContentData\AssetHeader.cs" />
     <Compile Include="ContentData\Level.cs" />
     <Compile Include="ContentData\Localization\LanguageTable.cs" />
     <Compile Include="ContentData\Localization\LocalizedDescription.cs" />
     <Compile Include="ContentData\Localization\LocalizedName.cs" />
     <Compile Include="ContentData\ContentHeader.cs" />
     <Compile Include="ContentData\Localization\StringTable.cs" />
+    <Compile Include="ContentData\MapImage.cs" />
     <Compile Include="ContentData\MapVariants\Box.cs" />
     <Compile Include="ContentData\MapVariants\Cylinder.cs" />
     <Compile Include="ContentData\MapVariants\IBoundary.cs" />
@@ -155,6 +157,7 @@
     <Compile Include="IO\StreamState.cs" />
     <Compile Include="ContentData\Localization\LocalizedString.cs" />
     <Compile Include="ContentData\Localization\Language.cs" />
+    <Compile Include="MapImageBlob.cs" />
     <Compile Include="MapInfoBlob.cs" />
     <Compile Include="MapVariantBlob.cs" />
     <Compile Include="ContentData\MapVariant.cs" />

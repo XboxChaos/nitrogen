@@ -53,8 +53,8 @@ namespace Nitrogen.Halo4.ContentData
         public Halo4Level()
             : base(version: 9)
         {
-            Name = new LocalizedName(GameData.Languages, "");
-            Description = new LocalizedDescription(GameData.Languages, "");
+            Name = new LocalizedName(Halo4Properties.Languages, "");
+            Description = new LocalizedDescription(Halo4Properties.Languages, "");
 
             this.mapImageFileName = "";
             this.mapFileName = "";
@@ -168,8 +168,8 @@ namespace Nitrogen.Halo4.ContentData
             /// </summary>
             public InsertionPoint()
             {
-                this.name = new LocalizedName(GameData.Languages, "");
-                this.description = new LocalizedDescription(GameData.Languages, "");
+                this.name = new LocalizedName(Halo4Properties.Languages, "");
+                this.description = new LocalizedDescription(Halo4Properties.Languages, "");
                 this.zoneName = "";
             }
 

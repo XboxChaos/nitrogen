@@ -18,6 +18,7 @@
  *   along with Nitrogen.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+using Nitrogen.Core.Blf;
 using Nitrogen.Core.ContentData;
 using System;
 using System.Collections.Generic;
@@ -29,7 +30,7 @@ namespace Nitrogen.Core
     /// Provides a base implementation of a map info blob.
     /// </summary>
     public abstract class MapInfoBlob
-        : Blf.Blob
+        : Blob
     {
         private Level levelInfo;
 
@@ -63,7 +64,7 @@ namespace Nitrogen.Core
 
         protected override bool IsSigned { get { return true; } }
 
-        protected override void Initialize(IList<Blf.Chunk> contents)
+        protected override void Initialize(IList<Chunk> contents)
         {
             contents.Add(this.levelInfo);
         }

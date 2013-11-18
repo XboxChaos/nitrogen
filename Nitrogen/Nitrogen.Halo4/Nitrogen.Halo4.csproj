@@ -110,6 +110,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ContentData\FileMegaloCategories.cs" />
     <Compile Include="ContentData\Halo4Level.cs" />
     <Compile Include="ContentData\Halo4MapVariant.cs" />
     <Compile Include="ContentData\MapVariants\SoftKillBoundary.cs" />
@@ -126,7 +127,8 @@
     <Compile Include="ContentData\Metadata\CampaignVariantMetadata.cs" />
     <Compile Include="ContentData\Metadata\MetadataEnums.cs" />
     <Compile Include="ContentData\Metadata\SpartanOpsVariantMetadata.cs" />
-    <Compile Include="GameData.cs" />
+    <Compile Include="FileMegaloCategoriesBlob.cs" />
+    <Compile Include="Halo4Properties.cs" />
     <Compile Include="Halo4MapInfoBlob.cs" />
     <Compile Include="Halo4MapVariantBlob.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
