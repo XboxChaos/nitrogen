@@ -26,47 +26,38 @@ using System.Collections.Generic;
 using System.Diagnostics.Contracts;
 using System.Text;
 
-namespace Nitrogen.Halo3.ContentData
+namespace Nitrogen.HaloReachBeta.ContentData
 {
     /// <summary>
     /// Provides an overview of a level (map).
     /// </summary>
     /// <remarks>Represents the 'levl' chunk in a map info BLF file.</remarks>
-    public class Halo3Level
+    public class HaloReachBetaLevel
         : Level
     {
-        public const int InsertionPointCount = 4;
+        public const int InsertionPointCount = 12;
+        public const int MPObjectTableSize = 256;
         private const int LanguageCount = 12;
 
         private string mapImageFileName, mapFileName;
         private int mapIndex, unk1;
-        private byte unk2, unk3, maxTeamsNone, maxTeamsCTF, maxTeamsSlayer, maxTeamsOddball, maxTeamsKOTH, maxTeamsRace, maxTeamsHeadhunter, maxTeamsJuggernaut, maxTeamsTerritories, maxTeamsAssault, maxTeamsVIP, maxTeamsInfection, unk4, unk5;
-        private int unk6;
+        private byte unk2, unk3, unk4, unk5;
+        private int unk6, unk7;
+        private int[] mpObjectTable;
         private List<InsertionPoint> insertionPoints;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Halo3Level"/> class with default values.
+        /// Initializes a new instance of the <see cref="HaloReachBetaLevel"/> class with default values.
         /// </summary>
-        public Halo3Level()
-            : base(version: 3)
+        public HaloReachBetaLevel()
+            : base(version: 5)
         {
             Name = new LocalizedName(GameData.Languages, "");
             Description = new LocalizedDescription(GameData.Languages, "");
 
             this.mapImageFileName = "";
             this.mapFileName = "";
-            this.maxTeamsNone = 8;
-            this.maxTeamsCTF = 8;
-            this.maxTeamsSlayer = 8;
-            this.maxTeamsOddball = 8;
-            this.maxTeamsKOTH = 8;
-            this.maxTeamsRace = 8;
-            this.maxTeamsHeadhunter = 8;
-            this.maxTeamsJuggernaut = 8;
-            this.maxTeamsTerritories = 8;
-            this.maxTeamsAssault = 8;
-            this.maxTeamsVIP = 8;
-            this.maxTeamsInfection = 8;
+            this.mpObjectTable = new int[MPObjectTableSize / 4];
 
             this.insertionPoints = new List<InsertionPoint>();
             for (int i = 0; i < InsertionPointCount; i++)
@@ -119,114 +110,6 @@ namespace Nitrogen.Halo3.ContentData
             set { this.mapIndex = value; }
         }
 
-        /// <summary>
-        /// Gets or sets the max team count when no gametype is selcted.
-        /// </summary>
-        public byte MaxTeamsNone
-        {
-            get { return this.maxTeamsNone; }
-            set { this.maxTeamsNone = value; }
-        }
-
-        /// <summary>
-        /// Gets or sets the max team count for Capture the Flag.
-        /// </summary>
-        public byte MaxTeamsCTF
-        {
-            get { return this.maxTeamsCTF; }
-            set { this.maxTeamsCTF = value; }
-        }
-
-        /// <summary>
-        /// Gets or sets the max team for Slayer.
-        /// </summary>
-        public byte MaxTeamsSlayer
-        {
-            get { return this.maxTeamsSlayer; }
-            set { this.maxTeamsSlayer = value; }
-        }
-
-        /// <summary>
-        /// Gets or sets the max team for Oddball.
-        /// </summary>
-        public byte MaxTeamsOddball
-        {
-            get { return this.maxTeamsOddball; }
-            set { this.maxTeamsOddball = value; }
-        }
-
-        /// <summary>
-        /// Gets or sets the max team for King of the Hill.
-        /// </summary>
-        public byte MaxTeamsKOTH
-        {
-            get { return this.maxTeamsKOTH; }
-            set { this.maxTeamsKOTH = value; }
-        }
-
-        /// <summary>
-        /// Gets or sets the max team for Race.
-        /// </summary>
-        public byte MaxTeamsRace
-        {
-            get { return this.maxTeamsRace; }
-            set { this.maxTeamsRace = value; }
-        }
-
-        /// <summary>
-        /// Gets or sets the max team for Headhunter.
-        /// </summary>
-        public byte MaxTeamsHeadhunter
-        {
-            get { return this.maxTeamsHeadhunter; }
-            set { this.maxTeamsHeadhunter = value; }
-        }
-
-        /// <summary>
-        /// Gets or sets the max team for Juggernaut.
-        /// </summary>
-        public byte MaxTeamsJuggernaut
-        {
-            get { return this.maxTeamsJuggernaut; }
-            set { this.maxTeamsJuggernaut = value; }
-        }
-
-        /// <summary>
-        /// Gets or sets the max team for Territories.
-        /// </summary>
-        public byte MaxTeamsTerritories
-        {
-            get { return this.maxTeamsTerritories; }
-            set { this.maxTeamsTerritories = value; }
-        }
-
-        /// <summary>
-        /// Gets or sets the max team for Assault.
-        /// </summary>
-        public byte MaxTeamsAssault
-        {
-            get { return this.maxTeamsAssault; }
-            set { this.maxTeamsAssault = value; }
-        }
-
-        /// <summary>
-        /// Gets or sets the max team for VIP.
-        /// </summary>
-        public byte MaxTeamsVIP
-        {
-            get { return this.maxTeamsVIP; }
-            set { this.maxTeamsVIP = value; }
-        }
-
-        /// <summary>
-        /// Gets or sets the max team for Infection.
-        /// </summary>
-        public byte MaxTeamsInfection
-        {
-            get { return this.maxTeamsInfection; }
-            set { this.maxTeamsInfection = value; }
-        }
-
         #region Level Members
 
         protected override void SerializeEndianStreamData(EndianStream s)
@@ -239,21 +122,11 @@ namespace Nitrogen.Halo3.ContentData
             s.Stream(ref this.unk1);
             s.Stream(ref this.unk2);
             s.Stream(ref this.unk3);
-            s.Stream(ref this.maxTeamsNone);
-            s.Stream(ref this.maxTeamsCTF);
-            s.Stream(ref this.maxTeamsSlayer);
-            s.Stream(ref this.maxTeamsOddball);
-            s.Stream(ref this.maxTeamsKOTH);
-            s.Stream(ref this.maxTeamsRace);
-            s.Stream(ref this.maxTeamsHeadhunter);
-            s.Stream(ref this.maxTeamsJuggernaut);
-            s.Stream(ref this.maxTeamsTerritories);
-            s.Stream(ref this.maxTeamsAssault);
-            s.Stream(ref this.maxTeamsVIP);
-            s.Stream(ref this.maxTeamsInfection);
             s.Stream(ref this.unk4);
             s.Stream(ref this.unk5);
             s.Stream(ref this.unk6);
+            s.Stream(ref this.unk7);
+            s.Stream(this.mpObjectTable, 0, this.mpObjectTable.Length);
             s.Serialize(this.insertionPoints, 0, this.insertionPoints.Count);
         }
 
@@ -266,9 +139,10 @@ namespace Nitrogen.Halo3.ContentData
             : ISerializable<EndianStream>
         {
             private bool isUsed;
+            private bool isVisible;
             private byte unk0;
             private byte unk1;
-            private byte insertionZoneIndex;
+            private string zoneName;
             private int unk2;
             private LocalizedName name;
             private LocalizedDescription description;
@@ -280,6 +154,7 @@ namespace Nitrogen.Halo3.ContentData
             {
                 this.name = new LocalizedName(GameData.Languages, "");
                 this.description = new LocalizedDescription(GameData.Languages, "");
+                this.zoneName = "";
             }
 
             /// <summary>
@@ -318,12 +193,27 @@ namespace Nitrogen.Halo3.ContentData
             }
 
             /// <summary>
-            /// Gets or sets the index of the zone this insertion point loads.
+            /// Gets or sets whether this insertion point is visible.
             /// </summary>
-            public byte ZoneIndex
+            public bool Visible
             {
-                get { return this.insertionZoneIndex; }
-                set { this.insertionZoneIndex = value; }
+                get { return this.isVisible; }
+                set { this.isVisible = value; }
+            }
+
+            /// <summary>
+            /// Gets or sets the zone name of this insertion point.
+            /// </summary>
+            public string ZoneName
+            {
+                get { return this.zoneName; }
+                set
+                {
+                    Contract.Requires<ArgumentNullException>(value != null);
+                    Contract.Requires<ArgumentOutOfRangeException>(Encoding.ASCII.GetByteCount(value) < 128);
+
+                    this.zoneName = value;
+                }
             }
 
             #region IEndianStreamSerializable Members
@@ -331,9 +221,10 @@ namespace Nitrogen.Halo3.ContentData
             public void Serialize(EndianStream s)
             {
                 s.Stream(ref this.isUsed);
+                s.Stream(ref this.isVisible);
                 s.Stream(ref this.unk0);
                 s.Stream(ref this.unk1);
-                s.Stream(ref this.insertionZoneIndex);
+                s.Stream(ref this.zoneName, Encoding.ASCII, 128);
                 s.Stream(ref this.unk2);
                 this.name.Serialize(s);
                 this.description.Serialize(s);

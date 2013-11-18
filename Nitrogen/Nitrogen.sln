@@ -1,8 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.20617.1 PREVIEW
-MinimumVisualStudioVersion = 10.0.40219.1
+# Visual Studio 2012
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs and Notes", "Docs and Notes", "{A2718DDE-C160-4D9E-9F63-43BE7B32F17B}"
 	ProjectSection(SolutionItems) = preProject
 		Class Structure.txt = Class Structure.txt
@@ -20,6 +18,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nitrogen.HaloReach", "Nitrogen.HaloReach\Nitrogen.HaloReach.csproj", "{8620476E-98B6-454F-A3AE-B382680A0847}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nitrogen.Halo3", "Nitrogen.Halo3\Nitrogen.Halo3.csproj", "{DE887C06-B56D-406A-9442-0EFCBF11702C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nitrogen.HaloReachBeta", "Nitrogen.HaloReachBeta\Nitrogen.HaloReachBeta.csproj", "{3CD9DDDE-E86F-47DF-B031-A9B2FCE4182C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nitrogen.Halo3ODST", "Nitrogen.Halo3ODST\Nitrogen.Halo3ODST.csproj", "{B93D62EE-62DF-4523-BB45-1A0BBF2BB0C1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -47,6 +49,14 @@ Global
 		{DE887C06-B56D-406A-9442-0EFCBF11702C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DE887C06-B56D-406A-9442-0EFCBF11702C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DE887C06-B56D-406A-9442-0EFCBF11702C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3CD9DDDE-E86F-47DF-B031-A9B2FCE4182C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3CD9DDDE-E86F-47DF-B031-A9B2FCE4182C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3CD9DDDE-E86F-47DF-B031-A9B2FCE4182C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3CD9DDDE-E86F-47DF-B031-A9B2FCE4182C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B93D62EE-62DF-4523-BB45-1A0BBF2BB0C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B93D62EE-62DF-4523-BB45-1A0BBF2BB0C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B93D62EE-62DF-4523-BB45-1A0BBF2BB0C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B93D62EE-62DF-4523-BB45-1A0BBF2BB0C1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

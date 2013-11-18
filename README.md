@@ -14,10 +14,17 @@ These are not publicly available at this time:
 - Forge Game Variants
 
 #####Halo: Reach
++ Map Info
 + Gametypes (partial; not publicly available at this time)
 
+#####Halo: Reach Beta
++ Map Info
+
+#####Halo 3: ODST
++ Map Info
+
 #####Halo 3
-_none yet_
++ Map Info
 
 ##disclaimer;
 We strongly discourage bringing modified files online even though they are harmless. Unauthorized modifications to data files violate the Xbox LIVE ToS. We are not responsible for anything that happens to your console, account, and/or your dignity. 

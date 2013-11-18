@@ -26,16 +26,16 @@ using System.Collections.Generic;
 using System.Diagnostics.Contracts;
 using System.Text;
 
-namespace Nitrogen.Halo3.ContentData
+namespace Nitrogen.Halo3ODST.ContentData
 {
     /// <summary>
     /// Provides an overview of a level (map).
     /// </summary>
     /// <remarks>Represents the 'levl' chunk in a map info BLF file.</remarks>
-    public class Halo3Level
+    public class Halo3ODSTLevel
         : Level
     {
-        public const int InsertionPointCount = 4;
+        public const int InsertionPointCount = 9;
         private const int LanguageCount = 12;
 
         private string mapImageFileName, mapFileName;
@@ -45,9 +45,9 @@ namespace Nitrogen.Halo3.ContentData
         private List<InsertionPoint> insertionPoints;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Halo3Level"/> class with default values.
+        /// Initializes a new instance of the <see cref="Halo3ODSTLevel"/> class with default values.
         /// </summary>
-        public Halo3Level()
+        public Halo3ODSTLevel()
             : base(version: 3)
         {
             Name = new LocalizedName(GameData.Languages, "");
@@ -55,18 +55,18 @@ namespace Nitrogen.Halo3.ContentData
 
             this.mapImageFileName = "";
             this.mapFileName = "";
-            this.maxTeamsNone = 8;
-            this.maxTeamsCTF = 8;
-            this.maxTeamsSlayer = 8;
-            this.maxTeamsOddball = 8;
-            this.maxTeamsKOTH = 8;
-            this.maxTeamsRace = 8;
-            this.maxTeamsHeadhunter = 8;
-            this.maxTeamsJuggernaut = 8;
-            this.maxTeamsTerritories = 8;
-            this.maxTeamsAssault = 8;
-            this.maxTeamsVIP = 8;
-            this.maxTeamsInfection = 8;
+            this.maxTeamsNone = 0;
+            this.maxTeamsCTF = 0;
+            this.maxTeamsSlayer = 0;
+            this.maxTeamsOddball = 0;
+            this.maxTeamsKOTH = 0;
+            this.maxTeamsRace = 0;
+            this.maxTeamsHeadhunter = 0;
+            this.maxTeamsJuggernaut = 0;
+            this.maxTeamsTerritories = 0;
+            this.maxTeamsAssault = 0;
+            this.maxTeamsVIP = 0;
+            this.maxTeamsInfection = 0;
 
             this.insertionPoints = new List<InsertionPoint>();
             for (int i = 0; i < InsertionPointCount; i++)
@@ -270,6 +270,8 @@ namespace Nitrogen.Halo3.ContentData
             private byte unk1;
             private byte insertionZoneIndex;
             private int unk2;
+            private int unk3;
+            private int unk4;
             private LocalizedName name;
             private LocalizedDescription description;
 
@@ -335,6 +337,8 @@ namespace Nitrogen.Halo3.ContentData
                 s.Stream(ref this.unk1);
                 s.Stream(ref this.insertionZoneIndex);
                 s.Stream(ref this.unk2);
+                s.Stream(ref this.unk3);
+                s.Stream(ref this.unk4);
                 this.name.Serialize(s);
                 this.description.Serialize(s);
             }
