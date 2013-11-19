@@ -10,9 +10,9 @@ Nitrogen is a .NET-based interface to data files for Halo games based on the Bla
 #####Halo 4
 + Map Info
 + Map Image
-+ File Megalo Categories
 + Map Variants (partial)
 + Game Variants (not publicly available at this time)
++ File Megalo Categories
 
 #####Halo: Reach
 + Map Info
@@ -33,7 +33,7 @@ Nitrogen is a .NET-based interface to data files for Halo games based on the Bla
 + Map Image
 
 ##disclaimer;
-We love Halo so if you're a scumbag who wants to cheat and ruin someone else's day, look elsewhere because you won't find anything "useful" here. We strongly discourage bringing modified files online even though they are harmless. Unauthorized modifications to data files violate the Xbox LIVE ToS. We are not responsible for anything that happens to your console, account, and/or your dignity. 
+We strongly discourage bringing modified files online. Unauthorized modifications to data files violate the Xbox LIVE ToS. We are not responsible for anything that happens to your console, account, and/or your dignity. 
 
 Nitrogen is licensed under GPLv3. The full license text is available in the LICENSE file.
 
