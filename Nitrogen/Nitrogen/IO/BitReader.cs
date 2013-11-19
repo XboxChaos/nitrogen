@@ -160,6 +160,46 @@ namespace Nitrogen.Core.IO
             return count;
         }
 
+        public float ReadEncodedFloat(int n, float min, float max, bool signed, bool isRounded = true, bool flag = true)
+        {
+            ulong encodedValue;
+            Read(out encodedValue, n);
+
+            uint maxInt = (uint)(1 << n);
+            float result;
+            if (signed)
+            {
+                maxInt--;
+                if ((encodedValue << 1) == maxInt - 1)
+                    result = 0.5f * (max + min);
+            }
+
+            if (flag)
+            {
+                if (encodedValue == 0)
+                    return min;
+                if (encodedValue == max - 1)
+                    return max;
+
+                float y = (max - min) / (float)(max - 2);
+                result = (float)(encodedValue - 1) * y + y * 0.5f + min;
+            }
+            else
+            {
+                float y = (max - min) / (float)max;
+                result = (float)encodedValue * y + y * 0.5f + min;
+            }
+
+            if (isRounded)
+            {
+                int rounded = (int)(result + 0.5f);
+                if (Math.Abs((float)rounded - result) <= .002f)
+                    result = (float)rounded;
+            }
+
+            return result;
+        }
+
         /// <summary>
         /// Seeks to an offset within a byte in the stream.
         /// </summary>

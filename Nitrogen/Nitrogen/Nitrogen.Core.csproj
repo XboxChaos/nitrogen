@@ -135,6 +135,7 @@
     <Compile Include="ContentData\MapVariants\Cylinder.cs" />
     <Compile Include="ContentData\MapVariants\IBoundary.cs" />
     <Compile Include="ContentData\MapVariants\MapVariantObject.cs" />
+    <Compile Include="ContentData\MapVariants\ObjectTypeCount.cs" />
     <Compile Include="ContentData\MapVariants\Sphere.cs" />
     <Compile Include="ContentData\Metadata\Author.cs" />
     <Compile Include="ContentData\Metadata\ContentMetadata.cs" />
@@ -154,9 +155,11 @@
     <Compile Include="IO\BinaryReader.cs" />
     <Compile Include="IO\BinaryWriter.cs" />
     <Compile Include="IO\BinaryStream.cs" />
+    <Compile Include="IO\ITextDumpable.cs" />
     <Compile Include="IO\StreamState.cs" />
     <Compile Include="ContentData\Localization\LocalizedString.cs" />
     <Compile Include="ContentData\Localization\Language.cs" />
+    <Compile Include="IO\TextDumper.cs" />
     <Compile Include="MapImageBlob.cs" />
     <Compile Include="MapInfoBlob.cs" />
     <Compile Include="MapVariantBlob.cs" />

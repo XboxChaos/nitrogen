@@ -59,21 +59,22 @@ namespace Nitrogen.Core.ContentData.MapVariants
             s.StreamOptional(ref this.unk1);
             s.StreamOptional(ref this.unk2, 5);
 
-            bool alwaysTrue = true;
-            s.Stream(ref alwaysTrue);
-            if (!alwaysTrue) { throw new InvalidOperationException(); }
+            bool irrelevant = true;
+            s.Stream(ref irrelevant);
+            /* An optional 2-bit integer goes here if the above value is true, but it'll never get
+             * read anyway since the other part of the condition will never be true. */
 
-            s.Stream(ref this.unk3, 20);
-            s.Stream(ref this.unk4, 20);
-            s.Stream(ref this.unk5, 20);
+            s.Stream(ref this.unk3, 21);
+            s.Stream(ref this.unk4, 21);
+            s.Stream(ref this.unk5, 21);
             s.StreamOptional(ref unk6, 20);
-            // TODO: encoded float (14 bits, flag1: false, flag2: false, min: -pi, max: pi)
+            s.Stream(ref this.unk7, 14, -(float)Math.PI, (float)Math.PI, false, false, false);
             s.StreamPlusOne(ref this.unk8, 10);
-            // TODO: encoded float (6 bits, flag1: false, flag2: true, min: 0.0, max: 10.0)
+            s.Stream(ref this.unk9, 6, 0.0f, 10.0f, false, false, true);
             s.Stream(ref this.isLocked);
 
             byte shapeType = (this.shape == null) ? (byte)0 : this.shape.BoundaryIndex;
-            s.Stream(ref shapeType);
+            s.Stream(ref shapeType, 2);
             if (this.shape != null)
                 s.Serialize(this.shape);
         }

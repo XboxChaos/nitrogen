@@ -96,7 +96,10 @@ namespace Nitrogen.Core.IO
 
             if (hasValue)
             {
-                int temp = value.Value;
+                int temp = 0;
+                if (s.State == StreamState.Write)
+                    temp = value.Value;
+               
                 s.Stream(ref temp);
                 value = temp;
             }

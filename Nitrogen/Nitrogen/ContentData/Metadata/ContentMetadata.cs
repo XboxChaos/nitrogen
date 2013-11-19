@@ -21,6 +21,7 @@
 using Nitrogen.Core.IO;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 using System.IO;
 using System.Text;
 
@@ -81,6 +82,30 @@ namespace Nitrogen.Core.ContentData.Metadata
 
                 // TODO: Add more stuff here
             }
+        }
+
+        /// <summary>
+        /// Gets or sets the name of this content.
+        /// </summary>
+        public string Name
+        {
+            get { return this.name;}
+            set
+            {
+                Contract.Requires<ArgumentNullException>(value != null);
+                Contract.Requires<ArgumentException>(Encoding.BigEndianUnicode.GetByteCount(value) <= 256);
+
+                this.name = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the target map of this content.
+        /// </summary>
+        public int Map
+        {
+            get { return this.map; }
+            set { this.map = value; }
         }
 
         /// <summary>

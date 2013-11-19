@@ -30,6 +30,11 @@ namespace Nitrogen.Core.ContentData.Localization
             }
         }
 
+        public int Count
+        {
+            get { return this.table.Count; }
+        }
+
         public LocalizedString Get(int index)
         {
             return this.table[index];

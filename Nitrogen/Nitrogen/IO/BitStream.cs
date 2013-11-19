@@ -166,6 +166,14 @@ namespace Nitrogen.Core.IO
             }
         }
 
+        public void Stream(ref float value, int bits, float min, float max, bool signed, bool rounded = true, bool flag = true)
+        {
+            if (State == StreamState.Read)
+            {
+                value = this.reader.Value.ReadEncodedFloat(bits, min, max, signed, rounded, flag);
+            }
+        }
+
         public void Pad(int bitCount)
         {
             Stream(new bool[bitCount], 0, bitCount);

@@ -36,10 +36,10 @@ for (i = 0; i < 651; i++)
 		uint2
 		optional byte
 		optional int5
-		bit unk0		(always true)
-		int20
-		int20
-		int20
+		bit unk0 (irrelevant)
+		int21
+		int21
+		int21
 		optional int20
 		floatn (14 bits, flag1: false, flag2: false, min: -pi, max: pi)
 		int10 (+1 encoded)

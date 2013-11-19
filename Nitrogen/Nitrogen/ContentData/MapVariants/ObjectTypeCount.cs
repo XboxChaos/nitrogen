@@ -18,33 +18,23 @@
  *   along with Nitrogen.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-using System;
-
-namespace Nitrogen.Halo4.ContentData.Metadata
+using Nitrogen.Core.IO;
+namespace Nitrogen.Core.ContentData.MapVariants
 {
-    /// <summary>
-    /// Specifies a set of skulls to be active.
-    /// </summary>
-    [Flags]
-    public enum Halo4Skulls
+    public class ObjectTypeCount
+        : ISerializable<BitStream>
     {
-        None,
-        Iron = 1 << 0,
-        BlackEye = 1 << 1,
-        ToughLuck = 1 << 2,
-        Catch = 1 << 3,
-        Fog = 1 << 4,
-        Famine = 1 << 5,
-        Thunderstorm = 1 << 6,
-        Tilt = 1 << 7,
-        Mythic = 1 << 8,
-        Assassin = 1 << 9,
-        Blind = 1 << 10,
-        Superman = 1 << 11, // lol at this
-        GruntBirthdayParty = 1 << 12,
-        IWHBYD = 1 << 13,
-        Red = 1 << 14, // useless in Halo 4
-        Yellow = 1 << 15, // useless in Halo 4
-        Blue = 1 << 16, // useless in Halo 4
+        private byte unk0, unk1, unk2; // min, max, total placed
+
+        #region ISerializable<BitStream> Members
+
+        public void Serialize(BitStream s)
+        {
+            s.Stream(ref this.unk0);
+            s.Stream(ref this.unk1);
+            s.Stream(ref this.unk2);
+        }
+
+        #endregion
     }
 }
