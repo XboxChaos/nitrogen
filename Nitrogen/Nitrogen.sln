@@ -25,8 +25,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nitrogen.HaloReachBeta", "N
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nitrogen.Halo3ODST", "Nitrogen.Halo3ODST\Nitrogen.Halo3ODST.csproj", "{B93D62EE-62DF-4523-BB45-1A0BBF2BB0C1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MapVariantDumper", "MapVariantDumper\MapVariantDumper.csproj", "{E929C0D3-E864-4E7D-B94E-DDF6E2EFED77}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -61,10 +59,6 @@ Global
 		{B93D62EE-62DF-4523-BB45-1A0BBF2BB0C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B93D62EE-62DF-4523-BB45-1A0BBF2BB0C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B93D62EE-62DF-4523-BB45-1A0BBF2BB0C1}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E929C0D3-E864-4E7D-B94E-DDF6E2EFED77}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E929C0D3-E864-4E7D-B94E-DDF6E2EFED77}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E929C0D3-E864-4E7D-B94E-DDF6E2EFED77}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E929C0D3-E864-4E7D-B94E-DDF6E2EFED77}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
