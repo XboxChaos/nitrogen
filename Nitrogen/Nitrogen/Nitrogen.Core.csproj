@@ -134,7 +134,7 @@
     <Compile Include="ContentData\MapVariants\Box.cs" />
     <Compile Include="ContentData\MapVariants\Cylinder.cs" />
     <Compile Include="ContentData\MapVariants\IBoundary.cs" />
-    <Compile Include="ContentData\MapVariants\MapVariantObject.cs" />
+    <Compile Include="ContentData\MapVariants\MapVariantObjectList.cs" />
     <Compile Include="ContentData\MapVariants\ObjectTypeCount.cs" />
     <Compile Include="ContentData\MapVariants\Sphere.cs" />
     <Compile Include="ContentData\Metadata\Author.cs" />

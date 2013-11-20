@@ -31,9 +31,9 @@ namespace Nitrogen.Core.ContentData.MapVariants
     /// <summary>
     /// Represents the data in a map variant. 
     /// </summary>
-    public class MapVariantData<TMapObject>
+    public class MapVariantData<TMapObjectList, TMapObjectType>
         : ISerializable<BitStream>, ITextDumpable
-        where TMapObject : MapVariantObject, new()
+        where TMapObjectList : MapVariantObjectList<TMapObjectType>, new()
     {
         private const int MaxObjectTypes = 256;
 
@@ -45,8 +45,7 @@ namespace Nitrogen.Core.ContentData.MapVariants
         private bool unk2, unk3;
         private int[] boundaries;
         private int budget, unk5;
-        private MapVariantObject[] objects;
-        private int maxObjects;
+        private TMapObjectList objects;
         private StringTable stringTable;
         private ObjectTypeCount[] objectTypeCountTable;
 
@@ -68,11 +67,10 @@ namespace Nitrogen.Core.ContentData.MapVariants
             this.stringTable = new StringTable(table);
         }
 
-        public MapVariantData(MapVariantObject[] objectTable)
+        public MapVariantData(TMapObjectList objectTable)
             : this()
         {
             this.objects = objectTable;
-            this.maxObjects = objectTable.Length;
         }
 
         /// <summary>
@@ -108,25 +106,7 @@ namespace Nitrogen.Core.ContentData.MapVariants
             this.stringTable.Serialize(s, 12, 13, 9);
 
             // Object Table
-            for (int i = 0; i < this.objects.Length; i++)
-            {
-                bool exists = false;
-                if (s.State == StreamState.Read)
-                {
-                    (s.Reader as BitReader).Read(out exists);
-                    this.objects[i] = new TMapObject();
-                }
-                else if (s.State == StreamState.Write)
-                {
-                    exists = (this.objects[i] != null);
-                    (s.Writer as BitWriter).Write(exists);
-                }
-
-                if (exists)
-                {
-                    s.Serialize(this.objects[i]);
-                }
-            }
+            this.objects.Serialize(s);
 
             // Object Type Count Table
             for (int i = 0; i < this.objectTypeCountTable.Length; i++)

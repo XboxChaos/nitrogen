@@ -16,7 +16,7 @@ namespace Nitrogen.Test
         [TestMethod]
         public void CreateHalo4MapVariant()
         {
-            using (var file = File.Create("C:/Users/Matt/Desktop/test.map"))
+            using (var file = File.Create("C:/Users/Aaron/Desktop/test.map"))
             using (var s = new EndianStream(file, StreamState.Write, ByteOrder.BigEndian))
             {
                 var mvar = new Nitrogen.Halo4.Halo4MapVariantBlob();
@@ -29,7 +29,7 @@ namespace Nitrogen.Test
         {
             Halo4MapVariantBlob map;
 
-            using (var buffer = new MemoryStream(File.ReadAllBytes("C:/Users/Matt/Desktop/test.map")))
+            using (var buffer = new MemoryStream(File.ReadAllBytes("C:/Users/Aaron/Desktop/test objects.map")))
                 map = Blob.Load<Halo4MapVariantBlob>(buffer);
 
             /*using (var output = File.Create("C:/Users/matt/Desktop/test.map"))
@@ -41,17 +41,17 @@ namespace Nitrogen.Test
         {
             Halo4MapVariantBlob map;
 
-            using (var buffer = new MemoryStream(File.ReadAllBytes("C:/Users/Matt/Desktop/test.map")))
+            using (var buffer = new MemoryStream(File.ReadAllBytes("C:/Users/Aaron/Desktop/test objects.map")))
                 map = Blob.Load<Halo4MapVariantBlob>(buffer);
 
-            using (var output = File.Create("C:/Users/Matt/Desktop/test dump.txt"))
+            using (var output = File.Create("C:/Users/Aaron/Desktop/test dump.txt"))
                 TextDumper.DumpObject(map.MapVariant.Data, output);
         }
 
         [TestMethod]
         public void ReadHalo4MapInfo()
         {
-            Halo4MapInfoBlob map;
+            /*Halo4MapInfoBlob map;
 
             using (var buffer = new MemoryStream(File.ReadAllBytes("C:/Users/Matt/Desktop/m40_invasion.mapinfo")))
             {
@@ -61,13 +61,13 @@ namespace Nitrogen.Test
             using (var output = File.Create("C:/Users/matt/Desktop/m10_crash_resave.mapinfo"))
             {
                 //Blob.Save<Halo4MapInfoBlob>(output, map);
-            }
+            }*/
         }
 
         [TestMethod]
         public void CreateHalo4MapInfo()
         {
-            using (var stream = File.Create("C:/Users/Matt/Desktop/lel.mapinfo"))
+            /*using (var stream = File.Create("C:/Users/Matt/Desktop/lel.mapinfo"))
             {
                 var mapInfo = Blob.Create<Halo4MapInfoBlob>();
 
@@ -80,7 +80,7 @@ namespace Nitrogen.Test
                 mapInfo.Level.Flags = LevelFlags.IsMultiplayer | LevelFlags.Visible | LevelFlags.GeneratesFilm;
 
                 Blob.Save(stream, mapInfo);
-            }
+            }*/
         }
     }
 }

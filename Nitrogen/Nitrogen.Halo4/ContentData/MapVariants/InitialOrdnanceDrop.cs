@@ -18,33 +18,42 @@
  *   along with Nitrogen.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-using Nitrogen.Core.ContentData.MapVariants;
-using Nitrogen.Core.IO;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Nitrogen.Core.IO;
 
 namespace Nitrogen.Halo4.ContentData.MapVariants
 {
     /// <summary>
-    /// Represents the data in a Halo 4 map variant. 
+    /// An initial ordnance drop point object.
     /// </summary>
-    public class Halo4MapVariantData
-        : MapVariantData<Halo4MapVariantObjectList, Halo4MapVariantObject>
+    public class InitialOrdnanceDrop
+        : Halo4MapVariantObject
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Halo4MapVariantData"/> class with default values.
-        /// </summary>
-        public Halo4MapVariantData()
-            : base(new Halo4MapVariantObjectList())
+        private sbyte unk0;
+        private byte unk1;
+        private short unk2;
+
+        public InitialOrdnanceDrop()
+            : this(new Halo4MapVariantObjectHeader(ObjectType.InitialOrdnanceDropPoint))
         {
-            
+        }
+
+        internal InitialOrdnanceDrop(Halo4MapVariantObjectHeader header)
+            : base(header)
+        {
+            Contract.Requires(header.Type == ObjectType.InitialOrdnanceDropPoint);
         }
 
         public override void Serialize(BitStream s)
         {
-            base.Serialize(s);
-
-            // TODO: trait zones
+            s.StreamPlusOne(ref this.unk0, 4);
+            s.Stream(ref this.unk1);
+            s.Stream(ref this.unk2);
         }
     }
 }

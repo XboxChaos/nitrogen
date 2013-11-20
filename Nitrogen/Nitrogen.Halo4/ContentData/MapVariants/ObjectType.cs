@@ -18,6 +18,12 @@
  *   along with Nitrogen.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
 namespace Nitrogen.Halo4.ContentData.MapVariants
 {
     public enum ObjectType
@@ -53,6 +59,7 @@ namespace Nitrogen.Halo4.ContentData.MapVariants
         KillBoundary,
         CinematicCamera,
         MoshEnemySpawnPoint,
+        OrdnanceDropPoint,
         TraitZone,
         InitialOrdnanceDropPoint,
         RandomOrdnanceDropPoint,

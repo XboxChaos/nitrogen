@@ -21,10 +21,11 @@
 using Nitrogen.Core.ContentData.MapVariants;
 using Nitrogen.Core.IO;
 using System;
+using System.Diagnostics.Contracts;
 
-namespace Nitrogen.Core.ContentData.MapVariants
+namespace Nitrogen.Halo4.ContentData.MapVariants
 {
-    public class MapVariantObject
+    class Halo4MapVariantObjectHeader
         : ISerializable<BitStream>
     {
         private byte unk0;
@@ -37,18 +38,38 @@ namespace Nitrogen.Core.ContentData.MapVariants
         private float unk9;
         private bool isLocked;
         private IBoundary shape;
+        private ObjectType objectType;
+        private short unk10;
 
-        public MapVariantObject()
+        public Halo4MapVariantObjectHeader()
         {
         }
 
+        public Halo4MapVariantObjectHeader(ObjectType type)
+        {
+            this.Type = type;
+        }
+
         /// <summary>
-        /// Gets 
+        /// Gets or sets the shape of the object's boundary.
         /// </summary>
         public IBoundary Shape
         {
             get { return this.shape; }
             set { this.shape = value; }
+        }
+
+        /// <summary>
+        /// Gets or sets the object's type.
+        /// </summary>
+        public ObjectType Type
+        {
+            get { return this.objectType; }
+            set
+            {
+                Contract.Requires<ArgumentException>(Enum.IsDefined(typeof(ObjectType), value));
+                this.objectType = value;
+            }
         }
 
         #region ISerializable<BitStream> Members
@@ -59,7 +80,7 @@ namespace Nitrogen.Core.ContentData.MapVariants
             s.StreamOptional(ref this.unk1);
             s.StreamOptional(ref this.unk2, 5);
 
-            bool irrelevant = true;
+            bool irrelevant = false;
             s.Stream(ref irrelevant);
             /* An optional 2-bit integer goes here if the above value is true, but it'll never get
              * read anyway since the other part of the condition will never be true. */
@@ -77,6 +98,12 @@ namespace Nitrogen.Core.ContentData.MapVariants
             s.Stream(ref shapeType, 2);
             if (this.shape != null)
                 s.Serialize(this.shape);
+
+            byte type = 0;
+            s.Stream(ref type, 6);
+            this.objectType = (ObjectType)type;
+
+            s.Stream(ref this.unk10, 10);
         }
 
         #endregion

@@ -60,7 +60,7 @@ namespace Nitrogen.Core.IO
 
             if (hasValue)
             {
-                byte temp = value.Value;
+                byte temp = 0;
                 s.Stream(ref temp);
                 value = temp;
             }
@@ -78,7 +78,7 @@ namespace Nitrogen.Core.IO
 
             if (hasValue)
             {
-                sbyte temp = value.Value;
+                sbyte temp = 0;
                 s.Stream(ref temp);
                 value = temp;
             }

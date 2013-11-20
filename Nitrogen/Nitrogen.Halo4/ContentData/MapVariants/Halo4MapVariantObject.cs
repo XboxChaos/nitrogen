@@ -18,71 +18,51 @@
  *   along with Nitrogen.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using Nitrogen.Core.ContentData.MapVariants;
 using Nitrogen.Core.IO;
-using System;
-using System.ComponentModel;
-using System.Diagnostics.Contracts;
 
 namespace Nitrogen.Halo4.ContentData.MapVariants
 {
-    public interface IObjectProperties : ISerializable<BitStream> { }
-
-    public class Halo4MapVariantObject
-        : MapVariantObject
+    /// <summary>
+    /// An object in a map variant.
+    /// </summary>
+    public abstract class Halo4MapVariantObject
+        : ISerializable<BitStream>
     {
-        private byte objectType;
-        private short unk0;
+        private Halo4MapVariantObjectHeader header;
 
-        public Halo4MapVariantObject()
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Halo4MapVariantObject"/> class.
+        /// Base values will be taken from a specified header.
+        /// </summary>
+        /// <param name="header">The header to base the object from.</param>
+        internal Halo4MapVariantObject(Halo4MapVariantObjectHeader header)
         {
+            this.header = header;
         }
 
         /// <summary>
-        /// Gets or sets the type of this object.
+        /// Gets the object's type.
         /// </summary>
-        /// <exception cref="System.ComponentModel.InvalidEnumArgumentException">
-        /// Value does not exist in the <see cref="ObjectType"/> enum.
-        /// </exception>
-        public ObjectType ObjectType
+        public ObjectType Type
         {
-            get { return (ObjectType)this.objectType; }
-            set
-            {
-                Contract.Requires<InvalidEnumArgumentException>(Enum.IsDefined(typeof(ObjectType), value));
-                this.objectType = (byte)value;
-            }
+            get { return this.header.Type; }
         }
 
-        #region MapVariantObject Members
-
-        public override void Serialize(BitStream s)
+        /// <summary>
+        /// Gets or sets the shape of the object's boundary.
+        /// </summary>
+        public IBoundary Shape
         {
-            base.Serialize(s);
-
-            s.Stream(ref this.objectType, 6);
-            s.Stream(ref this.unk0, 10);
-
-            /*if (IsOrdnanceDropPoint)
-            {
-                // serializeordnancedata
-            }
-            else
-            {
-                int4 (+1 encoded)
-				byte
-				optional int3
-				sbyte
-				sbyte
-				optional byte Label 1
-				optional byte Label 2
-				optional byte Label 3
-				optional byte Label 4
-
-                //SerializeObjectProperties(s);
-            }*/
+            get { return this.header.Shape; }
+            set { this.header.Shape = value; }
         }
 
-        #endregion
+        public abstract void Serialize(BitStream s);
     }
 }
