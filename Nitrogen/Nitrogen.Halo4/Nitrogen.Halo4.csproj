@@ -111,8 +111,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ContentData\FileMegaloCategories.cs" />
+    <Compile Include="ContentData\GameVariants\Halo4BaseVariant.cs" />
+    <Compile Include="ContentData\GameVariants\Halo4GameVariantData.cs" />
     <Compile Include="ContentData\Halo4Level.cs" />
     <Compile Include="ContentData\Halo4MapVariant.cs" />
+    <Compile Include="ContentData\Halo4MultiplayerVariant.cs" />
     <Compile Include="ContentData\MapVariants\Halo4MapVariantData.cs" />
     <Compile Include="ContentData\MapVariants\Halo4MapVariantObjectList.cs" />
     <Compile Include="ContentData\MapVariants\InitialOrdnanceDrop.cs" />
@@ -133,6 +136,7 @@
     <Compile Include="ContentData\Metadata\MetadataEnums.cs" />
     <Compile Include="ContentData\Metadata\SpartanOpsVariantMetadata.cs" />
     <Compile Include="FileMegaloCategoriesBlob.cs" />
+    <Compile Include="Halo4MultiplayerVariantBlob.cs" />
     <Compile Include="Halo4Properties.cs" />
     <Compile Include="Halo4MapInfoBlob.cs" />
     <Compile Include="Halo4MapVariantBlob.cs" />

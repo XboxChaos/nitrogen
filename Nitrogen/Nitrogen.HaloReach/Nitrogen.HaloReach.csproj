@@ -109,7 +109,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ContentData\GameVariants\HaloReachBaseVariant.cs" />
+    <Compile Include="ContentData\GameVariants\HaloReachGameVariantData.cs" />
     <Compile Include="ContentData\HaloReachLevel.cs" />
+    <Compile Include="ContentData\HaloReachMultiplayerVariant.cs" />
     <Compile Include="HaloReachProperties.cs" />
     <Compile Include="HaloReachMapInfoBlob.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

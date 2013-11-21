@@ -19,32 +19,27 @@
  */
 
 using Nitrogen.Core.Blf;
-using Nitrogen.Core.ContentData.MapVariants;
 using Nitrogen.Core.IO;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics.Contracts;
 using System.IO;
-using System.Linq;
 
 namespace Nitrogen.Core.ContentData
 {
     /// <summary>
-    /// Provides a base implementation of a map variant chunk.
+    /// Provides a base implementation of a multiplayer game variant.
     /// </summary>
-    /// <remarks>Represents the 'mvar' chunk in a map variant BLF file.</remarks>
-    public abstract class MapVariant
+    /// <remarks>Represents the 'mpvr' chunk in a game variant BLF file.</remarks>
+    public abstract class MultiplayerVariant
         : Chunk
     {
         private MemoryStream dataBuffer;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="MapVariant"/> class with the specified
-        /// version and default values.
+        /// Initializes a new instance of the <see cref="MultiplayerVariant"/> class with the
+        /// specified version and default values.
         /// </summary>
         /// <param name="version">The version of this instance.</param>
-        public MapVariant(short version)
-            : base("mvar", version, 0x7028) // TODO: Don't hardcode file length.
+        public MultiplayerVariant(short version)
+            : base("mvar", version)
         {
             this.dataBuffer = new MemoryStream();
         }
@@ -75,7 +70,7 @@ namespace Nitrogen.Core.ContentData
             this.dataBuffer.Position = 0;
             s.Position = 0;
 
-            // Stream the encoded map variant data to/from the buffer.
+            // Stream the encoded multiplayer variant data to/from the buffer.
             using (var bitStream = new BitStream(this.dataBuffer, s.State, true))
             {
                 SerializeData(bitStream);

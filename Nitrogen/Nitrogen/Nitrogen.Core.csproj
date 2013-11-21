@@ -124,6 +124,8 @@
     <Compile Include="Blf\Blob.cs" />
     <Compile Include="Blf\Chunk.cs" />
     <Compile Include="ContentData\AssetHeader.cs" />
+    <Compile Include="ContentData\Metadata\GameVariantMetadata.cs" />
+    <Compile Include="ContentData\MultiplayerVariant.cs" />
     <Compile Include="ContentData\Level.cs" />
     <Compile Include="ContentData\Localization\LanguageTable.cs" />
     <Compile Include="ContentData\Localization\LocalizedDescription.cs" />
@@ -164,6 +166,7 @@
     <Compile Include="MapInfoBlob.cs" />
     <Compile Include="MapVariantBlob.cs" />
     <Compile Include="ContentData\MapVariant.cs" />
+    <Compile Include="MultiplayerVariantBlob.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utilities.cs" />
   </ItemGroup>

@@ -18,6 +18,7 @@
  *   along with Nitrogen.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+using Nitrogen.Core.Blf;
 using Nitrogen.Core.ContentData;
 using Nitrogen.Core.ContentData.Metadata;
 using System;
@@ -28,36 +29,22 @@ namespace Nitrogen.Core
 {
     /// <summary>
     /// Provides a base, game-neutral implementation of a blob which contains all necessary chunks
-    /// of data in order to produce a base map variant.
+    /// of data in order to produce a base multiplayer variant.
     /// </summary>
-    public abstract class MapVariantBlob
-        : Blf.Blob
+    public abstract class MultiplayerVariantBlob
+        : Blob
     {
-        /// <summary>
-        /// Specifies the maximum number of object types allowed.
-        /// </summary>
-        public const int MaximumObjectTypes = 256;
-
         private ContentHeader header;
-        private MapVariant mvarData;
+        private MultiplayerVariant mpvrData;
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="MapVariantBlob"/> class with the specified
-        /// game build number and map variant data.
-        /// </summary>
-        /// <param name="buildNumber">
-        /// The build number of the game which is then used to generate a game-specific <see cref="ContentHeader"/>
-        /// instance.
-        /// </param>
-        /// <param name="mapData">The data contained in this map variant.</param>
-        protected MapVariantBlob(ushort buildNumber, MapVariant mapData)
+        protected MultiplayerVariantBlob(ushort buildNumber, MultiplayerVariant gameData)
         {
-            Contract.Requires<ArgumentNullException>(mapData != null);
+            Contract.Requires<ArgumentNullException>(gameData != null);
 
-            this.mvarData = mapData;
+            this.mpvrData = gameData;
 
             this.header = new ContentHeader(buildNumber);
-            this.header.Metadata = new MapVariantMetadata();
+            this.header.Metadata = new GameVariantMetadata();
         }
 
         /// <summary>
@@ -74,26 +61,24 @@ namespace Nitrogen.Core
         }
 
         /// <summary>
-        /// Gets or sets the map variant contained in this blob.
+        /// Gets or sets the multiplayer variant contained in this blob.
         /// </summary>
-        public MapVariant MapVariant
+        public MultiplayerVariant MultiplayerVariant
         {
-            get { return this.mvarData; }
+            get { return this.mpvrData; }
             set
             {
                 Contract.Requires<ArgumentNullException>(value != null);
-                this.mvarData = value;
+                this.mpvrData = value;
             }
         }
 
         #region Blob Members
-
         protected override void Initialize(IList<Blf.Chunk> contents)
         {
             contents.Add(this.header);
-            contents.Add(this.mvarData);
+            contents.Add(this.mpvrData);
         }
-
         #endregion
     }
 }
