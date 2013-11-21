@@ -51,7 +51,7 @@ namespace Nitrogen.Core.ContentData
         protected override void SerializeEndianStreamData(EndianStream s)
         {
             int length;
-            s.Position += 20; // Skip hash for now.
+            s.Position += 24; // Skip hash for now.
 
             // Read map variant data into the buffer when deserializing.
             if (s.State == StreamState.Read)
@@ -82,6 +82,7 @@ namespace Nitrogen.Core.ContentData
             s.Stream(hash, 0, hash.Length);
 
             s.Stream(ref length);
+            s.Position += 4;
             s.Stream(this.dataBuffer.ToArray(), 0, (int)this.dataBuffer.Length);
         }
 

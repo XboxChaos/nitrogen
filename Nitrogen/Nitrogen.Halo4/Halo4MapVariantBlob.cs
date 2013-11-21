@@ -33,11 +33,6 @@ namespace Nitrogen.Halo4
         : MapVariantBlob
     {
         /// <summary>
-        /// Specifies the default build number to use.
-        /// </summary>
-        public const ushort BuildNumber = 21401; // Halo 4 TU7
-
-        /// <summary>
         /// Specifies the maximum amount of objects which can be placed in a map variant.
         /// </summary>
         public const int MaximumMapObjects = 651;
@@ -47,7 +42,7 @@ namespace Nitrogen.Halo4
         /// values.
         /// </summary>
         public Halo4MapVariantBlob()
-            : base(BuildNumber, new ContentData.Halo4MapVariant()) { }
+            : base(Halo4Properties.BuildNumber, new ContentData.Halo4MapVariant()) { }
 
         /// <summary>
         /// Gets or sets the map variant contained in this blob.

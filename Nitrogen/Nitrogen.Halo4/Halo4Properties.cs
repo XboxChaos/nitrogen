@@ -30,6 +30,11 @@ namespace Nitrogen.Halo4
     public static class Halo4Properties
     {
         /// <summary>
+        /// Specifies the default build number to use.
+        /// </summary>
+        public const ushort BuildNumber = 21401; // Halo 4 TU7
+
+        /// <summary>
         /// Provides a table of supported languages in Halo 4.
         /// </summary>
         public static LanguageTable Languages = new LanguageTable(new [] {

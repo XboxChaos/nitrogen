@@ -20,16 +20,25 @@
 
 using System;
 using Nitrogen.Core.IO;
+using Nitrogen.Core.ContentData.Metadata;
+using Nitrogen.Core.ContentData.GameVariants;
 
 namespace Nitrogen.Halo4.ContentData.GameVariants
 {
     public class Halo4GameVariantData
         : ISerializable<BitStream>
     {
+        private sbyte engine;
+        private MegaloMetadataHeader megaloMetadata;
+        private GameVariantMetadata metadata;
         private Halo4BaseVariant baseVariant;
+        private Halo4MegaloData megaloData;
 
         public Halo4GameVariantData()
         {
+            this.engine = (sbyte)GameEngine.PVP;
+            this.megaloMetadata = new MegaloMetadataHeader();
+            this.metadata = new GameVariantMetadata();
             this.baseVariant = new Halo4BaseVariant();
         }
 
@@ -37,7 +46,47 @@ namespace Nitrogen.Halo4.ContentData.GameVariants
 
         public void Serialize(BitStream s)
         {
-            throw new NotImplementedException();
+            s.Stream(ref this.engine, 4);
+            GameEngine gameEngine = (GameEngine)this.engine;
+            if (gameEngine == GameEngine.Forge || gameEngine == GameEngine.PVP)
+            {
+                s.Serialize(this.megaloMetadata);
+            }
+
+            s.Serialize(this.metadata);
+            s.Serialize(this.baseVariant);
+
+            switch (gameEngine)
+            {
+                case GameEngine.Forge:
+                    {
+                        this.megaloData = this.megaloData ?? new Halo4MegaloData();
+                        // this.forgeData = this.forgeData ?? new Halo4ForgeData();
+
+                        s.Serialize(this.megaloData);
+                        // s.Serialize(this.forgeData);
+                    }
+                    break;
+
+                case GameEngine.PVP:
+                    {
+                        this.megaloData = this.megaloData ?? new Halo4MegaloData();
+                        s.Serialize(this.megaloData);
+                    }
+                    break;
+
+                case GameEngine.SpartanOps:
+                    {
+
+                    }
+                    break;
+
+                case GameEngine.Campaign:
+                    {
+
+                    }
+                    break;
+            }
         }
 
         #endregion

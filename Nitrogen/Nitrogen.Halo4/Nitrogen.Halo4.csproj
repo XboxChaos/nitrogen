@@ -113,6 +113,7 @@
     <Compile Include="ContentData\FileMegaloCategories.cs" />
     <Compile Include="ContentData\GameVariants\Halo4BaseVariant.cs" />
     <Compile Include="ContentData\GameVariants\Halo4GameVariantData.cs" />
+    <Compile Include="ContentData\GameVariants\Halo4MegaloData.cs" />
     <Compile Include="ContentData\Halo4Level.cs" />
     <Compile Include="ContentData\Halo4MapVariant.cs" />
     <Compile Include="ContentData\Halo4MultiplayerVariant.cs" />

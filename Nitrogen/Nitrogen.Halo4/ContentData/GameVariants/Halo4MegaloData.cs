@@ -23,12 +23,12 @@ using System;
 
 namespace Nitrogen.Halo4.ContentData.GameVariants
 {
-    public class Halo4BaseVariant
+    public class Halo4MegaloData
         : ISerializable<BitStream>
     {
         public void Serialize(BitStream s)
         {
-            
+            throw new NotImplementedException();
         }
     }
 }

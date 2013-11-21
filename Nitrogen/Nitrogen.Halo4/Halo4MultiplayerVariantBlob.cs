@@ -34,16 +34,11 @@ namespace Nitrogen.Halo4
         : MultiplayerVariantBlob
     {
         /// <summary>
-        /// Specifies the default build number to use.
-        /// </summary>
-        public const ushort BuildNumber = 21401; // Halo 4 TU7
-
-        /// <summary>
         /// Initializes a new instance of the <see cref="Halo4MultiplayerVariant"/> class with
         /// default values.
         /// </summary>
         public Halo4MultiplayerVariantBlob()
-            : base(BuildNumber, new Halo4MultiplayerVariant()) { }
+            : base(Halo4Properties.BuildNumber, new Halo4MultiplayerVariant()) { }
 
         /// <summary>
         /// Gets or sets the multiplayer variant contained in this blob.

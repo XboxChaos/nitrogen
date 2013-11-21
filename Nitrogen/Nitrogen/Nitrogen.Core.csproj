@@ -124,6 +124,7 @@
     <Compile Include="Blf\Blob.cs" />
     <Compile Include="Blf\Chunk.cs" />
     <Compile Include="ContentData\AssetHeader.cs" />
+    <Compile Include="ContentData\GameVariants\MegaloMetadataHeader.cs" />
     <Compile Include="ContentData\Metadata\GameVariantMetadata.cs" />
     <Compile Include="ContentData\MultiplayerVariant.cs" />
     <Compile Include="ContentData\Level.cs" />
@@ -173,9 +174,7 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ContentData\GameVariants\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>
