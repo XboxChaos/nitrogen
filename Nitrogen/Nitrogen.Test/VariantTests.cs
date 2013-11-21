@@ -29,7 +29,7 @@ namespace Nitrogen.Test
         {
             Halo4MapVariantBlob map;
 
-            using (var buffer = new MemoryStream(File.ReadAllBytes("C:/Users/Aaron/Desktop/test objects.map")))
+            using (var buffer = new MemoryStream(File.ReadAllBytes("C:/Users/Matt/Desktop/test objects.map")))
                 map = Blob.Load<Halo4MapVariantBlob>(buffer);
 
             /*using (var output = File.Create("C:/Users/matt/Desktop/test.map"))
@@ -41,10 +41,10 @@ namespace Nitrogen.Test
         {
             Halo4MapVariantBlob map;
 
-            using (var buffer = new MemoryStream(File.ReadAllBytes("C:/Users/Aaron/Desktop/test objects.map")))
+            using (var buffer = new MemoryStream(File.ReadAllBytes("C:/Users/Matt/Desktop/test objects.map")))
                 map = Blob.Load<Halo4MapVariantBlob>(buffer);
 
-            using (var output = File.Create("C:/Users/Aaron/Desktop/test dump.txt"))
+            using (var output = File.Create("C:/Users/Matt/Desktop/test dump.txt"))
                 TextDumper.DumpObject(map.MapVariant.Data, output);
         }
 

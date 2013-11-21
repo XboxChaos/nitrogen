@@ -1,0 +1,10 @@
+﻿<Application x:Class="Nitrogen.Wumbalo.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:s="clr-namespace:System;assembly=mscorlib"
+             xmlns:wumbo="clr-namespace:Nitrogen.Wumbalo"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <s:String x:Key="AppTitle">Wumbalo</s:String>
+    </Application.Resources>
+</Application>
