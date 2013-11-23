@@ -18,10 +18,37 @@
  *   along with Nitrogen.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace Nitrogen.Core.IO
+using Nitrogen.Core.IO;
+using System;
+
+namespace Nitrogen.Halo4.ContentData.GameVariants.BaseVariant
 {
-    public interface ISerializable<TStream>
+    public class LoadoutSettings
+        : ISerializable<BitStream>
     {
-        void Serialize(TStream s);
+
+
+        #region ISerializable<BitStream>
+
+        public void Serialize(BitStream stream)
+        {
+            /* Register<bool>("PersonalLoadoutsEnabled");
+            Register<bool>();
+            Register<bool>();
+            Register<bool>("MapLoadoutsEnabled");
+
+            for (int i = 0; i < 6; i++)
+            {
+                Group("Palette[" + i + "]", () =>
+                {
+                    for (int j = 0; j < 5; j++)
+                    {
+                        Group("Loadout" + j, () => Import<Halo4.Shared.Halo4Loadout>());
+                    }
+                });
+            }*/
+        }
+
+        #endregion
     }
 }

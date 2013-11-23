@@ -119,5 +119,42 @@ namespace Nitrogen.Core.IO
         {
             Write(value, 64);
         }
+
+        public void WriteEncodedFloat(float value, int n, float min, float max, bool signed, bool isRounded = true, bool flag = true)
+        {
+            uint maxInt = (uint)(1 << n);
+            if (signed)
+            {
+                maxInt--;
+                if (value == 0.5f * (max + min))
+                {
+                    Write((maxInt - 1) >> 1, n);
+                    return;
+                }
+            }
+
+            if (flag)
+            {
+                if (value == min)
+                {
+                    Write(0, n);
+                    return;
+                }
+                    
+                if (value == max)
+                {
+                    Write(maxInt - 1, n);
+                    return;
+                }
+
+                float y = (max - min) / (float)(max - 2);
+                Write((uint)((value - min - y * 0.5f) / y + 1), n);
+            }
+            else
+            {
+                float y = (max - min) / (float)max;
+                Write((uint)((value - min - y * 0.5f) / y), n);
+            }
+        }
     }
 }

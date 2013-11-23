@@ -33,15 +33,15 @@ namespace Nitrogen.Halo4.ContentData
     public sealed class Halo4MultiplayerVariant
         : MultiplayerVariant
     {
-        private Halo4GameVariantData data;
+        private Halo4MultiplayerVariantData data;
 
         public Halo4MultiplayerVariant()
             : base(version: 132)
         {
-            this.data = new Halo4GameVariantData();
+            this.data = new Halo4MultiplayerVariantData();
         }
 
-        public Halo4GameVariantData Data
+        public Halo4MultiplayerVariantData Data
         {
             get { return this.data; }
             set

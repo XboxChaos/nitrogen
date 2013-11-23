@@ -328,7 +328,7 @@ namespace Nitrogen.Halo3ODST.ContentData
                 set { this.insertionZoneIndex = value; }
             }
 
-            #region IEndianStreamSerializable Members
+            #region ISerializable<EndianStream> Members
 
             public void Serialize(EndianStream s)
             {

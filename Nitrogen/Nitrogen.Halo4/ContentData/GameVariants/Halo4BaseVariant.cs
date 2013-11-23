@@ -19,16 +19,62 @@
  */
 
 using Nitrogen.Core.IO;
+using Nitrogen.Halo4.ContentData.GameVariants.BaseVariant;
 using System;
 
 namespace Nitrogen.Halo4.ContentData.GameVariants
 {
+    /// <summary>
+    /// Represents a set of data found in all multiplayer variants.
+    /// </summary>
     public class Halo4BaseVariant
         : ISerializable<BitStream>
     {
+        private bool unk0, unk1;
+        private GeneralSettings general;
+        private PrototypeSettings prototype;
+        private RespawnSettings respawn;
+        private SocialSettings social;
+        private MapOverrides mapOverrides;
+        private RequisitionSettings requisition;
+        private TeamSettings teams;
+        private LoadoutSettings loadouts;
+        private OrdnanceSettings ordnance;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Halo4BaseVariant"/> class with default values.
+        /// </summary>
+        public Halo4BaseVariant()
+        {
+            this.general = new GeneralSettings();
+            this.prototype = new PrototypeSettings();
+            this.respawn = new RespawnSettings();
+            this.social = new SocialSettings();
+            this.mapOverrides = new MapOverrides();
+            this.requisition = new RequisitionSettings();
+            this.teams = new TeamSettings();
+            this.loadouts = new LoadoutSettings();
+            this.ordnance = new OrdnanceSettings();
+        }
+
+        #region ISerializable<BitStream> Members
+
         public void Serialize(BitStream s)
         {
-            
+            s.Stream(ref this.unk0);
+            s.Stream(ref this.unk1);
+
+            s.Serialize(this.general);
+            s.Serialize(this.prototype);
+            s.Serialize(this.respawn);
+            s.Serialize(this.social);
+            s.Serialize(this.mapOverrides);
+            s.Serialize(this.requisition);
+            s.Serialize(this.teams);
+            s.Serialize(this.loadouts);
+            s.Serialize(this.ordnance);
         }
+
+        #endregion
     }
 }

@@ -103,6 +103,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -111,8 +112,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ContentData\FileMegaloCategories.cs" />
+    <Compile Include="ContentData\GameVariants\BaseVariant\GeneralSettings.cs" />
+    <Compile Include="ContentData\GameVariants\BaseVariant\LoadoutSettings.cs" />
+    <Compile Include="ContentData\GameVariants\BaseVariant\MapOverrides.cs" />
+    <Compile Include="ContentData\GameVariants\BaseVariant\OrdnanceSettings.cs" />
+    <Compile Include="ContentData\GameVariants\BaseVariant\PrototypeSettings.cs" />
+    <Compile Include="ContentData\GameVariants\BaseVariant\RequisitionSettings.cs" />
+    <Compile Include="ContentData\GameVariants\BaseVariant\RespawnSettings.cs" />
+    <Compile Include="ContentData\GameVariants\BaseVariant\SocialSettings.cs" />
+    <Compile Include="ContentData\GameVariants\BaseVariant\TeamSettings.cs" />
     <Compile Include="ContentData\GameVariants\Halo4BaseVariant.cs" />
-    <Compile Include="ContentData\GameVariants\Halo4GameVariantData.cs" />
+    <Compile Include="ContentData\GameVariants\Halo4MultiplayerVariantData.cs" />
     <Compile Include="ContentData\GameVariants\Halo4MegaloData.cs" />
     <Compile Include="ContentData\Halo4Level.cs" />
     <Compile Include="ContentData\Halo4MapVariant.cs" />
@@ -136,6 +146,13 @@
     <Compile Include="ContentData\Metadata\CampaignVariantMetadata.cs" />
     <Compile Include="ContentData\Metadata\MetadataEnums.cs" />
     <Compile Include="ContentData\Metadata\SpartanOpsVariantMetadata.cs" />
+    <Compile Include="ContentData\Traits\AppearanceTraits.cs" />
+    <Compile Include="ContentData\Traits\ArmorColor.cs" />
+    <Compile Include="ContentData\Traits\ArmorTraits.cs" />
+    <Compile Include="ContentData\Traits\Halo4PlayerTraits.cs" />
+    <Compile Include="ContentData\Traits\EquipmentTraits.cs" />
+    <Compile Include="ContentData\Traits\HudTraits.cs" />
+    <Compile Include="ContentData\Traits\MovementTraits.cs" />
     <Compile Include="FileMegaloCategoriesBlob.cs" />
     <Compile Include="Halo4MultiplayerVariantBlob.cs" />
     <Compile Include="Halo4Properties.cs" />
@@ -148,6 +165,9 @@
       <Project>{8445eaa1-bdc9-47f4-bb77-469d3e3105dd}</Project>
       <Name>Nitrogen.Core</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ContentData\GameVariants\Megalo\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

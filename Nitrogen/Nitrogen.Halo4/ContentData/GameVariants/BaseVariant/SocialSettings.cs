@@ -18,10 +18,29 @@
  *   along with Nitrogen.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace Nitrogen.Core.IO
+using Nitrogen.Core.IO;
+using System;
+
+namespace Nitrogen.Halo4.ContentData.GameVariants.BaseVariant
 {
-    public interface ISerializable<TStream>
+    public class SocialSettings
+        : ISerializable<BitStream>
     {
-        void Serialize(TStream s);
+
+
+        #region ISerializable<BitStream>
+
+        public void Serialize(BitStream stream)
+        {
+            /* Register<bool>("ObserverTeamEnabled");
+            Register<byte>("TeamChangingMode", n: 2);
+            Register<bool>("FriendlyFireEnabled");
+            Register<bool>("BetrayalBootingEnabled");
+            Register<bool>("EnemyVoice");
+            Register<bool>("OpenChannelVoice");
+            Register<bool>("DeadPlayerVoice");*/
+        }
+
+        #endregion
     }
 }

@@ -140,7 +140,7 @@ namespace Nitrogen.Core.IO
             int delimiterSize = encoding.GetByteCount("\0");
             byte[] buffer = new byte[delimiterSize];
             var builder = new StringBuilder();
-            while (this.currentBitPos < (BaseStream.Position * 8))
+            while (this.currentBitPos < (BaseStream.Length * 8))
             {
                 count += Read(buffer, buffer.Length);
                 string value = encoding.GetString(buffer);

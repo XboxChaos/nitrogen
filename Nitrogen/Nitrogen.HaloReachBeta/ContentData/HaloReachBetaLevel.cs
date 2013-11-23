@@ -216,7 +216,7 @@ namespace Nitrogen.HaloReachBeta.ContentData
                 }
             }
 
-            #region IEndianStreamSerializable Members
+            #region ISerializable<EndianStream> Members
 
             public void Serialize(EndianStream s)
             {

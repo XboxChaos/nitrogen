@@ -18,10 +18,13 @@
  *   along with Nitrogen.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace Nitrogen.Core.IO
+namespace Nitrogen.Core.ContentData.Traits
 {
-    public interface ISerializable<TStream>
+    public enum InheritableBool
+        : byte
     {
-        void Serialize(TStream s);
+        Inherit,
+        Disabled,
+        Enabled,
     }
 }
