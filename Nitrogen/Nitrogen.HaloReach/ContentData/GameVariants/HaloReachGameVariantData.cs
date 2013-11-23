@@ -18,13 +18,28 @@
  *   along with Nitrogen.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+using System;
 using Nitrogen.Core.IO;
 
-namespace Nitrogen.Core.ContentData.MapVariants
+namespace Nitrogen.HaloReach.ContentData.GameVariants
 {
-    public interface IBoundary
+    public class HaloReachGameVariantData
         : ISerializable<BitStream>
     {
-        byte BoundaryIndex { get; }
+        private HaloReachBaseVariant baseVariant;
+
+        public HaloReachGameVariantData()
+        {
+            this.baseVariant = new HaloReachBaseVariant();
+        }
+
+        #region ISerializable<BitStream> Members
+
+        public void Serialize(BitStream s)
+        {
+            throw new NotImplementedException();
+        }
+
+        #endregion
     }
 }

@@ -19,12 +19,16 @@
  */
 
 using Nitrogen.Core.IO;
+using System;
 
-namespace Nitrogen.Core.ContentData.MapVariants
+namespace Nitrogen.Halo4.ContentData.GameVariants
 {
-    public interface IBoundary
+    public class Halo4BaseVariant
         : ISerializable<BitStream>
     {
-        byte BoundaryIndex { get; }
+        public void Serialize(BitStream s)
+        {
+            
+        }
     }
 }

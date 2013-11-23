@@ -18,13 +18,19 @@
  *   along with Nitrogen.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-using Nitrogen.Core.IO;
-
-namespace Nitrogen.Core.ContentData.MapVariants
+namespace Nitrogen.Core.ContentData.Metadata
 {
-    public interface IBoundary
-        : ISerializable<BitStream>
+    /// <summary>
+    /// Provides metadata for a game variant.
+    /// </summary>
+    public class GameVariantMetadata
+        : ContentMetadata
     {
-        byte BoundaryIndex { get; }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GameVariantMetadata"/> class with default
+        /// values specialized for game variants.
+        /// </summary>
+        public GameVariantMetadata()
+            : base(ContentType.GameVariant) { }
     }
 }

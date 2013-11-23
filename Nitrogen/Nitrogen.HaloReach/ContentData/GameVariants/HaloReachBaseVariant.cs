@@ -19,12 +19,16 @@
  */
 
 using Nitrogen.Core.IO;
+using System;
 
-namespace Nitrogen.Core.ContentData.MapVariants
+namespace Nitrogen.HaloReach.ContentData.GameVariants
 {
-    public interface IBoundary
+    public class HaloReachBaseVariant
         : ISerializable<BitStream>
     {
-        byte BoundaryIndex { get; }
+        public void Serialize(BitStream s)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

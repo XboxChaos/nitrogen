@@ -18,43 +18,46 @@
  *   along with Nitrogen.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-using Nitrogen.Core;
-using Nitrogen.Halo4.ContentData;
+using Nitrogen.Core.IO;
+using Nitrogen.Core.ContentData;
+using Nitrogen.Halo4.ContentData.GameVariants;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics.Contracts;
 
-namespace Nitrogen.Halo4
+namespace Nitrogen.Halo4.ContentData
 {
     /// <summary>
-    /// Represents a blob containing all necessary chunks of data to produce a valid Halo 4 map variant.
+    /// Represents a Halo 4multiplayer variant.
     /// </summary>
-    public class Halo4MapVariantBlob
-        : MapVariantBlob
+    /// <remarks>Represents the 'mpvr' chunk in a game variant BLF file.</remarks>
+    public sealed class Halo4MultiplayerVariant
+        : MultiplayerVariant
     {
-        /// <summary>
-        /// Specifies the maximum amount of objects which can be placed in a map variant.
-        /// </summary>
-        public const int MaximumMapObjects = 651;
+        private Halo4GameVariantData data;
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Halo4MapVariantBlob"/> class with default
-        /// values.
-        /// </summary>
-        public Halo4MapVariantBlob()
-            : base(Halo4Properties.BuildNumber, new ContentData.Halo4MapVariant()) { }
-
-        /// <summary>
-        /// Gets or sets the map variant contained in this blob.
-        /// </summary>
-        public new Halo4MapVariant MapVariant
+        public Halo4MultiplayerVariant()
+            : base(version: 132)
         {
-            get { return base.MapVariant as Halo4MapVariant; }
+            this.data = new Halo4GameVariantData();
+        }
+
+        public Halo4GameVariantData Data
+        {
+            get { return this.data; }
             set
             {
                 Contract.Requires<ArgumentNullException>(value != null);
-                base.MapVariant = value;
+                this.data = value;
             }
         }
+
+        #region MultiplayerVariant Members
+
+        protected override void SerializeData(BitStream s)
+        {
+            this.data.Serialize(s);
+        }
+
+        #endregion
     }
 }

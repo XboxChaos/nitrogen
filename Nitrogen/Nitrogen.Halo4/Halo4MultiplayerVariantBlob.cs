@@ -27,33 +27,29 @@ using System.Diagnostics.Contracts;
 namespace Nitrogen.Halo4
 {
     /// <summary>
-    /// Represents a blob containing all necessary chunks of data to produce a valid Halo 4 map variant.
+    /// Represents a blob containing all necessary chunks of data to produce a valid Halo 4
+    /// multiplayer variant.
     /// </summary>
-    public class Halo4MapVariantBlob
-        : MapVariantBlob
+    public class Halo4MultiplayerVariantBlob
+        : MultiplayerVariantBlob
     {
         /// <summary>
-        /// Specifies the maximum amount of objects which can be placed in a map variant.
+        /// Initializes a new instance of the <see cref="Halo4MultiplayerVariant"/> class with
+        /// default values.
         /// </summary>
-        public const int MaximumMapObjects = 651;
+        public Halo4MultiplayerVariantBlob()
+            : base(Halo4Properties.BuildNumber, new Halo4MultiplayerVariant()) { }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Halo4MapVariantBlob"/> class with default
-        /// values.
+        /// Gets or sets the multiplayer variant contained in this blob.
         /// </summary>
-        public Halo4MapVariantBlob()
-            : base(Halo4Properties.BuildNumber, new ContentData.Halo4MapVariant()) { }
-
-        /// <summary>
-        /// Gets or sets the map variant contained in this blob.
-        /// </summary>
-        public new Halo4MapVariant MapVariant
+        public new Halo4MultiplayerVariant MultiplayerVariant
         {
-            get { return base.MapVariant as Halo4MapVariant; }
+            get { return base.MultiplayerVariant as Halo4MultiplayerVariant; }
             set
             {
                 Contract.Requires<ArgumentNullException>(value != null);
-                base.MapVariant = value;
+                base.MultiplayerVariant = value;
             }
         }
     }
