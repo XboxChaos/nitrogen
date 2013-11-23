@@ -43,9 +43,8 @@ namespace Nitrogen.Core.ContentData.MapVariants
         private short objectTypeCount;
         private int mapId;
         private bool unk2, unk3;
-        private int[] boundaries;
+        private float[] boundaries;
         private int budget, unk5;
-        private TMapObjectList objects;
         private StringTable stringTable;
         private ObjectTypeCount[] objectTypeCountTable;
 
@@ -55,7 +54,7 @@ namespace Nitrogen.Core.ContentData.MapVariants
         public MapVariantData()
         {
             this.metadata = new MapVariantMetadata();
-            this.boundaries = new int[6];
+            this.boundaries = new float[6];
 
             this.objectTypeCountTable = new ObjectTypeCount[MaxObjectTypes];
             for (int i = 0; i < MaxObjectTypes; i++)
@@ -65,13 +64,19 @@ namespace Nitrogen.Core.ContentData.MapVariants
 
             var table = new LanguageTable(new[] { Language.English });
             this.stringTable = new StringTable(table);
+            this.Objects = new TMapObjectList();
         }
 
         public MapVariantData(TMapObjectList objectTable)
             : this()
         {
-            this.objects = objectTable;
+            this.Objects = objectTable;
         }
+
+        /// <summary>
+        /// Gets the objects in the map variant.
+        /// </summary>
+        public TMapObjectList Objects { get; private set; }
 
         /// <summary>
         /// Gets or sets the table of object labels referenced by objects in this map variant.
@@ -84,6 +89,14 @@ namespace Nitrogen.Core.ContentData.MapVariants
                 Contract.Requires<ArgumentNullException>(value != null);
                 this.stringTable = value;
             }
+        }
+
+        /// <summary>
+        /// Gets the array of min-max pairs for object X, Y, and Z coordinates.
+        /// </summary>
+        public float[] Boundaries
+        {
+            get { return this.boundaries; }
         }
 
         #region ISerializable<BitStream> Members
@@ -106,7 +119,7 @@ namespace Nitrogen.Core.ContentData.MapVariants
             this.stringTable.Serialize(s, 12, 13, 9);
 
             // Object Table
-            this.objects.Serialize(s);
+            this.Objects.Serialize(s);
 
             // Object Type Count Table
             for (int i = 0; i < this.objectTypeCountTable.Length; i++)

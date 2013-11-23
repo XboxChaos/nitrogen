@@ -160,6 +160,25 @@ namespace Nitrogen.Core.IO
             return count;
         }
 
+        public override int Read(out float output)
+        {
+            byte[] buffer = new byte[4];
+            int read = Read(buffer, buffer.Length);
+            if (BitConverter.IsLittleEndian)
+            {
+                // Byte swap
+                byte temp = buffer[0];
+                buffer[0] = buffer[3];
+                buffer[3] = temp;
+                temp = buffer[1];
+                buffer[1] = buffer[2];
+                buffer[2] = temp;
+            }
+            float result = BitConverter.ToSingle(buffer, 0);
+            output = result;
+            return read;
+        }
+
         public float ReadEncodedFloat(int n, float min, float max, bool signed, bool isRounded = true, bool flag = true)
         {
             ulong encodedValue;

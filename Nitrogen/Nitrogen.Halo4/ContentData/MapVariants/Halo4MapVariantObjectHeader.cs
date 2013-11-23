@@ -51,6 +51,11 @@ namespace Nitrogen.Halo4.ContentData.MapVariants
         }
 
         /// <summary>
+        /// Gets or sets the size to serialize position vectors with.
+        /// </summary>
+        public VectorSerializationSize VectorSize { get; set; }
+
+        /// <summary>
         /// Gets or sets the shape of the object's boundary.
         /// </summary>
         public IBoundary Shape
@@ -76,6 +81,8 @@ namespace Nitrogen.Halo4.ContentData.MapVariants
 
         public virtual void Serialize(BitStream s)
         {
+            Contract.Requires<InvalidOperationException>(VectorSize != null);
+
             s.Stream(ref this.unk0, 2);
             s.StreamOptional(ref this.unk1);
             s.StreamOptional(ref this.unk2, 5);
@@ -85,9 +92,9 @@ namespace Nitrogen.Halo4.ContentData.MapVariants
             /* An optional 2-bit integer goes here if the above value is true, but it'll never get
              * read anyway since the other part of the condition will never be true. */
 
-            s.Stream(ref this.unk3, 21);
-            s.Stream(ref this.unk4, 21);
-            s.Stream(ref this.unk5, 21);
+            s.Stream(ref this.unk3, VectorSize.XSize);
+            s.Stream(ref this.unk4, VectorSize.YSize);
+            s.Stream(ref this.unk5, VectorSize.ZSize);
             s.StreamOptional(ref unk6, 20);
             s.Stream(ref this.unk7, 14, -(float)Math.PI, (float)Math.PI, false, false, false);
             s.StreamPlusOne(ref this.unk8, 10);
@@ -96,14 +103,31 @@ namespace Nitrogen.Halo4.ContentData.MapVariants
 
             byte shapeType = (this.shape == null) ? (byte)0 : this.shape.BoundaryIndex;
             s.Stream(ref shapeType, 2);
+            if (s.State == StreamState.Read)
+                this.shape = ConstructBoundary(shapeType);
             if (this.shape != null)
                 s.Serialize(this.shape);
 
-            byte type = 0;
+            byte type = (byte)this.objectType;
             s.Stream(ref type, 6);
             this.objectType = (ObjectType)type;
 
             s.Stream(ref this.unk10, 10);
+        }
+
+        private static IBoundary ConstructBoundary(byte type)
+        {
+            switch (type)
+            {
+                case 1:
+                    return new Sphere();
+                case 2:
+                    return new Cylinder();
+                case 3:
+                    return new Box();
+                default:
+                    return null;
+            }
         }
 
         #endregion

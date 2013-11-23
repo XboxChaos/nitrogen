@@ -51,6 +51,7 @@ namespace Nitrogen.Halo4.ContentData.MapVariants
 
         public override void Serialize(BitStream s)
         {
+            base.Serialize(s);
             s.StreamPlusOne(ref this.unk0, 4);
             s.Stream(ref this.unk1);
             s.Stream(ref this.unk2);

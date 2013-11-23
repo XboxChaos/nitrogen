@@ -52,16 +52,21 @@ namespace Nitrogen.Core.IO
             }
         }
 
-        public static void StreamOptional<T>(this T s, ref byte? value, int bitLength = 8)
+        public static void StreamOptional<T>(this T s, ref byte? value, int bitLength = 8, bool invert = true)
             where T : BitStream
         {
             bool hasValue = value.HasValue;
+            
+            if (invert)
+                hasValue = !hasValue;
             s.Stream(ref hasValue);
+            if (invert)
+                hasValue = !hasValue;
 
             if (hasValue)
             {
-                byte temp = 0;
-                s.Stream(ref temp);
+                byte temp = (value != null && value.HasValue) ? value.Value : (byte)0;
+                s.Stream(ref temp, bitLength);
                 value = temp;
             }
             else
@@ -70,16 +75,21 @@ namespace Nitrogen.Core.IO
             }
         }
 
-        public static void StreamOptional<T>(this T s, ref sbyte? value, int bitLength = 8)
+        public static void StreamOptional<T>(this T s, ref sbyte? value, int bitLength = 8, bool invert = true)
             where T : BitStream
         {
             bool hasValue = value.HasValue;
+
+            if (invert)
+                hasValue = !hasValue;
             s.Stream(ref hasValue);
+            if (invert)
+                hasValue = !hasValue;
 
             if (hasValue)
             {
-                sbyte temp = 0;
-                s.Stream(ref temp);
+                sbyte temp = (value != null && value.HasValue) ? value.Value : (sbyte)0;
+                s.Stream(ref temp, bitLength);
                 value = temp;
             }
             else
@@ -88,19 +98,21 @@ namespace Nitrogen.Core.IO
             }
         }
 
-        public static void StreamOptional<T>(this T s, ref int? value, int bitLength = 8)
+        public static void StreamOptional<T>(this T s, ref int? value, int bitLength = 8, bool invert = true)
             where T : BitStream
         {
             bool hasValue = value.HasValue;
+
+            if (invert)
+                hasValue = !hasValue;
             s.Stream(ref hasValue);
+            if (invert)
+                hasValue = !hasValue;
 
             if (hasValue)
             {
-                int temp = 0;
-                if (s.State == StreamState.Write)
-                    temp = value.Value;
-               
-                s.Stream(ref temp);
+                int temp = (value != null && value.HasValue) ? value.Value : 0;
+                s.Stream(ref temp, bitLength);
                 value = temp;
             }
             else

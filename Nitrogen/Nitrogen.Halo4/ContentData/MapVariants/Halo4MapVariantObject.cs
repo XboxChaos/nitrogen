@@ -34,8 +34,6 @@ namespace Nitrogen.Halo4.ContentData.MapVariants
     public abstract class Halo4MapVariantObject
         : ISerializable<BitStream>
     {
-        private Halo4MapVariantObjectHeader header;
-
         /// <summary>
         /// Initializes a new instance of the <see cref="Halo4MapVariantObject"/> class.
         /// Base values will be taken from a specified header.
@@ -43,7 +41,7 @@ namespace Nitrogen.Halo4.ContentData.MapVariants
         /// <param name="header">The header to base the object from.</param>
         internal Halo4MapVariantObject(Halo4MapVariantObjectHeader header)
         {
-            this.header = header;
+            this.Header = header;
         }
 
         /// <summary>
@@ -51,7 +49,7 @@ namespace Nitrogen.Halo4.ContentData.MapVariants
         /// </summary>
         public ObjectType Type
         {
-            get { return this.header.Type; }
+            get { return this.Header.Type; }
         }
 
         /// <summary>
@@ -59,10 +57,19 @@ namespace Nitrogen.Halo4.ContentData.MapVariants
         /// </summary>
         public IBoundary Shape
         {
-            get { return this.header.Shape; }
-            set { this.header.Shape = value; }
+            get { return this.Header.Shape; }
+            set { this.Header.Shape = value; }
         }
 
-        public abstract void Serialize(BitStream s);
+        /// <summary>
+        /// Gets the object's header information.
+        /// </summary>
+        internal Halo4MapVariantObjectHeader Header { get; private set; }
+
+        public virtual void Serialize(BitStream s)
+        {
+            if (s.State == StreamState.Write)
+                this.Header.Serialize(s);
+        }
     }
 }
