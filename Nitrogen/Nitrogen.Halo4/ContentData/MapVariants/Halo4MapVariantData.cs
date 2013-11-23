@@ -20,6 +20,7 @@
 
 using Nitrogen.Core.ContentData.MapVariants;
 using Nitrogen.Core.IO;
+using Nitrogen.Halo4.ContentData.Traits;
 using System;
 using System.Collections.Generic;
 
@@ -31,12 +32,29 @@ namespace Nitrogen.Halo4.ContentData.MapVariants
     public class Halo4MapVariantData
         : MapVariantData<Halo4MapVariantObjectList, Halo4MapVariantObject>
     {
+        public const int TraitZoneCount = 4;
+
+        private Halo4PlayerTraits[] traitZones;
+
+        public Halo4MapVariantData()
+        {
+            this.traitZones = new Halo4PlayerTraits[TraitZoneCount];
+            for (int i = 0; i < TraitZoneCount; i++)
+            {
+                this.traitZones[i] = new Halo4PlayerTraits();
+            }
+        }
+
+        #region MapVariantData Members
+
         public override void Serialize(BitStream s)
         {
             this.Objects.Boundaries = this.Boundaries;
             base.Serialize(s);
 
-            // TODO: trait zones
+            s.Serialize(this.traitZones, 0, TraitZoneCount);
         }
+
+        #endregion
     }
 }

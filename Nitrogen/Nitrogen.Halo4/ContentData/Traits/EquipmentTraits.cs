@@ -85,7 +85,7 @@ namespace Nitrogen.Halo4.ContentData.Traits
             /// </summary>
             public EquipmentTraits()
             {
-                this.primaryWeapon = this.secondaryWeapon = this.armorAbility = this.supportUpgrade = this.tacticalPackage = -3;
+                //this.primaryWeapon = this.secondaryWeapon = this.armorAbility = this.supportUpgrade = this.tacticalPackage = -3;
             }
 
             #region ISerializable<BitStream> Members
