@@ -124,6 +124,7 @@
     <Compile Include="ContentData\GameVariants\Halo4BaseVariant.cs" />
     <Compile Include="ContentData\GameVariants\Halo4MultiplayerVariantData.cs" />
     <Compile Include="ContentData\GameVariants\Halo4MegaloData.cs" />
+    <Compile Include="ContentData\Halo4Campaign.cs" />
     <Compile Include="ContentData\Halo4Level.cs" />
     <Compile Include="ContentData\Halo4MapVariant.cs" />
     <Compile Include="ContentData\Halo4MultiplayerVariant.cs" />
@@ -154,6 +155,7 @@
     <Compile Include="ContentData\Traits\HudTraits.cs" />
     <Compile Include="ContentData\Traits\MovementTraits.cs" />
     <Compile Include="FileMegaloCategoriesBlob.cs" />
+    <Compile Include="Halo4CampaignBlob.cs" />
     <Compile Include="Halo4MultiplayerVariantBlob.cs" />
     <Compile Include="Halo4Properties.cs" />
     <Compile Include="Halo4MapInfoBlob.cs" />

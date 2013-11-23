@@ -8,6 +8,7 @@ Nitrogen is a .NET-based interface to data files for Halo games based on the Bla
 
 ####Supported Content Types:
 #####Halo 4
++ Campaign
 + Map Info
 + Map Image
 + Map Variants (partial)
@@ -15,20 +16,24 @@ Nitrogen is a .NET-based interface to data files for Halo games based on the Bla
 + File Megalo Categories
 
 #####Halo: Reach
++ Campaign
 + Map Info
 + Map Image
 + Map Variants (partial)
 + Game Variants (partial; not publicly available at this time)
 
 #####Halo: Reach Beta
++ Campaign
 + Map Info
 + Map Image
 
 #####Halo 3: ODST
++ Campaign
 + Map Info
 + Map Image
 
 #####Halo 3
++ Campaign
 + Map Info
 + Map Image
 

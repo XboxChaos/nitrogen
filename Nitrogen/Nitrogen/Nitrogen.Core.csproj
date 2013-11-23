@@ -123,8 +123,14 @@
     <Compile Include="Blf\BlobHeader.cs" />
     <Compile Include="Blf\Blob.cs" />
     <Compile Include="Blf\Chunk.cs" />
+    <Compile Include="CampaignBlob.cs" />
+    <Compile Include="CampaignBlobShared.cs" />
+    <Compile Include="CommonProperties.cs" />
     <Compile Include="ContentData\AssetHeader.cs" />
+    <Compile Include="ContentData\Campaign.cs" />
+    <Compile Include="ContentData\CampaignShared.cs" />
     <Compile Include="ContentData\GameVariants\MegaloMetadataHeader.cs" />
+    <Compile Include="ContentData\Localization\LocalizedNameCampaign.cs" />
     <Compile Include="ContentData\Metadata\GameVariantMetadata.cs" />
     <Compile Include="ContentData\MultiplayerVariant.cs" />
     <Compile Include="ContentData\Level.cs" />
