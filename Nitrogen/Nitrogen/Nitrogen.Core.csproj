@@ -140,6 +140,7 @@
     <Compile Include="ContentData\MapVariants\MapVariantObjectList.cs" />
     <Compile Include="ContentData\MapVariants\ObjectTypeCount.cs" />
     <Compile Include="ContentData\MapVariants\Sphere.cs" />
+    <Compile Include="ContentData\MapVariants\VectorSerializationSize.cs" />
     <Compile Include="ContentData\Metadata\Author.cs" />
     <Compile Include="ContentData\Metadata\ContentMetadata.cs" />
     <Compile Include="ContentData\MapVariants\MapVariantData.cs" />

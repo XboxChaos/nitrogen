@@ -31,17 +31,9 @@ namespace Nitrogen.Halo4.ContentData.MapVariants
     public class Halo4MapVariantData
         : MapVariantData<Halo4MapVariantObjectList, Halo4MapVariantObject>
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Halo4MapVariantData"/> class with default values.
-        /// </summary>
-        public Halo4MapVariantData()
-            : base(new Halo4MapVariantObjectList())
-        {
-            
-        }
-
         public override void Serialize(BitStream s)
         {
+            this.Objects.Boundaries = this.Boundaries;
             base.Serialize(s);
 
             // TODO: trait zones

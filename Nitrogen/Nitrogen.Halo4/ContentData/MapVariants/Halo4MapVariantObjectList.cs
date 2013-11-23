@@ -36,6 +36,7 @@ namespace Nitrogen.Halo4.ContentData.MapVariants
         : MapVariantObjectList<Halo4MapVariantObject>
     {
         private const int Halo4MaxObjects = 651;
+        private const int Halo4SuggestedVectorSize = 21;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Halo4MapVariantObjectList"/> class.
@@ -45,19 +46,27 @@ namespace Nitrogen.Halo4.ContentData.MapVariants
         {
         }
 
+        /// <summary>
+        /// Gets or sets the boundaries of the map to use to serialize objects.
+        /// </summary>
+        internal float[] Boundaries { get; set; }
+
         public override void Serialize(BitStream s)
         {
+            VectorSerializationSize vectorSize = new VectorSerializationSize(this.Boundaries, Halo4SuggestedVectorSize);
+
             if (s.State == StreamState.Read)
-                ReadObjects(s);
+                ReadObjects(s, vectorSize);
             else if (s.State == StreamState.Write)
-                WriteObjects(s);
+                WriteObjects(s, vectorSize);
         }
 
         /// <summary>
         /// Deserializes the object table from a stream.
         /// </summary>
         /// <param name="s">The <see cref="BitStream"/> to read from.</param>
-        private void ReadObjects(BitStream s)
+        /// <param name="vectorSize">Vector component sizes to use when serializing position vectors.</param>
+        private void ReadObjects(BitStream s, VectorSerializationSize vectorSize)
         {
             for (int i = 0; i < Halo4MaxObjects; i++)
             {
@@ -67,6 +76,7 @@ namespace Nitrogen.Halo4.ContentData.MapVariants
                 if (objectExists)
                 {
                     Halo4MapVariantObjectHeader header = new Halo4MapVariantObjectHeader();
+                    header.VectorSize = vectorSize;
                     header.Serialize(s);
 
                     Halo4MapVariantObject obj = ConstructObject(header);
@@ -81,7 +91,8 @@ namespace Nitrogen.Halo4.ContentData.MapVariants
         /// Serializes the object table to a stream.
         /// </summary>
         /// <param name="s">The <see cref="BitStream"/> to write to.</param>
-        private void WriteObjects(BitStream s)
+        /// <param name="vectorSize">Vector component sizes to use when serializing position vectors.</param>
+        private void WriteObjects(BitStream s, VectorSerializationSize vectorSize)
         {
             // Write existing objects
             int remaining = Halo4MaxObjects;
@@ -89,6 +100,7 @@ namespace Nitrogen.Halo4.ContentData.MapVariants
             {
                 bool exists = true;
                 s.Stream(ref exists);
+                obj.Header.VectorSize = vectorSize;
                 obj.Serialize(s);
                 remaining--;
             }

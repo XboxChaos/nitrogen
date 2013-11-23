@@ -41,10 +41,5 @@ namespace Nitrogen.Halo4.ContentData.MapVariants
         {
             Contract.Requires(header.Type == ObjectType.PersonalOrdnanceDropPoint);
         }
-
-        public override void Serialize(BitStream s)
-        {
-            // Nothing to see here, move along
-        }
     }
 }
