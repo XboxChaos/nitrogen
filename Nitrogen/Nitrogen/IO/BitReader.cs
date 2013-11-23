@@ -200,12 +200,12 @@ namespace Nitrogen.Core.IO
                 if (encodedValue == max - 1)
                     return max;
 
-                float y = (max - min) / (float)(max - 2);
+                float y = (max - min) / (float)(maxInt - 2);
                 result = (float)(encodedValue - 1) * y + y * 0.5f + min;
             }
             else
             {
-                float y = (max - min) / (float)max;
+                float y = (max - min) / (float)maxInt;
                 result = (float)encodedValue * y + y * 0.5f + min;
             }
 

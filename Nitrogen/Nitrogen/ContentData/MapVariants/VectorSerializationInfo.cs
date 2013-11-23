@@ -9,21 +9,58 @@ namespace Nitrogen.Core.ContentData.MapVariants
     /// <summary>
     /// Contains information about the size of each value in a serialized 3-D vector.
     /// </summary>
-    public class VectorSerializationSize
+    public class VectorSerializationInfo
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="VectorSerializationSize"/> class.
+        /// Initializes a new instance of the <see cref="VectorSerializationInfo"/> class.
         /// Sizes will be computed from a bounds array and a suggested size value.
         /// </summary>
         /// <param name="bounds">The bounds array to use. This must be made up of 6 elements (3 pairs representing X, Y, and Z respectively), with each pair of two elements representing a minimum and a maximum.</param>
         /// <param name="suggestedValue">The suggested size value to use for each component.</param>
-        public VectorSerializationSize(float[] bounds, int suggestedValue)
+        public VectorSerializationInfo(float[] bounds, int suggestedValue)
         {
             int[] sizes = CalculateSizes(bounds, suggestedValue);
             XSize = sizes[0];
             YSize = sizes[1];
             ZSize = sizes[2];
+            
+            XMin = bounds[0];
+            XMax = bounds[1];
+            YMin = bounds[2];
+            YMax = bounds[3];
+            ZMin = bounds[4];
+            ZMax = bounds[5];
         }
+
+        /// <summary>
+        /// Gets the minimum X value allowed.
+        /// </summary>
+        public float XMin { get; private set; }
+
+        /// <summary>
+        /// Gets the maximum X value allowed.
+        /// </summary>
+        public float XMax { get; private set; }
+
+        /// <summary>
+        /// Gets the minimum Y value allowed.
+        /// </summary>
+        public float YMin { get; private set; }
+
+        /// <summary>
+        /// Gets the maximum Y value allowed.
+        /// </summary>
+        public float YMax { get; private set; }
+
+        /// <summary>
+        /// Gets the minimum Z value allowed.
+        /// </summary>
+        public float ZMin { get; private set; }
+
+        /// <summary>
+        /// Gets the maximum Z value allowed.
+        /// </summary>
+        public float ZMax { get; private set; }
 
         /// <summary>
         /// Gets the size of the vector's X component in bits when serialized.

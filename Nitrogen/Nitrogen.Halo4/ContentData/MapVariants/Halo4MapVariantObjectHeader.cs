@@ -31,7 +31,7 @@ namespace Nitrogen.Halo4.ContentData.MapVariants
         private byte unk0;
         private byte? unk1;
         private sbyte? unk2;
-        private int unk3, unk4, unk5;
+        private float x, y, z;
         private int? unk6;
         private float unk7;
         private short unk8;
@@ -51,9 +51,9 @@ namespace Nitrogen.Halo4.ContentData.MapVariants
         }
 
         /// <summary>
-        /// Gets or sets the size to serialize position vectors with.
+        /// Gets or sets the info to serialize position vectors with.
         /// </summary>
-        public VectorSerializationSize VectorSize { get; set; }
+        public VectorSerializationInfo VectorInfo { get; set; }
 
         /// <summary>
         /// Gets or sets the shape of the object's boundary.
@@ -62,6 +62,33 @@ namespace Nitrogen.Halo4.ContentData.MapVariants
         {
             get { return this.shape; }
             set { this.shape = value; }
+        }
+
+        /// <summary>
+        /// Gets or sets the object's X coordinate.
+        /// </summary>
+        public float X
+        {
+            get { return this.x; }
+            set { this.x = value; }
+        }
+
+        /// <summary>
+        /// Gets or sets the object's Y coordinate.
+        /// </summary>
+        public float Y
+        {
+            get { return this.y; }
+            set { this.y = value; }
+        }
+
+        /// <summary>
+        /// Gets or sets the object's Z coordinate.
+        /// </summary>
+        public float Z
+        {
+            get { return this.z; }
+            set { this.z = value; }
         }
 
         /// <summary>
@@ -81,7 +108,7 @@ namespace Nitrogen.Halo4.ContentData.MapVariants
 
         public virtual void Serialize(BitStream s)
         {
-            Contract.Requires<InvalidOperationException>(VectorSize != null);
+            Contract.Requires<InvalidOperationException>(VectorInfo != null);
 
             s.Stream(ref this.unk0, 2);
             s.StreamOptional(ref this.unk1);
@@ -92,9 +119,11 @@ namespace Nitrogen.Halo4.ContentData.MapVariants
             /* An optional 2-bit integer goes here if the above value is true, but it'll never get
              * read anyway since the other part of the condition will never be true. */
 
-            s.Stream(ref this.unk3, VectorSize.XSize);
-            s.Stream(ref this.unk4, VectorSize.YSize);
-            s.Stream(ref this.unk5, VectorSize.ZSize);
+            // Hopefully these float flags are correct...
+            s.Stream(ref this.x, VectorInfo.XSize, VectorInfo.XMin, VectorInfo.XMax, false, false, true);
+            s.Stream(ref this.y, VectorInfo.YSize, VectorInfo.YMin, VectorInfo.YMax, false, false, true);
+            s.Stream(ref this.z, VectorInfo.ZSize, VectorInfo.ZMin, VectorInfo.ZMax, false, false, true);
+
             s.StreamOptional(ref unk6, 20);
             s.Stream(ref this.unk7, 14, -(float)Math.PI, (float)Math.PI, false, false, false);
             s.StreamPlusOne(ref this.unk8, 10);

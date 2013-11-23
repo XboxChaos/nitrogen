@@ -147,12 +147,12 @@ namespace Nitrogen.Core.IO
                     return;
                 }
 
-                float y = (max - min) / (float)(max - 2);
+                float y = (max - min) / (float)(maxInt - 2);
                 Write((uint)((value - min - y * 0.5f) / y + 1), n);
             }
             else
             {
-                float y = (max - min) / (float)max;
+                float y = (max - min) / (float)maxInt;
                 Write((uint)((value - min - y * 0.5f) / y), n);
             }
         }

@@ -62,6 +62,33 @@ namespace Nitrogen.Halo4.ContentData.MapVariants
         }
 
         /// <summary>
+        /// Gets or sets the object's X coordinate.
+        /// </summary>
+        public float X
+        {
+            get { return this.Header.X; }
+            set { this.Header.X = value; }
+        }
+
+        /// <summary>
+        /// Gets or sets the object's Y coordinate.
+        /// </summary>
+        public float Y
+        {
+            get { return this.Header.Y; }
+            set { this.Header.Y = value; }
+        }
+
+        /// <summary>
+        /// Gets or sets the object's Z coordinate.
+        /// </summary>
+        public float Z
+        {
+            get { return this.Header.Z; }
+            set { this.Header.Z = value; }
+        }
+
+        /// <summary>
         /// Gets the object's header information.
         /// </summary>
         internal Halo4MapVariantObjectHeader Header { get; private set; }
