@@ -25,7 +25,7 @@ using System.Diagnostics.Contracts;
 namespace Nitrogen.Halo4.ContentData.GameVariants.BaseVariant
 {
     /// <summary>
-    /// Represents a set of general settings.
+    /// Represents a set of general settings in a Halo 4 multiplayer variant.
     /// </summary>
     public class GeneralSettings
         : ISerializable<BitStream>
@@ -61,12 +61,18 @@ namespace Nitrogen.Halo4.ContentData.GameVariants.BaseVariant
             this.suddenDeathDuration = 90;
         }
 
+        /// <summary>
+        /// Gets or sets the duration in seconds of each round.
+        /// </summary>
         public byte RoundTimeLimit
         {
             get { return this.roundTimeLimit; }
             set { this.roundTimeLimit = value; }
         }
 
+        /// <summary>
+        /// Gets or sets the number of rounds per match.
+        /// </summary>
         public byte NumberOfRounds
         {
             get { return this.numberOfRounds; }
@@ -111,6 +117,28 @@ namespace Nitrogen.Halo4.ContentData.GameVariants.BaseVariant
         {
             get { return this.pointsSystemEnabled; }
             set { this.pointsSystemEnabled = value; }
+        }
+
+        /// <summary>
+        /// Gets or sets the number of wins a player or team can reach for an early victory (e.g. best 2 out of 3).
+        /// </summary>
+        public byte EarlyVictoryWinCount
+        {
+            get { return this.earlyVictoryWinCount; }
+            set
+            {
+                Contract.Requires<ArgumentOutOfRangeException>(value <= 15);
+                this.earlyVictoryWinCount = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the duration of the overtime period.
+        /// </summary>
+        public byte OvertimeDuration
+        {
+            get { return this.suddenDeathDuration; }
+            set { this.suddenDeathDuration = value; }
         }
 
         #region ISerializable<BitStream>

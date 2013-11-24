@@ -32,9 +32,12 @@ namespace Nitrogen.Core.ContentData.MapVariants
     /// Represents the data in a map variant. 
     /// </summary>
     public class MapVariantData<TMapObjectList, TMapObjectType>
-        : ISerializable<BitStream>, ITextDumpable
+        : ISerializable<BitStream>
         where TMapObjectList : MapVariantObjectList<TMapObjectType>, new()
     {
+        /// <summary>
+        /// Specifies the 
+        /// </summary>
         private const int MaxObjectTypes = 256;
 
         private ContentMetadata metadata;
@@ -67,6 +70,10 @@ namespace Nitrogen.Core.ContentData.MapVariants
             this.Objects = new TMapObjectList();
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MapVariantData"/> class with the specified
+        /// object table.
+        /// </summary>
         public MapVariantData(TMapObjectList objectTable)
             : this()
         {
@@ -129,29 +136,6 @@ namespace Nitrogen.Core.ContentData.MapVariants
                     s.Serialize(this.objectTypeCountTable[i]);
                 }
             }
-        }
-
-        #endregion
-
-        #region ITextDumpable Members
-
-        public void Dump(StringBuilder builder)
-        {
-            builder.AppendLine(this.metadata.Name + " on " + this.metadata.Map);
-            builder.AppendLine("Map Encoding Version: " + this.encodingVersion);
-            builder.AppendFormat("Boundaries: {0} {1} {2} {3} {4} {5}", boundaries[0], boundaries[1], boundaries[2], boundaries[3], boundaries[4], boundaries[5]);
-            builder.AppendLine();
-            builder.AppendLine(this.stringTable.Count + " entries in object labels string table");
-            builder.AppendLine();
-            builder.AppendFormat("{1}\t\t{0}\n", "int32 unk0", this.unk0); builder.AppendLine();
-            builder.AppendFormat("{1}\t{0}\n", "int32 unk1", this.unk1); builder.AppendLine();
-            builder.AppendFormat("{1}\t\t{0}\n", "int9  obj type count", this.objectTypeCount); builder.AppendLine();
-            builder.AppendFormat("{1}\t\t{0}\n", "int32 map id", this.mapId); builder.AppendLine();
-            builder.AppendFormat("{1}\t\t{0}\n", "bool  unk2", this.unk2); builder.AppendLine();
-            builder.AppendFormat("{1}\t\t{0}\n", "bool  unk3", this.unk3); builder.AppendLine();
-            builder.AppendFormat("{1}\t\t{0}\n", "int32 budget", this.budget); builder.AppendLine();
-            builder.AppendFormat("{1}\t\t{0}\n", "int32 unk5", this.unk5); builder.AppendLine();
-            builder.AppendLine();
         }
 
         #endregion

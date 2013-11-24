@@ -38,13 +38,13 @@ namespace Nitrogen.Core
         /// Initializes a new instance of the <see cref="CampaignBlob"/> class with the specified
         /// <see cref="Campaign"/> object.
         /// </summary>
-        /// <param name="level">
+        /// <param name="campaign">
         /// A <see cref="Nitrogen.Core.ContentData.Campaign"/> object to use as a default value.
         /// </param>
-        public CampaignBlob(Campaign _campaign)
+        public CampaignBlob(Campaign campaign)
         {
-            Contract.Requires<ArgumentNullException>(_campaign != null);
-            this.campaign = _campaign;
+            Contract.Requires<ArgumentNullException>(campaign != null);
+            this.campaign = campaign;
         }
 
         /// <summary>

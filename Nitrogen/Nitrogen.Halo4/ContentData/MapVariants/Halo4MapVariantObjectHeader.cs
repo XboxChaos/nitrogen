@@ -108,8 +108,6 @@ namespace Nitrogen.Halo4.ContentData.MapVariants
 
         public virtual void Serialize(BitStream s)
         {
-            Contract.Requires<InvalidOperationException>(VectorInfo != null);
-
             s.Stream(ref this.unk0, 2);
             s.StreamOptional(ref this.unk1);
             s.StreamOptional(ref this.unk2, 5);

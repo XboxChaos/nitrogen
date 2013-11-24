@@ -65,7 +65,7 @@ namespace Nitrogen.Halo4.ContentData.Traits
                 tacticalPackage,
                 supportUpgrade;
 
-            private InheritableBool
+            private InheritableToggle
                 weaponPickup,
                 aaUsage,
                 aaUsageExceptingAutoturret,

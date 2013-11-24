@@ -152,7 +152,7 @@
     <Compile Include="ContentData\MapVariants\MapVariantData.cs" />
     <Compile Include="ContentData\Metadata\MapVariantMetadata.cs" />
     <Compile Include="ContentData\Metadata\MetadataEnums.cs" />
-    <Compile Include="ContentData\Traits\InheritableBool.cs" />
+    <Compile Include="ContentData\Traits\TraitEnums.cs" />
     <Compile Include="ContentData\Traits\RespawnTraits.cs" />
     <Compile Include="IO\BitReader.cs" />
     <Compile Include="IO\BitStream.cs" />

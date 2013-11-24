@@ -47,7 +47,7 @@ namespace Nitrogen.Halo4.ContentData.Traits
             vehicleEMPDisableDuration,
             fallDamageMultiplier;
 
-            private InheritableBool
+            private InheritableToggle
             headshotImmunity,
             assassinationImmunity,
             invincibility,

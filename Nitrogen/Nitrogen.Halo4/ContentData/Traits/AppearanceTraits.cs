@@ -21,9 +21,28 @@
 using Nitrogen.Core.ContentData.Traits;
 using Nitrogen.Core.IO;
 using System;
+using System.ComponentModel;
+using System.Diagnostics.Contracts;
 
 namespace Nitrogen.Halo4.ContentData.Traits
 {
+    /// <summary>
+    /// Indicates an armor effect.
+    /// </summary>
+    public enum ArmorEffect
+    {
+        Unchanged = -3,
+        MapDefault,
+        Disabled,
+        GruntBirthdayParty,
+        Regicide,
+        Overshield,
+        SpeedBoost,
+        DamageBoost,
+        AlphaFloodSpeedBoost,
+        Flood
+    }
+
     public partial class Halo4PlayerTraits
     {
         /// <summary>
@@ -32,6 +51,8 @@ namespace Nitrogen.Halo4.ContentData.Traits
         public class AppearanceTraits
         : ISerializable<BitStream>
         {
+            public const sbyte FloodModelVariant = 120;
+
             private float? playerScale;
             private byte activeCamo, waypointVisibility, gamertagVisibility, aura;
             private int deathEffect, loopingEffect;
@@ -48,6 +69,128 @@ namespace Nitrogen.Halo4.ContentData.Traits
                 this.secondary = new ArmorColor();
                 this.useDefaultModel = true;
                 this.modelStringIndex = -1;
+            }
+
+            /// <summary>
+            /// Gets or sets the scale of a player's model.
+            /// </summary>
+            public float? PlayerScale
+            {
+                get { return this.playerScale; }
+                set
+                {
+                    Contract.Requires<ArgumentOutOfRangeException>(value == null || (value >= -200f && value <= 200f));
+                    this.playerScale = value;
+                }
+            }
+
+            /// <summary>
+            /// Gets or sets a player's primary armor color.
+            /// </summary>
+            public ArmorColor PrimaryColor
+            {
+                get { return this.primary; }
+                set
+                {
+                    Contract.Requires<ArgumentNullException>(value != null);
+                    this.primary = value;
+                }
+            }
+
+            /// <summary>
+            /// Gets or sets a player's primary armor color.
+            /// </summary>
+            public ArmorColor SecondaryColor
+            {
+                get { return this.secondary; }
+                set
+                {
+                    Contract.Requires<ArgumentNullException>(value != null);
+                    this.secondary = value;
+                }
+            }
+
+            /// <summary>
+            /// Gets or sets a player's Active Camouflage state.
+            /// </summary>
+            public ActiveCamoMode ActiveCamo
+            {
+                get { return (ActiveCamoMode)this.activeCamo; }
+                set
+                {
+                    Contract.Requires<InvalidEnumArgumentException>(Enum.IsDefined(typeof(ActiveCamoMode), value));
+                    this.activeCamo = (byte)value;
+                }
+            }
+
+            /// <summary>
+            /// Gets or sets a player's waypoint visibility.
+            /// </summary>
+            public HudVisibility WaypointVisibility
+            {
+                get { return (HudVisibility)this.waypointVisibility; }
+                set
+                {
+                    Contract.Requires<InvalidEnumArgumentException>(Enum.IsDefined(typeof(HudVisibility), value));
+                    this.waypointVisibility = (byte)value;
+                }
+            }
+
+            /// <summary>
+            /// Gets or sets a player's gamertag visibility.
+            /// </summary>
+            public HudVisibility GamertagVisibility
+            {
+                get { return (HudVisibility)this.gamertagVisibility; }
+                set
+                {
+                    Contract.Requires<InvalidEnumArgumentException>(Enum.IsDefined(typeof(HudVisibility), value));
+                    this.gamertagVisibility = (byte)value;
+                }
+            }
+
+            /// <summary>
+            /// Gets or sets a player's continuous armor effect.
+            /// </summary>
+            public ArmorEffect LoopingEffect
+            {
+                get { return (ArmorEffect)this.loopingEffect; }
+                set
+                {
+                    Contract.Requires<InvalidEnumArgumentException>(Enum.IsDefined(typeof(ArmorEffect), value));
+                    this.loopingEffect = (int)value;
+                }
+            }
+
+            /// <summary>
+            /// Gets or sets a player's armor effect to display upon death.
+            /// </summary>
+            public ArmorEffect DeathEffect
+            {
+                get { return (ArmorEffect)this.deathEffect; }
+                set
+                {
+                    Contract.Requires<InvalidEnumArgumentException>(Enum.IsDefined(typeof(ArmorEffect), value));
+                    this.deathEffect = (int)value;
+                }
+            }
+            
+            /// <summary>
+            /// Gets or sets the model variant to use based on its index in the Megalo String Index
+            /// Table (msit).
+            /// 
+            /// Set to -1 to use the default model variant.
+            /// 
+            /// Use <see cref="FloodModelVariant"/> to use the Flood model variant.
+            /// </summary>
+            public sbyte ModelVariantStringIndex
+            {
+                get { return this.modelStringIndex; }
+                set
+                {
+                    this.modelStringIndex = value;
+                    if (value == -1) this.useDefaultModel = true;
+                }
             }
 
             #region ISerializable<BitStream> Members

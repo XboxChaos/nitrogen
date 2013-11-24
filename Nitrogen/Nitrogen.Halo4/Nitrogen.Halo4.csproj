@@ -116,6 +116,7 @@
     <Compile Include="ContentData\GameVariants\BaseVariant\LoadoutSettings.cs" />
     <Compile Include="ContentData\GameVariants\BaseVariant\MapOverrides.cs" />
     <Compile Include="ContentData\GameVariants\BaseVariant\OrdnanceSettings.cs" />
+    <Compile Include="ContentData\GameVariants\BaseVariant\PowerupSettings.cs" />
     <Compile Include="ContentData\GameVariants\BaseVariant\PrototypeSettings.cs" />
     <Compile Include="ContentData\GameVariants\BaseVariant\RequisitionSettings.cs" />
     <Compile Include="ContentData\GameVariants\BaseVariant\RespawnSettings.cs" />
@@ -152,7 +153,7 @@
     <Compile Include="ContentData\Traits\ArmorTraits.cs" />
     <Compile Include="ContentData\Traits\Halo4PlayerTraits.cs" />
     <Compile Include="ContentData\Traits\EquipmentTraits.cs" />
-    <Compile Include="ContentData\Traits\HudTraits.cs" />
+    <Compile Include="ContentData\Traits\ScreenAndAudioTraits.cs" />
     <Compile Include="ContentData\Traits\MovementTraits.cs" />
     <Compile Include="FileMegaloCategoriesBlob.cs" />
     <Compile Include="Halo4CampaignBlob.cs" />

@@ -23,6 +23,7 @@ using Nitrogen.Core.IO;
 using Nitrogen.Halo4.ContentData.Traits;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 
 namespace Nitrogen.Halo4.ContentData.MapVariants
 {
@@ -32,16 +33,37 @@ namespace Nitrogen.Halo4.ContentData.MapVariants
     public class Halo4MapVariantData
         : MapVariantData<Halo4MapVariantObjectList, Halo4MapVariantObject>
     {
+        /// <summary>
+        /// Specifies the number of trait zones available.
+        /// </summary>
         public const int TraitZoneCount = 4;
 
         private Halo4PlayerTraits[] traitZones;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Halo4MapVariantData"/> class with default values.
+        /// </summary>
         public Halo4MapVariantData()
         {
             this.traitZones = new Halo4PlayerTraits[TraitZoneCount];
             for (int i = 0; i < TraitZoneCount; i++)
             {
                 this.traitZones[i] = new Halo4PlayerTraits();
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the trait zones contained in this map variant.
+        /// </summary>
+        public IList<Halo4PlayerTraits> TraitZones
+        {
+            get { return this.traitZones; }
+            set
+            {
+                Contract.Requires<ArgumentNullException>(value != null);
+                Contract.Requires(value.Count == TraitZoneCount);
+
+                this.traitZones = (Halo4PlayerTraits[])value;
             }
         }
 

@@ -41,6 +41,10 @@ namespace Nitrogen.Halo4.ContentData
             this.data = new Halo4MapVariantData();
         }
 
+        /// <summary>
+        /// Gets or sets the data contained in this map variant.
+        /// </summary>
+        /// <exception cref="ArgumentNullException">value is null.</exception>
         public Halo4MapVariantData Data
         {
             get { return this.data; }

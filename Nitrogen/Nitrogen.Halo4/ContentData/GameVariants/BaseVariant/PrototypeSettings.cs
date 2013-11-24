@@ -23,6 +23,10 @@ using System;
 
 namespace Nitrogen.Halo4.ContentData.GameVariants.BaseVariant
 {
+    /// <summary>
+    /// Represents a set of settings in a multiplayer variant for a prototype feature which was cut
+    /// from the release version of Halo 4.
+    /// </summary>
     public class PrototypeSettings
         : ISerializable<BitStream>
     {

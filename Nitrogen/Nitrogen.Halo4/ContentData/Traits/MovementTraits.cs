@@ -34,7 +34,7 @@ namespace Nitrogen.Halo4.ContentData.Traits
         {
             private float? playerSpeed, gravity, jumpHeight, controllerSensitivity;
             private byte vehicleUsage;
-            private InheritableBool doubleJump, sprint, automaticMomentum, vaulting, stealth;
+            private InheritableToggle doubleJump, sprint, automaticMomentum, vaulting, stealth;
 
             #region ISerializable<BitStream> Members
 

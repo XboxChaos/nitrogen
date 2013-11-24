@@ -34,7 +34,7 @@ namespace Nitrogen.Halo4.ContentData.Traits
         private EquipmentTraits equipment;
         private MovementTraits movement;
         private AppearanceTraits appearance;
-        private HudTraits hudTraits;
+        private ScreenAndAudioTraits hudAudioTraits;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Halo4PlayerTraits"/> class with default values.
@@ -45,7 +45,7 @@ namespace Nitrogen.Halo4.ContentData.Traits
             this.equipment = new EquipmentTraits();
             this.movement = new MovementTraits();
             this.appearance = new AppearanceTraits();
-            this.hudTraits = new HudTraits();
+            this.hudAudioTraits = new ScreenAndAudioTraits();
         }
 
         // TODO: Add methods to enable/disable tactical packages and support upgrades by modifying applicable traits.
@@ -58,7 +58,7 @@ namespace Nitrogen.Halo4.ContentData.Traits
             s.Serialize(this.equipment);
             s.Serialize(this.movement);
             s.Serialize(this.appearance);
-            s.Serialize(this.hudTraits);
+            s.Serialize(this.hudAudioTraits);
         }
 
         #endregion
@@ -88,11 +88,11 @@ namespace Nitrogen.Halo4.ContentData.Traits
             }
         }
 
-        protected static void AddBoolTrait(BitStream s, ref InheritableBool value)
+        protected static void AddBoolTrait(BitStream s, ref InheritableToggle value)
         {
             var temp = (byte)value;
             s.Stream(ref temp, 2);
-            value = (InheritableBool)temp;
+            value = (InheritableToggle)temp;
         }
     }
 }

@@ -21,9 +21,13 @@
 using Nitrogen.Core.IO;
 using Nitrogen.Halo4.ContentData.Traits;
 using System;
+using System.Diagnostics.Contracts;
 
 namespace Nitrogen.Halo4.ContentData.GameVariants.BaseVariant
 {
+    /// <summary>
+    /// Represents a set of respawn settings in a Halo 4 multiplayer variant.
+    /// </summary>
     public class RespawnSettings
         : ISerializable<BitStream>
     {
@@ -59,10 +63,118 @@ namespace Nitrogen.Halo4.ContentData.GameVariants.BaseVariant
             this.suicdePenalty = 5;
         }
 
+        /// <summary>
+        /// Gets or sets the penalty added to the minimum respawn time when a player commits suicide.
+        /// </summary>
+        public byte SuicidePenalty
+        {
+            get { return this.suicdePenalty; }
+            set { this.suicdePenalty = value; }
+        }
+
+        /// <summary>
+        /// Gets or sets the penalty added to the minimum respawn time whenever a player betrays a
+        /// teammate.
+        /// </summary>
+        public byte BetrayalPenalty
+        {
+            get { return this.betrayalPenalty; }
+            set { this.betrayalPenalty = value; }
+        }
+
+        /// <summary>
+        /// Gets or sets the amount of lives each player starts with. Set to 0 for unlimited lives.
+        /// The value must fall in the range between 0 and 63 or an exception will be thrown.
+        /// </summary>
+        public byte Lives
+        {
+            get { return this.lives; }
+            set
+            {
+                Contract.Requires<ArgumentOutOfRangeException>(value <= 63);
+                this.lives = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the amount of lives which is shared among players in each team. Set to 0
+        /// for unlimited lives. The value must fall in the range between 0 and 127 or an exception
+        /// will be thrown.
+        /// </summary>
+        public byte SharedTeamLives
+        {
+            get { return this.sharedTeamLives; }
+            set
+            {
+                Contract.Requires<ArgumentOutOfRangeException>(value <= 127);
+                this.sharedTeamLives = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets whether players respawn at the same time as their teammates.
+        /// </summary>
+        public bool SyncWithTeam
+        {
+            get { return this.syncWithTeam; }
+            set { this.syncWithTeam = value; }
+        }
+
+        /// <summary>
+        /// Gets or sets whether players respawn when their teammate earns a kill.
+        /// </summary>
+        public bool RespawnOnKill
+        {
+            get { return this.respawnOnKill; }
+            set { this.respawnOnKill = value; }
+        }
+
+        /// <summary>
+        /// Gets or sets the initial respawn duration.
+        /// </summary>
+        public byte InitialRespawnDuration
+        {
+            get { return this.secondaryRespawnTime; }
+            set { this.secondaryRespawnTime = value; }
+        }
+
+        /// <summary>
+        /// Gets or sets the minimum respawn duration (which may not be skipped).
+        /// </summary>
+        public byte MinimumRespawnDuration
+        {
+            get { return this.respawnTime; }
+            set
+            {
+                this.respawnTime = value;
+                this.dualRespawnTiming = (value != 0);
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the amount added to the minimum respawn duration every time a player dies.
+        /// The value must fall in the range between 0 and 15 or an exception will be thrown.
+        /// </summary>
+        public byte RespawnTimeGrowth
+        {
+            get { return this.respawnTimeGrowth; }
+            set
+            {
+                Contract.Requires<ArgumentOutOfRangeException>(value <= 15);
+                this.respawnTimeGrowth = value;
+            }
+        }
+
         #region ISerializable<BitStream>
 
         public void Serialize(BitStream s)
         {
+            // Respawn time must be less than secondary respawn time.
+            if (this.respawnTime > this.secondaryRespawnTime)
+            {
+                this.respawnTime = this.secondaryRespawnTime;
+            }
+
             s.Stream(ref this.syncWithTeam);
             s.Stream(ref this.respawnAtTeammate);
             s.Stream(ref this.respawnInPlace);
