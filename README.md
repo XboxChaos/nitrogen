@@ -1,41 +1,36 @@
 #Nitrogen - Halo Content API
 
 ##about;
-Nitrogen is a .NET-based interface to data files for Halo games based on the Blam Engine. The ultimate goal of this project is to provide Halo fans the ability to further improve the Halo experience such as introducing new game types and maps.
-
-####Bundled Tools:
-+ Map Info Editor (coming soon!)
+Nitrogen is a .NET-based interface to data files found in Halo games based on the Blam Engine. The ultimate goal of this project is to provide Halo fans the ability to further improve the Halo experience such as introducing new game types and maps.
 
 ####Supported Content Types:
 #####Halo 4
-+ Campaign
-+ Map Info
-+ Map Image
-+ Map Variants (partial)
-+ Game Variants (not publicly available at this time)
-+ File Megalo Categories
++ Campaign (cmpn)
++ File Megalo Categories (fmca)
++ Map Image (mapi)
++ Map Info (levl)
++ Map Variants (mvar)
++ Multiplayer Variants (mpvr) (partial)
 
 #####Halo: Reach
-+ Campaign
-+ Map Info
-+ Map Image
-+ Map Variants (partial)
-+ Game Variants (partial; not publicly available at this time)
++ Campaign (cmpn)
++ Map Image (mapi)
++ Map Info (levl)
 
 #####Halo: Reach Beta
-+ Campaign
-+ Map Info
-+ Map Image
++ Campaign (cmpn)
++ Map Image (mapi)
++ Map Info (levl)
 
 #####Halo 3: ODST
-+ Campaign
-+ Map Info
-+ Map Image
++ Campaign (cmpn)
++ Map Image (mapi)
++ Map Info (levl)
 
 #####Halo 3
-+ Campaign
-+ Map Info
-+ Map Image
++ Campaign (cmpn)
++ Map Image (mapi)
++ Map Info (levl)
 
 ##disclaimer;
 We strongly discourage bringing modified files online. Unauthorized modifications to data files violate the Xbox LIVE ToS. We are not responsible for anything that happens to your console, account, and/or your dignity. 
