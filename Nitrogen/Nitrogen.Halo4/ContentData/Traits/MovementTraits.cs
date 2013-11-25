@@ -21,6 +21,8 @@
 using Nitrogen.Core.ContentData.Traits;
 using Nitrogen.Core.IO;
 using System;
+using System.ComponentModel;
+using System.Diagnostics.Contracts;
 
 namespace Nitrogen.Halo4.ContentData.Traits
 {
@@ -35,6 +37,105 @@ namespace Nitrogen.Halo4.ContentData.Traits
             private float? playerSpeed, gravity, jumpHeight, controllerSensitivity;
             private byte vehicleUsage;
             private InheritableToggle doubleJump, sprint, automaticMomentum, vaulting, stealth;
+
+            /// <summary>
+            /// Initializes a new instance of the <see cref="MovementTraits"/> class with default values.
+            /// </summary>
+            public MovementTraits()
+            {
+                this.playerSpeed = 1.10f;
+            }
+            
+            /// <summary>
+            /// Gets or sets a player's movement speed.
+            /// </summary>
+            public float? MovementSpeed
+            {
+                get { return this.playerSpeed; }
+                set
+                {
+                    Contract.Requires<ArgumentOutOfRangeException>(value == null || (value >= -200f && value <= 200f));
+                    this.playerSpeed = value;
+                }
+            }
+
+            /// <summary>
+            /// Gets or sets the gravity intensity for a player.
+            /// </summary>
+            public float? Gravity
+            {
+                get { return this.gravity; }
+                set
+                {
+                    Contract.Requires<ArgumentOutOfRangeException>(value == null || (value >= -200f && value <= 200f));
+                    this.gravity = value;
+                }
+            }
+
+            /// <summary>
+            /// Gets or sets a player's jump height.
+            /// </summary>
+            public float? JumpHeight
+            {
+                get { return this.jumpHeight; }
+                set
+                {
+                    Contract.Requires<ArgumentOutOfRangeException>(value == null || (value >= -200f && value <= 200f));
+                    this.jumpHeight = value;
+                }
+            }
+
+            /// <summary>
+            /// Gets or sets a player's controller sensitivity.
+            /// </summary>
+            public float? ControllerSensitivity
+            {
+                get { return this.controllerSensitivity; }
+                set
+                {
+                    Contract.Requires<ArgumentOutOfRangeException>(value == null || (value >= -200f && value <= 200f));
+                    this.controllerSensitivity = value;
+                }
+            }
+
+            /// <summary>
+            /// Gets or sets whether sprint is enabled for a player.
+            /// </summary>
+            public InheritableToggle Sprint
+            {
+                get { return this.sprint; }
+                set
+                {
+                    Contract.Requires<InvalidEnumArgumentException>(Enum.IsDefined(typeof(InheritableToggle), value));
+                    this.sprint = value;
+                }
+            }
+
+            /// <summary>
+            /// Gets or sets whether a player's footsteps are dampened.
+            /// </summary>
+            public InheritableToggle Stealth
+            {
+                get { return this.stealth; }
+                set
+                {
+                    Contract.Requires<InvalidEnumArgumentException>(Enum.IsDefined(typeof(InheritableToggle), value));
+                    this.stealth = value;
+                }
+            }
+
+            /// <summary>
+            /// Gets or sets the vehicle usage permissions of a player.
+            /// </summary>
+            public VehicleUsageMode VehicleUsage
+            {
+                get { return (VehicleUsageMode)this.vehicleUsage; }
+                set
+                {
+                    Contract.Requires<InvalidEnumArgumentException>(Enum.IsDefined(typeof(VehicleUsageMode), value));
+                    this.vehicleUsage = (byte)value;
+                }
+            }
 
             #region ISerializable<BitStream> Members
 

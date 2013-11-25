@@ -37,7 +37,7 @@ namespace Nitrogen.Halo4
         /// <summary>
         /// Provides a table of supported languages in Halo 4.
         /// </summary>
-        public static LanguageTable Languages = new LanguageTable(new [] {
+        public static readonly LanguageTable Languages = new LanguageTable(new [] {
             Language.English,
             Language.Japanese,
             Language.German,

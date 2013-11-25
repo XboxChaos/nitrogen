@@ -26,23 +26,6 @@ using System.Diagnostics.Contracts;
 
 namespace Nitrogen.Halo4.ContentData.Traits
 {
-    /// <summary>
-    /// Indicates an armor effect.
-    /// </summary>
-    public enum ArmorEffect
-    {
-        Unchanged = -3,
-        MapDefault,
-        Disabled,
-        GruntBirthdayParty,
-        Regicide,
-        Overshield,
-        SpeedBoost,
-        DamageBoost,
-        AlphaFloodSpeedBoost,
-        Flood
-    }
-
     public partial class Halo4PlayerTraits
     {
         /// <summary>
@@ -69,6 +52,7 @@ namespace Nitrogen.Halo4.ContentData.Traits
                 this.secondary = new ArmorColor();
                 this.useDefaultModel = true;
                 this.modelStringIndex = -1;
+                this.deathEffect = this.loopingEffect = -2;
             }
 
             /// <summary>
@@ -152,27 +136,19 @@ namespace Nitrogen.Halo4.ContentData.Traits
             /// <summary>
             /// Gets or sets a player's continuous armor effect.
             /// </summary>
-            public ArmorEffect LoopingEffect
+            public int LoopingEffect
             {
-                get { return (ArmorEffect)this.loopingEffect; }
-                set
-                {
-                    Contract.Requires<InvalidEnumArgumentException>(Enum.IsDefined(typeof(ArmorEffect), value));
-                    this.loopingEffect = (int)value;
-                }
+                get { return this.loopingEffect; }
+                set { this.loopingEffect = value; }
             }
 
             /// <summary>
             /// Gets or sets a player's armor effect to display upon death.
             /// </summary>
-            public ArmorEffect DeathEffect
+            public int DeathEffect
             {
-                get { return (ArmorEffect)this.deathEffect; }
-                set
-                {
-                    Contract.Requires<InvalidEnumArgumentException>(Enum.IsDefined(typeof(ArmorEffect), value));
-                    this.deathEffect = (int)value;
-                }
+                get { return this.deathEffect; }
+                set { this.deathEffect = value; }
             }
             
             /// <summary>
