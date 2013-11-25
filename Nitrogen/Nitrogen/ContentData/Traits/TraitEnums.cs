@@ -53,14 +53,14 @@ namespace Nitrogen.Core.ContentData.Traits
         Unchanged,
 
         /// <summary>
-        /// Active Camo state is based on the default state as defined by the map.
-        /// </summary>
-        MapDefault,
-
-        /// <summary>
         /// Active Camo is disabled.
         /// </summary>
         Disabled,
+
+        /// <summary>
+        /// Active Camo is enabled.
+        /// </summary>
+        Enabled,
 
         /// <summary>
         /// Only Grunts will be fooled.

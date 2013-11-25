@@ -26,7 +26,8 @@ namespace Nitrogen.Halo4.ContentData.GameVariants.BaseVariant
     public class RequisitionSettings
         : ISerializable<BitStream>
     {
-
+        private float unk0;
+        private int unk1;
 
         #region ISerializable<BitStream>
 

@@ -18,6 +18,7 @@
  *   along with Nitrogen.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+using Nitrogen.Core.ContentData.Traits;
 using Nitrogen.Core.IO;
 using Nitrogen.Halo4.ContentData.Traits;
 using System;
@@ -46,19 +47,29 @@ namespace Nitrogen.Halo4.ContentData.GameVariants.BaseVariant
                 AlphaPhaseDuration = 1,
                 AlphaPhaseTraits = new Halo4PlayerTraits
                 {
-                    // shield multiplier: 2.0
-                    // overshield decay rate: 5.0
-                    // shield recharge rate = 5.0
-                    // cancel current powerup: disabled
+                    Armor = new Halo4PlayerTraits.ArmorTraits
+                    {
+                        ShieldAmount = 2.0f,
+                        OvershieldRechargeRate = 5.0f,
+                        ShieldRechargeRate = 5.0f,
+                        NoPowerupStacking = InheritableToggle.Disabled
+                    }
                 },
 
                 BetaPhaseDuration = 120,
                 BetaPhaseTraits = new Halo4PlayerTraits
                 {
-                    // looping effect 2
-                    // damage resistance: 3.40
-                    // overshield decay: -0.30
-                    // cancel current powerup: enabled
+                    Armor = new Halo4PlayerTraits.ArmorTraits
+                    {
+                        OvershieldRechargeRate = -0.30f,
+                        DamageResistance = 3.4f,
+                        NoPowerupStacking = InheritableToggle.Enabled
+                    },
+
+                    Appearance = new Halo4PlayerTraits.AppearanceTraits
+                    {
+                        LoopingEffect = 2
+                    }
                 }
             };
         }
@@ -78,10 +89,21 @@ namespace Nitrogen.Halo4.ContentData.GameVariants.BaseVariant
                 AlphaPhaseDuration = 45,
                 AlphaPhaseTraits = new Halo4PlayerTraits
                 {
-                    // loop effect 3
-                    // reload speed: 1.751
-                    // switch speed: 1.751
-                    // movement speed: 1.50
+                    Equipment = new Halo4PlayerTraits.EquipmentTraits
+                    {
+                        WeaponReloadSpeed = 1.75f,
+                        WeaponSwitchSpeed = 1.75f
+                    },
+
+                    Movement = new Halo4PlayerTraits.MovementTraits
+                    {
+                        MovementSpeed = 1.5f
+                    },
+
+                    Appearance = new Halo4PlayerTraits.AppearanceTraits
+                    {
+                        LoopingEffect = 3
+                    }
                 }
             };
         }
@@ -101,10 +123,17 @@ namespace Nitrogen.Halo4.ContentData.GameVariants.BaseVariant
                 AlphaPhaseDuration = 30,
                 AlphaPhaseTraits = new Halo4PlayerTraits
                 {
-                    // looping effect: 4
-                    // active camo: 1
-                    // damage multiplier: 1.453
-                    // melee dmg: 1.60
+                    Equipment = new Halo4PlayerTraits.EquipmentTraits
+                    {
+                        DamageMultiplier = 1.45f,
+                        MeleeDamageMultiplier = 1.60f
+                    },
+
+                    Appearance = new Halo4PlayerTraits.AppearanceTraits
+                    {
+                        ActiveCamo = ActiveCamoMode.Disabled,
+                        LoopingEffect = 4
+                    }
                 }
             };
         }

@@ -267,7 +267,7 @@ namespace Nitrogen.Halo4.ContentData.Traits
             /// <summary>
             /// Gets or sets whether more than one powerup can be active at the same time.
             /// </summary>
-            public InheritableToggle PowerupStacking
+            public InheritableToggle NoPowerupStacking
             {
                 get { return this.cancelCurrentPowerup; }
                 set

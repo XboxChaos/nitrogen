@@ -414,6 +414,19 @@ namespace Nitrogen.Halo4.ContentData.Traits
             }
 
             /// <summary>
+            /// Gets or sets the duration in seconds of the incoming ordnance waypoint.
+            /// </summary>
+            public float? OrdnanceWarningDuration
+            {
+                get { return this.dropReconDuration; }
+                set
+                {
+                    Contract.Requires<ArgumentOutOfRangeException>(value == null || (value >= -200f && value <= 200f));
+                    this.dropReconDuration = value;
+                }
+            }
+
+            /// <summary>
             /// Gets or sets whether a player has infinite ammo.
             /// </summary>
             public InfiniteAmmoMode InfiniteAmmo
