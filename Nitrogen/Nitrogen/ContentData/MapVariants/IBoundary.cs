@@ -1,6 +1,6 @@
 ﻿/*
  *   Nitrogen - Halo Content API
- *   Copyright (c) 2013 Matt Saville and Aaron Dierking
+ *   Copyright © 2013 The Nitrogen Authors. All rights reserved.
  * 
  *   This file is part of Nitrogen.
  *
@@ -18,9 +18,9 @@
  *   along with Nitrogen.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-using Nitrogen.Core.IO;
+using Nitrogen.IO;
 
-namespace Nitrogen.Core.ContentData.MapVariants
+namespace Nitrogen.ContentData.MapVariants
 {
     public interface IBoundary
         : ISerializable<BitStream>

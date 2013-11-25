@@ -7,22 +7,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs and Notes", "Docs and 
 	ProjectSection(SolutionItems) = preProject
 		Class Structure.txt = Class Structure.txt
 		Crash Hazards + Validation.txt = Crash Hazards + Validation.txt
-		MVAR Struct.txt = MVAR Struct.txt
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nitrogen.Core", "Nitrogen\Nitrogen.Core.csproj", "{8445EAA1-BDC9-47F4-BB77-469D3E3105DD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nitrogen", "Nitrogen\Nitrogen.csproj", "{8445EAA1-BDC9-47F4-BB77-469D3E3105DD}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nitrogen.Test", "Nitrogen.Test\Nitrogen.Test.csproj", "{33AFFF1B-A938-4992-8D38-FD26B197CBE0}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nitrogen.Halo4", "Nitrogen.Halo4\Nitrogen.Halo4.csproj", "{807C9851-ECAB-4166-AA2A-8793391B2E27}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nitrogen.HaloReach", "Nitrogen.HaloReach\Nitrogen.HaloReach.csproj", "{8620476E-98B6-454F-A3AE-B382680A0847}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nitrogen.Halo3", "Nitrogen.Halo3\Nitrogen.Halo3.csproj", "{DE887C06-B56D-406A-9442-0EFCBF11702C}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nitrogen.HaloReachBeta", "Nitrogen.HaloReachBeta\Nitrogen.HaloReachBeta.csproj", "{3CD9DDDE-E86F-47DF-B031-A9B2FCE4182C}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nitrogen.Halo3ODST", "Nitrogen.Halo3ODST\Nitrogen.Halo3ODST.csproj", "{B93D62EE-62DF-4523-BB45-1A0BBF2BB0C1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nitrogen.Wumbalo", "Nitrogen.Wumbalo\Nitrogen.Wumbalo.csproj", "{CE2249D6-1A20-4908-883F-4CB8A2C58E46}"
 EndProject
@@ -40,26 +29,6 @@ Global
 		{33AFFF1B-A938-4992-8D38-FD26B197CBE0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{33AFFF1B-A938-4992-8D38-FD26B197CBE0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{33AFFF1B-A938-4992-8D38-FD26B197CBE0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{807C9851-ECAB-4166-AA2A-8793391B2E27}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{807C9851-ECAB-4166-AA2A-8793391B2E27}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{807C9851-ECAB-4166-AA2A-8793391B2E27}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{807C9851-ECAB-4166-AA2A-8793391B2E27}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8620476E-98B6-454F-A3AE-B382680A0847}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8620476E-98B6-454F-A3AE-B382680A0847}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8620476E-98B6-454F-A3AE-B382680A0847}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8620476E-98B6-454F-A3AE-B382680A0847}.Release|Any CPU.Build.0 = Release|Any CPU
-		{DE887C06-B56D-406A-9442-0EFCBF11702C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DE887C06-B56D-406A-9442-0EFCBF11702C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DE887C06-B56D-406A-9442-0EFCBF11702C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DE887C06-B56D-406A-9442-0EFCBF11702C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3CD9DDDE-E86F-47DF-B031-A9B2FCE4182C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3CD9DDDE-E86F-47DF-B031-A9B2FCE4182C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3CD9DDDE-E86F-47DF-B031-A9B2FCE4182C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3CD9DDDE-E86F-47DF-B031-A9B2FCE4182C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B93D62EE-62DF-4523-BB45-1A0BBF2BB0C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B93D62EE-62DF-4523-BB45-1A0BBF2BB0C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B93D62EE-62DF-4523-BB45-1A0BBF2BB0C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B93D62EE-62DF-4523-BB45-1A0BBF2BB0C1}.Release|Any CPU.Build.0 = Release|Any CPU
 		{CE2249D6-1A20-4908-883F-4CB8A2C58E46}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{CE2249D6-1A20-4908-883F-4CB8A2C58E46}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CE2249D6-1A20-4908-883F-4CB8A2C58E46}.Release|Any CPU.ActiveCfg = Release|Any CPU

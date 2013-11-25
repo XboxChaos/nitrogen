@@ -1,6 +1,6 @@
 ﻿/*
  *   Nitrogen - Halo Content API
- *   Copyright (c) 2013 Matt Saville and Aaron Dierking
+ *   Copyright © 2013 The Nitrogen Authors. All rights reserved.
  * 
  *   This file is part of Nitrogen.
  *
@@ -18,13 +18,13 @@
  *   along with Nitrogen.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-using Nitrogen.Core.Blf;
-using Nitrogen.Core.ContentData;
+using Nitrogen.Blf;
+using Nitrogen.ContentData;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
 
-namespace Nitrogen.Core
+namespace Nitrogen
 {
     /// <summary>
     /// Provides a base implementation of a map info blob.
@@ -39,7 +39,7 @@ namespace Nitrogen.Core
         /// <see cref="Level"/> object.
         /// </summary>
         /// <param name="level">
-        /// A <see cref="Nitrogen.Core.ContentData.Level"/> object to use as a default value.
+        /// A <see cref="Nitrogen.ContentData.Level"/> object to use as a default value.
         /// </param>
         public MapInfoBlob(Level level)
         {

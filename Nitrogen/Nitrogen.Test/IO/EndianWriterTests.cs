@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.IO;
-using Nitrogen.Core.IO.Temp;
+using Nitrogen.IO.Temp;
 
 namespace Nitrogen.Test.IO
 {

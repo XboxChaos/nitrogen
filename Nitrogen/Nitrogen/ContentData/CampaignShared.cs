@@ -1,6 +1,6 @@
 ﻿/*
  *   Nitrogen - Halo Content API
- *   Copyright (c) 2013 Collin Dillinger, Matt Saville and Aaron Dierking
+ *   Copyright © 2013 The Nitrogen Authors. All rights reserved.
  * 
  *   This file is part of Nitrogen.
  *
@@ -18,15 +18,15 @@
  *   along with Nitrogen.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-using Nitrogen.Core.ContentData;
-using Nitrogen.Core.ContentData.Localization;
-using Nitrogen.Core.IO;
+using Nitrogen.ContentData;
+using Nitrogen.ContentData.Localization;
+using Nitrogen.IO;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
 using System.Text;
 
-namespace Nitrogen.Core.ContentData
+namespace Nitrogen.ContentData
 {
     /// <summary>
     /// Provides an overview of a level (map).
@@ -47,8 +47,8 @@ namespace Nitrogen.Core.ContentData
         public CampaignShared()
             : base(version: 3)
         {
-            Name = new LocalizedNameCampaign(CommonProperties.Languages, "");
-            Description = new LocalizedDescription(CommonProperties.Languages, "");
+            Name = new LocalizedNameCampaign(LanguageTable.Default, "");
+            Description = new LocalizedDescription(LanguageTable.Default, "");
 
             this.mapIDs = new int[MaxLevels];
             for (int i = 0; i < this.mapIDs.Length; i++)

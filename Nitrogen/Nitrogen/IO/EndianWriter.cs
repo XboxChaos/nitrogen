@@ -1,6 +1,6 @@
 ﻿/*
  *   Nitrogen - Halo Content API
- *   Copyright (c) 2013 Matt Saville and Aaron Dierking
+ *   Copyright © 2013 The Nitrogen Authors. All rights reserved.
  * 
  *   This file is part of Nitrogen.
  *
@@ -26,7 +26,7 @@ using System.IO;
 using System.Linq.Expressions;
 using System.Text;
 
-namespace Nitrogen.Core.IO
+namespace Nitrogen.IO
 {
     /// <summary>
     /// Writes primitive types (and <see cref="IList"/> objects containing primitive types) in binary

@@ -1,6 +1,6 @@
 ﻿/*
  *   Nitrogen - Halo Content API
- *   Copyright (c) 2013 Matt Saville and Aaron Dierking
+ *   Copyright © 2013 The Nitrogen Authors. All rights reserved.
  * 
  *   This file is part of Nitrogen.
  *
@@ -24,7 +24,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics.Contracts;
 
-namespace Nitrogen.Core.ContentData.Localization
+namespace Nitrogen.ContentData.Localization
 {
     /// <summary>
     /// Represents a table of supported languages.
@@ -32,6 +32,24 @@ namespace Nitrogen.Core.ContentData.Localization
     public sealed class LanguageTable
         : IReadOnlyList<Language>
     {
+        /// <summary>
+        /// Provides a table of supported languages before Halo 4.
+        /// </summary>
+        public static readonly LanguageTable Default = new LanguageTable(new[] {
+            Language.English,
+            Language.Japanese,
+            Language.German,
+            Language.French,
+            Language.Spanish,
+            Language.SpanishMexican,
+            Language.Italian,
+            Language.Korean,
+            Language.Chinese,
+            Language.Unused,
+            Language.Portuguese,
+            Language.Polish,
+        });
+
         private IList<Language> table;
 
         /// <summary>

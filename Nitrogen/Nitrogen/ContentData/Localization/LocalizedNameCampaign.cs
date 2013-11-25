@@ -1,6 +1,6 @@
 ﻿/*
  *   Nitrogen - Halo Content API
- *   Copyright (c) 2013 Matt Saville and Aaron Dierking
+ *   Copyright © 2013 The Nitrogen Authors. All rights reserved.
  * 
  *   This file is part of Nitrogen.
  *
@@ -18,13 +18,13 @@
  *   along with Nitrogen.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-using Nitrogen.Core.IO;
+using Nitrogen.IO;
 using System;
 using System.Text;
 
-// A temporary solution until LocalizedName's length can be edited.
+// A temporary solution until LocalizedName's length can be edited. - Collin
 
-namespace Nitrogen.Core.ContentData.Localization
+namespace Nitrogen.ContentData.Localization
 {
     public class LocalizedNameCampaign
         : LocalizedString

@@ -1,12 +1,12 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Nitrogen.Core.IO;
+using Nitrogen.IO;
 using System.IO;
-using Nitrogen.Core.Blf;
-using Nitrogen.Halo4;
-using Nitrogen.Core.ContentData;
-using Nitrogen.Halo4.ContentData;
-using Nitrogen.Core.ContentData.Localization;
+using Nitrogen.Blf;
+using Nitrogen.Games.Halo4;
+using Nitrogen.ContentData;
+using Nitrogen.Games.Halo4.ContentData;
+using Nitrogen.ContentData.Localization;
 
 namespace Nitrogen.Test
 {
@@ -19,7 +19,7 @@ namespace Nitrogen.Test
             using (var file = File.Create("C:/Users/Aaron/Desktop/test.map"))
             using (var s = new EndianStream(file, StreamState.Write, ByteOrder.BigEndian))
             {
-                var mvar = new Nitrogen.Halo4.Halo4MapVariantBlob();
+                var mvar = new Nitrogen.Games.Halo4.Halo4MapVariantBlob();
                 mvar.Serialize(s);
             }
         }

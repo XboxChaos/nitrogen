@@ -1,6 +1,6 @@
 ﻿/*
  *   Nitrogen - Halo Content API
- *   Copyright (c) 2013 Matt Saville and Aaron Dierking
+ *   Copyright © 2013 The Nitrogen Authors. All rights reserved.
  * 
  *   This file is part of Nitrogen.
  *
@@ -19,14 +19,14 @@
  */
 
 using Ionic.Zlib;
-using Nitrogen.Core.IO;
+using Nitrogen.IO;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
 using System.IO;
 using System.Text;
 
-namespace Nitrogen.Core.ContentData.Localization
+namespace Nitrogen.ContentData.Localization
 {
     public sealed class StringTable
     {

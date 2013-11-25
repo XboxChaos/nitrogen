@@ -1,7 +1,7 @@
-﻿using Nitrogen.Core.IO;
+﻿using Nitrogen.IO;
 using System;
 
-namespace Nitrogen.Core.ContentData.GameVariants
+namespace Nitrogen.ContentData.GameVariants
 {
     public class MegaloMetadataHeader
         : ISerializable<BitStream>

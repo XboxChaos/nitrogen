@@ -1,6 +1,6 @@
 ﻿/*
  *   Nitrogen - Halo Content API
- *   Copyright (c) 2013 Matt Saville and Aaron Dierking
+ *   Copyright © 2013 The Nitrogen Authors. All rights reserved.
  * 
  *   This file is part of Nitrogen.
  *
@@ -24,9 +24,9 @@ using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Nitrogen.Core.IO;
+using Nitrogen.IO;
 
-namespace Nitrogen.Core.ContentData.MapVariants
+namespace Nitrogen.ContentData.MapVariants
 {
     public abstract class MapVariantObjectList<TObject>
         : ISerializable<BitStream>, IEnumerable<TObject>

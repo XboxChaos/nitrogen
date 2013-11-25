@@ -53,13 +53,9 @@
     <Compile Include="BitStreamTests.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Nitrogen.Halo4\Nitrogen.Halo4.csproj">
-      <Project>{807c9851-ecab-4166-aa2a-8793391b2e27}</Project>
-      <Name>Nitrogen.Halo4</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Nitrogen\Nitrogen.Core.csproj">
+    <ProjectReference Include="..\Nitrogen\Nitrogen.csproj">
       <Project>{8445eaa1-bdc9-47f4-bb77-469d3e3105dd}</Project>
-      <Name>Nitrogen.Core</Name>
+      <Name>Nitrogen</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>
