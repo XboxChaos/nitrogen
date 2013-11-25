@@ -26,5 +26,7 @@ namespace Nitrogen.ContentData.MapVariants
         : ISerializable<BitStream>
     {
         byte BoundaryIndex { get; }
+
+        bool IsInBoundary(float x, float y, float z, IMapVariantObject o);
     }
 }

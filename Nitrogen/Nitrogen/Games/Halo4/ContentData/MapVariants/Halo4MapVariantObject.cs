@@ -32,7 +32,7 @@ namespace Nitrogen.Games.Halo4.ContentData.MapVariants
     /// An object in a map variant.
     /// </summary>
     public abstract class Halo4MapVariantObject
-        : ISerializable<BitStream>
+        : IMapVariantObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Halo4MapVariantObject"/> class.
@@ -86,6 +86,42 @@ namespace Nitrogen.Games.Halo4.ContentData.MapVariants
         {
             get { return this.Header.Z; }
             set { this.Header.Z = value; }
+        }
+
+        public float Pitch
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public float Yaw
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public float Roll
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+            set
+            {
+                throw new NotImplementedException();
+            }
         }
 
         /// <summary>

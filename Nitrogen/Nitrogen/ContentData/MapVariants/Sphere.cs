@@ -40,6 +40,14 @@ namespace Nitrogen.ContentData.MapVariants
             set { this.radius = value; }
         }
 
+        public bool IsInBoundary(float x, float y, float z, IMapVariantObject o)
+        {
+            return
+                (o.X >= x - radius && o.X <= x + radius) &&
+                (o.Y >= y - radius && o.Y <= y + radius) &&
+                (o.Z >= z - radius && o.Z <= z + radius);
+        }
+
         #region IBoundary Members
 
         byte IBoundary.BoundaryIndex { get { return 1; } }

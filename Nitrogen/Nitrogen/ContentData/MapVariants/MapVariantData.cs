@@ -34,6 +34,7 @@ namespace Nitrogen.ContentData.MapVariants
     public class MapVariantData<TMapObjectList, TMapObjectType>
         : ISerializable<BitStream>
         where TMapObjectList : MapVariantObjectList<TMapObjectType>, new()
+        where TMapObjectType : IMapVariantObject
     {
         /// <summary>
         /// Specifies the 

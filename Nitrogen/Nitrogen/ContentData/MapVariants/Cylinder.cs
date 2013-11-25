@@ -35,6 +35,11 @@ namespace Nitrogen.ContentData.MapVariants
 
         byte IBoundary.BoundaryIndex { get { return 2; } }
 
+        public bool IsInBoundary(float x, float y, float z, IMapVariantObject o)
+        {
+            throw new NotImplementedException();
+        }
+
         public void Serialize(BitStream s)
         {
             s.Stream(ref this.radius);

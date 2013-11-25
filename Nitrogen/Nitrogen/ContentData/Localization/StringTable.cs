@@ -65,6 +65,12 @@ namespace Nitrogen.ContentData.Localization
             this.table[index] = value;
         }
 
+        public int Add(LocalizedString value)
+        {
+            this.table.Add(value);
+            return this.table.Count - 1;
+        }
+
         public void Serialize(BitStream s, int offsetBitLength, int lengthBitLength, int countBitLength)
         {
             this.offsetSize = offsetBitLength;

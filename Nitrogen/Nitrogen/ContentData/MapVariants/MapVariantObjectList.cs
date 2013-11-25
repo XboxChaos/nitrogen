@@ -30,6 +30,7 @@ namespace Nitrogen.ContentData.MapVariants
 {
     public abstract class MapVariantObjectList<TObject>
         : ISerializable<BitStream>, IEnumerable<TObject>
+        where TObject : IMapVariantObject
     {
         private List<TObject> objects;
 
@@ -86,7 +87,94 @@ namespace Nitrogen.ContentData.MapVariants
             get { return this.objects.Count == this.MaxCount; }
         }
 
+        public ObjectCollection GetObjectsInRegion(float x1, float y1, float x2, float y2)
+        {
+            var collection = new ObjectCollection();
+            foreach (var o in this)
+            {
+                if ((o.X >= x1 && o.X <= x2) && (o.Y >= y1 && o.Y <= y2))
+                    collection.Add(o);
+            }
+            return collection;
+        }
+
+        public ObjectCollection GetObjectsInRegion(float x1, float y1, float x2, float y2, float z1, float z2)
+        {
+            var collection = new ObjectCollection();
+            foreach (var o in this)
+            {
+                if ((o.X >= x1 && o.X <= x2) && (o.Y >= y1 && o.Y <= y2) && (o.Z >= z1 && o.Z <= z2))
+                    collection.Add(o);
+            }
+            return collection;
+        }
+
+        public ObjectCollection GetObjectsInBoundary(IMapVariantObject target, bool includeTarget = false)
+        {
+            var collection = new ObjectCollection();
+            if (target.Shape != null)
+            {
+                foreach (var o in this)
+                {
+                    if (!includeTarget && o.Equals(target))
+                        continue;
+
+                    if (o.Shape.IsInBoundary(target.X, target.Y, target.Z, o))
+                        collection.Add(o);
+                }
+            }
+            return collection;
+        }
+
+        public ObjectCollection GetNearbyObjects(IMapVariantObject target, float range, bool includeZ = true, bool includeTarget = false)
+        {
+            var collection = new ObjectCollection();
+            foreach (var o in this)
+            {
+                if (!includeTarget && o.Equals(target))
+                    continue;
+
+                if (o.X >= target.X - range && o.X <= target.X + range && o.Y >= target.Y - range && o.Y <= target.Y + range)
+                {
+                    if (includeZ)
+                    {
+                        if (o.Z >= target.Z - range && o.Z <= target.Z + range)
+                            collection.Add(o);
+                    }
+                    else
+                    {
+                        collection.Add(o);
+                    }
+                }
+            }
+            return collection;
+        }
+
+        public int FixZFighting(float range = 5.0f, float correction = 0.001f)
+        {
+            int affectedObjects = 0;
+            foreach (var obj1 in this)
+            {
+                var nearby = GetNearbyObjects(obj1, range, includeZ: false, includeTarget: false);
+                foreach (var obj2 in nearby)
+                {
+                    if (obj1.Z == obj2.Z)
+                    {
+                        obj2.Z += correction;
+                        affectedObjects++;
+                    }
+                }
+            }
+            return affectedObjects;
+        }
+
+        #region ISerializable<BitStream> Members
+
         public abstract void Serialize(BitStream stream);
+
+        #endregion
+
+        #region IEnumerable Members
 
         /// <summary>
         /// Returns an enumerator that iterates through the collection.
@@ -109,5 +197,7 @@ namespace Nitrogen.ContentData.MapVariants
         {
             return ((System.Collections.IEnumerable)this.objects).GetEnumerator();
         }
+
+        #endregion
     }
 }

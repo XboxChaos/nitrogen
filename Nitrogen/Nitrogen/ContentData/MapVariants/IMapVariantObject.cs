@@ -23,31 +23,21 @@ using System;
 
 namespace Nitrogen.ContentData.MapVariants
 {
-    /// <summary>
-    /// Represents a cubic boundary.
-    /// </summary>
-    public struct Box
-        : IBoundary
+    public interface IMapVariantObject
+        : ISerializable<BitStream>
     {
-        private short width, length, top, bottom;
+        float X { get; set; }
 
-        #region IBoundary Members
+        float Y { get; set; }
 
-        byte IBoundary.BoundaryIndex { get { return 3; } }
+        float Z { get; set; }
 
-        public bool IsInBoundary(float x, float y, float z, IMapVariantObject o)
-        {
-            throw new NotImplementedException();
-        }
+        float Pitch { get; set; }
 
-        public void Serialize(BitStream s)
-        {
-            s.Stream(ref this.width);
-            s.Stream(ref this.length);
-            s.Stream(ref this.top);
-            s.Stream(ref this.bottom);
-        }
+        float Yaw { get; set; }
 
-        #endregion
+        float Roll { get; set; }
+
+        IBoundary Shape { get; set; }
     }
 }
