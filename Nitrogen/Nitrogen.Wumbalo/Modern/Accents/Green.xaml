@@ -1,0 +1,9 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+	<SolidColorBrush x:Key="WumbaloAccentBrushAccentBrush" x:Name="WumbaloAccentBrushAccentBrush" Color="#77bb44" />
+	<SolidColorBrush x:Key="WumbaloAccentBrushAccentBrushSecondary" x:Name="WumbaloAccentBrushAccentBrushSecondary" Color="#98e062" />
+
+	<Color x:Key="WumbaloAccentBrushAccentBrushColour" A="#FF" R="#77" G="#bb" B="#44" />
+	<Color x:Key="WumbaloAccentBrushAccentBrushColourSecondary" A="#FF" R="#98" G="#e0" B="#62" />
+</ResourceDictionary>

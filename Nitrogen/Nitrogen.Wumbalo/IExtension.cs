@@ -1,21 +1,20 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using System.Windows.Controls;
 
 namespace Nitrogen.Wumbalo
 {
-    public interface IExtension
-    {
-        string Title { get; set; }
+	public interface IExtension
+	{
+		string Title { get; set; }
 
-        object StatusBarContents { get; set; }
+		object StatusBarContents { get; set; }
 
-        MenuItem[] GetMenuItems();
+		MenuItem[] GetMenuItems();
 
-        Panel CreateView();
+		Panel CreateView();
 
-        void Open(Stream input);
+		void Open(Stream input);
 
-        Stream Save();
-    }
+		Stream Save();
+	}
 }

@@ -1,39 +1,50 @@
 ﻿<Window x:Class="Nitrogen.Wumbalo.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        
-        Title="{StaticResource AppTitle}"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:n="clr-namespace:Nitrogen.Wumbalo.Helpers.Native"
+        xmlns:viewModels="clr-namespace:Nitrogen.Wumbalo.ViewModels"
+        mc:Ignorable="d"
+        Title="{Binding Path=(viewModels:MainViewModel.PageTitle), Mode=OneWay, Converter={StaticResource IValueCreateApplicationTitle}}"
         Height="600" Width="1000"
         WindowStartupLocation="CenterScreen"
-    >
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
-        
-        
-        
-        <!-- MAIN MENU -->
-        <Menu Grid.Row="0">
-            <MenuItem Header="_File"/>
-            <MenuItem Header="_Edit"/>
-            <MenuItem Header="_View"/>
-            <MenuItem Header="_Tools"/>
-            <MenuItem Header="My _Xbox"/>
-            <MenuItem Header="_Window"/>
-            <MenuItem Header="_Help"/>
-        </Menu>
-        
-        <!-- TABS (ALEX, PLS DONT BREAK) -->
-        <TabControl Grid.Row="1">
-            <TabItem Header="Dashboard"></TabItem>
-        </TabControl>
+        n:WindowMovement.IsDraggable="True" AllowsTransparency="True" ResizeMode="CanResize" WindowStyle="None">
+	<Border Style="{DynamicResource MainApplicationBorderStyle}">
+		<Grid>
+			<Grid.RowDefinitions>
+				<RowDefinition Height="50" />
+				<RowDefinition Height="*" />
+			</Grid.RowDefinitions>
+			
+			<Grid Grid.Row="1">
+				<Grid.RowDefinitions>
+					<RowDefinition Height="Auto" />
+					<RowDefinition Height="*" />
+					<RowDefinition Height="Auto" />
+				</Grid.RowDefinitions>
 
-        <!-- APP STATUS -->
-        <StatusBar Grid.Row="2">
-            <TextBlock>Wumbalo</TextBlock>
-        </StatusBar>
-    </Grid>
+				<!-- MAIN MENU -->
+				<Menu Grid.Row="0">
+					<MenuItem Header="_File" />
+					<MenuItem Header="_Edit" />
+					<MenuItem Header="_View" />
+					<MenuItem Header="_Tools" />
+					<MenuItem Header="My _Xbox" />
+					<MenuItem Header="_Window" />
+					<MenuItem Header="_Help" />
+				</Menu>
+
+				<!-- TABS (ALEX, PLS DONT BREAK) -->
+				<TabControl Grid.Row="1">
+					<TabItem Header="Dashboard" />
+				</TabControl>
+
+				<!-- APP STATUS -->
+				<Grid Grid.Row="2" Margin="10,0,0,-22">
+					<TextBlock VerticalAlignment="Center">Wumbalo</TextBlock>
+				</Grid>
+			</Grid>
+		</Grid>
+	</Border>
 </Window>
