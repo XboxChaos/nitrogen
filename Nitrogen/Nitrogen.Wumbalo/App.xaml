@@ -15,6 +15,7 @@
 				
 				<!-- Controls -->
 				<ResourceDictionary Source="Modern\Controls\Borders.xaml" />
+				<ResourceDictionary Source="Modern\Controls\Buttons.xaml" />
 			</ResourceDictionary.MergedDictionaries>
 			
 			<s:String x:Key="AppTitle">Wumbalo</s:String>

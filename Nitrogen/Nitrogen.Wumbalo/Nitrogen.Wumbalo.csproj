@@ -102,6 +102,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Modern\Controls\Buttons.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Modern\Themes\Dark.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -141,7 +145,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Nitrogen\Nitrogen.csproj">
       <Project>{8445eaa1-bdc9-47f4-bb77-469d3e3105dd}</Project>
-      <Name>Nitrogen.Core</Name>
+      <Name>Nitrogen</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

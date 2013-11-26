@@ -11,11 +11,28 @@
         WindowStartupLocation="CenterScreen"
         n:WindowMovement.IsDraggable="True" AllowsTransparency="True" ResizeMode="CanResize" WindowStyle="None">
 	<Border Style="{DynamicResource MainApplicationBorderStyle}">
-		<Grid>
+		<Grid Margin="-1,-1,-1,0">
 			<Grid.RowDefinitions>
 				<RowDefinition Height="50" />
 				<RowDefinition Height="*" />
 			</Grid.RowDefinitions>
+			
+			<Grid x:Name="HeaderGrid">
+				<StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top">
+					<Button x:Name="MinimizeApplicationButton" Style="{DynamicResource ButtonApplicationMinimizeStyle}">
+						-
+					</Button>
+					<Button x:Name="RestoreApplicationButton" Style="{DynamicResource ButtonApplicationRestoreStyle}">
+						[]
+					</Button>
+					<Button x:Name="MaxamizeApplicationButton" Style="{DynamicResource ButtonApplicationMaxamizeStyle}">
+						{}
+					</Button>
+					<Button x:Name="CloseApplicationButton" Style="{DynamicResource ButtonApplicationCloseStyle}">
+						x
+					</Button>
+				</StackPanel>
+			</Grid>
 			
 			<Grid Grid.Row="1">
 				<Grid.RowDefinitions>
