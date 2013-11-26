@@ -5,5 +5,9 @@
 
 	<SolidColorBrush x:Key="WindowActionButtonBrush" Color="#FFF4F4F5" />
 	<SolidColorBrush x:Key="WindowActionHoverBrush" Color="#FF262626" />
+	
+	<!-- Font Colours -->
+	<SolidColorBrush x:Key="WindowTitleBrush" Color="#FF636363" />
+	<Color x:Key="WindowTitleBrushColour" A="#FF" R="#63" G="#63" B="#63" />
 
 </ResourceDictionary>

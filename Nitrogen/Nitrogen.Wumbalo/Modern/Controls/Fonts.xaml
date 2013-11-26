@@ -1,0 +1,27 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+	<FontFamily x:Key="ModernFontLight">
+		/Nitrogen.Wumbalo;component/Fonts/#Segoe WP Light
+	</FontFamily>
+
+	<FontFamily x:Key="ModernFontSemiLight">
+		/Nitrogen.Wumbalo;component/Fonts/#Segoe WP Semilight
+	</FontFamily>
+
+	<FontFamily x:Key="ModernFontRegular">
+		/Nitrogen.Wumbalo;component/Fonts/#Segoe WP
+	</FontFamily>
+
+	<FontFamily x:Key="ModernFontSemiBold">
+		/Nitrogen.Wumbalo;component/Fonts/#Segoe WP Semibold
+	</FontFamily>
+
+	<FontFamily x:Key="ModernFontBold">
+		/Nitrogen.Wumbalo;component/Fonts/#Segoe WP Bold
+	</FontFamily>
+
+	<FontFamily x:Key="ModernFontBlack">
+		/Nitrogen.Wumbalo;component/Fonts/#Segoe WP Black
+	</FontFamily>
+</ResourceDictionary>
