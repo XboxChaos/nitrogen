@@ -11,8 +11,12 @@
         WindowStartupLocation="CenterScreen"
         n:WindowMovement.IsDraggable="True" AllowsTransparency="True" ResizeMode="CanResize" WindowStyle="None">
 	<Border Style="{DynamicResource MainApplicationBorderStyle}">
-		<StackPanel Margin="-1,-1,-1,0">
-			<Grid x:Name="HeaderGrid">
+		<Grid Margin="-1,-1,-1,0">
+			<Grid.RowDefinitions>
+				<RowDefinition Height="55" />
+				<RowDefinition Height="*" />
+			</Grid.RowDefinitions>
+			<Grid x:Name="HeaderGrid" Grid.Row="0">
 				<StackPanel Orientation="Horizontal">
 					<Canvas Width="38.099" Clip="F1 M 0,0L 666.667,0L 666.667,666.667L 0,666.667L 0,0" HorizontalAlignment="Left" Margin="8,8,0,13.833" d:LayoutOverrides="VerticalAlignment" Height="37">
 						<Path Width="37.334" Height="37.337" Stretch="Fill" Data="F1 M 309.961,50.3724C 358.72,46.1458 408.534,54.6138 453.081,74.9191C 516.428,103.387 568.521,155.812 596.534,219.359C 623.641,279.706 628.734,349.56 610.748,413.212C 597.121,462.239 570.081,507.466 533.348,542.679C 496.454,578.252 449.814,603.586 399.88,615.159C 332.121,631.212 258.654,621.292 197.6,587.787C 168.254,571.812 141.694,550.692 119.641,525.599C 86.6543,488.306 63.7076,442.239 53.8009,393.454C 42.8543,340.319 47.4676,284.107 66.9463,233.466C 84.0529,188.679 112.613,148.292 149.254,117.359C 194.148,79.0671 251.173,55.3724 309.961,50.3724 Z ">
@@ -50,8 +54,8 @@
 					</Button>
 				</StackPanel>
 			</Grid>
-			
-			<Grid>
+
+			<Grid x:Name="ContentGrid" Grid.Row="1">
 				<Grid.RowDefinitions>
 					<RowDefinition Height="Auto" />
 					<RowDefinition Height="*" />
@@ -79,6 +83,6 @@
 					<TextBlock VerticalAlignment="Center">Wumbalo</TextBlock>
 				</Grid>
 			</Grid>
-		</StackPanel>
+		</Grid>
 	</Border>
 </Window>
