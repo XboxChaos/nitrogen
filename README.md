@@ -52,6 +52,9 @@ _to be implemented_
 + Matt ([msaville8](http://github.com/msaville8))
 + Aaron ([amd7](http://github.com/amd7))
 
+####UI developer;
++ Alex ([Xerax](http://github.com/Xerax))
+
 ####supporting developer;
 + Collin ([OrangeMohawk](http://github.com/OrangeMohawk))
 
@@ -61,7 +64,6 @@ _to be implemented_
 ####lead researcher;
 + Lord Zedd ([Lord-Zedd](http://github.com/Lord-Zedd))
 
-####contributors;
-+ Alex ([Xerax](http://github.com/Xerax))
+####other contributors;
 + TJ ([ThunderWaffle](http://github.com/ThunderWaffle))
 + The [XboxChaos](http://xboxchaos.com) Community
