@@ -18,57 +18,65 @@
  *   along with Nitrogen.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-using Nitrogen.ContentData.Localization;
 using Nitrogen.IO;
 using System;
 using System.Diagnostics.Contracts;
-using System.Drawing;
+using System.Text;
 
 namespace Nitrogen.Games.Halo4.ContentData.GameVariants.BaseVariant
 {
     /// <summary>
-    /// Represents a set of team properties in a Halo 4 multiplayer variant.
+    /// Represents a personal ordnance item choice.
     /// </summary>
-    public class TeamSettings
+    public class OrdnanceItem
         : ISerializable<BitStream>
     {
-        public const int MaxTeams = 8;
-
-        private byte teamModelOverride, designatorSwitchType;
-        private TeamData[] teams;
+        private string item;
+        private float weighting;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="TeamSettings"/> class with default values.
+        /// Initializes a new instance of the <see cref="OrdnanceItem"/> class with default values.
         /// </summary>
-        public TeamSettings()
+        public OrdnanceItem()
         {
-            this.teams = new TeamData[MaxTeams];
-            for (int i = 0; i < MaxTeams; i++)
-                this.teams[i] = new TeamData();
+            this.weighting = 1.0f;
+            this.item = "";
         }
 
-        public TeamData this[int index]
+        /// <summary>
+        /// Gets or sets the ordnance item.
+        /// </summary>
+        public string Item
         {
-            get { return this.teams[index]; }
+            get { return this.item; }
             set
             {
                 Contract.Requires<ArgumentNullException>(value != null);
-                this.teams[index] = value;
+                Contract.Requires<ArgumentException>(Encoding.ASCII.GetByteCount(value) <= 32);
+
+                this.item = value;
             }
         }
 
-        public TeamData[] GetTeams()
+        /// <summary>
+        /// Gets or sets the probability of this item.
+        /// </summary>
+        public float Weight
         {
-            return this.teams;
+            get { return this.weighting; }
+            set
+            {
+                Contract.Requires<ArgumentOutOfRangeException>(value >= 0 && value <= 10000);
+                this.weighting = value;
+            }
         }
 
-        #region ISerializable<BitStream>
+        #region ISerializable<BitStream> Members
 
         public void Serialize(BitStream s)
         {
-            s.Stream(ref this.teamModelOverride, 3);
-            s.Stream(ref this.designatorSwitchType, 2);
-            s.Serialize(this.teams, 0, MaxTeams);
+            s.StreamNullTerminatedString(ref this.item, Encoding.ASCII, 32);
+            s.Stream(ref this.weighting, bits: 30, min: 0, max: 10000, signed: false, rounded: true, flag: true);
         }
 
         #endregion

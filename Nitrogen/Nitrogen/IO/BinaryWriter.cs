@@ -204,10 +204,17 @@ namespace Nitrogen.IO
         /// <exception cref="ArgumentNullException">
         /// <paramref name="value"/> or <paramref name="encoding"/> is null.
         /// </exception>
-        public virtual void Write(string value, Encoding encoding)
+        public virtual void Write(string value, Encoding encoding, long maxLength = 0)
         {
-            Write(encoding.GetBytes(value));
-            Write(encoding.GetBytes("\0"));
+            byte[] valueBytes = new byte[encoding.GetByteCount(value + "\0")];
+            Array.Copy(encoding.GetBytes(value + "\0"), valueBytes, valueBytes.Length);
+
+            if (maxLength > 0)
+            {
+                Array.Resize(ref valueBytes, (int)maxLength);
+            }
+
+            Write(valueBytes);
         }
 
         /// <summary>
@@ -218,6 +225,9 @@ namespace Nitrogen.IO
         /// <param name="encoding">The character encoding of the string value.</param>
         /// <param name="length">
         /// The length (in bytes) of the string value to be written to the underlying stream.
+        /// </param>
+        /// <param name="nullTerminated">
+        /// <c>true</c> if the string is null-terminated; otherwise, <c>false</c>.
         /// </param>
         /// <exception cref="ArgumentNullException">
         /// <paramref name="value"/> or <paramref name="encoding"/> is null.

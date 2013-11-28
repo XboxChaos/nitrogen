@@ -131,8 +131,8 @@ namespace Nitrogen.Games.HaloReach.ContentData
         {
             base.SerializeEndianStreamData(s);
 
-            s.Stream(ref this.mapImageFileName, Encoding.ASCII, 256);
-            s.Stream(ref this.mapFileName, Encoding.ASCII, 256);
+            s.StreamString(ref this.mapImageFileName, Encoding.ASCII, 256);
+            s.StreamString(ref this.mapFileName, Encoding.ASCII, 256);
             s.Stream(ref this.mapIndex);
             s.Stream(ref this.unk1);
             s.Stream(ref this.unk2);
@@ -143,7 +143,7 @@ namespace Nitrogen.Games.HaloReach.ContentData
             s.Stream(ref this.unk7);
             s.Stream(this.mpObjectTable, 0, this.mpObjectTable.Length);
             s.Serialize(this.insertionPoints, 0, this.insertionPoints.Count);
-            s.Stream(ref this.defaultMapVariantAuthor, Encoding.ASCII, 16);
+            s.StreamString(ref this.defaultMapVariantAuthor, Encoding.ASCII, 16);
         }
 
         #endregion
@@ -240,7 +240,7 @@ namespace Nitrogen.Games.HaloReach.ContentData
                 s.Stream(ref this.isVisible);
                 s.Stream(ref this.unk0);
                 s.Stream(ref this.unk1);
-                s.Stream(ref this.zoneName, Encoding.ASCII, 128);
+                s.StreamString(ref this.zoneName, Encoding.ASCII, 128);
                 s.Stream(ref this.unk2);
                 this.name.Serialize(s);
                 this.description.Serialize(s);

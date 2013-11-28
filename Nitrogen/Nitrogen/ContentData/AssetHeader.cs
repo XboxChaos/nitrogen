@@ -75,11 +75,11 @@ namespace Nitrogen.ContentData
 
         protected override void SerializeEndianStreamData(EndianStream s)
         {
-            s.Stream(ref this.description1, Encoding.ASCII, 16);
+            s.StreamString(ref this.description1, Encoding.ASCII, 16);
             s.Stream(ref this.buildNumber);
             s.Stream(ref this.unk0);
-            s.Stream(ref this.buildString, Encoding.ASCII, 28);
-            s.Stream(ref this.description2, Encoding.ASCII, 16);
+            s.StreamString(ref this.buildString, Encoding.ASCII, 28);
+            s.StreamString(ref this.description2, Encoding.ASCII, 16);
         }
 
         #endregion

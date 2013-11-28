@@ -134,13 +134,15 @@ namespace Nitrogen.IO
             return Read(out output, 64);
         }
 
-        public override int Read(out string output, Encoding encoding)
+        public override int Read(out string output, Encoding encoding, long maxLength = 0)
         {
             int count = 0;
             int delimiterSize = encoding.GetByteCount("\0");
             byte[] buffer = new byte[delimiterSize];
             var builder = new StringBuilder();
-            while (this.currentBitPos < (BaseStream.Length * 8))
+            long max = maxLength > 0 ? BaseStream.Position + maxLength : BaseStream.Length;
+            max *= 8;
+            while (this.currentBitPos < max)
             {
                 count += Read(buffer, buffer.Length);
                 string value = encoding.GetString(buffer);

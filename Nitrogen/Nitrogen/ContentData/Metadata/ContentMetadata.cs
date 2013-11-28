@@ -145,8 +145,8 @@ namespace Nitrogen.ContentData.Metadata
             s.Serialize(this.creator);
             s.Stream(ref this.dateModified);
             s.Serialize(this.modifier);
-            s.Stream(ref this.name, Encoding.BigEndianUnicode, 256);
-            s.Stream(ref this.description, Encoding.BigEndianUnicode, 256);
+            s.StreamString(ref this.name, Encoding.BigEndianUnicode, 256);
+            s.StreamString(ref this.description, Encoding.BigEndianUnicode, 256);
 
             switch ((ContentType)contentType)
             {
@@ -188,8 +188,8 @@ namespace Nitrogen.ContentData.Metadata
             s.Serialize(this.creator);
             s.Stream(ref this.dateModified);
             s.Serialize(this.modifier);
-            s.Stream(ref this.name, Encoding.BigEndianUnicode);
-            s.Stream(ref this.description, Encoding.BigEndianUnicode);
+            s.StreamNullTerminatedString(ref this.name, Encoding.BigEndianUnicode);
+            s.StreamNullTerminatedString(ref this.description, Encoding.BigEndianUnicode);
 
             switch ((ContentType)this.contentType)
             {

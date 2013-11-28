@@ -162,6 +162,12 @@
     <Compile Include="Games\Halo3\Halo3MapInfoBlob.cs" />
     <Compile Include="Games\Halo3\Halo3Properties.cs" />
     <Compile Include="Games\Halo4\ContentData\FileMegaloCategories.cs" />
+    <Compile Include="Games\Halo4\ContentData\GameVariants\BaseVariant\Loadout.cs" />
+    <Compile Include="Games\Halo4\ContentData\GameVariants\BaseVariant\LoadoutPalette.cs" />
+    <Compile Include="Games\Halo4\ContentData\GameVariants\BaseVariant\OrdnanceItem.cs" />
+    <Compile Include="Games\Halo4\ContentData\GameVariants\BaseVariant\OrdnanceSlot.cs" />
+    <Compile Include="Games\Halo4\ContentData\GameVariants\BaseVariant\RequisitionData.cs" />
+    <Compile Include="Games\Halo4\ContentData\GameVariants\BaseVariant\TeamEmblem.cs" />
     <Compile Include="Games\Halo4\ContentData\GameVariants\BaseVariant\GeneralSettings.cs" />
     <Compile Include="Games\Halo4\ContentData\GameVariants\BaseVariant\LoadoutSettings.cs" />
     <Compile Include="Games\Halo4\ContentData\GameVariants\BaseVariant\MapOverrides.cs" />
@@ -171,6 +177,7 @@
     <Compile Include="Games\Halo4\ContentData\GameVariants\BaseVariant\RequisitionSettings.cs" />
     <Compile Include="Games\Halo4\ContentData\GameVariants\BaseVariant\RespawnSettings.cs" />
     <Compile Include="Games\Halo4\ContentData\GameVariants\BaseVariant\SocialSettings.cs" />
+    <Compile Include="Games\Halo4\ContentData\GameVariants\BaseVariant\TeamData.cs" />
     <Compile Include="Games\Halo4\ContentData\GameVariants\BaseVariant\TeamSettings.cs" />
     <Compile Include="Games\Halo4\ContentData\GameVariants\Halo4BaseVariant.cs" />
     <Compile Include="Games\Halo4\ContentData\GameVariants\Halo4MegaloData.cs" />

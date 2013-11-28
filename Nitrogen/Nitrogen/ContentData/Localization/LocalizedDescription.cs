@@ -35,7 +35,7 @@ namespace Nitrogen.ContentData.Localization
             foreach (Language language in Map)
             {
                 string value = Get(language);
-                s.Stream(ref value, Encoding.BigEndianUnicode, 256);
+                s.StreamString(ref value, Encoding.BigEndianUnicode, 256);
                 Set(language, value);
             }
         }

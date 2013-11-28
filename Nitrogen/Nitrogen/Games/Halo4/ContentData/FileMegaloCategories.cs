@@ -128,7 +128,7 @@ namespace Nitrogen.Games.Halo4.ContentData
             public void Serialize(EndianStream s)
             {
                 s.Stream(ref this.id);
-                s.Stream(ref this.name, Encoding.BigEndianUnicode, 64);
+                s.StreamString(ref this.name, Encoding.BigEndianUnicode, 64);
             }
 
             #endregion

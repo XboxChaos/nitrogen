@@ -21,6 +21,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
+using System.Drawing;
 using System.Linq.Expressions;
 using System.Reflection;
 
@@ -48,6 +49,29 @@ namespace Nitrogen.IO
             for (int i = offset; i < offset + count; i++)
             {
                 valueList[i].Serialize(s);
+            }
+        }
+
+        public static void SerializeColor<T>(this T s, ref Color color, bool includeAlpha = true)
+            where T : BinaryStream
+        {
+            if (s.State == StreamState.Read)
+            {
+                byte a = 255, r, g, b;
+
+                if (includeAlpha) { s.Reader.Read(out a); }
+                s.Reader.Read(out r);
+                s.Reader.Read(out g);
+                s.Reader.Read(out b);
+
+                color = Color.FromArgb(a, r, g, b);
+            }
+            else if (s.State == StreamState.Write)
+            {
+                if (includeAlpha) { s.Writer.Write(color.A); }
+                s.Writer.Write(color.R);
+                s.Writer.Write(color.G);
+                s.Writer.Write(color.B);
             }
         }
     }

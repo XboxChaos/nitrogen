@@ -28,7 +28,7 @@ namespace Nitrogen.Games.Halo4.ContentData.GameVariants
     {
         public void Serialize(BitStream s)
         {
-            throw new NotImplementedException();
+            // TODO: implement megalo data
         }
     }
 }
