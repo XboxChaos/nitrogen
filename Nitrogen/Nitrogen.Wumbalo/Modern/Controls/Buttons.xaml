@@ -1,8 +1,63 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-					xmlns:pl="clr-namespace:Nitrogen.Wumbalo.Helpers"
-					xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity">
-	
+					xmlns:controls="clr-namespace:Nitrogen.Wumbalo.Modern.Controls">
+
+	<Style x:Key="GenericModernButton" TargetType="{x:Type controls:ModernButton}">
+		<Setter Property="Background" Value="{DynamicResource WumbaloAccentBrushAccentBrush}"/>
+		<Setter Property="Foreground" Value="{DynamicResource WindowButtonBorderBrush}"/>
+		<Setter Property="BorderBrush" Value="Transparent"/>
+		<Setter Property="BorderThickness" Value="4"/>
+		<Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+		<Setter Property="VerticalContentAlignment" Value="Stretch"/>
+		<Setter Property="Margin" Value="-2,0,-2,-2"/>
+		<Setter Property="Padding" Value="4"/>
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="controls:ModernButton">
+					<Border x:Name="Border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" 
+							SnapsToDevicePixels="true" Padding="{TemplateBinding Padding}" Background="Transparent">
+						<VisualStateManager.VisualStateGroups>
+							<VisualStateGroup x:Name="CommonStates">
+								<VisualState x:Name="Normal"/>
+								<VisualState x:Name="MouseOver" >
+									<Storyboard>
+										<DoubleAnimation Duration="0:0:0.15" Storyboard.TargetName="GridNameOver" Storyboard.TargetProperty="Height" To="38"/>
+									</Storyboard>
+								</VisualState>
+								<VisualState x:Name="Pressed">
+									<Storyboard>
+										<ThicknessAnimation Duration="0:0:0.05" Storyboard.TargetName="Border" Storyboard.TargetProperty="Padding" To="8"/>
+									</Storyboard>
+								</VisualState>
+							</VisualStateGroup>
+						</VisualStateManager.VisualStateGroups>
+						<Border x:Name="InnerBorder" Background="{TemplateBinding Background}">
+							<Grid>
+								<ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
+											  RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" 
+											  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+
+								<Grid VerticalAlignment="Bottom" HorizontalAlignment="Left">
+									<Grid x:Name="GridNameOver" Background="Black" Opacity="0.6" Height="0" VerticalAlignment="Bottom" HorizontalAlignment="Stretch"></Grid>
+									<TextBlock FontFamily="{DynamicResource ModernFontRegular}" TextTrimming="CharacterEllipsis" FontSize="14" 
+											   Text="{TemplateBinding ButtonName}" Margin="10"></TextBlock>
+								</Grid>
+							</Grid>
+						</Border>
+					</Border>
+					<ControlTemplate.Triggers>
+						<Trigger Property="IsMouseOver" Value="true">
+							<Setter Property="BorderBrush" TargetName="Border" Value="{DynamicResource WindowButtonBorderBrush}" />
+						</Trigger>
+						<Trigger Property="IsPressed" Value="true">
+							<Setter Property="Height" TargetName="GridNameOver" Value="31" />
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
 	<!-- Window Action Button Styles -->
 	<Style x:Key="ButtonApplicationWindowActionStyle" TargetType="{x:Type Button}">
 		<Setter Property="Background" Value="{DynamicResource WumbaloAccentBrushAccentBrush}" />
@@ -228,7 +283,6 @@
 			</Setter.Value>
 		</Setter>
 	</Style>
-	<DoubleAnimation x:Key="SearchAnimation" Storyboard.TargetProperty="Opacity" To="1" Duration="0:0:4"/>
 	<Style x:Key="HomeTileButtonStyle" TargetType="{x:Type Button}">
 		<Setter Property="Background" Value="{DynamicResource WumbaloAccentBrushAccentBrush}"/>
 		<Setter Property="Foreground" Value="{DynamicResource WindowButtonBorderBrush}"/>

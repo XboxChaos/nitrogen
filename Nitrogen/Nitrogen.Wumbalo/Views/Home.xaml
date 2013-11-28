@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:viewModels="clr-namespace:Nitrogen.Wumbalo.ViewModels"
+             xmlns:controls="clr-namespace:Nitrogen.Wumbalo.Modern.Controls"
              mc:Ignorable="d" 
              SnapsToDevicePixels="True"
              d:DesignHeight="720" d:DesignWidth="1080">
@@ -46,9 +47,8 @@
 									</ItemsControl.ItemsPanel>
 									<ItemsControl.ItemTemplate>
 										<DataTemplate>
-											<Button Style="{DynamicResource HomeTileButtonStyle}" Width="150" Height="150">
-												<TextBlock Text="{Binding Name}" />
-											</Button>
+											<controls:ModernButton Style="{DynamicResource GenericModernButton}" Width="150" Height="150" ButtonName="{Binding Name}">
+											</controls:ModernButton>
 										</DataTemplate>
 									</ItemsControl.ItemTemplate>
 								</ItemsControl>
@@ -103,29 +103,29 @@
 					</Button>
 
 					<!-- Apps -->
-					<Button Grid.Row="2" Grid.RowSpan="1" Grid.Column="1" Grid.ColumnSpan="1" Style="{DynamicResource HomeTileButtonStyle}">
-						app 1
-					</Button>
-					<Button Grid.Row="2" Grid.RowSpan="1" Grid.Column="2" Grid.ColumnSpan="1" Style="{DynamicResource HomeTileButtonStyle}">
-						app 2
-					</Button>
-					<Button Grid.Row="2" Grid.RowSpan="1" Grid.Column="3" Grid.ColumnSpan="1" Style="{DynamicResource HomeTileButtonStyle}">
-						app 3
-					</Button>
-					<Button Grid.Row="2" Grid.RowSpan="1" Grid.Column="4" Grid.ColumnSpan="1" Style="{DynamicResource HomeTileButtonStyle}">
-						app 4
-					</Button>
+					<controls:ModernButton Grid.Row="2" Grid.RowSpan="1" Grid.Column="1" Grid.ColumnSpan="1" Style="{DynamicResource GenericModernButton}"
+										   ButtonName="app 1">
+					</controls:ModernButton>
+					<controls:ModernButton Grid.Row="2" Grid.RowSpan="1" Grid.Column="2" Grid.ColumnSpan="1" Style="{DynamicResource GenericModernButton}"
+										   ButtonName="app 2">
+					</controls:ModernButton>
+					<controls:ModernButton Grid.Row="2" Grid.RowSpan="1" Grid.Column="3" Grid.ColumnSpan="1" Style="{DynamicResource GenericModernButton}"
+										   ButtonName="app 3">
+					</controls:ModernButton>
+					<controls:ModernButton Grid.Row="2" Grid.RowSpan="1" Grid.Column="4" Grid.ColumnSpan="1" Style="{DynamicResource GenericModernButton}"
+										   ButtonName="app 4">
+					</controls:ModernButton>
 
 					<!-- App Management -->
-					<Button Grid.Row="0" Grid.RowSpan="1" Grid.Column="5" Grid.ColumnSpan="1" Style="{DynamicResource HomeTileButtonStyle}">
-						unsnap
-					</Button>
-					<Button Grid.Row="1" Grid.RowSpan="1" Grid.Column="5" Grid.ColumnSpan="1" Style="{DynamicResource HomeTileButtonStyle}">
-						my games &amp; apps
-					</Button>
-					<Button Grid.Row="2" Grid.RowSpan="1" Grid.Column="5" Grid.ColumnSpan="1" Style="{DynamicResource HomeTileButtonStyle}">
-						current app
-					</Button>
+					<controls:ModernButton Grid.Row="0" Grid.RowSpan="1" Grid.Column="5" Grid.ColumnSpan="1" Style="{DynamicResource GenericModernButton}"
+										   ButtonName="unsnap">
+					</controls:ModernButton>
+					<controls:ModernButton Grid.Row="1" Grid.RowSpan="1" Grid.Column="5" Grid.ColumnSpan="1" Style="{DynamicResource GenericModernButton}"
+										   ButtonName="my games &amp; apps">
+					</controls:ModernButton>
+					<controls:ModernButton Grid.Row="2" Grid.RowSpan="1" Grid.Column="5" Grid.ColumnSpan="1" Style="{DynamicResource GenericModernButton}"
+										   ButtonName="current app">
+					</controls:ModernButton>
 				</Grid>
 
 				<Grid x:Name="StuffGrid" Margin="20,0,0,0">
