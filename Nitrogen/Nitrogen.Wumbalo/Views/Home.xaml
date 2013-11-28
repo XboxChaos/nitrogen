@@ -5,8 +5,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
              SnapsToDevicePixels="True"
-             d:DesignHeight="500" d:DesignWidth="900">
-    <Grid>
+             d:DesignHeight="720" d:DesignWidth="1080">
+	<Grid>
 		<Grid.RowDefinitions>
 			<RowDefinition x:Name="Headers" Height="50" />
 			<RowDefinition x:Name="Content" Height="*" />
@@ -24,8 +24,80 @@
 			</ToggleButton>
 		</StackPanel>
 
-		<ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
-			
+		<ScrollViewer Margin="0,40,0,20" Grid.Row="1" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
+			<!--<Viewbox Stretch="Uniform">-->
+			<Grid>
+				<StackPanel Orientation="Horizontal">
+					<Grid x:Name="RecentsGrid" Margin="40,0,20,0">
+
+					</Grid>
+
+					<Grid x:Name="HomeGrid" Margin="20,0,20,0">
+						<Grid.RowDefinitions>
+							<RowDefinition Height="150" />
+							<RowDefinition Height="150" />
+							<RowDefinition Height="150" />
+						</Grid.RowDefinitions>
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="150" />
+							<ColumnDefinition Width="150" />
+							<ColumnDefinition Width="150" />
+							<ColumnDefinition Width="150" />
+							<ColumnDefinition Width="150" />
+							<ColumnDefinition Width="150" />
+						</Grid.ColumnDefinitions>
+						
+						<!-- Account -->
+						<Button Grid.Row="0" Grid.RowSpan="3" Grid.Column="0" Grid.ColumnSpan="1" Style="{DynamicResource HomeTileButtonStyle}">
+							account
+						</Button>
+						
+						<!-- Viewport -->
+						<Button Grid.Row="0" Grid.RowSpan="2" Grid.Column="1" Grid.ColumnSpan="4" Style="{DynamicResource HomeTileButtonStyle}">
+							viewport
+						</Button>
+						
+						<!-- Apps -->
+						<Button Grid.Row="2" Grid.RowSpan="1" Grid.Column="1" Grid.ColumnSpan="1" Style="{DynamicResource HomeTileButtonStyle}">
+							app 1
+						</Button>
+						<Button Grid.Row="2" Grid.RowSpan="1" Grid.Column="2" Grid.ColumnSpan="1" Style="{DynamicResource HomeTileButtonStyle}">
+							app 2
+						</Button>
+						<Button Grid.Row="2" Grid.RowSpan="1" Grid.Column="3" Grid.ColumnSpan="1" Style="{DynamicResource HomeTileButtonStyle}">
+							app 3
+						</Button>
+						<Button Grid.Row="2" Grid.RowSpan="1" Grid.Column="4" Grid.ColumnSpan="1" Style="{DynamicResource HomeTileButtonStyle}">
+							app 4
+						</Button>
+
+						<!-- App Management -->
+						<Button Grid.Row="0" Grid.RowSpan="1" Grid.Column="5" Grid.ColumnSpan="1" Style="{DynamicResource HomeTileButtonStyle}">
+							unsnap
+						</Button>
+						<Button Grid.Row="1" Grid.RowSpan="1" Grid.Column="5" Grid.ColumnSpan="1" Style="{DynamicResource HomeTileButtonStyle}">
+							my games &amp; apps
+						</Button>
+						<Button Grid.Row="2" Grid.RowSpan="1" Grid.Column="5" Grid.ColumnSpan="1" Style="{DynamicResource HomeTileButtonStyle}">
+							current app
+						</Button>
+					</Grid>
+
+					<Grid x:Name="StuffGrid" Margin="20,0,40,0">
+
+					</Grid>
+				</StackPanel>
+
+				<!--<Grid VerticalAlignment="Stretch" HorizontalAlignment="Right" Width="60" IsHitTestVisible="False">
+					<Grid.Background>
+						<LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
+							<GradientStop Color="{DynamicResource WindowBackgroundOpacotyBrushColour}" />
+							<GradientStop Offset="1" Color="{DynamicResource WindowBackgroundBrushColour}" />
+						</LinearGradientBrush>
+					</Grid.Background>
+				</Grid>-->
+			</Grid>
+			<!--</Viewbox>-->
 		</ScrollViewer>
 	</Grid>
 </UserControl>

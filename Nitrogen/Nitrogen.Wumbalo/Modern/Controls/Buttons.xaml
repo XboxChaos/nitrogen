@@ -197,7 +197,7 @@
 		</Setter>
 	</Style>
 	
-	<!-- Home Window Header Button Styles -->
+	<!-- Home Window Button Styles -->
 	<Style x:Key="HomeHeaderButton" TargetType="{x:Type ToggleButton}">
 		<Setter Property="Background" Value="Transparent"/>
 		<Setter Property="BorderBrush" Value="Transparent"/>
@@ -224,6 +224,38 @@
 						<Trigger Property="ToggleButton.IsChecked" Value="true">
 							<Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource WumbaloAccentBrushAccentBrush}"/>
 							<Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="White"/>
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+	<Style x:Key="HomeTileButtonStyle" TargetType="{x:Type Button}">
+		<Setter Property="Background" Value="{DynamicResource WumbaloAccentBrushAccentBrush}"/>
+		<Setter Property="Foreground" Value="{DynamicResource WumbaloAccentBrushAccentBrush}"/>
+		<Setter Property="BorderBrush" Value="Transparent"/>
+		<Setter Property="BorderThickness" Value="4"/>
+		<Setter Property="HorizontalContentAlignment" Value="Center"/>
+		<Setter Property="VerticalContentAlignment" Value="Center"/>
+		<Setter Property="Margin" Value="-2,0,-2,-2"/>
+		<Setter Property="Padding" Value="4"/>
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type Button}">
+					<Border x:Name="Border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" 
+							SnapsToDevicePixels="true" Padding="{TemplateBinding Padding}" Background="Transparent">
+						<Border x:Name="InnerBorder" Background="{TemplateBinding Background}">
+							<ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
+											  RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" 
+											  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+						</Border>
+					</Border>
+					<ControlTemplate.Triggers>
+						<Trigger Property="IsMouseOver" Value="true">
+							<Setter Property="BorderBrush" TargetName="Border" Value="{DynamicResource WindowButtonBorderBrush}" />
+						</Trigger>
+						<Trigger Property="IsPressed" Value="true">
+							<Setter Property="BorderBrush" TargetName="InnerBorder" Value="{DynamicResource WindowButtonInnerBorderBrush}"/>
 						</Trigger>
 					</ControlTemplate.Triggers>
 				</ControlTemplate>
