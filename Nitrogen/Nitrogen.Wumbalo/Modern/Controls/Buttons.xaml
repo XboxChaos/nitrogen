@@ -196,5 +196,39 @@
 			</Setter.Value>
 		</Setter>
 	</Style>
+	
+	<!-- Home Window Header Button Styles -->
+	<Style x:Key="HomeHeaderButton" TargetType="{x:Type ToggleButton}">
+		<Setter Property="Background" Value="Transparent"/>
+		<Setter Property="BorderBrush" Value="Transparent"/>
+		<Setter Property="Foreground" Value="#6b6b6b"/>
+		<Setter Property="BorderThickness" Value="0,0,0,3"/>
+		<Setter Property="HorizontalContentAlignment" Value="Center"/>
+		<Setter Property="VerticalContentAlignment" Value="Center"/>
+		<Setter Property="Padding" Value="0"/>
+		<Setter Property="Margin" Value="0,0,10,0"/>
+		<Setter Property="TextElement.FontSize" Value="25"/>
+		<Setter Property="TextElement.FontFamily" Value="{DynamicResource ModernFontLight}"/>
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type ToggleButton}">
+					<Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="true">
+						<ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
+										  Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" 
+										  VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+					</Border>
+					<ControlTemplate.Triggers>
+						<Trigger Property="IsMouseOver" Value="true">
+							<Setter Property="TextElement.Foreground" TargetName="border" Value="#b6b6b6"/>
+						</Trigger>
+						<Trigger Property="ToggleButton.IsChecked" Value="true">
+							<Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource WumbaloAccentBrushAccentBrush}"/>
+							<Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="White"/>
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
 
 </ResourceDictionary>

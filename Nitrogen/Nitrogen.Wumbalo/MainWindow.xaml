@@ -6,6 +6,7 @@
         xmlns:n="clr-namespace:Nitrogen.Wumbalo.Helpers.Native"
         xmlns:vectors="clr-namespace:Nitrogen.Wumbalo.Modern.Vectors"
         xmlns:viewModels="clr-namespace:Nitrogen.Wumbalo.ViewModels"
+        xmlns:views="clr-namespace:Nitrogen.Wumbalo.Views"
         mc:Ignorable="d"
         Title="{Binding Path=(viewModels:MainViewModel.PageTitle), Mode=OneWay, Converter={StaticResource IValueCreateApplicationTitle}, FallbackValue=Wumbalo - Welcome!}"
         Height="600" Width="1000"
@@ -67,7 +68,9 @@
 
 				<!-- le app content -->
 				<Grid x:Name="ContentGrid" Grid.Row="0">
-					
+					<views:Home>
+						
+					</views:Home>
 				</Grid>
 
 				<!-- le app status -->

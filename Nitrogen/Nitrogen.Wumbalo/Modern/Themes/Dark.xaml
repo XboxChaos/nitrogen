@@ -13,7 +13,7 @@
 	<SolidColorBrush x:Key="WindowButtonInnerBorderBrush" Color="#FF000000" />
 	
 	<!-- Font Colours -->
-	<SolidColorBrush x:Key="WindowTitleBrush" Color="#FF6b6b6b" />
+	<SolidColorBrush x:Key="WindowTitleBrush" Color="#FFBBBBBB" />
 	<Color x:Key="WindowTitleBrushColour" A="#FF" R="#63" G="#63" B="#63" />
 	<SolidColorBrush x:Key="WindowStatusBarBrush" Color="#FFFFFFFF" />
 	<Color x:Key="WindowStatusBarBrushColour" A="#FF" R="#FF" G="#FF" B="#FF" />
