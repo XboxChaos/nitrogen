@@ -208,12 +208,12 @@
 		<Setter Property="HorizontalContentAlignment" Value="Center"/>
 		<Setter Property="VerticalContentAlignment" Value="Center"/>
 		<Setter Property="Padding" Value="0"/>
-		<Setter Property="Margin" Value="0,0,10,0"/>
+		<Setter Property="Margin" Value="0,0,20,0"/>
 		<Setter Property="Template">
 			<Setter.Value>
 				<ControlTemplate TargetType="{x:Type ToggleButton}">
 					<Border x:Name="Border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="true">
-						<TextBlock x:Name="BorderContent" Text="{TemplateBinding Tag}" FontFamily="{DynamicResource ModernFontSemiLight}" FontSize="25"></TextBlock>
+						<TextBlock x:Name="BorderContent" Text="{TemplateBinding Tag}" FontFamily="{DynamicResource ModernFontSemiLight}" FontSize="22"></TextBlock>
 					</Border>
 					<ControlTemplate.Triggers>
 						<Trigger Property="IsMouseOver" Value="true">

@@ -64,9 +64,12 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Converters\CreateApplicationTitle.cs" />
+    <Compile Include="Models\Home\Header.cs" />
     <Compile Include="Modern\Vectors\Resize.xaml.cs">
       <DependentUpon>Resize.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\HomeViewModel.cs" />
+    <Compile Include="ViewModels\Inpc.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="Views\Home.xaml.cs">
       <DependentUpon>Home.xaml</DependentUpon>
@@ -169,9 +172,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Models\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Nitrogen\Nitrogen.csproj">
       <Project>{8445eaa1-bdc9-47f4-bb77-469d3e3105dd}</Project>

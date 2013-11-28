@@ -3,8 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
-             xmlns:helpers="clr-namespace:Nitrogen.Wumbalo.Helpers"
+             xmlns:viewModels="clr-namespace:Nitrogen.Wumbalo.ViewModels"
              mc:Ignorable="d" 
              SnapsToDevicePixels="True"
              d:DesignHeight="720" d:DesignWidth="1080">
@@ -14,17 +13,18 @@
 			<RowDefinition x:Name="Content" Height="*" />
 		</Grid.RowDefinitions>
 
-		<StackPanel Orientation="Horizontal" Grid.Row="0" VerticalAlignment="Bottom" Margin="40,0,0,0">
-			<ToggleButton Style="{DynamicResource HomeHeaderButton}" Tag="Recents">
-				Recents
-			</ToggleButton>
-			<ToggleButton Style="{DynamicResource HomeHeaderButton}" IsChecked="True" Tag="Home">
-				Home
-			</ToggleButton>
-			<ToggleButton Style="{DynamicResource HomeHeaderButton}" Tag="Stuff">
-				Stuff
-			</ToggleButton>
-		</StackPanel>
+		<ItemsControl Grid.Row="0" VerticalAlignment="Bottom" Margin="40,0,0,0" ItemsSource="{Binding Path=(viewModels:HomeViewModel.Headers)}">
+			<ItemsControl.ItemsPanel>
+				<ItemsPanelTemplate>
+					<VirtualizingStackPanel Orientation="Horizontal"/>
+				</ItemsPanelTemplate>
+			</ItemsControl.ItemsPanel>
+			<ItemsControl.ItemTemplate>
+				<DataTemplate>
+					<ToggleButton Style="{DynamicResource HomeHeaderButton}" Tag="{Binding Path=Tag}" Content="{Binding Path=Name}" IsChecked="{Binding Path=IsSelected}" />
+				</DataTemplate>
+			</ItemsControl.ItemTemplate>
+		</ItemsControl>
 
 		<ScrollViewer Margin="0,40,0,20" Grid.Row="1" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
 			<!--<Viewbox Stretch="Uniform">-->
