@@ -65,6 +65,7 @@
     </ApplicationDefinition>
     <Compile Include="Converters\CreateApplicationTitle.cs" />
     <Compile Include="Models\Home\Header.cs" />
+    <Compile Include="Models\Home\Recent.cs" />
     <Compile Include="Modern\Vectors\Resize.xaml.cs">
       <DependentUpon>Resize.xaml</DependentUpon>
     </Compile>
