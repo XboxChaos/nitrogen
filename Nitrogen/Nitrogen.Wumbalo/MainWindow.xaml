@@ -4,18 +4,22 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:n="clr-namespace:Nitrogen.Wumbalo.Helpers.Native"
+        xmlns:vectors="clr-namespace:Nitrogen.Wumbalo.Modern.Vectors"
         xmlns:viewModels="clr-namespace:Nitrogen.Wumbalo.ViewModels"
         mc:Ignorable="d"
         Title="{Binding Path=(viewModels:MainViewModel.PageTitle), Mode=OneWay, Converter={StaticResource IValueCreateApplicationTitle}, FallbackValue=Wumbalo - Welcome!}"
         Height="600" Width="1000"
+        MinHeight="400" MinWidth="650"
         WindowStartupLocation="CenterScreen"
+        SnapsToDevicePixels="True"
         n:WindowMovement.IsDraggable="True" AllowsTransparency="True" ResizeMode="CanResize" WindowStyle="None">
-	<Border Style="{DynamicResource MainApplicationBorderStyle}">
+	<Border x:Name="FrameBorder" Style="{DynamicResource MainApplicationBorderStyle}">
 		<Grid Margin="-1,-1,-1,0">
 			<Grid.RowDefinitions>
 				<RowDefinition Height="55" />
 				<RowDefinition Height="*" />
 			</Grid.RowDefinitions>
+
 			<Grid x:Name="HeaderGrid" Grid.Row="0">
 				<StackPanel Orientation="Horizontal">
 					<Canvas Width="38.099" Clip="F1 M 0,0L 666.667,0L 666.667,666.667L 0,666.667L 0,0" HorizontalAlignment="Left" Margin="8,8,0,13.833" d:LayoutOverrides="VerticalAlignment" Height="37">
@@ -36,20 +40,20 @@
 							</Path.Fill>
 						</Path>
 					</Canvas>
-					<TextBlock Foreground="{DynamicResource WindowTitleBrush}" Margin="10,-6,0,0" VerticalAlignment="Center" Text="{Binding Path=(viewModels:MainViewModel.PageTitle), Mode=OneWay, Converter={StaticResource IValueCreateApplicationTitle}, FallbackValue=Wumbalo - Welcome!}" FontSize="16"/>
+					<TextBlock Foreground="{DynamicResource WindowTitleBrush}" Margin="10,-4,0,0" VerticalAlignment="Center" Text="{Binding Path=(viewModels:MainViewModel.PageTitle), Mode=OneWay, Converter={StaticResource IValueCreateApplicationTitle}, FallbackValue=Wumbalo - Welcome!}" FontSize="15"/>
 				</StackPanel>
-				
+				<Grid x:Name="DragGrid" Grid.Row="0" Background="Transparent" n:WindowMovement.DragsWindow="True"></Grid>
 				<StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top">
-					<Button x:Name="MinimizeApplicationButton" Style="{DynamicResource ButtonApplicationMinimizeStyle}">
+					<Button x:Name="MinimizeApplicationButton" Style="{DynamicResource ButtonApplicationMinimizeStyle}" Click="MinimizeApplicationButton_Click">
 						-
 					</Button>
-					<Button x:Name="RestoreApplicationButton" Style="{DynamicResource ButtonApplicationRestoreStyle}">
+					<Button x:Name="RestoreApplicationButton" Style="{DynamicResource ButtonApplicationRestoreStyle}" Click="RestoreApplicationButton_Click">
 						[]
 					</Button>
-					<Button x:Name="MaxamizeApplicationButton" Style="{DynamicResource ButtonApplicationMaxamizeStyle}">
+					<Button x:Name="MaxamizeApplicationButton" Style="{DynamicResource ButtonApplicationMaxamizeStyle}" Click="MaxamizeApplicationButton_Click">
 						{}
 					</Button>
-					<Button x:Name="CloseApplicationButton" Style="{DynamicResource ButtonApplicationCloseStyle}">
+					<Button x:Name="CloseApplicationButton" Style="{DynamicResource ButtonApplicationCloseStyle}" Click="CloseApplicationButton_Click">
 						x
 					</Button>
 				</StackPanel>
@@ -80,9 +84,31 @@
 
 				<!-- APP STATUS -->
 				<Grid Grid.Row="2" Margin="10,0,0,-22">
-					<TextBlock VerticalAlignment="Center">Wumbalo</TextBlock>
+					<TextBlock Foreground="{DynamicResource WindowStatusBarBrush}" VerticalAlignment="Center">Wumbalo</TextBlock>
 				</Grid>
 			</Grid>
+
+			<Grid Grid.Row="0" Grid.RowSpan="2" Margin="-1, -1, -1, -23" x:Name="ResizingGrid">
+				<!--Resize-->
+				<!--Corner-->
+				<vectors:Resize x:Name="ResizeDropVector" VerticalAlignment="Bottom" HorizontalAlignment="Right"
+				                      Margin="0,0,5,5" Cursor="SizeNWSE" />
+				<Thumb x:Name="ResizeDrop" DragDelta="ResizeDrop_DragDelta" Opacity="0" Background="{x:Null}" Foreground="{x:Null}"
+				       Width="11" Height="11" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,1,1"
+				       Cursor="SizeNWSE" />
+
+				<!--Side-->
+				<Thumb x:Name="ResizeRight" DragDelta="ResizeRight_DragDelta" Opacity="0" Background="{x:Null}"
+				       Foreground="{x:Null}" Width="8" Margin="0,27.333,0,11" HorizontalAlignment="Right"
+				       VerticalAlignment="Stretch" Cursor="SizeWE" />
+
+				<!--Bottom-->
+				<Thumb x:Name="ResizeBottom" DragDelta="ResizeBottom_DragDelta" Opacity="0" Background="{x:Null}"
+				       Foreground="{x:Null}" Height="8" Margin="0,0,11,0" HorizontalAlignment="Stretch" VerticalAlignment="Bottom"
+				       Cursor="SizeNS" />
+			</Grid>
+
+			<Rectangle Grid.Row="0" Grid.RowSpan="2" x:Name="OpacityRectangle" Opacity="0.65" Fill="{DynamicResource WindowOpacityBrush}" Visibility="Collapsed" />
 		</Grid>
 	</Border>
 </Window>
