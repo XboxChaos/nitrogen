@@ -246,15 +246,15 @@ namespace Nitrogen.IO
             }
         }
 
-        public virtual void Stream(ref string output, Encoding encoding)
+        public virtual void StreamNullTerminatedString(ref string output, Encoding encoding, long maxLength = 0)
         {
             if (State == StreamState.Read)
-                Reader.Read(out output, encoding);
+                Reader.Read(out output, encoding, maxLength);
             else
-                Writer.Write(output, encoding);
+                Writer.Write(output, encoding, maxLength);
         }
 
-        public virtual void Stream(ref string output, Encoding encoding, int length)
+        public virtual void StreamString(ref string output, Encoding encoding, int length)
         {
             if (State == StreamState.Read)
                 Reader.Read(out output, encoding, length);

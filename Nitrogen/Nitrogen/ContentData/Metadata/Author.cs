@@ -80,7 +80,7 @@ namespace Nitrogen.ContentData.Metadata
         public void Serialize(BitStream s)
         {
             s.Stream(ref this.xuid);
-            s.Stream(ref this.gamertag, Encoding.ASCII);
+            s.StreamNullTerminatedString(ref this.gamertag, Encoding.ASCII);
             s.Stream(ref this.signedIntoXboxLive);
         }
 
@@ -91,7 +91,7 @@ namespace Nitrogen.ContentData.Metadata
         public void Serialize(EndianStream s)
         {
             s.Stream(ref this.xuid);
-            s.Stream(ref this.gamertag, Encoding.ASCII, 16);
+            s.StreamString(ref this.gamertag, Encoding.ASCII, 16);
             s.Stream(ref this.signedIntoXboxLive);
             s.Pad(3);
         }

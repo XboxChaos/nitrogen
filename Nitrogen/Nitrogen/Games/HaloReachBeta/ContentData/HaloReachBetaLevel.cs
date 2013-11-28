@@ -116,8 +116,8 @@ namespace Nitrogen.Games.HaloReachBeta.ContentData
         {
             base.SerializeEndianStreamData(s);
 
-            s.Stream(ref this.mapImageFileName, Encoding.ASCII, 256);
-            s.Stream(ref this.mapFileName, Encoding.ASCII, 256);
+            s.StreamString(ref this.mapImageFileName, Encoding.ASCII, 256);
+            s.StreamString(ref this.mapFileName, Encoding.ASCII, 256);
             s.Stream(ref this.mapIndex);
             s.Stream(ref this.unk1);
             s.Stream(ref this.unk2);
@@ -224,7 +224,7 @@ namespace Nitrogen.Games.HaloReachBeta.ContentData
                 s.Stream(ref this.isVisible);
                 s.Stream(ref this.unk0);
                 s.Stream(ref this.unk1);
-                s.Stream(ref this.zoneName, Encoding.ASCII, 128);
+                s.StreamString(ref this.zoneName, Encoding.ASCII, 128);
                 s.Stream(ref this.unk2);
                 this.name.Serialize(s);
                 this.description.Serialize(s);

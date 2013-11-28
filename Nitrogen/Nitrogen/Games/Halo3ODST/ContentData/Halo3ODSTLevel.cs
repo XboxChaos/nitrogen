@@ -233,8 +233,8 @@ namespace Nitrogen.Games.Halo3ODST.ContentData
         {
             base.SerializeEndianStreamData(s);
 
-            s.Stream(ref this.mapImageFileName, Encoding.ASCII, 256);
-            s.Stream(ref this.mapFileName, Encoding.ASCII, 256);
+            s.StreamString(ref this.mapImageFileName, Encoding.ASCII, 256);
+            s.StreamString(ref this.mapFileName, Encoding.ASCII, 256);
             s.Stream(ref this.mapIndex);
             s.Stream(ref this.unk1);
             s.Stream(ref this.unk2);

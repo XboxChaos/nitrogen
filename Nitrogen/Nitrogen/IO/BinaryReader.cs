@@ -250,13 +250,14 @@ namespace Nitrogen.IO
             return count;
         }
 
-        public virtual int Read(out string output, Encoding encoding)
+        public virtual int Read(out string output, Encoding encoding, long maxLength = 0)
         {
             int count = 0;
             int delimiterSize = encoding.GetByteCount("\0");
             byte[] buffer = new byte[delimiterSize];
             var builder = new StringBuilder();
-            while (this.stream.Position < this.stream.Length)
+            long max = maxLength > 0 ? this.stream.Position + maxLength : this.stream.Length;
+            while (this.stream.Position < max)
             {
                 count += this.stream.Read(buffer, 0, buffer.Length);
                 string value = encoding.GetString(buffer);

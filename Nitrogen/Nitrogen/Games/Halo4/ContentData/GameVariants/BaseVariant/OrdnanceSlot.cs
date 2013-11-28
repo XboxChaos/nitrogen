@@ -18,57 +18,60 @@
  *   along with Nitrogen.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-using Nitrogen.ContentData.Localization;
 using Nitrogen.IO;
 using System;
 using System.Diagnostics.Contracts;
-using System.Drawing;
 
 namespace Nitrogen.Games.Halo4.ContentData.GameVariants.BaseVariant
 {
     /// <summary>
-    /// Represents a set of team properties in a Halo 4 multiplayer variant.
+    /// Represents a single personal ordnance slot.
     /// </summary>
-    public class TeamSettings
+    public class OrdnanceSlot
         : ISerializable<BitStream>
     {
-        public const int MaxTeams = 8;
+        /// <summary>
+        /// Specifies the number of ordnance items in a slot.
+        /// </summary>
+        public const int ItemCount = 8;
 
-        private byte teamModelOverride, designatorSwitchType;
-        private TeamData[] teams;
+        private OrdnanceItem[] items;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="TeamSettings"/> class with default values.
+        /// Initializes a new instance of the <see cref="OrdnanceSlot"/> class with default values.
         /// </summary>
-        public TeamSettings()
+        public OrdnanceSlot()
         {
-            this.teams = new TeamData[MaxTeams];
-            for (int i = 0; i < MaxTeams; i++)
-                this.teams[i] = new TeamData();
+            this.items = new OrdnanceItem[ItemCount];
+            for (int i = 0; i < ItemCount; i++)
+                this.items[i] = new OrdnanceItem();
         }
 
-        public TeamData this[int index]
+        /// <summary>
+        /// Gets or sets the possible items in this slot.
+        /// </summary>
+        public OrdnanceItem[] Items
         {
-            get { return this.teams[index]; }
+            get { return this.items; }
             set
             {
                 Contract.Requires<ArgumentNullException>(value != null);
-                this.teams[index] = value;
+                Contract.Requires<ArgumentException>(value.Length != ItemCount);
+
+                this.items = value;
+                for (int i = 0; i < this.items.Length; i++)
+                {
+                    if (this.items[i] == null)
+                        this.items[i] = new OrdnanceItem();
+                }
             }
         }
 
-        public TeamData[] GetTeams()
-        {
-            return this.teams;
-        }
-
-        #region ISerializable<BitStream>
+        #region ISerializable<BitStream> Members
 
         public void Serialize(BitStream s)
         {
-            s.Stream(ref this.teamModelOverride, 3);
-            s.Stream(ref this.designatorSwitchType, 2);
-            s.Serialize(this.teams, 0, MaxTeams);
+            s.Serialize(this.items, 0, ItemCount);
         }
 
         #endregion

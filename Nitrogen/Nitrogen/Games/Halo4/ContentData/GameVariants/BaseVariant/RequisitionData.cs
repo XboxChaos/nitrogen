@@ -20,41 +20,43 @@
 
 using Nitrogen.IO;
 using System;
-using System.Collections.Generic;
 
 namespace Nitrogen.Games.Halo4.ContentData.GameVariants.BaseVariant
 {
     /// <summary>
-    /// Represents a set of settings in a multiplayer variant for some kind of requisition-related
-    /// feature which was cut from the release version of Halo 4.
+    /// Represents a set of requisition-related data in an instance of the
+    /// <see cref="RequisitionSettings"/> class.
     /// </summary>
-    public class RequisitionSettings
+    public class RequisitionData
         : ISerializable<BitStream>
     {
-        private float unk0;
-        private int unk1, unk2;
-        private List<RequisitionData> data;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="RequisitionSettings"/> class with default values.
-        /// </summary>
-        public RequisitionSettings()
-        {
-            this.data = new List<RequisitionData>();
-        }
+        private byte paletteIndex;
+        private bool unk0;
+        private int unk1;
+        private int maxInstances;
+        private float unk2;
+        private int modelVariantStringIndex;
+        private int initialAmmo;
+        private float unk3, unk4, unk5, unk6;
+        private byte maxBuyPlayer, maxBuyTeam;
 
         #region ISerializable<BitStream>
 
         public void Serialize(BitStream s)
         {
+            s.Stream(ref this.paletteIndex);
             s.Stream(ref this.unk0);
             s.Stream(ref this.unk1);
-
-            int count = this.data.Count;
-            s.Stream(ref count, 7);
-
-            s.Serialize(this.data, 0, count);
+            s.Stream(ref this.maxInstances, 30);
             s.Stream(ref this.unk2);
+            s.Stream(ref this.modelVariantStringIndex, 30);
+            s.Stream(ref this.initialAmmo);
+            s.Stream(ref this.unk3);
+            s.Stream(ref this.unk4);
+            s.Stream(ref this.unk5);
+            s.Stream(ref this.unk6);
+            s.Stream(ref this.maxBuyPlayer);
+            s.Stream(ref this.maxBuyTeam);
         }
 
         #endregion

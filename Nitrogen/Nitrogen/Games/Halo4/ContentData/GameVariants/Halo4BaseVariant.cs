@@ -21,6 +21,7 @@
 using Nitrogen.IO;
 using Nitrogen.Games.Halo4.ContentData.GameVariants.BaseVariant;
 using System;
+using System.Diagnostics.Contracts;
 
 namespace Nitrogen.Games.Halo4.ContentData.GameVariants
 {
@@ -55,6 +56,97 @@ namespace Nitrogen.Games.Halo4.ContentData.GameVariants
             this.teams = new TeamSettings();
             this.loadouts = new LoadoutSettings();
             this.ordnance = new OrdnanceSettings();
+        }
+
+        /// <summary>
+        /// Gets or sets the general settings for this multiplayer variant.
+        /// </summary>
+        public GeneralSettings GeneralSettings
+        {
+            get { return this.general; }
+            set
+            {
+                Contract.Requires<ArgumentNullException>(value != null);
+                this.general = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the respawn settings for this multiplayer variant.
+        /// </summary>
+        public RespawnSettings RespawnSettings
+        {
+            get { return this.respawn; }
+            set
+            {
+                Contract.Requires<ArgumentNullException>(value != null);
+                this.respawn = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the social settings for this multiplayer variant.
+        /// </summary>
+        public SocialSettings SocialSettings
+        {
+            get { return this.social; }
+            set
+            {
+                Contract.Requires<ArgumentNullException>(value != null);
+                this.social = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the map overrides for this multiplayer variant.
+        /// </summary>
+        public MapOverrides MapOverrides
+        {
+            get { return this.mapOverrides; }
+            set
+            {
+                Contract.Requires<ArgumentNullException>(value != null);
+                this.mapOverrides = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the team settings for this multiplayer variant.
+        /// </summary>
+        public TeamSettings Teams
+        {
+            get { return this.teams; }
+            set
+            {
+                Contract.Requires<ArgumentNullException>(value != null);
+                this.teams = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the loadouts for this multiplayer variant.
+        /// </summary>
+        public LoadoutSettings Loadouts
+        {
+            get { return this.loadouts; }
+            set
+            {
+                Contract.Requires<ArgumentNullException>(value != null);
+                this.loadouts = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the ordnance settings for this multiplayer variant.
+        /// </summary>
+        public OrdnanceSettings Ordnance
+        {
+            get { return this.ordnance; }
+            set
+            {
+                Contract.Requires<ArgumentNullException>(value != null);
+                this.ordnance = value;
+            }
         }
 
         #region ISerializable<BitStream> Members

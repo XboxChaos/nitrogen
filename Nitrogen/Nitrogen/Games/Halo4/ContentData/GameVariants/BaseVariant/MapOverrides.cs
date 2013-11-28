@@ -27,75 +27,6 @@ using System.Diagnostics.Contracts;
 namespace Nitrogen.Games.Halo4.ContentData.GameVariants.BaseVariant
 {
     /// <summary>
-    /// Indicates the weapon set to use.
-    /// </summary>
-    public enum WeaponSet
-        : sbyte
-    {
-        MapDefault = -2,
-        Disabled,
-        Human,
-        Covenant,
-        Forerunner,
-        Snipers,
-        NoSnipers,
-        Rockets,
-        NoPowerWeapons,
-        Juggernaut,
-        SlayerPro,
-        Rifles,
-        MidRange,
-        LongRange,
-        UNSCSnipers,
-        MeleeWeapons,
-        Swords,
-        Hammers,
-        WeaponsOfMassDestruction,
-        NoWeapons,
-        PowerWeapons,
-        SpartanOps,
-    }
-
-    /// <summary>
-    /// Indicates the vehicle set to use.
-    /// </summary>
-    public enum VehicleSet
-        : sbyte
-    {
-        MapDefault = -2,
-        Disabled,
-        AllVehicles,
-        Mongooses,
-        Warthogs,
-        LightGround,
-        Tanks,
-        Aircraft,
-        Mantis,
-        AllUNSC,
-        AllCovenant,
-        NoUNSC,
-        NoCovenant,
-        NoLightGround,
-        NoTanks,
-        NoAircraft,
-        NoMantis,
-        NoHeavy,
-        NoVehicles,
-        DeleteAllExceptMongoose
-    }
-
-    /// <summary>
-    /// Indicates the armor ability set to use.
-    /// </summary>
-    public enum ArmorAbilitySet
-        : sbyte
-    {
-        MapDefault = -2,
-        Disabled,
-        SpartanOps
-    }
-
-    /// <summary>
     /// Represents a set of map overrides settings in a Halo 4 multiplayer variant.
     /// </summary>
     public class MapOverrides
@@ -131,55 +62,69 @@ namespace Nitrogen.Games.Halo4.ContentData.GameVariants.BaseVariant
             this.aaOnMap = true;
             this.shortcutsOnMap = true;
             this.grenadesOnMap = true;
-            VehiclesOnMap = VehicleSet.MapDefault;
-            WeaponsOnMap = WeaponSet.MapDefault;
-            ArmorAbilitiesOnMap = ArmorAbilitySet.MapDefault;
+            this.aaSet = -2;
+            this.weaponSet = -2;
+            this.vehicleSet = -2;
         }
 
+        /// <summary>
+        /// Gets or sets whether vehicles are indestructible.
+        /// </summary>
         public bool IndestructibleVehicles
         {
             get { return this.indestructibleVehicles; }
             set { this.indestructibleVehicles = value; }
         }
 
+        /// <summary>
+        /// Gets or sets whether grenades can be spawned on the map.
+        /// </summary>
         public bool GrenadesOnMap
         {
             get { return this.grenadesOnMap; }
             set { this.grenadesOnMap = value; }
         }
 
-        public WeaponSet WeaponsOnMap
+        /// <summary>
+        /// Gets or sets whether armor abilities can be spawned on the map.
+        /// </summary>
+        public bool ArmorAbilitiesOnMap
         {
-            get { return (WeaponSet)this.weaponSet; }
-            set
-            {
-                Contract.Requires<InvalidEnumArgumentException>(Enum.IsDefined(typeof(WeaponSet), value));
-                this.weaponSet = (sbyte)value;
-            }
+            get { return this.aaOnMap; }
+            set { this.aaOnMap = value; }
         }
 
-        public VehicleSet VehiclesOnMap
+        /// <summary>
+        /// Gets or sets the weapon set for all weapons placed on the map. This does not affect
+        /// ordnance drops.
+        /// </summary>
+        public sbyte WeaponSet
         {
-            get { return (VehicleSet)this.vehicleSet; }
-            set
-            {
-                Contract.Requires<InvalidEnumArgumentException>(Enum.IsDefined(typeof(VehicleSet), value));
-                this.vehicleSet = (sbyte)value;
-            }
+            get { return this.weaponSet; }
+            set { this.weaponSet = value; }
         }
 
-        public ArmorAbilitySet ArmorAbilitiesOnMap
+        /// <summary>
+        /// Gets or sets the vehicle set for all vehicles placed on the map.
+        /// </summary>
+        public sbyte VehicleSet
         {
-            get { return (ArmorAbilitySet)this.aaSet; }
-            set
-            {
-                Contract.Requires<InvalidEnumArgumentException>(Enum.IsDefined(typeof(ArmorAbilitySet), value));
-
-                this.aaSet = (sbyte)value;
-                this.aaOnMap = (value == ArmorAbilitySet.Disabled);
-            }
+            get { return this.vehicleSet; }
+            set { this.vehicleSet = value; }
         }
 
+        /// <summary>
+        /// Gets or sets the armor ability set for all armor abilities placed on the map.
+        /// </summary>
+        public sbyte ArmorAbilitySet
+        {
+            get { return this.aaSet; }
+            set { this.aaSet = value; }
+        }
+
+        /// <summary>
+        /// Gets or sets the traits that applies to all players in the match.
+        /// </summary>
         public Halo4PlayerTraits BasePlayerTraits
         {
             get { return this.baseTraits; }
@@ -190,6 +135,9 @@ namespace Nitrogen.Games.Halo4.ContentData.GameVariants.BaseVariant
             }
         }
 
+        /// <summary>
+        /// Gets or sets the properties of the Damage Boost powerup.
+        /// </summary>
         public PowerupSettings DamageBoost
         {
             get { return this.powerups[0]; }
@@ -200,6 +148,9 @@ namespace Nitrogen.Games.Halo4.ContentData.GameVariants.BaseVariant
             }
         }
 
+        /// <summary>
+        /// Gets or sets the properties of the Speed Boost powerup.
+        /// </summary>
         public PowerupSettings SpeedBoost
         {
             get { return this.powerups[1]; }
@@ -210,6 +161,9 @@ namespace Nitrogen.Games.Halo4.ContentData.GameVariants.BaseVariant
             }
         }
 
+        /// <summary>
+        /// Gets or sets the properties of the Overshield powerup.
+        /// </summary>
         public PowerupSettings Overshield
         {
             get { return this.powerups[2]; }
@@ -220,6 +174,9 @@ namespace Nitrogen.Games.Halo4.ContentData.GameVariants.BaseVariant
             }
         }
 
+        /// <summary>
+        /// Gets or sets the properties of the custom powerup.
+        /// </summary>
         public PowerupSettings CustomPowerup
         {
             get { return this.powerups[3]; }

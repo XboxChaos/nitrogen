@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Nitrogen.IO;
+using System;
+using System.Drawing;
 
 internal static class Utilities
 {
