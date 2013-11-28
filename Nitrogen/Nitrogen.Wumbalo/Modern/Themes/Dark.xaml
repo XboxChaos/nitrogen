@@ -19,5 +19,7 @@
 	<Color x:Key="WindowTitleBrushColour" A="#FF" R="#63" G="#63" B="#63" />
 	<SolidColorBrush x:Key="WindowStatusBarBrush" Color="#FFFFFFFF" />
 	<Color x:Key="WindowStatusBarBrushColour" A="#FF" R="#FF" G="#FF" B="#FF" />
+	<SolidColorBrush x:Key="WindowHomeHeaderNoFocusBrush" Color="#FF6b6b6b" />
+	<Color x:Key="WindowHomeHeaderNoFocusBrushColour" A="#FF" R="#6b" G="#6b" B="#6b" />
 
 </ResourceDictionary>
