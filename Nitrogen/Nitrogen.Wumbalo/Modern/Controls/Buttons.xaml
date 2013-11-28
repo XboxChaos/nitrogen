@@ -3,13 +3,13 @@
 	
 	<!-- Window Action Button Styles -->
 	<Style x:Key="ButtonApplicationWindowActionStyle" TargetType="{x:Type Button}">
-		<Setter Property="Background" Value="Transparent" />
-		<Setter Property="BorderBrush" Value="Transparent"/>
+		<Setter Property="Background" Value="{DynamicResource WumbaloAccentBrushAccentBrush}" />
+		<Setter Property="BorderBrush" Value="{DynamicResource WumbaloAccentBrushAccentBrush}"/>
 		<Setter Property="Foreground" Value="Transparent"/>
-		<Setter Property="BorderThickness" Value="1"/>
-		<Setter Property="Width" Value="34"/>
-		<Setter Property="Height" Value="26"/>
-		<Setter Property="Padding" Value="0"/>
+		<Setter Property="BorderThickness" Value="3"/>
+		<Setter Property="Width" Value="36"/>
+		<Setter Property="Height" Value="28"/>
+		<Setter Property="Margin" Value="0"/>
 	</Style>
 	<Style x:Key="ButtonApplicationCloseStyle" BasedOn="{StaticResource ButtonApplicationWindowActionStyle}" TargetType="{x:Type Button}">
 		<Setter Property="ToolTip" Value="Close" />
@@ -17,7 +17,7 @@
 			<Setter.Value>
 				<ControlTemplate TargetType="{x:Type Button}">
 					<Border x:Name="border" Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" BorderBrush="{TemplateBinding BorderBrush}" 
-							BorderThickness="{TemplateBinding BorderThickness}" 
+							BorderThickness="{TemplateBinding BorderThickness}" Margin="{TemplateBinding Margin}"
 							Background="{TemplateBinding Background}" SnapsToDevicePixels="true">
 						<Grid>
 							<!-- Close Button Vector Shape (should turn this into a path.. but whatever) -->
@@ -68,16 +68,19 @@
 								<Rectangle Fill="{DynamicResource WindowActionButtonBrush}" Height="1" Margin="7,3,2,0" VerticalAlignment="Top" Width="1" Opacity="0.55" />
 							</Grid>
 
+							<!-- Inner Border Trick -->
+							<Border x:Name="InnerBorder" BorderThickness="4" BorderBrush="Transparent"></Border>
+
 							<!-- Workaround for focusing -->
 							<Rectangle Fill="{DynamicResource WindowActionButtonBrush}" Opacity="0" />
 						</Grid>
 					</Border>
 					<ControlTemplate.Triggers>
 						<Trigger Property="IsMouseOver" Value="true">
-							<Setter Property="Background" TargetName="border" Value="{DynamicResource WindowActionHoverBrush}"/>
+							<Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource WindowButtonBorderBrush}" />
 						</Trigger>
 						<Trigger Property="IsPressed" Value="true">
-							<Setter Property="Background" TargetName="border" Value="{DynamicResource WumbaloAccentBrushAccentBrushSecondary}"/>
+							<Setter Property="BorderBrush" TargetName="InnerBorder" Value="{DynamicResource WindowButtonInnerBorderBrush}"/>
 						</Trigger>
 					</ControlTemplate.Triggers>
 				</ControlTemplate>
@@ -90,7 +93,7 @@
 			<Setter.Value>
 				<ControlTemplate TargetType="{x:Type Button}">
 					<Border x:Name="border" Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" BorderBrush="{TemplateBinding BorderBrush}" 
-							BorderThickness="{TemplateBinding BorderThickness}" 
+							BorderThickness="{TemplateBinding BorderThickness}" Margin="{TemplateBinding Margin}"
 							Background="{TemplateBinding Background}" SnapsToDevicePixels="true">
 						<Grid>
 							<!-- Restore Button Vector Shape (should turn this into a path.. but whatever) -->
@@ -105,16 +108,19 @@
 								<Rectangle Fill="{DynamicResource WindowActionButtonBrush}" Margin="1,0,4,0" Height="1" VerticalAlignment="Bottom" />
 							</Grid>
 
+							<!-- Inner Border Trick -->
+							<Border x:Name="InnerBorder" BorderThickness="4" BorderBrush="Transparent"></Border>
+
 							<!-- Workaround for focusing -->
 							<Rectangle Fill="{DynamicResource WindowActionButtonBrush}" Opacity="0" />
 						</Grid>
 					</Border>
 					<ControlTemplate.Triggers>
 						<Trigger Property="IsMouseOver" Value="true">
-							<Setter Property="Background" TargetName="border" Value="{DynamicResource WindowActionHoverBrush}"/>
+							<Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource WindowButtonBorderBrush}" />
 						</Trigger>
 						<Trigger Property="IsPressed" Value="true">
-							<Setter Property="Background" TargetName="border" Value="{DynamicResource WumbaloAccentBrushAccentBrushSecondary}"/>
+							<Setter Property="BorderBrush" TargetName="InnerBorder" Value="{DynamicResource WindowButtonInnerBorderBrush}"/>
 						</Trigger>
 					</ControlTemplate.Triggers>
 				</ControlTemplate>
@@ -127,7 +133,7 @@
 			<Setter.Value>
 				<ControlTemplate TargetType="{x:Type Button}">
 					<Border x:Name="border" Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" BorderBrush="{TemplateBinding BorderBrush}" 
-							BorderThickness="{TemplateBinding BorderThickness}" 
+							BorderThickness="{TemplateBinding BorderThickness}" Margin="{TemplateBinding Margin}"
 							Background="{TemplateBinding Background}" SnapsToDevicePixels="true">
 						<Grid>
 							<!-- Maxamize Button Vector Shape (should turn this into a path.. but whatever) -->
@@ -138,16 +144,19 @@
 								<Rectangle Fill="{DynamicResource WindowActionButtonBrush}" Margin="1.5,0,1.5,1" Height="1" VerticalAlignment="Bottom" />
 							</Grid>
 
+							<!-- Inner Border Trick -->
+							<Border x:Name="InnerBorder" BorderThickness="4" BorderBrush="Transparent"></Border>
+
 							<!-- Workaround for focusing -->
 							<Rectangle Fill="{DynamicResource WindowActionButtonBrush}" Opacity="0" />
 						</Grid>
 					</Border>
 					<ControlTemplate.Triggers>
 						<Trigger Property="IsMouseOver" Value="true">
-							<Setter Property="Background" TargetName="border" Value="{DynamicResource WindowActionHoverBrush}"/>
+							<Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource WindowButtonBorderBrush}" />
 						</Trigger>
 						<Trigger Property="IsPressed" Value="true">
-							<Setter Property="Background" TargetName="border" Value="{DynamicResource WumbaloAccentBrushAccentBrushSecondary}"/>
+							<Setter Property="BorderBrush" TargetName="InnerBorder" Value="{DynamicResource WindowButtonInnerBorderBrush}"/>
 						</Trigger>
 					</ControlTemplate.Triggers>
 				</ControlTemplate>
@@ -160,7 +169,7 @@
 			<Setter.Value>
 				<ControlTemplate TargetType="{x:Type Button}">
 					<Border x:Name="border" Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" BorderBrush="{TemplateBinding BorderBrush}" 
-							BorderThickness="{TemplateBinding BorderThickness}" 
+							BorderThickness="{TemplateBinding BorderThickness}" Margin="{TemplateBinding Margin}"
 							Background="{TemplateBinding Background}" SnapsToDevicePixels="true">
 						<Grid>
 							<!-- Minimize Button Vector Shape (should turn this into a path.. but whatever) -->
@@ -168,16 +177,19 @@
 								<Rectangle Fill="{DynamicResource WindowActionButtonBrush}" Margin="0,0,1,0" Width="9" Height="3" VerticalAlignment="Bottom" />
 							</Grid>
 
+							<!-- Inner Border Trick -->
+							<Border x:Name="InnerBorder" BorderThickness="4" BorderBrush="Transparent"></Border>
+
 							<!-- Workaround for focusing -->
 							<Rectangle Fill="{DynamicResource WindowActionButtonBrush}" Opacity="0" />
 						</Grid>
 					</Border>
 					<ControlTemplate.Triggers>
 						<Trigger Property="IsMouseOver" Value="true">
-							<Setter Property="Background" TargetName="border" Value="{DynamicResource WindowActionHoverBrush}"/>
+							<Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource WindowButtonBorderBrush}" />
 						</Trigger>
 						<Trigger Property="IsPressed" Value="true">
-							<Setter Property="Background" TargetName="border" Value="{DynamicResource WumbaloAccentBrushAccentBrushSecondary}"/>
+							<Setter Property="BorderBrush" TargetName="InnerBorder" Value="{DynamicResource WindowButtonInnerBorderBrush}"/>
 						</Trigger>
 					</ControlTemplate.Triggers>
 				</ControlTemplate>

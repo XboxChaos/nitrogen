@@ -1,7 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-	<SolidColorBrush x:Key="WindowBackgroundBrush" Color="#FF2D2D30" />
-	<Color x:Key="WindowBackgroundBrushColour" A="#FF" R="#2D" G="#2D" B="#30" />
+	<SolidColorBrush x:Key="WindowBackgroundBrush" Color="#FF000000" />
+	<Color x:Key="WindowBackgroundBrushColour" A="#FF" R="#00" G="#00" B="#00" />
 
 	<SolidColorBrush x:Key="WindowActionButtonBrush" Color="#FFF4F4F5" />
 	<SolidColorBrush x:Key="WindowActionHoverBrush" Color="#FF262626" />
@@ -9,8 +9,11 @@
 	<SolidColorBrush x:Key="WindowResizeSecondaryPrush" Color="#FF000000" />
 	<SolidColorBrush x:Key="WindowOpacityBrush" Color="#FF212121" />
 
+	<SolidColorBrush x:Key="WindowButtonBorderBrush" Color="#FFFFFFFF" />
+	<SolidColorBrush x:Key="WindowButtonInnerBorderBrush" Color="#FF000000" />
+	
 	<!-- Font Colours -->
-	<SolidColorBrush x:Key="WindowTitleBrush" Color="#FF636363" />
+	<SolidColorBrush x:Key="WindowTitleBrush" Color="#FF6b6b6b" />
 	<Color x:Key="WindowTitleBrushColour" A="#FF" R="#63" G="#63" B="#63" />
 	<SolidColorBrush x:Key="WindowStatusBarBrush" Color="#FFFFFFFF" />
 	<Color x:Key="WindowStatusBarBrushColour" A="#FF" R="#FF" G="#FF" B="#FF" />

@@ -8,7 +8,7 @@
 		<ResourceDictionary>
 			<ResourceDictionary.MergedDictionaries>
 				<!-- Default Accent -->
-				<ResourceDictionary Source="Modern\Accents\Blue.xaml" />
+				<ResourceDictionary Source="Modern\Accents\Green.xaml" />
 				
 				<!-- Default Theme -->
 				<ResourceDictionary Source="Modern\Themes\Dark.xaml" />

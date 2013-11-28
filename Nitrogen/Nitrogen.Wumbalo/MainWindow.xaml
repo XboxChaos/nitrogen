@@ -43,7 +43,7 @@
 					<TextBlock Foreground="{DynamicResource WindowTitleBrush}" Margin="10,-4,0,0" VerticalAlignment="Center" Text="{Binding Path=(viewModels:MainViewModel.PageTitle), Mode=OneWay, Converter={StaticResource IValueCreateApplicationTitle}, FallbackValue=Wumbalo - Welcome!}" FontSize="15"/>
 				</StackPanel>
 				<Grid x:Name="DragGrid" Grid.Row="0" Background="Transparent" n:WindowMovement.DragsWindow="True"></Grid>
-				<StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top">
+				<StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,1,1,0">
 					<Button x:Name="MinimizeApplicationButton" Style="{DynamicResource ButtonApplicationMinimizeStyle}" Click="MinimizeApplicationButton_Click">
 						-
 					</Button>
