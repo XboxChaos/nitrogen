@@ -6,8 +6,11 @@
              xmlns:viewModels="clr-namespace:Nitrogen.Wumbalo.ViewModels"
              xmlns:controls="clr-namespace:Nitrogen.Wumbalo.Modern.Controls"
              xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+			 xmlns:i="clr-namespace:Logitech.Windows.Input;assembly=WpfMouseWheelLib"
              mc:Ignorable="d" 
              SnapsToDevicePixels="True"
+			 i:MouseWheel.Enhanced="True"
+			 i:MouseWheel.Smoothing="Smooth"
              d:DesignHeight="720" d:DesignWidth="2000">
 	<Grid>
 		<Grid.RowDefinitions>
@@ -29,7 +32,7 @@
 		</ItemsControl>
 
 		<ScrollViewer Margin="0,40,0,0" Grid.Row="1" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled"
-					  PreviewMouseWheel="ScrollViewer_PreviewMouseWheel" PanningMode="HorizontalFirst" PanningDeceleration="0.005" PanningRatio="0.1">
+					  PanningMode="HorizontalFirst" PanningDeceleration="0.005" PanningRatio="0.1">
 			<StackPanel Orientation="Horizontal">
 				<Grid x:Name="RecentsGrid" Margin="40,0,0,0">
 					<ItemsControl VerticalAlignment="Top" Margin="40,20,0,0" ItemsSource="{Binding Path=(viewModels:HomeViewModel.RecentsForXaml)}">

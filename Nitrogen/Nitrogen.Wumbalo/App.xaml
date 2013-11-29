@@ -19,6 +19,7 @@
 				<ResourceDictionary Source="Modern\Controls\Fonts.xaml" />
 				<ResourceDictionary Source="Modern\Controls\TextBlock.xaml" />
 				<ResourceDictionary Source="Modern\Controls\TextBox.xaml" />
+				<ResourceDictionary Source="Modern\Controls\ScrollViewer.xaml" />
 			</ResourceDictionary.MergedDictionaries>
 			
 			<s:String x:Key="AppTitle">Wumbalo</s:String>
