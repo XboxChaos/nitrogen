@@ -169,7 +169,7 @@
 							</Image>
 
 							<TextBlock VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="15" FontFamily="{DynamicResource ModernFontLight}" FontSize="28">
-								Forge Maps
+								Map Variants
 							</TextBlock>
 						</Grid>
 					</controls:ModernButton>
