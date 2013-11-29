@@ -28,11 +28,11 @@
 			</ItemsControl.ItemTemplate>
 		</ItemsControl>
 
-		<ScrollViewer Margin="0,40,0,20" Grid.Row="1" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled"
-					  PreviewMouseWheel="ScrollViewer_PreviewMouseWheel" CanContentScroll="False">
+		<ScrollViewer Margin="0,40,0,0" Grid.Row="1" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled"
+					  PreviewMouseWheel="ScrollViewer_PreviewMouseWheel" PanningMode="HorizontalFirst" PanningDeceleration="0.005" PanningRatio="0.1">
 			<StackPanel Orientation="Horizontal">
 				<Grid x:Name="RecentsGrid" Margin="40,0,0,0">
-					<ItemsControl VerticalAlignment="Top" Margin="40,0,0,0" ItemsSource="{Binding Path=(viewModels:HomeViewModel.RecentsForXaml)}">
+					<ItemsControl VerticalAlignment="Top" Margin="40,20,0,0" ItemsSource="{Binding Path=(viewModels:HomeViewModel.RecentsForXaml)}">
 						<ItemsControl.ItemsPanel>
 							<ItemsPanelTemplate>
 								<StackPanel Orientation="Horizontal"></StackPanel>
@@ -60,6 +60,7 @@
 
 				<Grid x:Name="HomeGrid" Margin="20,0,0,0">
 					<Grid.RowDefinitions>
+						<RowDefinition Height="20" />
 						<RowDefinition Height="150" />
 						<RowDefinition Height="150" />
 						<RowDefinition Height="150" />
@@ -74,7 +75,7 @@
 					</Grid.ColumnDefinitions>
 
 					<!-- Account -->
-					<Button Grid.Row="0" Grid.RowSpan="3" Grid.Column="0" Grid.ColumnSpan="1" Style="{DynamicResource ModernButtonStyle}">
+					<Button Grid.Row="1" Grid.RowSpan="3" Grid.Column="0" Grid.ColumnSpan="1" Style="{DynamicResource ModernButtonStyle}">
 						<Grid VerticalAlignment="Stretch" RenderTransformOrigin="0.5,0.5">
 							<StackPanel>
 								<Image Source="http://images-eds.xboxlive.com/image?url=z951ykn43p4FqWbbFvR2Ec.8vbDhj8G2Xe7JngaTToBrrCmIEEXHC9UNrdJ6P7KIbgsfD63mXFU_1J9M4K4P9MC9JmvpAK38Xkaw0hKBNU7imD1DYrHPio.yGWLd9AkU&amp;format=png&amp;w=402&amp;h=402">
@@ -99,40 +100,72 @@
 					</Button>
 
 					<!-- Viewport -->
-					<Button Grid.Row="0" Grid.RowSpan="2" Grid.Column="1" Grid.ColumnSpan="4" Style="{DynamicResource ModernButtonStyle}">
+					<Button Grid.Row="1" Grid.RowSpan="2" Grid.Column="1" Grid.ColumnSpan="4" Style="{DynamicResource ModernButtonStyle}">
 						<TextBlock FontFamily="{DynamicResource ModernFontLight}" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="100">
 							viewport
 						</TextBlock>
 					</Button>
 
 					<!-- Apps -->
-					<controls:ModernButton Grid.Row="2" Grid.RowSpan="1" Grid.Column="1" Grid.ColumnSpan="1" Style="{DynamicResource ModernButtonWithNameStyle}"
+					<controls:ModernButton Grid.Row="3" Grid.RowSpan="1" Grid.Column="1" Grid.ColumnSpan="1" Style="{DynamicResource ModernButtonWithNameStyle}"
 										   ButtonName="app 1">
 					</controls:ModernButton>
-					<controls:ModernButton Grid.Row="2" Grid.RowSpan="1" Grid.Column="2" Grid.ColumnSpan="1" Style="{DynamicResource ModernButtonWithNameStyle}"
+					<controls:ModernButton Grid.Row="3" Grid.RowSpan="1" Grid.Column="2" Grid.ColumnSpan="1" Style="{DynamicResource ModernButtonWithNameStyle}"
 										   ButtonName="app 2">
 					</controls:ModernButton>
-					<controls:ModernButton Grid.Row="2" Grid.RowSpan="1" Grid.Column="3" Grid.ColumnSpan="1" Style="{DynamicResource ModernButtonWithNameStyle}"
+					<controls:ModernButton Grid.Row="3" Grid.RowSpan="1" Grid.Column="3" Grid.ColumnSpan="1" Style="{DynamicResource ModernButtonWithNameStyle}"
 										   ButtonName="app 3">
 					</controls:ModernButton>
-					<controls:ModernButton Grid.Row="2" Grid.RowSpan="1" Grid.Column="4" Grid.ColumnSpan="1" Style="{DynamicResource ModernButtonWithNameStyle}"
+					<controls:ModernButton Grid.Row="3" Grid.RowSpan="1" Grid.Column="4" Grid.ColumnSpan="1" Style="{DynamicResource ModernButtonWithNameStyle}"
 										   ButtonName="app 4">
 					</controls:ModernButton>
 
 					<!-- App Management -->
-					<controls:ModernButton Grid.Row="0" Grid.RowSpan="1" Grid.Column="5" Grid.ColumnSpan="1" Style="{DynamicResource ModernButtonWithNameStyle}"
+					<controls:ModernButton Grid.Row="1" Grid.RowSpan="1" Grid.Column="5" Grid.ColumnSpan="1" Style="{DynamicResource ModernButtonWithNameStyle}"
 										   ButtonName="unsnap">
 					</controls:ModernButton>
-					<controls:ModernButton Grid.Row="1" Grid.RowSpan="1" Grid.Column="5" Grid.ColumnSpan="1" Style="{DynamicResource ModernButtonWithNameStyle}"
+					<controls:ModernButton Grid.Row="2" Grid.RowSpan="1" Grid.Column="5" Grid.ColumnSpan="1" Style="{DynamicResource ModernButtonWithNameStyle}"
 										   ButtonName="my games &amp; apps">
 					</controls:ModernButton>
-					<controls:ModernButton Grid.Row="2" Grid.RowSpan="1" Grid.Column="5" Grid.ColumnSpan="1" Style="{DynamicResource ModernButtonWithNameStyle}"
+					<controls:ModernButton Grid.Row="3" Grid.RowSpan="1" Grid.Column="5" Grid.ColumnSpan="1" Style="{DynamicResource ModernButtonWithNameStyle}"
 										   ButtonName="current app">
 					</controls:ModernButton>
 				</Grid>
 
-				<Grid x:Name="StuffGrid" Margin="20,0,40,0">
+				<Grid x:Name="OnyxFeaturedGrid" Tag="Onyx" Margin="20,0,40,0">
 					<Grid.RowDefinitions>
+						<RowDefinition Height="20" />
+						<RowDefinition Height="150" />
+						<RowDefinition Height="150" />
+						<RowDefinition Height="150" />
+					</Grid.RowDefinitions>
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="250" />
+					</Grid.ColumnDefinitions>
+
+					<TextBlock x:Name="OnyxFeaturedLabel" Grid.Row="0" Grid.Column="0" Margin="5,0,0,0" FontFamily="{DynamicResource ModernFontSemiBold}" FontSize="14">
+						<TextBlock.Foreground>
+							<SolidColorBrush Color="{DynamicResource WindowStatusBarBrushColour}"/>
+						</TextBlock.Foreground>
+						FEATURED
+					</TextBlock>
+
+					<controls:ModernButton Grid.Row="1" Grid.Column="0" Style="{StaticResource ModernButtonWithNameAlwaysStyle}" ButtonName="Gun Game: about time arron">
+						<Image Stretch="UniformToFill" Source="http://i1.ytimg.com/vi/0x6LfGNux5Y/hqdefault.jpg" />
+					</controls:ModernButton>
+
+					<controls:ModernButton Grid.Row="2" Grid.Column="0" Style="{StaticResource ModernButtonWithNameAlwaysStyle}" ButtonName="Minigame Toolkit: feel good">
+						<Image Stretch="UniformToFill" Source="https://waypointprod.blob.core.windows.net/blogfilestore/storage/blogs/headlines/2013/5/30/extraction_1_site_3.jpg" />
+					</controls:ModernButton>
+
+					<controls:ModernButton Grid.Row="3" Grid.Column="0" Style="{StaticResource ModernButtonWithNameAlwaysStyle}" ButtonName="Sharpshooter: wooo! im 12!">
+						<Image Stretch="UniformToFill" Source="http://i1.ytimg.com/vi/S5bNsFsM8tI/maxresdefault.jpg" />
+					</controls:ModernButton>
+				</Grid>
+				
+				<Grid x:Name="OnyxGrid" Margin="20,0,40,0">
+					<Grid.RowDefinitions>
+						<RowDefinition Height="20" />
 						<RowDefinition Height="150" />
 						<RowDefinition Height="230" />
 						<RowDefinition Height="100" />
@@ -142,8 +175,8 @@
 						<ColumnDefinition Width="250" />
 						<ColumnDefinition Width="250" />
 					</Grid.ColumnDefinitions>
-
-					<controls:ModernButton Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Style="{StaticResource ModernButtonStyle}">
+					
+					<controls:ModernButton Grid.Row="1" Grid.RowSpan="2" Grid.Column="0" Style="{StaticResource ModernButtonStyle}">
 						<controls:ModernButton.Background>
 							<SolidColorBrush Color="{DynamicResource ModernButtonBackgroundSpecialBrushColour}"/>
 						</controls:ModernButton.Background>
@@ -159,7 +192,7 @@
 							</TextBlock>
 						</Grid>
 					</controls:ModernButton>
-					<controls:ModernButton Grid.Row="0" Grid.RowSpan="2" Grid.Column="1" Style="{StaticResource ModernButtonStyle}">
+					<controls:ModernButton Grid.Row="1" Grid.RowSpan="2" Grid.Column="1" Style="{StaticResource ModernButtonStyle}">
 						<controls:ModernButton.Background>
 							<SolidColorBrush Color="{DynamicResource ModernButtonBackgroundSpecialBrushColour}"/>
 						</controls:ModernButton.Background>
@@ -175,7 +208,7 @@
 							</TextBlock>
 						</Grid>
 					</controls:ModernButton>
-					<controls:ModernButton Grid.Row="0" Grid.RowSpan="2" Grid.Column="2" Style="{StaticResource ModernButtonStyle}">
+					<controls:ModernButton Grid.Row="1" Grid.RowSpan="2" Grid.Column="2" Style="{StaticResource ModernButtonStyle}">
 						<controls:ModernButton.Background>
 							<SolidColorBrush Color="{DynamicResource ModernButtonBackgroundSpecialBrushColour}"/>
 						</controls:ModernButton.Background>
@@ -192,7 +225,7 @@
 						</Grid>
 					</controls:ModernButton>
 
-					<Grid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3">
+					<Grid Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3">
 						<StackPanel Orientation="Vertical">
 							<xctk:WatermarkTextBox Watermark="yfgfg" Margin="0,10" Style="{DynamicResource OnyxSearchTextBoxStyle}">
 								<xctk:WatermarkTextBox.WatermarkTemplate>
