@@ -14,6 +14,16 @@
 	<SolidColorBrush x:Key="WindowButtonBorderBrush" Color="#FFFFFFFF" />
 	<SolidColorBrush x:Key="WindowButtonInnerBorderBrush" Color="#FF000000" />
 	
+	<SolidColorBrush x:Key="ModernButtonBackgroundSpecialBrush" Color="#414141" />
+	<Color x:Key="ModernButtonBackgroundSpecialBrushColour" A="#FF" R="#41" G="#41" B="#41" />
+
+	<!-- Textbox -->
+	<SolidColorBrush x:Key="TextboxBackgroundBrush" Color="#FFFFFFFF" />
+	<SolidColorBrush x:Key="TextboxForegroundBrush" Color="#FF1E1E1E" />
+
+	<!-- Logos -->
+	<SolidColorBrush x:Key="OnyxLogoBrush" Color="#FFFFFFFF" />
+	
 	<!-- Font Colours -->
 	<SolidColorBrush x:Key="WindowTitleBrush" Color="#FFBBBBBB" />
 	<Color x:Key="WindowTitleBrushColour" A="#FF" R="#63" G="#63" B="#63" />
@@ -21,5 +31,7 @@
 	<Color x:Key="WindowStatusBarBrushColour" A="#FF" R="#FF" G="#FF" B="#FF" />
 	<SolidColorBrush x:Key="WindowHomeHeaderNoFocusBrush" Color="#FF6b6b6b" />
 	<Color x:Key="WindowHomeHeaderNoFocusBrushColour" A="#FF" R="#6b" G="#6b" B="#6b" />
+	<SolidColorBrush x:Key="WindowPoweredByBrandBrush" Color="#FFFFFFFF" />
+	<SolidColorBrush x:Key="WindowPoweredByBrush" Color="#FF6b6b6b" />
 
 </ResourceDictionary>
