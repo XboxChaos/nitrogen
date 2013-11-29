@@ -132,7 +132,7 @@
 					</controls:ModernButton>
 				</Grid>
 
-				<Grid x:Name="OnyxFeaturedGrid" Tag="Onyx" Margin="20,0,40,0">
+				<Grid x:Name="OnyxFeaturedGrid" Tag="Onyx" Margin="20,0,0,0">
 					<Grid.RowDefinitions>
 						<RowDefinition Height="20" />
 						<RowDefinition Height="150" />
