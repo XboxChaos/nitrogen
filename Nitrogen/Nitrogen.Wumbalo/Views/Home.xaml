@@ -48,7 +48,7 @@
 									</ItemsControl.ItemsPanel>
 									<ItemsControl.ItemTemplate>
 										<DataTemplate>
-											<controls:ModernButton Style="{DynamicResource ModernButtonWithNameStyle}" Width="150" Height="150" ButtonName="{Binding Name}">
+											<controls:ModernButton Style="{DynamicResource ModernButtonWithNameStyle}" Width="150" Height="150" Margin="0,0,0,1" ButtonName="{Binding Name}">
 											</controls:ModernButton>
 										</DataTemplate>
 									</ItemsControl.ItemTemplate>
