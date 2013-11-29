@@ -34,7 +34,7 @@ namespace Nitrogen.Games.Halo4.ContentData.GameVariants.BaseVariant
         private bool initial, random, objective, personal, ordnanceSystemEnabled;
         private sbyte unk0; // enum; -1 disables initial ordnace
         private short infinityMinTimer, infinityMaxTimer;
-        private short unk1, unk2; // timer
+        private short unk1, unk2;
         private string initialDropFilter, randomDropSet, personalDropSet, substitutionSet;
         private short initialDropDelay;
         private bool overridePersonalOrdnance;
@@ -59,7 +59,7 @@ namespace Nitrogen.Games.Halo4.ContentData.GameVariants.BaseVariant
             this.substitutionSet = "";
             this.personalDropSet = "?";
             this.unk0 = 50;
-            this.unk2 = 5;
+            this.unk2 = 5; // string index in megalo string table +1 encoded for initial_drop??
 
             this.personalOrdnance = new OrdnanceSlot[4];
             for (int i = 0; i < 4; i++)

@@ -153,6 +153,7 @@
     <Compile Include="ContentData\MapVariants\MapVariantData.cs" />
     <Compile Include="ContentData\Metadata\MapVariantMetadata.cs" />
     <Compile Include="ContentData\Metadata\MetadataEnums.cs" />
+    <Compile Include="ContentData\Traits\UserDefinedTraits.cs" />
     <Compile Include="ContentData\Traits\TraitEnums.cs" />
     <Compile Include="ContentData\Traits\RespawnTraits.cs" />
     <Compile Include="Games\Halo3ODST\ContentData\Halo3ODSTLevel.cs" />
@@ -162,7 +163,7 @@
     <Compile Include="Games\Halo3\Halo3MapInfoBlob.cs" />
     <Compile Include="Games\Halo3\Halo3Properties.cs" />
     <Compile Include="Games\Halo4\ContentData\FileMegaloCategories.cs" />
-    <Compile Include="Games\Halo4\ContentData\GameVariants\BaseVariant\Loadout.cs" />
+    <Compile Include="Games\Halo4\ContentData\GameVariants\Loadout.cs" />
     <Compile Include="Games\Halo4\ContentData\GameVariants\BaseVariant\LoadoutPalette.cs" />
     <Compile Include="Games\Halo4\ContentData\GameVariants\BaseVariant\OrdnanceItem.cs" />
     <Compile Include="Games\Halo4\ContentData\GameVariants\BaseVariant\OrdnanceSlot.cs" />
@@ -182,6 +183,10 @@
     <Compile Include="Games\Halo4\ContentData\GameVariants\Halo4BaseVariant.cs" />
     <Compile Include="Games\Halo4\ContentData\GameVariants\Halo4MegaloData.cs" />
     <Compile Include="Games\Halo4\ContentData\GameVariants\Halo4MultiplayerVariantData.cs" />
+    <Compile Include="Games\Halo4\ContentData\GameVariants\Megalo\GlobalGameOptions.cs" />
+    <Compile Include="Games\Halo4\ContentData\GameVariants\Megalo\MapLoadout.cs" />
+    <Compile Include="Games\Halo4\ContentData\GameVariants\Megalo\UserDefinedOptionValue.cs" />
+    <Compile Include="Games\Halo4\ContentData\GameVariants\Megalo\UserDefinedOption.cs" />
     <Compile Include="Games\Halo4\ContentData\Halo4Campaign.cs" />
     <Compile Include="Games\Halo4\ContentData\Halo4Level.cs" />
     <Compile Include="Games\Halo4\ContentData\Halo4MapVariant.cs" />
@@ -256,9 +261,7 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Games\Halo4\ContentData\GameVariants\Megalo\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>

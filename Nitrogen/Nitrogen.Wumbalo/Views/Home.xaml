@@ -28,7 +28,7 @@
 		</ItemsControl>
 
 		<ScrollViewer Margin="0,40,0,20" Grid.Row="1" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled"
-					  PreviewMouseWheel="ScrollViewer_PreviewMouseWheel" CanContentScroll="False">
+					  PreviewMouseWheel="ScrollViewer_PreviewMouseWheel" CanContentScroll="False" PanningMode="HorizontalOnly" PanningDeceleration="0.005" PanningRatio="0.1">
 			<StackPanel Orientation="Horizontal">
 				<Grid x:Name="RecentsGrid" Margin="40,0,0,0">
 					<ItemsControl VerticalAlignment="Top" Margin="40,0,0,0" ItemsSource="{Binding Path=(viewModels:HomeViewModel.RecentsForXaml)}">

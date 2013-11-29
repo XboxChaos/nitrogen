@@ -78,6 +78,7 @@ namespace Nitrogen.Games.Halo4.ContentData.GameVariants
                         // this.forgeData = this.forgeData ?? new Halo4ForgeData();
 
                         s.Serialize(this.megaloData);
+                        // weapon tuning
                         // s.Serialize(this.forgeData);
                     }
                     break;
@@ -86,6 +87,7 @@ namespace Nitrogen.Games.Halo4.ContentData.GameVariants
                     {
                         this.megaloData = this.megaloData ?? new Halo4MegaloData();
                         s.Serialize(this.megaloData);
+                        // weapon tuning
                     }
                     break;
 

@@ -35,6 +35,11 @@ namespace Nitrogen.Games.Halo4
         public const ushort BuildNumber = 21401; // Halo 4 TU7
 
         /// <summary>
+        /// Specifies the index of the Community category.
+        /// </summary>
+        public const sbyte CommunityCategoryIndex = 25;
+
+        /// <summary>
         /// Provides a table of supported languages in Halo 4.
         /// </summary>
         public static readonly LanguageTable Languages = new LanguageTable(new [] {
@@ -56,5 +61,15 @@ namespace Nitrogen.Games.Halo4
             Language.Dutch,
             Language.Norwegian,
         });
+
+        /// <summary>
+        /// Provides a string table containing the name of the Community category.
+        /// </summary>
+        public static readonly StringTable CommunityCategoryName = new StringTable(Languages);
+
+        static Halo4Properties()
+        {
+            CommunityCategoryName.Add(new LocalizedString(Languages, "Community"));
+        }
     }
 }
