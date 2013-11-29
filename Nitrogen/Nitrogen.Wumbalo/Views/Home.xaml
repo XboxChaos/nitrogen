@@ -151,7 +151,7 @@
 					</TextBlock>
 
 					<controls:ModernButton Grid.Row="1" Grid.Column="0" Style="{StaticResource ModernButtonWithNameAlwaysStyle}" ButtonName="Gun Game: about time arron">
-						<Image Stretch="UniformToFill" Source="http://i1.ytimg.com/vi/0x6LfGNux5Y/hqdefault.jpg" />
+						<Image Stretch="UniformToFill" Source="http://i.imgur.com/IGvfyMV.png" />
 					</controls:ModernButton>
 
 					<controls:ModernButton Grid.Row="2" Grid.Column="0" Style="{StaticResource ModernButtonWithNameAlwaysStyle}" ButtonName="Minigame Toolkit: feel good">
