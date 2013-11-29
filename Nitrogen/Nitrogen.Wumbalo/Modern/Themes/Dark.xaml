@@ -21,8 +21,9 @@
 	<SolidColorBrush x:Key="TextboxBackgroundBrush" Color="#FFFFFFFF" />
 	<SolidColorBrush x:Key="TextboxForegroundBrush" Color="#FF1E1E1E" />
 
-	<!-- Logos -->
+	<!-- Xaml Paths -->
 	<SolidColorBrush x:Key="OnyxLogoBrush" Color="#FFFFFFFF" />
+	<SolidColorBrush x:Key="SearchGlassBrush" Color="#FF000000" />
 	
 	<!-- Font Colours -->
 	<SolidColorBrush x:Key="WindowTitleBrush" Color="#FFBBBBBB" />
