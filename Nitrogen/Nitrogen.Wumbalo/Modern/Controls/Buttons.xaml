@@ -2,7 +2,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 					xmlns:controls="clr-namespace:Nitrogen.Wumbalo.Modern.Controls">
 
-	<Style x:Key="GenericModernButton" TargetType="{x:Type controls:ModernButton}">
+	<Style x:Key="ModernButtonWithNameStyle" TargetType="{x:Type controls:ModernButton}">
 		<Setter Property="Background" Value="{DynamicResource WumbaloAccentBrushAccentBrush}"/>
 		<Setter Property="Foreground" Value="{DynamicResource WindowButtonBorderBrush}"/>
 		<Setter Property="BorderBrush" Value="Transparent"/>
@@ -50,7 +50,96 @@
 							<Setter Property="BorderBrush" TargetName="Border" Value="{DynamicResource WindowButtonBorderBrush}" />
 						</Trigger>
 						<Trigger Property="IsPressed" Value="true">
-							<Setter Property="Height" TargetName="GridNameOver" Value="31" />
+							<Setter Property="Height" TargetName="GridNameOver" Value="38" />
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+	<Style x:Key="ModernButtonWithNameAlwaysStyle" TargetType="{x:Type controls:ModernButton}">
+		<Setter Property="Background" Value="{DynamicResource WumbaloAccentBrushAccentBrush}"/>
+		<Setter Property="Foreground" Value="{DynamicResource WindowButtonBorderBrush}"/>
+		<Setter Property="BorderBrush" Value="Transparent"/>
+		<Setter Property="BorderThickness" Value="4"/>
+		<Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+		<Setter Property="VerticalContentAlignment" Value="Stretch"/>
+		<Setter Property="Margin" Value="-2,0,-2,-2"/>
+		<Setter Property="Padding" Value="4"/>
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="controls:ModernButton">
+					<Border x:Name="Border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" 
+							SnapsToDevicePixels="true" Padding="{TemplateBinding Padding}" Background="Transparent">
+						<VisualStateManager.VisualStateGroups>
+							<VisualStateGroup x:Name="CommonStates">
+								<VisualState x:Name="Normal"/>
+								<VisualState x:Name="MouseOver"/>
+								<VisualState x:Name="Pressed">
+									<Storyboard>
+										<ThicknessAnimation Duration="0:0:0.05" Storyboard.TargetName="Border" Storyboard.TargetProperty="Padding" To="8"/>
+									</Storyboard>
+								</VisualState>
+							</VisualStateGroup>
+						</VisualStateManager.VisualStateGroups>
+						<Border x:Name="InnerBorder" Background="{TemplateBinding Background}">
+							<Grid>
+								<ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
+											  RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" 
+											  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+
+								<Grid VerticalAlignment="Bottom" HorizontalAlignment="Left">
+									<Grid x:Name="GridNameOver" Background="Black" Opacity="0.6" Height="38" VerticalAlignment="Bottom" HorizontalAlignment="Stretch"></Grid>
+									<TextBlock FontFamily="{DynamicResource ModernFontRegular}" TextTrimming="CharacterEllipsis" FontSize="14" 
+											   Text="{TemplateBinding ButtonName}" Margin="10"></TextBlock>
+								</Grid>
+							</Grid>
+						</Border>
+					</Border>
+					<ControlTemplate.Triggers>
+						<Trigger Property="IsMouseOver" Value="true">
+							<Setter Property="BorderBrush" TargetName="Border" Value="{DynamicResource WindowButtonBorderBrush}" />
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+	<Style x:Key="ModernButtonStyle" TargetType="{x:Type Button}">
+		<Setter Property="Background" Value="{DynamicResource WumbaloAccentBrushAccentBrush}"/>
+		<Setter Property="Foreground" Value="{DynamicResource WindowButtonBorderBrush}"/>
+		<Setter Property="BorderBrush" Value="Transparent"/>
+		<Setter Property="BorderThickness" Value="4"/>
+		<Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+		<Setter Property="VerticalContentAlignment" Value="Stretch"/>
+		<Setter Property="Margin" Value="-2,0,-2,-2"/>
+		<Setter Property="Padding" Value="4"/>
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="Button">
+					<Border x:Name="Border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" 
+							SnapsToDevicePixels="true" Padding="{TemplateBinding Padding}" Background="Transparent">
+						<VisualStateManager.VisualStateGroups>
+							<VisualStateGroup x:Name="CommonStates">
+								<VisualState x:Name="Normal"/>
+								<VisualState x:Name="MouseOver" />
+								<VisualState x:Name="Pressed">
+									<Storyboard>
+										<ThicknessAnimation Duration="0:0:0.05" Storyboard.TargetName="Border" Storyboard.TargetProperty="Padding" To="8"/>
+									</Storyboard>
+								</VisualState>
+							</VisualStateGroup>
+						</VisualStateManager.VisualStateGroups>
+						<Border x:Name="InnerBorder" Background="{TemplateBinding Background}">
+							<ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
+											  RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" 
+											  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+						</Border>
+					</Border>
+					<ControlTemplate.Triggers>
+						<Trigger Property="IsMouseOver" Value="true">
+							<Setter Property="BorderBrush" TargetName="Border" Value="{DynamicResource WindowButtonBorderBrush}" />
+							<Setter Property="Background" TargetName="InnerBorder" Value="{DynamicResource WumbaloAccentBrushAccentBrush}" />
 						</Trigger>
 					</ControlTemplate.Triggers>
 				</ControlTemplate>
@@ -277,46 +366,6 @@
 						<Trigger Property="ToggleButton.IsChecked" Value="true">
 							<Setter Property="BorderBrush" TargetName="Border" Value="{DynamicResource WumbaloAccentBrushAccentBrush}"/>
 							<Setter Property="Foreground" TargetName="BorderContent" Value="White"/>
-						</Trigger>
-					</ControlTemplate.Triggers>
-				</ControlTemplate>
-			</Setter.Value>
-		</Setter>
-	</Style>
-	<Style x:Key="HomeTileButtonStyle" TargetType="{x:Type Button}">
-		<Setter Property="Background" Value="{DynamicResource WumbaloAccentBrushAccentBrush}"/>
-		<Setter Property="Foreground" Value="{DynamicResource WindowButtonBorderBrush}"/>
-		<Setter Property="BorderBrush" Value="Transparent"/>
-		<Setter Property="BorderThickness" Value="4"/>
-		<Setter Property="HorizontalContentAlignment" Value="Stretch"/>
-		<Setter Property="VerticalContentAlignment" Value="Stretch"/>
-		<Setter Property="Margin" Value="-2,0,-2,-2"/>
-		<Setter Property="Padding" Value="4"/>
-		<Setter Property="Template">
-			<Setter.Value>
-				<ControlTemplate TargetType="Button">
-					<Border x:Name="Border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" 
-							SnapsToDevicePixels="true" Padding="{TemplateBinding Padding}" Background="Transparent">
-						<VisualStateManager.VisualStateGroups>
-							<VisualStateGroup x:Name="CommonStates">
-								<VisualState x:Name="Normal"/>
-								<VisualState x:Name="MouseOver" />
-								<VisualState x:Name="Pressed">
-									<Storyboard>
-										<ThicknessAnimation Duration="0:0:0.05" Storyboard.TargetName="Border" Storyboard.TargetProperty="Padding" To="8"/>
-									</Storyboard>
-								</VisualState>
-							</VisualStateGroup>
-						</VisualStateManager.VisualStateGroups>
-						<Border x:Name="InnerBorder" Background="{TemplateBinding Background}">
-							<ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
-											  RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" 
-											  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
-						</Border>
-					</Border>
-					<ControlTemplate.Triggers>
-						<Trigger Property="IsMouseOver" Value="true">
-							<Setter Property="BorderBrush" TargetName="Border" Value="{DynamicResource WindowButtonBorderBrush}" />
 						</Trigger>
 					</ControlTemplate.Triggers>
 				</ControlTemplate>

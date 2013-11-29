@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Linq;
-using System.Windows.Controls;
 using Nitrogen.Wumbalo.Models.Home;
 
 namespace Nitrogen.Wumbalo.ViewModels
@@ -17,7 +15,7 @@ namespace Nitrogen.Wumbalo.ViewModels
 		{
 			Headers.Add(new Header { IsSelected = false, Name = "Recents", Tag = "Recents" });
 			Headers.Add(new Header { IsSelected = true, Name = "Home", Tag = "Home" });
-			Headers.Add(new Header { IsSelected = false, Name = "Stuff", Tag = "Stuff" });
+			Headers.Add(new Header { IsSelected = false, Name = "Onyx", Tag = "Onyx" });
 
 			for (var i = 0; i < new Random().Next(8, 16); i++)
 				Recents.Add(new Recent { Name = string.Format("Test {0}", i) });

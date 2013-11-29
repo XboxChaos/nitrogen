@@ -5,9 +5,10 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:viewModels="clr-namespace:Nitrogen.Wumbalo.ViewModels"
              xmlns:controls="clr-namespace:Nitrogen.Wumbalo.Modern.Controls"
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
              mc:Ignorable="d" 
              SnapsToDevicePixels="True"
-             d:DesignHeight="720" d:DesignWidth="1080">
+             d:DesignHeight="720" d:DesignWidth="2000">
 	<Grid>
 		<Grid.RowDefinitions>
 			<RowDefinition x:Name="Headers" Height="50" />
@@ -27,11 +28,11 @@
 			</ItemsControl.ItemTemplate>
 		</ItemsControl>
 
-		<ScrollViewer Margin="0,40,0,20" Grid.Row="1" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled"
-					  PreviewMouseWheel="ScrollViewer_PreviewMouseWheel" CanContentScroll="False" PanningMode="HorizontalOnly" PanningDeceleration="0.005" PanningRatio="0.1">
+		<ScrollViewer Margin="0,40,0,0" Grid.Row="1" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled"
+					  PreviewMouseWheel="ScrollViewer_PreviewMouseWheel" PanningMode="HorizontalFirst" PanningDeceleration="0.005" PanningRatio="0.1">
 			<StackPanel Orientation="Horizontal">
 				<Grid x:Name="RecentsGrid" Margin="40,0,0,0">
-					<ItemsControl VerticalAlignment="Top" Margin="40,0,0,0" ItemsSource="{Binding Path=(viewModels:HomeViewModel.RecentsForXaml)}">
+					<ItemsControl VerticalAlignment="Top" Margin="40,20,0,0" ItemsSource="{Binding Path=(viewModels:HomeViewModel.RecentsForXaml)}">
 						<ItemsControl.ItemsPanel>
 							<ItemsPanelTemplate>
 								<StackPanel Orientation="Horizontal"></StackPanel>
@@ -47,7 +48,7 @@
 									</ItemsControl.ItemsPanel>
 									<ItemsControl.ItemTemplate>
 										<DataTemplate>
-											<controls:ModernButton Style="{DynamicResource GenericModernButton}" Width="150" Height="150" ButtonName="{Binding Name}">
+											<controls:ModernButton Style="{DynamicResource ModernButtonWithNameStyle}" Width="150" Height="150" Margin="0,0,0,1" ButtonName="{Binding Name}">
 											</controls:ModernButton>
 										</DataTemplate>
 									</ItemsControl.ItemTemplate>
@@ -59,6 +60,7 @@
 
 				<Grid x:Name="HomeGrid" Margin="20,0,0,0">
 					<Grid.RowDefinitions>
+						<RowDefinition Height="20" />
 						<RowDefinition Height="150" />
 						<RowDefinition Height="150" />
 						<RowDefinition Height="150" />
@@ -73,7 +75,7 @@
 					</Grid.ColumnDefinitions>
 
 					<!-- Account -->
-					<Button Grid.Row="0" Grid.RowSpan="3" Grid.Column="0" Grid.ColumnSpan="1" Style="{DynamicResource HomeTileButtonStyle}">
+					<Button Grid.Row="1" Grid.RowSpan="3" Grid.Column="0" Grid.ColumnSpan="1" Style="{DynamicResource ModernButtonStyle}">
 						<Grid VerticalAlignment="Stretch" RenderTransformOrigin="0.5,0.5">
 							<StackPanel>
 								<Image Source="http://images-eds.xboxlive.com/image?url=z951ykn43p4FqWbbFvR2Ec.8vbDhj8G2Xe7JngaTToBrrCmIEEXHC9UNrdJ6P7KIbgsfD63mXFU_1J9M4K4P9MC9JmvpAK38Xkaw0hKBNU7imD1DYrHPio.yGWLd9AkU&amp;format=png&amp;w=402&amp;h=402">
@@ -98,38 +100,170 @@
 					</Button>
 
 					<!-- Viewport -->
-					<Button Grid.Row="0" Grid.RowSpan="2" Grid.Column="1" Grid.ColumnSpan="4" Style="{DynamicResource HomeTileButtonStyle}">
-						viewport
+					<Button Grid.Row="1" Grid.RowSpan="2" Grid.Column="1" Grid.ColumnSpan="4" Style="{DynamicResource ModernButtonStyle}">
+						<TextBlock FontFamily="{DynamicResource ModernFontLight}" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="100">
+							viewport
+						</TextBlock>
 					</Button>
 
 					<!-- Apps -->
-					<controls:ModernButton Grid.Row="2" Grid.RowSpan="1" Grid.Column="1" Grid.ColumnSpan="1" Style="{DynamicResource GenericModernButton}"
+					<controls:ModernButton Grid.Row="3" Grid.RowSpan="1" Grid.Column="1" Grid.ColumnSpan="1" Style="{DynamicResource ModernButtonWithNameStyle}"
 										   ButtonName="app 1">
 					</controls:ModernButton>
-					<controls:ModernButton Grid.Row="2" Grid.RowSpan="1" Grid.Column="2" Grid.ColumnSpan="1" Style="{DynamicResource GenericModernButton}"
+					<controls:ModernButton Grid.Row="3" Grid.RowSpan="1" Grid.Column="2" Grid.ColumnSpan="1" Style="{DynamicResource ModernButtonWithNameStyle}"
 										   ButtonName="app 2">
 					</controls:ModernButton>
-					<controls:ModernButton Grid.Row="2" Grid.RowSpan="1" Grid.Column="3" Grid.ColumnSpan="1" Style="{DynamicResource GenericModernButton}"
+					<controls:ModernButton Grid.Row="3" Grid.RowSpan="1" Grid.Column="3" Grid.ColumnSpan="1" Style="{DynamicResource ModernButtonWithNameStyle}"
 										   ButtonName="app 3">
 					</controls:ModernButton>
-					<controls:ModernButton Grid.Row="2" Grid.RowSpan="1" Grid.Column="4" Grid.ColumnSpan="1" Style="{DynamicResource GenericModernButton}"
+					<controls:ModernButton Grid.Row="3" Grid.RowSpan="1" Grid.Column="4" Grid.ColumnSpan="1" Style="{DynamicResource ModernButtonWithNameStyle}"
 										   ButtonName="app 4">
 					</controls:ModernButton>
 
 					<!-- App Management -->
-					<controls:ModernButton Grid.Row="0" Grid.RowSpan="1" Grid.Column="5" Grid.ColumnSpan="1" Style="{DynamicResource GenericModernButton}"
+					<controls:ModernButton Grid.Row="1" Grid.RowSpan="1" Grid.Column="5" Grid.ColumnSpan="1" Style="{DynamicResource ModernButtonWithNameStyle}"
 										   ButtonName="unsnap">
 					</controls:ModernButton>
-					<controls:ModernButton Grid.Row="1" Grid.RowSpan="1" Grid.Column="5" Grid.ColumnSpan="1" Style="{DynamicResource GenericModernButton}"
+					<controls:ModernButton Grid.Row="2" Grid.RowSpan="1" Grid.Column="5" Grid.ColumnSpan="1" Style="{DynamicResource ModernButtonWithNameStyle}"
 										   ButtonName="my games &amp; apps">
 					</controls:ModernButton>
-					<controls:ModernButton Grid.Row="2" Grid.RowSpan="1" Grid.Column="5" Grid.ColumnSpan="1" Style="{DynamicResource GenericModernButton}"
+					<controls:ModernButton Grid.Row="3" Grid.RowSpan="1" Grid.Column="5" Grid.ColumnSpan="1" Style="{DynamicResource ModernButtonWithNameStyle}"
 										   ButtonName="current app">
 					</controls:ModernButton>
 				</Grid>
 
-				<Grid x:Name="StuffGrid" Margin="20,0,0,0">
+				<Grid x:Name="OnyxFeaturedGrid" Tag="Onyx" Margin="20,0,0,0">
+					<Grid.RowDefinitions>
+						<RowDefinition Height="20" />
+						<RowDefinition Height="150" />
+						<RowDefinition Height="150" />
+						<RowDefinition Height="150" />
+					</Grid.RowDefinitions>
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="250" />
+					</Grid.ColumnDefinitions>
 
+					<TextBlock x:Name="OnyxFeaturedLabel" Grid.Row="0" Grid.Column="0" Margin="5,0,0,0" FontFamily="{DynamicResource ModernFontSemiBold}" FontSize="14">
+						<TextBlock.Foreground>
+							<SolidColorBrush Color="{DynamicResource WindowStatusBarBrushColour}"/>
+						</TextBlock.Foreground>
+						FEATURED
+					</TextBlock>
+
+					<controls:ModernButton Grid.Row="1" Grid.Column="0" Style="{StaticResource ModernButtonWithNameAlwaysStyle}" ButtonName="Gun Game: about time arron">
+						<Image Stretch="UniformToFill" Source="http://i.imgur.com/IGvfyMV.png" />
+					</controls:ModernButton>
+
+					<controls:ModernButton Grid.Row="2" Grid.Column="0" Style="{StaticResource ModernButtonWithNameAlwaysStyle}" ButtonName="Minigame Toolkit: feel good">
+						<Image Stretch="UniformToFill" Source="https://waypointprod.blob.core.windows.net/blogfilestore/storage/blogs/headlines/2013/5/30/extraction_1_site_3.jpg" />
+					</controls:ModernButton>
+
+					<controls:ModernButton Grid.Row="3" Grid.Column="0" Style="{StaticResource ModernButtonWithNameAlwaysStyle}" ButtonName="Sharpshooter: wooo! im 12!">
+						<Image Stretch="UniformToFill" Source="http://i1.ytimg.com/vi/S5bNsFsM8tI/maxresdefault.jpg" />
+					</controls:ModernButton>
+				</Grid>
+				
+				<Grid x:Name="OnyxGrid" Margin="20,0,40,0">
+					<Grid.RowDefinitions>
+						<RowDefinition Height="20" />
+						<RowDefinition Height="150" />
+						<RowDefinition Height="230" />
+						<RowDefinition Height="100" />
+					</Grid.RowDefinitions>
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="250" />
+						<ColumnDefinition Width="250" />
+						<ColumnDefinition Width="250" />
+					</Grid.ColumnDefinitions>
+					
+					<controls:ModernButton Grid.Row="1" Grid.RowSpan="2" Grid.Column="0" Style="{StaticResource ModernButtonStyle}">
+						<controls:ModernButton.Background>
+							<SolidColorBrush Color="{DynamicResource ModernButtonBackgroundSpecialBrushColour}"/>
+						</controls:ModernButton.Background>
+						<Grid>
+							<Image VerticalAlignment="Top" Source="http://i.imgur.com/YTG4EdC.png">
+								<Image.Effect>
+									<DropShadowEffect ShadowDepth="10" BlurRadius="40" Direction="-90" RenderingBias="Quality" />
+								</Image.Effect>
+							</Image>
+
+							<TextBlock VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="15" FontFamily="{DynamicResource ModernFontLight}" FontSize="28">
+								Gametypes
+							</TextBlock>
+						</Grid>
+					</controls:ModernButton>
+					<controls:ModernButton Grid.Row="1" Grid.RowSpan="2" Grid.Column="1" Style="{StaticResource ModernButtonStyle}">
+						<controls:ModernButton.Background>
+							<SolidColorBrush Color="{DynamicResource ModernButtonBackgroundSpecialBrushColour}"/>
+						</controls:ModernButton.Background>
+						<Grid>
+							<Image VerticalAlignment="Top" Source="http://i.imgur.com/30NaKG2.png">
+								<Image.Effect>
+									<DropShadowEffect ShadowDepth="10" BlurRadius="40" Direction="-90" RenderingBias="Quality" />
+								</Image.Effect>
+							</Image>
+
+							<TextBlock VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="15" FontFamily="{DynamicResource ModernFontLight}" FontSize="28">
+								Map Variants
+							</TextBlock>
+						</Grid>
+					</controls:ModernButton>
+					<controls:ModernButton Grid.Row="1" Grid.RowSpan="2" Grid.Column="2" Style="{StaticResource ModernButtonStyle}">
+						<controls:ModernButton.Background>
+							<SolidColorBrush Color="{DynamicResource ModernButtonBackgroundSpecialBrushColour}"/>
+						</controls:ModernButton.Background>
+						<Grid>
+							<Image VerticalAlignment="Top" Source="http://i.imgur.com/qaQO83V.png">
+								<Image.Effect>
+									<DropShadowEffect ShadowDepth="10" BlurRadius="40" Direction="-90" RenderingBias="Quality" />
+								</Image.Effect>
+							</Image>
+
+							<TextBlock VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="15" FontFamily="{DynamicResource ModernFontLight}" FontSize="28">
+								Films
+							</TextBlock>
+						</Grid>
+					</controls:ModernButton>
+
+					<Grid Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3">
+						<StackPanel Orientation="Vertical">
+							<xctk:WatermarkTextBox Watermark="yfgfg" Margin="0,10" Style="{DynamicResource OnyxSearchTextBoxStyle}">
+								<xctk:WatermarkTextBox.WatermarkTemplate>
+									<DataTemplate>
+										<ContentControl Content="{Binding}" Foreground="Black" Focusable="False"/>
+									</DataTemplate>
+								</xctk:WatermarkTextBox.WatermarkTemplate>
+							</xctk:WatermarkTextBox>
+							<StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+								<TextBlock Foreground="{DynamicResource WindowPoweredByBrush}" FontSize="14"> Powered By</TextBlock>
+								<Viewbox Stretch="Uniform" Height="20" Width="42" RenderTransformOrigin="0.5,0.5">
+									<Viewbox.RenderTransform>
+										<TransformGroup>
+											<ScaleTransform ScaleY="-1"/>
+											<SkewTransform/>
+											<RotateTransform Angle="180"/>
+											<TranslateTransform/>
+										</TransformGroup>
+									</Viewbox.RenderTransform>
+									<Canvas Width="898.000000" Height="434.000000">
+										<Canvas.RenderTransform>
+											<TransformGroup>
+												<ScaleTransform ScaleX="0.100000" ScaleY="-0.100000"/>
+												<TranslateTransform X="0.000000" Y="434.000000"/>
+											</TransformGroup>
+										</Canvas.RenderTransform>
+										<Path Fill="{DynamicResource OnyxLogoBrush}">
+											<Path.Data>
+												<PathGeometry Figures="M2472 4265 c2 -11 38 -47 80 -80 42 -33 76 -66 75 -74 -1 -8 -13 -18 -25 -22 -20 -8 -30 -3 -58 25 -27 27 -34 30 -34 16 0 -23 -36 -36 -55 -20 -13 11 -15 6 -15 -33 0 -40 -3 -46 -25 -51 -14 -4 -30 -4 -35 -1 -13 8 -12 88 1 144 5 24 6 53 2 65 -6 17 -8 14 -14 -19 -4 -22 -12 -69 -19 -104 -15 -78 -2 -138 33 -146 15 -4 30 -24 47 -63 28 -65 167 -276 265 -401 36 -47 65 -89 65 -95 0 -10 90 -108 121 -132 8 -6 73 -73 145 -150 336 -358 440 -487 475 -592 17 -54 33 -79 80 -127 33 -33 59 -65 59 -70 0 -6 -78 -11 -198 -13 -229 -4 -599 28 -777 67 -41 9 -109 22 -225 42 -112 19 -506 146 -540 173 -8 7 -27 17 -41 23 -32 14 -213 27 -184 14 11 -5 32 -10 48 -10 20 -1 27 -6 27 -22 0 -11 -7 -27 -15 -36 -14 -14 -20 -12 -58 11 -36 23 -38 24 -16 4 89 -78 120 -99 156 -105 21 -4 124 -37 229 -74 105 -37 236 -80 290 -94 55 -15 106 -31 114 -35 8 -4 152 -36 320 -70 456 -92 558 -120 654 -183 l79 -52 -59 -26 c-43 -20 -74 -43 -108 -83 -35 -42 -79 -75 -174 -131 -266 -158 -663 -342 -872 -405 -52 -15 -131 -40 -175 -54 -44 -14 -90 -26 -102 -26 -29 0 -175 -39 -189 -51 -12 -10 -105 -39 -204 -64 -274 -70 -850 -105 -973 -59 -63 24 -169 18 -287 -17 -96 -28 -114 -30 -210 -25 -118 5 -79 -8 55 -18 62 -5 111 -1 220 18 126 22 143 23 174 10 49 -21 29 -34 -63 -41 -71 -5 -94 -15 -64 -25 7 -3 37 -6 67 -7 30 -1 58 -4 63 -7 19 -12 5 -23 -35 -26 -59 -4 -51 -22 14 -30 133 -18 200 -32 210 -45 7 -7 9 -16 5 -20 -3 -4 -108 18 -234 48 -179 42 -247 54 -322 56 l-95 2 110 -14 c61 -7 130 -20 155 -28 25 -8 106 -32 180 -52 74 -20 148 -41 164 -46 35 -11 146 -12 146 -1 0 4 114 7 252 7 269 1 434 18 769 80 74 14 149 25 168 25 38 0 163 35 201 56 14 8 111 37 215 65 105 28 345 97 535 154 459 137 656 182 825 190 72 4 168 13 215 21 130 21 145 20 169 -19 11 -18 27 -62 36 -98 22 -93 30 -327 14 -419 -7 -41 -11 -102 -10 -135 1 -33 -3 -118 -10 -190 -9 -104 -16 -134 -31 -152 -20 -21 -20 -22 8 -57 16 -20 33 -36 38 -36 5 0 2 8 -7 18 -10 10 -17 24 -17 30 0 17 57 15 63 -2 8 -19 79 -34 85 -17 4 12 62 16 62 4 0 -4 -17 -25 -37 -47 l-38 -40 41 32 c23 18 47 32 53 32 16 0 26 51 11 60 -9 6 -11 27 -7 76 9 106 28 216 42 249 7 17 15 66 18 110 5 87 25 185 65 310 34 108 66 170 102 197 17 12 30 28 30 36 0 20 62 9 153 -27 40 -16 100 -36 135 -45 34 -9 90 -23 125 -32 102 -27 374 -154 747 -350 270 -142 474 -244 487 -244 16 0 176 -79 183 -91 17 -26 138 -98 185 -110 17 -4 73 -23 125 -42 243 -89 337 -122 500 -177 96 -32 200 -65 230 -73 87 -24 304 -67 339 -67 17 0 31 -4 31 -10 0 -5 11 -10 24 -10 14 0 32 -8 42 -17 21 -21 69 -22 359 -10 158 7 203 6 264 -8 106 -22 100 -11 -7 14 -78 18 -121 21 -336 21 -135 0 -246 4 -246 9 0 28 33 34 166 28 126 -6 169 2 89 17 -22 5 -35 13 -35 23 0 13 12 15 75 11 41 -2 75 -1 75 3 0 3 -19 11 -42 18 -73 21 -128 43 -128 52 0 5 18 13 40 19 32 9 46 8 69 -4 16 -9 48 -22 72 -31 98 -35 247 -85 253 -85 3 0 -60 34 -140 75 -153 78 -234 102 -307 91 -21 -4 -79 0 -130 8 -51 8 -128 20 -172 26 -87 13 -307 80 -505 154 -136 51 -367 162 -378 182 -8 14 -176 94 -198 94 -7 0 -33 11 -56 24 -24 13 -92 49 -153 81 -325 170 -840 574 -946 742 -30 47 -65 88 -98 113 -29 21 -48 40 -44 43 4 3 44 19 88 35 107 41 264 52 675 48 358 -3 469 3 765 44 116 16 223 27 240 26 20 -3 54 9 107 37 81 43 97 58 35 32 -33 -14 -37 -14 -37 0 0 8 -7 15 -16 15 -14 0 -14 2 1 23 8 12 20 23 25 23 6 1 27 3 48 4 36 3 36 3 -13 10 -80 13 -162 11 -202 -4 -21 -8 -105 -25 -188 -38 -136 -21 -181 -23 -475 -22 -238 1 -364 6 -470 18 -243 29 -401 56 -479 81 -42 14 -81 25 -88 25 -22 0 -14 17 21 47 18 15 50 58 70 95 48 86 162 186 421 368 105 73 237 168 295 209 58 42 122 84 143 95 77 38 475 429 559 548 33 49 68 88 77 88 36 1 55 51 72 190 9 74 19 144 23 155 5 11 -1 5 -13 -13 -12 -18 -21 -40 -21 -50 0 -9 -7 -61 -17 -114 -17 -104 -26 -115 -68 -84 -19 14 -17 30 12 106 5 12 1 11 -14 -2 -22 -20 -32 -22 -51 -10 -10 7 -10 15 -2 36 10 27 10 27 -32 -8 -42 -37 -54 -41 -82 -30 -27 10 -17 28 37 64 47 31 66 45 125 90 19 15 42 51 42 67 0 4 -10 -4 -23 -19 -12 -15 -62 -50 -112 -78 -97 -55 -135 -91 -135 -130 0 -45 -121 -200 -253 -324 -116 -110 -256 -213 -299 -221 -19 -4 -93 -51 -124 -80 -44 -40 -209 -135 -334 -192 -309 -142 -580 -233 -763 -257 -80 -11 -132 -24 -181 -45 -86 -39 -116 -41 -116 -5 0 14 -11 44 -24 67 -37 64 -50 146 -49 312 1 193 2 216 20 425 10 107 21 183 29 195 19 27 17 52 -11 115 -27 61 -33 55 -10 -10 20 -56 19 -70 -5 -70 -13 0 -20 7 -20 19 0 23 -16 37 -23 19 -3 -10 -7 -10 -20 0 -13 11 -16 10 -22 -7 -6 -21 -45 -30 -45 -11 0 6 16 36 36 67 19 30 34 57 32 59 -2 1 -21 -22 -43 -52 -37 -51 -40 -60 -41 -127 -1 -87 -40 -321 -60 -361 -8 -16 -14 -47 -14 -68 0 -43 -37 -197 -70 -292 -26 -75 -65 -143 -101 -173 -15 -13 -30 -37 -34 -53 -4 -17 -8 -30 -10 -30 -16 0 -64 26 -109 60 -34 25 -90 53 -153 75 -160 55 -483 246 -713 420 -55 41 -153 129 -219 195 -65 66 -123 120 -128 120 -18 0 -167 164 -255 280 -92 123 -167 265 -150 282 21 21 -18 72 -94 122 -41 27 -82 59 -90 70 -15 20 -15 20 -12 1z m2193 -2047 c68 -12 89 -21 171 -76 65 -43 114 -104 114 -142 0 -36 -86 -113 -156 -140 -82 -32 -261 -39 -353 -15 -81 21 -188 75 -222 112 -38 40 -69 94 -69 120 0 31 80 97 151 123 104 39 216 45 364 18z" FillRule="NonZero"/>
+											</Path.Data>
+										</Path>
+									</Canvas>
+								</Viewbox>
+
+								<TextBlock Foreground="{DynamicResource WindowPoweredByBrandBrush}" FontSize="14">Onyx</TextBlock>
+							</StackPanel>
+						</StackPanel>
+					</Grid>
 				</Grid>
 			</StackPanel>
 		</ScrollViewer>
