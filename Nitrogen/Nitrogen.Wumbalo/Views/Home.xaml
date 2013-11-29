@@ -100,7 +100,9 @@
 
 					<!-- Viewport -->
 					<Button Grid.Row="0" Grid.RowSpan="2" Grid.Column="1" Grid.ColumnSpan="4" Style="{DynamicResource ModernButtonStyle}">
-						viewport
+						<TextBlock FontFamily="{DynamicResource ModernFontLight}" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="100">
+							viewport
+						</TextBlock>
 					</Button>
 
 					<!-- Apps -->
