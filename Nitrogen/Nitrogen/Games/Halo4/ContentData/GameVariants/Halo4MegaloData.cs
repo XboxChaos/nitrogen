@@ -18,6 +18,7 @@
  *   along with Nitrogen.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+using Nitrogen.ContentData.GameVariants.Megalo;
 using Nitrogen.ContentData.Localization;
 using Nitrogen.ContentData.Traits;
 using Nitrogen.Games.Halo4.ContentData.GameVariants.Megalo;
@@ -33,6 +34,7 @@ namespace Nitrogen.Games.Halo4.ContentData.GameVariants
         : ISerializable<BitStream>
     {
         public const int MaxUserDefinedTraits = 16;
+        private const int MenuOptionFlags = 26;
 
         private List<UserDefinedTraits<Halo4PlayerTraits>> userDefinedTraits;
         private List<UserDefinedOption> userDefinedOptions;
@@ -45,6 +47,8 @@ namespace Nitrogen.Games.Halo4.ContentData.GameVariants
         private bool unk0;
         private GlobalGameOptions globalOptions;
         private List<MapLoadout> mapLoadouts;
+        private int[] disabledMenuItems, hiddenMenuItems;
+        private int disabledUserDefinedItems, hiddenUserDefinedItems;
 
         public Halo4MegaloData()
         {
@@ -60,6 +64,8 @@ namespace Nitrogen.Games.Halo4.ContentData.GameVariants
             this.playerRatingParams = new int[15];
             this.globalOptions = new GlobalGameOptions();
             this.mapLoadouts = new List<MapLoadout>();
+            this.disabledMenuItems = new int[MenuOptionFlags];
+            this.hiddenMenuItems = new int[MenuOptionFlags];
         }
 
         /// <summary>
@@ -150,6 +156,40 @@ namespace Nitrogen.Games.Halo4.ContentData.GameVariants
             }
         }
 
+        public int[] DisabledGameOptionFlags
+        {
+            get { return this.disabledMenuItems; }
+            set
+            {
+                Contract.Requires<ArgumentNullException>(value != null);
+                Contract.Requires<ArgumentException>(value.Length == MenuOptionFlags);
+                this.disabledMenuItems = value;
+            }
+        }
+
+        public int[] HiddenGameOptionFlags
+        {
+            get { return this.hiddenMenuItems; }
+            set
+            {
+                Contract.Requires<ArgumentNullException>(value != null);
+                Contract.Requires<ArgumentException>(value.Length == MenuOptionFlags);
+                this.hiddenMenuItems = value;
+            }
+        }
+
+        public int DisabledUserDefinedOptionFlags
+        {
+            get { return this.disabledUserDefinedItems; }
+            set { this.disabledUserDefinedItems = value; }
+        }
+
+        public int HiddenUserDefinedOptionFlags
+        {
+            get { return this.HiddenUserDefinedOptionFlags; }
+            set { this.HiddenUserDefinedOptionFlags = value; }
+        }
+
         #region ISerializable<BitStream> Members
 
         public void Serialize(BitStream s)
@@ -208,9 +248,95 @@ namespace Nitrogen.Games.Halo4.ContentData.GameVariants
             }
             s.Serialize(this.mapLoadouts, 0, mapLoadoutsCount);
 
+            s.Stream(this.disabledMenuItems, 0, this.disabledMenuItems.Length);
+            s.Stream(this.hiddenMenuItems, 0, this.hiddenMenuItems.Length);
+            s.Stream(ref this.disabledUserDefinedItems);
+            s.Stream(ref this.hiddenUserDefinedItems);
 
+            /*int conditionsCount = this.conditions.Count;
+            s.Stream(ref conditionsCount, 10);
+            for (int i = 0; i < conditionsCount; i++)
+            {
+                if (s.State == StreamState.Read)
+                {
+                    //this.conditions.Add(Halo4Properties.ConditionsDatabase.ReadScriptObject(s));
+                }
+                else if (s.State == StreamState.Write)
+                {
+                    //this.conditions[i].Serialize(s);
+                }
+            }*/
+            /* ushort count = Register<ushort>("Count", n: 10);
+            for (var i = 0; i < count; i++)
+            {
+                Group("Condition[" + i + "]", () =>
+                {
+                    byte opcode = Register<byte>("Opcode", n: 5);
+                    if (opcode <= 0)
+                        return;
+
+                    Register<bool>("IsInverse");
+                    Register<ushort>("UnionId", n: 10);
+                    Register<ushort>("StartAction", n: 11);
+                    Group("Parameters", () =>
+                    {
+                        var condition = GameRegistry.Halo4.MegaloConditionsDatabase.GetDefinition(opcode);
+                        Import<DefinitionParameters>(new Context { { "Definition", condition } });
+                    });
+                });
+            }*/
+
+            /*ushort count = Register<ushort>("Count", n: 11);
+            for (var i = 0; i < count; i++)
+            {
+                Group("Action[" + i + "]", () =>
+                {
+                    byte opcode = Register<byte>("Opcode");
+                    if (opcode > 0)
+                    {
+                        Group("Parameters", () =>
+                        {
+                            var action = GameRegistry.Halo4.MegaloActionsDatabase.GetDefinition(opcode);
+                            Import<DefinitionParameters>(new Context { { "Definition", action } });
+                        });
+                    }
+                });
+            }*/
+
+            /*byte count = Register<byte>("Count");
+            for (var i = 0; i < count; i++)
+            {
+                Group("Trigger[" + i + "]", () =>
+                {
+                    var enumType = Register<byte>("EnumType", n: 3);
+                    Register<byte>("Type", n: 4);
+
+                    switch (enumType)
+                    {
+                        case 5:
+                            bool isFilterIndexNull = Register<bool>("IsFilterIndexNull");
+                            if (!isFilterIndexNull)
+                                Register<byte>("FilterIndex", n: 4);
+                            break;
+
+                        case 6:
+                            Register<bool>("GameObjectType");
+
+                            bool isGameObjectFilterIndexNull = Register<bool>("IsGameObjectFilterIndexNull");
+                            if (!isGameObjectFilterIndexNull)
+                                Register<byte>("GameObjectFilterIndex", n: 2);
+                            break;
+                    }
+
+                    Register<uint>("ConditionIndex", n: 10);
+                    Register<uint>("ConditionCount", n: 10);
+                    Register<uint>("ActionIndex", n: 11);
+                    Register<uint>("ActionCount", n: 11);
+                    Register<byte>("FrameUpdateFrequency");
+                    Register<byte>("FrameUpdateOffset");
+                });
+            }*/
             /* 
-                { "MenuFlags", DefineMenuFlags },
                 { "Conditions", DefineConditions },
                 { "Actions", DefineActions },
                 { "Triggers", DefineTriggers },
