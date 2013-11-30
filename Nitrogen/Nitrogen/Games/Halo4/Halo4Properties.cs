@@ -18,7 +18,9 @@
  *   along with Nitrogen.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+using Nitrogen.ContentData.GameVariants.Megalo;
 using Nitrogen.ContentData.Localization;
+using Nitrogen.Games.Halo4.ContentData.GameVariants.Megalo;
 using System;
 using System.Collections.Generic;
 

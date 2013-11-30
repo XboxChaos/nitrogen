@@ -21,8 +21,8 @@
 using System;
 using Nitrogen.IO;
 using Nitrogen.ContentData.Metadata;
-using Nitrogen.ContentData.GameVariants;
 using System.Diagnostics.Contracts;
+using Nitrogen.ContentData.GameVariants.Megalo;
 
 namespace Nitrogen.Games.Halo4.ContentData.GameVariants
 {

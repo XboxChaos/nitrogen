@@ -128,7 +128,9 @@
     <Compile Include="ContentData\AssetHeader.cs" />
     <Compile Include="ContentData\Campaign.cs" />
     <Compile Include="ContentData\CampaignShared.cs" />
-    <Compile Include="ContentData\GameVariants\MegaloMetadataHeader.cs" />
+    <Compile Include="ContentData\GameVariants\Megalo\IScriptObject.cs" />
+    <Compile Include="ContentData\GameVariants\Megalo\MegaloMetadataHeader.cs" />
+    <Compile Include="ContentData\GameVariants\Megalo\ParameterType.cs" />
     <Compile Include="ContentData\Localization\LocalizedNameCampaign.cs" />
     <Compile Include="ContentData\MapVariants\IMapVariantObject.cs" />
     <Compile Include="ContentData\MapVariants\ObjectCollection.cs" />
@@ -185,6 +187,8 @@
     <Compile Include="Games\Halo4\ContentData\GameVariants\Halo4MultiplayerVariantData.cs" />
     <Compile Include="Games\Halo4\ContentData\GameVariants\Megalo\GlobalGameOptions.cs" />
     <Compile Include="Games\Halo4\ContentData\GameVariants\Megalo\MapLoadout.cs" />
+    <Compile Include="Games\Halo4\ContentData\GameVariants\Megalo\Parameters.cs" />
+    <Compile Include="Games\Halo4\ContentData\GameVariants\Megalo\ParameterTypes\IntegerReference.cs" />
     <Compile Include="Games\Halo4\ContentData\GameVariants\Megalo\UserDefinedOptionValue.cs" />
     <Compile Include="Games\Halo4\ContentData\GameVariants\Megalo\UserDefinedOption.cs" />
     <Compile Include="Games\Halo4\ContentData\Halo4Campaign.cs" />
@@ -261,7 +265,13 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Games\Halo3ODST\ResourceData\" />
+    <Folder Include="Games\Halo3\ResourceData\" />
+    <Folder Include="Games\Halo4\ResourceData\" />
+    <Folder Include="Games\HaloReachBeta\ResourceData\" />
+    <Folder Include="Games\HaloReach\ResourceData\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>
