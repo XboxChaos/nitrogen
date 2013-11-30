@@ -2,7 +2,6 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
-using Brush = System.Drawing.Brush;
 
 namespace Nitrogen.Wumbalo.Modern.Controls.CustomControls
 {

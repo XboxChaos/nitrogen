@@ -68,7 +68,7 @@
 
 				<!-- le app content -->
 				<Grid x:Name="ContentGrid" Grid.Row="0">
-					<views:Home>
+					<views:Home x:Name="HomePage">
 						
 					</views:Home>
 				</Grid>

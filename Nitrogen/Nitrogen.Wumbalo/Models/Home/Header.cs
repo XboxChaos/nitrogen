@@ -2,6 +2,14 @@
 
 namespace Nitrogen.Wumbalo.Models.Home
 {
+	public enum HeaderType
+	{
+		Recents,
+		Home,
+		Onyx,
+		Devices
+	}
+
 	public class Header : Inpc
 	{
 		/// <summary>
@@ -33,5 +41,15 @@ namespace Nitrogen.Wumbalo.Models.Home
 			set { SetField(ref _isSelected, value, "IsSelected"); }
 		}
 		private bool _isSelected;
+
+		/// <summary>
+		/// 
+		/// </summary>
+		public HeaderType HeaderType
+		{
+			get { return _headerType; }
+			set { SetField(ref _headerType, value, "HeaderType"); }
+		}
+		private HeaderType _headerType;
 	}
 }

@@ -146,6 +146,61 @@
 			</Setter.Value>
 		</Setter>
 	</Style>
+	<Style x:Key="ModernLiveButtonStyle" TargetType="{x:Type controls:LiveButton}">
+		<Setter Property="Background" Value="{DynamicResource WumbaloAccentBrushAccentBrush}"/>
+		<Setter Property="Foreground" Value="{DynamicResource WindowButtonBorderBrush}"/>
+		<Setter Property="BorderBrush" Value="Transparent"/>
+		<Setter Property="BorderThickness" Value="4"/>
+		<Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+		<Setter Property="VerticalContentAlignment" Value="Stretch"/>
+		<Setter Property="Margin" Value="-2,0,-2,-2"/>
+		<Setter Property="Padding" Value="4"/>
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="controls:LiveButton">
+					<Border x:Name="Border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" 
+							SnapsToDevicePixels="true" Padding="{TemplateBinding Padding}" Background="Transparent">
+						<VisualStateManager.VisualStateGroups>
+							<VisualStateGroup x:Name="CommonStates">
+								<VisualState x:Name="Normal"/>
+								<VisualState x:Name="MouseOver" >
+									<Storyboard>
+										<DoubleAnimation Duration="0:0:0.15" Storyboard.TargetName="GridNameOver" Storyboard.TargetProperty="Height" To="38"/>
+									</Storyboard>
+								</VisualState>
+								<VisualState x:Name="Pressed">
+									<Storyboard>
+										<ThicknessAnimation Duration="0:0:0.05" Storyboard.TargetName="Border" Storyboard.TargetProperty="Padding" To="8"/>
+									</Storyboard>
+								</VisualState>
+							</VisualStateGroup>
+						</VisualStateManager.VisualStateGroups>
+						<Border x:Name="InnerBorder" Background="{TemplateBinding Background}">
+							<Grid>
+								<ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
+											  RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" 
+											  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+
+								<Grid VerticalAlignment="Bottom" HorizontalAlignment="Left">
+									<Grid x:Name="GridNameOver" Background="Black" Opacity="0.6" Height="0" VerticalAlignment="Bottom" HorizontalAlignment="Stretch"></Grid>
+									<TextBlock FontFamily="{DynamicResource ModernFontRegular}" TextTrimming="CharacterEllipsis" FontSize="14" 
+											   Text="{TemplateBinding Title}" Margin="10"></TextBlock>
+								</Grid>
+							</Grid>
+						</Border>
+					</Border>
+					<ControlTemplate.Triggers>
+						<Trigger Property="IsMouseOver" Value="true">
+							<Setter Property="BorderBrush" TargetName="Border" Value="{DynamicResource WindowButtonBorderBrush}" />
+						</Trigger>
+						<Trigger Property="IsPressed" Value="true">
+							<Setter Property="Height" TargetName="GridNameOver" Value="38" />
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
 
 	<!-- Window Action Button Styles -->
 	<Style x:Key="ButtonApplicationWindowActionStyle" TargetType="{x:Type Button}">
@@ -357,7 +412,7 @@
 			<Setter.Value>
 				<ControlTemplate TargetType="{x:Type ToggleButton}">
 					<Border x:Name="Border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="true">
-						<TextBlock x:Name="BorderContent" Text="{TemplateBinding Tag}" FontFamily="{DynamicResource ModernFontSemiLight}" FontSize="22"></TextBlock>
+						<TextBlock x:Name="BorderContent" Text="{TemplateBinding Content}" FontFamily="{DynamicResource ModernFontSemiLight}" FontSize="22"></TextBlock>
 					</Border>
 					<ControlTemplate.Triggers>
 						<Trigger Property="IsMouseOver" Value="true">

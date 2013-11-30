@@ -13,14 +13,18 @@ namespace Nitrogen.Wumbalo.ViewModels
 		/// </summary>
 		public HomeViewModel()
 		{
-			Headers.Add(new Header { IsSelected = false, Name = "Recents", Tag = "Recents" });
-			Headers.Add(new Header { IsSelected = true, Name = "Home", Tag = "Home" });
-			Headers.Add(new Header { IsSelected = false, Name = "Onyx", Tag = "Onyx" });
+			//Headers.CollectionChanged += Headers_CollectionChanged;
+
+			Headers.Add(new Header { IsSelected = false, Name = "Recents", Tag = "Recents", HeaderType = HeaderType.Recents });
+			Headers.Add(new Header { IsSelected = true, Name = "Home", Tag = "Home", HeaderType = HeaderType.Home });
+			Headers.Add(new Header { IsSelected = false, Name = "Onyx", Tag = "Onyx", HeaderType = HeaderType.Onyx });
+			Headers.Add(new Header { IsSelected = false, Name = "Devices", Tag = "Devices", HeaderType = HeaderType.Devices });
 
 			for (var i = 0; i < new Random().Next(8, 16); i++)
 				Recents.Add(new Recent { Name = string.Format("Test {0}", i) });
 
 			Recents.CollectionChanged += RecentsOnCollectionChanged;
+			Headers.CollectionChanged += HeadersOnCollectionChanged;
 			RecentsOnCollectionChanged(null, null);
 		}
 
@@ -33,6 +37,9 @@ namespace Nitrogen.Wumbalo.ViewModels
 		/// <param name="notifyCollectionChangedEventArgs"></param>
 		private void RecentsOnCollectionChanged(object sender, NotifyCollectionChangedEventArgs notifyCollectionChangedEventArgs)
 		{
+			if (sender != null)
+				SetField(ref _recents, sender as ObservableCollection<Recent>, "Recents", true);
+
 			_recentsForXaml.Clear();
 			var i = 0;
 			var recents = new ObservableCollection<Recent>();
@@ -49,6 +56,17 @@ namespace Nitrogen.Wumbalo.ViewModels
 			}
 			if (recents.Any())
 				_recentsForXaml.Add(recents);
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="notifyCollectionChangedEventArgs"></param>
+		private void HeadersOnCollectionChanged(object sender, NotifyCollectionChangedEventArgs notifyCollectionChangedEventArgs)
+		{
+			if (sender != null)
+				SetField(ref _headers, sender as ObservableCollection<Header>, "Headers", true);
 		}
 
 		#endregion
@@ -70,7 +88,7 @@ namespace Nitrogen.Wumbalo.ViewModels
 		{
 			get { return _recents; }
 		}
-		private readonly ObservableCollection<Recent> _recents = new ObservableCollection<Recent>();
+		private ObservableCollection<Recent> _recents = new ObservableCollection<Recent>();
 
 		/// <summary>
 		/// 

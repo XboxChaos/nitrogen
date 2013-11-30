@@ -1,10 +1,13 @@
 ﻿using System;
+using System.Linq;
 using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Controls.Primitives;
 using System.Windows.Interop;
 using Nitrogen.Wumbalo.Helpers.Native;
+using Nitrogen.Wumbalo.Models.Home;
 using Nitrogen.Wumbalo.ViewModels;
+using Nitrogen.Wumbalo.Views;
 
 namespace Nitrogen.Wumbalo
 {
@@ -33,10 +36,14 @@ namespace Nitrogen.Wumbalo
 		{
 			base.OnSourceInitialized(e);
 
+			// Set up Interop Stuff
 			var handle = (new WindowInteropHelper(this)).Handle;
 			var hwndSource = HwndSource.FromHwnd(handle);
 			if (hwndSource != null)
 				hwndSource.AddHook(WindowProc);
+
+			// Scroll to Home
+			HomePage.ScrollToSection(HomePage.ViewModel.Headers.First(h => h.HeaderType == HeaderType.Home));
 		}
 
 		#region Recreating Normal Window Actions

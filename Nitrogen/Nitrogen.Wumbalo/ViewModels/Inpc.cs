@@ -15,10 +15,11 @@ namespace Nitrogen.Wumbalo.ViewModels
 				PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 		}
 
-		protected bool SetField<T>(ref T field, T value, string propertyName)
+		protected bool SetField<T>(ref T field, T value, string propertyName, bool overrideChecks = false)
 		{
-			if (EqualityComparer<T>.Default.Equals(field, value))
-				return false;
+			if (!overrideChecks)
+				if (EqualityComparer<T>.Default.Equals(field, value))
+					return false;
 
 			field = value;
 			OnPropertyChanged(propertyName);
