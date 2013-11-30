@@ -2,7 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 
-namespace Nitrogen.Wumbalo.Modern.Controls
+namespace Nitrogen.Wumbalo.Modern.Controls.CustomControls
 {
 	/// <summary>
 	/// 
