@@ -21,6 +21,12 @@
 	<SolidColorBrush x:Key="TextboxBackgroundBrush" Color="#FFFFFFFF" />
 	<SolidColorBrush x:Key="TextboxForegroundBrush" Color="#FF1E1E1E" />
 
+	<!-- Scrollbar -->
+	<SolidColorBrush x:Key="ScollbarUnActiveBrush" Color="#FF686868" />
+	<SolidColorBrush x:Key="ScollbarActiveBrush" Color="#FFFFFFFF" />
+	<SolidColorBrush x:Key="ScollbarHoverBrush" Color="#FF9e9e9e" />
+
+
 	<!-- Xaml Paths -->
 	<SolidColorBrush x:Key="OnyxLogoBrush" Color="#FFFFFFFF" />
 	<SolidColorBrush x:Key="SearchGlassBrush" Color="#FF000000" />
