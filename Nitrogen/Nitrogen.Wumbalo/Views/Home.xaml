@@ -141,7 +141,7 @@
 							<StackPanel>
 								<Image Source="http://images-eds.xboxlive.com/image?url=z951ykn43p4FqWbbFvR2Ec.8vbDhj8G2Xe7JngaTToBrrCmIEEXHC9UNrdJ6P7KIbgsfD63mXFU_1J9M4K4P9MC9JmvpAK38Xkaw0hKBNU7imD1DYrHPio.yGWLd9AkU&amp;format=png&amp;w=402&amp;h=402">
 									<Image.Effect>
-										<DropShadowEffect ShadowDepth="10" BlurRadius="40" Direction="-90" RenderingBias="Quality" />
+										<DropShadowEffect ShadowDepth="10" BlurRadius="40" Direction="-90" RenderingBias="Quality" Color="{DynamicResource WindowBackgroundBrushColour}" />
 									</Image.Effect>
 								</Image>
 
