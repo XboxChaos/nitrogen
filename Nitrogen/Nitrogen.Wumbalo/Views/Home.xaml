@@ -322,7 +322,23 @@
 				</Grid>
 				
 				<Grid x:Name="DevicesGrid" Margin="20,0,0,0">
-					
+					<Grid.RowDefinitions>
+						<RowDefinition Height="20" />
+						<RowDefinition Height="150" />
+						<RowDefinition Height="150" />
+						<RowDefinition Height="150" />
+					</Grid.RowDefinitions>
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="150" />
+						<ColumnDefinition Width="150" />
+						<ColumnDefinition Width="150" />
+						<ColumnDefinition Width="150" />
+						<ColumnDefinition Width="150" />
+						<ColumnDefinition Width="150" />
+					</Grid.ColumnDefinitions>
+
+					<controls:LiveButton Grid.Column="0" Grid.Row="1" Title="External Device" Description="Name: Mah USB&#x0a;Storage: 23.4GB&#x0a;Drive: C:\">
+					</controls:LiveButton>
 				</Grid>
 			</StackPanel>
 		</ScrollViewer>

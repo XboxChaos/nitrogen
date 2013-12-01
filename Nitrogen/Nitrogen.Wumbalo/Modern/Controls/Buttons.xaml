@@ -1,6 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-					xmlns:controls="clr-namespace:Nitrogen.Wumbalo.Modern.Controls.CustomControls">
+					xmlns:controls="clr-namespace:Nitrogen.Wumbalo.Modern.Controls.CustomControls"
+					xmlns:system="clr-namespace:System;assembly=mscorlib" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d">
 
 	<Style x:Key="ModernButtonWithNameStyle" TargetType="{x:Type controls:ModernButton}">
 		<Setter Property="Background" Value="{DynamicResource WumbaloAccentBrushAccentBrush}"/>
@@ -13,9 +14,9 @@
 		<Setter Property="Padding" Value="4"/>
 		<Setter Property="Template">
 			<Setter.Value>
-				<ControlTemplate TargetType="controls:ModernButton">
+				<ControlTemplate TargetType="{x:Type controls:ModernButton}">
 					<Border x:Name="Border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" 
-							SnapsToDevicePixels="true" Padding="{TemplateBinding Padding}" Background="Transparent">
+						SnapsToDevicePixels="true" Padding="{TemplateBinding Padding}" Background="Transparent">
 						<VisualStateManager.VisualStateGroups>
 							<VisualStateGroup x:Name="CommonStates">
 								<VisualState x:Name="Normal"/>
@@ -34,13 +35,13 @@
 						<Border x:Name="InnerBorder" Background="{TemplateBinding Background}">
 							<Grid>
 								<ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
-											  RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" 
-											  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+									RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" 
+									VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
 
 								<Grid VerticalAlignment="Bottom" HorizontalAlignment="Left">
-									<Grid x:Name="GridNameOver" Background="Black" Opacity="0.6" Height="0" VerticalAlignment="Bottom" HorizontalAlignment="Stretch"></Grid>
+									<Grid x:Name="GridNameOver" Background="Black" Opacity="0.6" Height="0" VerticalAlignment="Bottom" HorizontalAlignment="Stretch"/>
 									<TextBlock FontFamily="{DynamicResource ModernFontRegular}" TextTrimming="CharacterEllipsis" FontSize="14" 
-											   Text="{TemplateBinding ButtonName}" Margin="10"></TextBlock>
+										Text="{TemplateBinding ButtonName}" Margin="10"/>
 								</Grid>
 							</Grid>
 						</Border>
@@ -68,9 +69,9 @@
 		<Setter Property="Padding" Value="4"/>
 		<Setter Property="Template">
 			<Setter.Value>
-				<ControlTemplate TargetType="controls:ModernButton">
+				<ControlTemplate TargetType="{x:Type controls:ModernButton}">
 					<Border x:Name="Border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" 
-							SnapsToDevicePixels="true" Padding="{TemplateBinding Padding}" Background="Transparent">
+						SnapsToDevicePixels="true" Padding="{TemplateBinding Padding}" Background="Transparent">
 						<VisualStateManager.VisualStateGroups>
 							<VisualStateGroup x:Name="CommonStates">
 								<VisualState x:Name="Normal"/>
@@ -85,13 +86,13 @@
 						<Border x:Name="InnerBorder" Background="{TemplateBinding Background}">
 							<Grid>
 								<ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
-											  RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" 
-											  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+									RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" 
+									VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
 
 								<Grid VerticalAlignment="Bottom" HorizontalAlignment="Left">
-									<Grid x:Name="GridNameOver" Background="Black" Opacity="0.6" Height="38" VerticalAlignment="Bottom" HorizontalAlignment="Stretch"></Grid>
+									<Grid x:Name="GridNameOver" Background="Black" Opacity="0.6" Height="38" VerticalAlignment="Bottom" HorizontalAlignment="Stretch"/>
 									<TextBlock FontFamily="{DynamicResource ModernFontRegular}" TextTrimming="CharacterEllipsis" FontSize="14" 
-											   Text="{TemplateBinding ButtonName}" Margin="10"></TextBlock>
+										Text="{TemplateBinding ButtonName}" Margin="10"/>
 								</Grid>
 							</Grid>
 						</Border>
@@ -116,9 +117,9 @@
 		<Setter Property="Padding" Value="4"/>
 		<Setter Property="Template">
 			<Setter.Value>
-				<ControlTemplate TargetType="Button">
+				<ControlTemplate TargetType="{x:Type Button}">
 					<Border x:Name="Border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" 
-							SnapsToDevicePixels="true" Padding="{TemplateBinding Padding}" Background="Transparent">
+						SnapsToDevicePixels="true" Padding="{TemplateBinding Padding}" Background="Transparent">
 						<VisualStateManager.VisualStateGroups>
 							<VisualStateGroup x:Name="CommonStates">
 								<VisualState x:Name="Normal"/>
@@ -132,69 +133,14 @@
 						</VisualStateManager.VisualStateGroups>
 						<Border x:Name="InnerBorder" Background="{TemplateBinding Background}">
 							<ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
-											  RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" 
-											  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+								RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" 
+								VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
 						</Border>
 					</Border>
 					<ControlTemplate.Triggers>
 						<Trigger Property="IsMouseOver" Value="true">
 							<Setter Property="BorderBrush" TargetName="Border" Value="{DynamicResource WindowButtonBorderBrush}" />
 							<Setter Property="Background" TargetName="InnerBorder" Value="{DynamicResource WumbaloAccentBrushAccentBrush}" />
-						</Trigger>
-					</ControlTemplate.Triggers>
-				</ControlTemplate>
-			</Setter.Value>
-		</Setter>
-	</Style>
-	<Style x:Key="ModernLiveButtonStyle" TargetType="{x:Type controls:LiveButton}">
-		<Setter Property="Background" Value="{DynamicResource WumbaloAccentBrushAccentBrush}"/>
-		<Setter Property="Foreground" Value="{DynamicResource WindowButtonBorderBrush}"/>
-		<Setter Property="BorderBrush" Value="Transparent"/>
-		<Setter Property="BorderThickness" Value="4"/>
-		<Setter Property="HorizontalContentAlignment" Value="Stretch"/>
-		<Setter Property="VerticalContentAlignment" Value="Stretch"/>
-		<Setter Property="Margin" Value="-2,0,-2,-2"/>
-		<Setter Property="Padding" Value="4"/>
-		<Setter Property="Template">
-			<Setter.Value>
-				<ControlTemplate TargetType="controls:LiveButton">
-					<Border x:Name="Border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" 
-							SnapsToDevicePixels="true" Padding="{TemplateBinding Padding}" Background="Transparent">
-						<VisualStateManager.VisualStateGroups>
-							<VisualStateGroup x:Name="CommonStates">
-								<VisualState x:Name="Normal"/>
-								<VisualState x:Name="MouseOver" >
-									<Storyboard>
-										<DoubleAnimation Duration="0:0:0.15" Storyboard.TargetName="GridNameOver" Storyboard.TargetProperty="Height" To="38"/>
-									</Storyboard>
-								</VisualState>
-								<VisualState x:Name="Pressed">
-									<Storyboard>
-										<ThicknessAnimation Duration="0:0:0.05" Storyboard.TargetName="Border" Storyboard.TargetProperty="Padding" To="8"/>
-									</Storyboard>
-								</VisualState>
-							</VisualStateGroup>
-						</VisualStateManager.VisualStateGroups>
-						<Border x:Name="InnerBorder" Background="{TemplateBinding Background}">
-							<Grid>
-								<ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
-											  RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" 
-											  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
-
-								<Grid VerticalAlignment="Bottom" HorizontalAlignment="Left">
-									<Grid x:Name="GridNameOver" Background="Black" Opacity="0.6" Height="0" VerticalAlignment="Bottom" HorizontalAlignment="Stretch"></Grid>
-									<TextBlock FontFamily="{DynamicResource ModernFontRegular}" TextTrimming="CharacterEllipsis" FontSize="14" 
-											   Text="{TemplateBinding Title}" Margin="10"></TextBlock>
-								</Grid>
-							</Grid>
-						</Border>
-					</Border>
-					<ControlTemplate.Triggers>
-						<Trigger Property="IsMouseOver" Value="true">
-							<Setter Property="BorderBrush" TargetName="Border" Value="{DynamicResource WindowButtonBorderBrush}" />
-						</Trigger>
-						<Trigger Property="IsPressed" Value="true">
-							<Setter Property="Height" TargetName="GridNameOver" Value="38" />
 						</Trigger>
 					</ControlTemplate.Triggers>
 				</ControlTemplate>
@@ -218,8 +164,8 @@
 			<Setter.Value>
 				<ControlTemplate TargetType="{x:Type Button}">
 					<Border x:Name="border" Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" BorderBrush="{TemplateBinding BorderBrush}" 
-							BorderThickness="{TemplateBinding BorderThickness}" Margin="{TemplateBinding Margin}"
-							Background="{TemplateBinding Background}" SnapsToDevicePixels="true">
+						BorderThickness="{TemplateBinding BorderThickness}" Margin="{TemplateBinding Margin}"
+						Background="{TemplateBinding Background}" SnapsToDevicePixels="true">
 						<Grid>
 							<!-- Close Button Vector Shape (should turn this into a path.. but whatever) -->
 							<Grid Width="10" Height="10">
@@ -270,7 +216,7 @@
 							</Grid>
 
 							<!-- Inner Border Trick -->
-							<Border x:Name="InnerBorder" BorderThickness="3" BorderBrush="Transparent"></Border>
+							<Border x:Name="InnerBorder" BorderThickness="3" BorderBrush="Transparent"/>
 
 							<!-- Workaround for focusing -->
 							<Rectangle Fill="{DynamicResource WindowActionButtonBrush}" Opacity="0" />
@@ -294,8 +240,8 @@
 			<Setter.Value>
 				<ControlTemplate TargetType="{x:Type Button}">
 					<Border x:Name="border" Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" BorderBrush="{TemplateBinding BorderBrush}" 
-							BorderThickness="{TemplateBinding BorderThickness}" Margin="{TemplateBinding Margin}"
-							Background="{TemplateBinding Background}" SnapsToDevicePixels="true">
+						BorderThickness="{TemplateBinding BorderThickness}" Margin="{TemplateBinding Margin}"
+						Background="{TemplateBinding Background}" SnapsToDevicePixels="true">
 						<Grid>
 							<!-- Restore Button Vector Shape (should turn this into a path.. but whatever) -->
 							<Grid Width="10" Height="10">
@@ -310,7 +256,7 @@
 							</Grid>
 
 							<!-- Inner Border Trick -->
-							<Border x:Name="InnerBorder" BorderThickness="3" BorderBrush="Transparent"></Border>
+							<Border x:Name="InnerBorder" BorderThickness="3" BorderBrush="Transparent"/>
 
 							<!-- Workaround for focusing -->
 							<Rectangle Fill="{DynamicResource WindowActionButtonBrush}" Opacity="0" />
@@ -334,8 +280,8 @@
 			<Setter.Value>
 				<ControlTemplate TargetType="{x:Type Button}">
 					<Border x:Name="border" Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" BorderBrush="{TemplateBinding BorderBrush}" 
-							BorderThickness="{TemplateBinding BorderThickness}" Margin="{TemplateBinding Margin}"
-							Background="{TemplateBinding Background}" SnapsToDevicePixels="true">
+						BorderThickness="{TemplateBinding BorderThickness}" Margin="{TemplateBinding Margin}"
+						Background="{TemplateBinding Background}" SnapsToDevicePixels="true">
 						<Grid>
 							<!-- Maxamize Button Vector Shape (should turn this into a path.. but whatever) -->
 							<Grid Width="10" Height="10">
@@ -346,7 +292,7 @@
 							</Grid>
 
 							<!-- Inner Border Trick -->
-							<Border x:Name="InnerBorder" BorderThickness="3" BorderBrush="Transparent"></Border>
+							<Border x:Name="InnerBorder" BorderThickness="3" BorderBrush="Transparent"/>
 
 							<!-- Workaround for focusing -->
 							<Rectangle Fill="{DynamicResource WindowActionButtonBrush}" Opacity="0" />
@@ -370,8 +316,8 @@
 			<Setter.Value>
 				<ControlTemplate TargetType="{x:Type Button}">
 					<Border x:Name="border" Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" BorderBrush="{TemplateBinding BorderBrush}" 
-							BorderThickness="{TemplateBinding BorderThickness}" Margin="{TemplateBinding Margin}"
-							Background="{TemplateBinding Background}" SnapsToDevicePixels="true">
+						BorderThickness="{TemplateBinding BorderThickness}" Margin="{TemplateBinding Margin}"
+						Background="{TemplateBinding Background}" SnapsToDevicePixels="true">
 						<Grid>
 							<!-- Minimize Button Vector Shape (should turn this into a path.. but whatever) -->
 							<Grid Width="10" Height="10">
@@ -379,7 +325,7 @@
 							</Grid>
 
 							<!-- Inner Border Trick -->
-							<Border x:Name="InnerBorder" BorderThickness="3" BorderBrush="Transparent"></Border>
+							<Border x:Name="InnerBorder" BorderThickness="3" BorderBrush="Transparent"/>
 
 							<!-- Workaround for focusing -->
 							<Rectangle Fill="{DynamicResource WindowActionButtonBrush}" Opacity="0" />
@@ -397,7 +343,7 @@
 			</Setter.Value>
 		</Setter>
 	</Style>
-	
+
 	<!-- Home Window Button Styles -->
 	<Style x:Key="HomeHeaderButton" TargetType="{x:Type ToggleButton}">
 		<Setter Property="Background" Value="Transparent"/>
@@ -412,15 +358,123 @@
 			<Setter.Value>
 				<ControlTemplate TargetType="{x:Type ToggleButton}">
 					<Border x:Name="Border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="true">
-						<TextBlock x:Name="BorderContent" Text="{TemplateBinding Content}" FontFamily="{DynamicResource ModernFontSemiLight}" FontSize="22"></TextBlock>
+						<TextBlock x:Name="BorderContent" Text="{TemplateBinding Content}" FontFamily="{DynamicResource ModernFontSemiLight}" FontSize="22"/>
 					</Border>
 					<ControlTemplate.Triggers>
 						<Trigger Property="IsMouseOver" Value="true">
 							<Setter Property="Foreground" TargetName="BorderContent" Value="#b6b6b6"/>
 						</Trigger>
-						<Trigger Property="ToggleButton.IsChecked" Value="true">
+						<Trigger Property="IsChecked" Value="true">
 							<Setter Property="BorderBrush" TargetName="Border" Value="{DynamicResource WumbaloAccentBrushAccentBrush}"/>
 							<Setter Property="Foreground" TargetName="BorderContent" Value="White"/>
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+	<Style TargetType="{x:Type controls:LiveButton}">
+		<Setter Property="Width" Value="150"/>
+		<Setter Property="Height" Value="150"/>
+		<Setter Property="Background" Value="{DynamicResource WumbaloAccentBrushAccentBrush}"/>
+		<Setter Property="Foreground" Value="{DynamicResource WindowButtonBorderBrush}"/>
+		<Setter Property="BorderBrush" Value="Transparent"/>
+		<Setter Property="BorderThickness" Value="4"/>
+		<Setter Property="HorizontalContentAlignment" Value="Center"/>
+		<Setter Property="VerticalContentAlignment" Value="Center"/>
+		<Setter Property="Margin" Value="-2,0,-2,-2"/>
+		<Setter Property="Padding" Value="4"/>
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type controls:LiveButton}">
+					<ControlTemplate.Resources>
+						<Storyboard x:Key="BeginLive">
+							<ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Margin)" Storyboard.TargetName="CoverTile">
+								<EasingThicknessKeyFrame KeyTime="0:0:0.9" Value="0,0,0,50">
+									<EasingThicknessKeyFrame.EasingFunction>
+										<CircleEase EasingMode="EaseInOut"/>
+									</EasingThicknessKeyFrame.EasingFunction>
+								</EasingThicknessKeyFrame>
+								<EasingThicknessKeyFrame KeyTime="0:0:2.5" Value="0,0,0,55" />
+								<EasingThicknessKeyFrame KeyTime="0:0:4.0" Value="0,0,0,160">
+									<EasingThicknessKeyFrame.EasingFunction>
+										<CircleEase EasingMode="EaseInOut"/>
+									</EasingThicknessKeyFrame.EasingFunction>
+								</EasingThicknessKeyFrame>
+							</ThicknessAnimationUsingKeyFrames>
+							<ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="BorderThickness" Storyboard.TargetName="CoverTile">
+								<EasingThicknessKeyFrame KeyTime="0:0:0.0" Value="0,0,0,1"/>
+								<EasingThicknessKeyFrame KeyTime="0:0:4.0" Value="0,0,0,0"/>
+							</ThicknessAnimationUsingKeyFrames>
+						</Storyboard>
+						<Storyboard x:Key="EndLive">
+							<ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Margin)" Storyboard.TargetName="CoverTile">
+								<EasingThicknessKeyFrame KeyTime="0:0:0.9" Value="0,0,0,55">
+									<EasingThicknessKeyFrame.EasingFunction>
+										<CircleEase EasingMode="EaseInOut"/>
+									</EasingThicknessKeyFrame.EasingFunction>
+								</EasingThicknessKeyFrame>
+								<EasingThicknessKeyFrame KeyTime="0:0:2.5" Value="0,0,0,50" />
+								<EasingThicknessKeyFrame KeyTime="0:0:4.0" Value="0,0,0,0">
+									<EasingThicknessKeyFrame.EasingFunction>
+										<CircleEase EasingMode="EaseInOut"/>
+									</EasingThicknessKeyFrame.EasingFunction>
+								</EasingThicknessKeyFrame>
+							</ThicknessAnimationUsingKeyFrames>
+							<ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="BorderThickness" Storyboard.TargetName="CoverTile">
+								<EasingThicknessKeyFrame KeyTime="0:0:0.0" Value="0,0,0,1"/>
+								<EasingThicknessKeyFrame KeyTime="0:0:4.0" Value="0,0,0,0"/>
+							</ThicknessAnimationUsingKeyFrames>
+						</Storyboard>
+					</ControlTemplate.Resources>
+					<Border x:Name="Border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" 
+						SnapsToDevicePixels="true" Padding="{TemplateBinding Padding}" Background="Transparent">
+						<VisualStateManager.VisualStateGroups>
+							<VisualStateGroup x:Name="CommonStates">
+								<VisualState x:Name="Normal"/>
+								<VisualState x:Name="MouseOver" />
+								<VisualState x:Name="Pressed">
+									<Storyboard>
+										<ThicknessAnimation Duration="0:0:0.05" Storyboard.TargetName="Border" Storyboard.TargetProperty="Padding" To="8"/>
+									</Storyboard>
+								</VisualState>
+							</VisualStateGroup>
+						</VisualStateManager.VisualStateGroups>
+						<Border x:Name="InnerBorder" Background="{TemplateBinding Background}">
+							<Grid>
+								<!-- Description Layer -->
+								<Border x:Name="DescriptionTile" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="{TemplateBinding Background}" RenderTransformOrigin="0.5,0.5">
+									<Border.RenderTransform>
+										<TransformGroup>
+											<ScaleTransform/>
+											<SkewTransform/>
+											<RotateTransform/>
+											<TranslateTransform/>
+										</TransformGroup>
+									</Border.RenderTransform>
+									<Grid>
+										<TextBlock Text="{TemplateBinding Description}" TextWrapping="Wrap" Margin="8" FontSize="14" TextTrimming="CharacterEllipsis" FontFamily="{DynamicResource ModernFontSemiBold}" />
+									</Grid>
+								</Border>
+
+								<!-- Title Layer -->
+								<Border x:Name="CoverTile" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" BorderBrush="{DynamicResource WumbaloAccentBrushAccentBrushSecondary}" Background="{TemplateBinding Background}">
+									<Grid>
+										<Image Source="{TemplateBinding BackgroundImage}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Stretch="UniformToFill" />
+
+										<ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
+														  RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" 
+														  VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+
+										<TextBlock FontFamily="{DynamicResource ModernFontRegular}" TextTrimming="CharacterEllipsis" FontSize="14" Text="{TemplateBinding Title}" Margin="10" VerticalAlignment="Bottom" HorizontalAlignment="Left" />
+									</Grid>
+								</Border>
+							</Grid>
+						</Border>
+					</Border>
+					<ControlTemplate.Triggers>
+						<Trigger Property="IsMouseOver" Value="true">
+							<Setter Property="BorderBrush" TargetName="Border" Value="{DynamicResource WindowButtonBorderBrush}" />
 						</Trigger>
 					</ControlTemplate.Triggers>
 				</ControlTemplate>
