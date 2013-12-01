@@ -10,7 +10,7 @@
              SnapsToDevicePixels="True"
 			 i:MouseWheel.Enhanced="True"
 			 i:MouseWheel.Smoothing="Smooth"
-             d:DesignHeight="720" d:DesignWidth="2000">
+             d:DesignHeight="720" d:DesignWidth="4000">
 	<UserControl.Triggers>
 		<EventTrigger RoutedEvent="Grid.Loaded">
 			<BeginStoryboard>
