@@ -1,5 +1,17 @@
-﻿namespace Nitrogen.Wumbalo.ViewModels.Dialogs
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
+
+namespace Nitrogen.Wumbalo.ViewModels.Dialogs
 {
+	public enum ModernMessageBoxButton
+	{
+		Okay,
+		Cancel,
+		Yes,
+		No,
+		Aite
+	}
+
 	/// <summary>
 	/// 
 	/// </summary>
@@ -12,9 +24,44 @@
 		/// <param name="message"></param>
 		public ModernMessageBoxViewModel(string title, string message)
 		{
+			Init(title, message, null);
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="title"></param>
+		/// <param name="message"></param>
+		/// <param name="buttons"></param>
+		public ModernMessageBoxViewModel(string title, string message, List<ModernMessageBoxButton> buttons = null)
+		{
+			Init(title, message, buttons);
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="title"></param>
+		/// <param name="message"></param>
+		/// <param name="buttons"></param>
+		private void Init(string title, string message, List<ModernMessageBoxButton> buttons = null)
+		{
 			Title = title;
 			Message = message;
+			if (buttons == null)
+				buttons = new List<ModernMessageBoxButton> { ModernMessageBoxButton.Okay };
+			Buttons = new ObservableCollection<ModernMessageBoxButton>(buttons);
 		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		public ObservableCollection<ModernMessageBoxButton> Buttons
+		{
+			get { return _buttons; }
+			set { SetField(ref _buttons, value, "Buttons"); }
+		}
+		private ObservableCollection<ModernMessageBoxButton> _buttons = new ObservableCollection<ModernMessageBoxButton>();
 
 		/// <summary>
 		/// 

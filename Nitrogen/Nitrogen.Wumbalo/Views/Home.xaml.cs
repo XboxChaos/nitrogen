@@ -1,10 +1,12 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using Nitrogen.Wumbalo.Models.Home;
 using Nitrogen.Wumbalo.ViewModels;
 using Nitrogen.Wumbalo.Modern.Dialogs;
+using Nitrogen.Wumbalo.ViewModels.Dialogs;
 
 namespace Nitrogen.Wumbalo.Views
 {
@@ -83,7 +85,8 @@ namespace Nitrogen.Wumbalo.Views
 
 		private void DevBasicessageBoxButton_OnClick(object sender, RoutedEventArgs e)
 		{
-			ModernMessageBox.Show("This is a Message Box", "Testing the default, and rather generic, message box. Le wumbalo. More text, need to fill up screen to test text wrapping. And to look important, ofcourse.");
+			ModernMessageBox.Show("This is a Message Box",
+				"Testing the default, and rather generic, message box. Le wumbalo. More text, need to fill up screen to test text wrapping. And to look important, ofcourse.");
 		}
 
 		#endregion

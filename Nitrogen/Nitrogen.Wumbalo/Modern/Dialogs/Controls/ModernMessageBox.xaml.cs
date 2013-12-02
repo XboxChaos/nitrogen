@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows;
+using Nitrogen.Wumbalo.Modern.Controls.CustomControls;
 using Nitrogen.Wumbalo.ViewModels.Dialogs;
 
 namespace Nitrogen.Wumbalo.Modern.Dialogs.Controls
@@ -21,9 +22,15 @@ namespace Nitrogen.Wumbalo.Modern.Dialogs.Controls
 
 		public event EventHandler OnClose;
 
-		private void OkayButton_OnClick(object sender, RoutedEventArgs e)
+		private void ActionButton_OnClick(object sender, RoutedEventArgs e)
 		{
-			OnClose(null, null);
+			var button = sender as ModernButton;
+			if (button == null) return;
+
+			var buttonResult = button.Tag as ModernMessageBoxButton?;
+			if (buttonResult == null) return;
+
+			OnClose(buttonResult, null);
 		}
 	}
 }

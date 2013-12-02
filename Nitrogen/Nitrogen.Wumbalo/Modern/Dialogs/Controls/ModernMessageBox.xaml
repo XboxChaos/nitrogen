@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:system="clr-namespace:System;assembly=mscorlib"
-             xmlns:customControls="clr-namespace:Nitrogen.Wumbalo.Modern.Controls.CustomControls"
+             xmlns:controls="clr-namespace:Nitrogen.Wumbalo.Modern.Controls.CustomControls"
              xmlns:dialogs="clr-namespace:Nitrogen.Wumbalo.ViewModels.Dialogs"
              mc:Ignorable="d" 
              MinHeight="300"
@@ -16,14 +16,33 @@
 	<UserControl.Resources>
 		<system:String x:Key="DefaultTitleString">Message Box Title</system:String>
 		<system:String x:Key="DefaultMessageString">The type of message that would be show in the modern message box. complete with max width and text wrapping! For those special messages...</system:String>
+
+		<Style x:Key="DialogButtonStyle" BasedOn="{StaticResource {x:Type controls:ModernButton}}" TargetType="{x:Type controls:ModernButton}">
+			<Setter Property="Height" Value="65" />
+			<Setter Property="MinWidth" Value="115" />
+			<Setter Property="Background" Value="{DynamicResource DialogsButtonBackgroundBrush}" />
+			<Setter Property="BorderThickness" Value="1" />
+			<Setter Property="BorderBrush" Value="{DynamicResource DialogsButtonBorderBrush}" />
+			<Setter Property="ButtonHoverBackground" Value="{DynamicResource DialogsButtonHoverBackgroundBrush}" />
+			<Setter Property="Padding" Value="2" />
+		</Style>
+		<Style x:Key="DialogButtonTextBlockStyle" BasedOn="{StaticResource {x:Type TextBlock}}" TargetType="{x:Type TextBlock}">
+			<Setter Property="HorizontalAlignment" Value="Left" />
+			<Setter Property="VerticalAlignment" Value="Bottom" />
+			<Setter Property="Margin" Value="8" />
+			<Setter Property="FontFamily" Value="{DynamicResource ModernFontRegular}" />
+			<Setter Property="FontSize" Value="14" />
+			<Setter Property="Foreground" Value="{DynamicResource DialogsFontColourBrush}" />
+		</Style>
 	</UserControl.Resources>
-	<Grid x:Name="ContainerGrid" Margin="0,40,0,40" Background="#FF151515">
+	<Grid x:Name="ContainerGrid" Margin="0" Background="#FF151515">
 		<Grid.Triggers>
 			<EventTrigger RoutedEvent="Grid.Loaded">
 				<EventTrigger.Actions>
 					<BeginStoryboard>
 						<Storyboard>
 							<DoubleAnimationUsingKeyFrames Storyboard.TargetName="ContentGrid" Storyboard.TargetProperty="Opacity">
+								<EasingDoubleKeyFrame KeyTime="0:0:0.0" Value="0" />
 								<EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="0" />
 								<EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="1">
 									<EasingDoubleKeyFrame.EasingFunction>
@@ -32,6 +51,7 @@
 								</EasingDoubleKeyFrame>
 							</DoubleAnimationUsingKeyFrames>
 							<ThicknessAnimationUsingKeyFrames Storyboard.TargetName="ContentGrid" Storyboard.TargetProperty="Margin">
+								<EasingThicknessKeyFrame KeyTime="0:0:0.0" Value="125,20,20,20" />
 								<EasingThicknessKeyFrame KeyTime="0:0:0.1" Value="125,20,20,20" />
 								<EasingThicknessKeyFrame KeyTime="0:0:0.4" Value="40,20,20,20">
 									<EasingThicknessKeyFrame.EasingFunction>
@@ -40,6 +60,7 @@
 								</EasingThicknessKeyFrame>
 							</ThicknessAnimationUsingKeyFrames>
 							<ThicknessAnimationUsingKeyFrames Storyboard.TargetName="ContainerGrid" Storyboard.TargetProperty="Margin">
+								<EasingThicknessKeyFrame KeyTime="0:0:0.0" Value="0,40,0,40" />
 								<EasingThicknessKeyFrame KeyTime="0:0:0.1" Value="0">
 									<EasingThicknessKeyFrame.EasingFunction>
 										<ExponentialEase EasingMode="EaseInOut"/>
@@ -52,7 +73,7 @@
 			</EventTrigger>
 		</Grid.Triggers>
 
-		<Grid x:Name="ContentGrid" Opacity="0.0" Margin="125,20,20,20">
+		<Grid x:Name="ContentGrid" Opacity="1.0" Margin="40,20,20,20">
 			<StackPanel VerticalAlignment="Top" HorizontalAlignment="Left" MaxWidth="600">
 				<TextBlock Text="{Binding Path=(dialogs:ModernMessageBoxViewModel.Title), FallbackValue={StaticResource DefaultTitleString}}" Foreground="{DynamicResource DialogsFontColourBrush}" 
 						   FontFamily="{DynamicResource ModernFontLight}" FontSize="24" TextTrimming="CharacterEllipsis"/>
@@ -60,17 +81,21 @@
 				<TextBlock Text="{Binding Path=(dialogs:ModernMessageBoxViewModel.Message), FallbackValue={StaticResource DefaultMessageString}}" Foreground="{DynamicResource DialogsFontColourBrush}" Margin="0,10,0,0"
 						   FontFamily="{DynamicResource ModernFontSemiLight}" FontSize="14" TextWrapping="Wrap" />
 			</StackPanel>
-			
-			<StackPanel VerticalAlignment="Bottom" HorizontalAlignment="Left">
-				<customControls:ModernButton x:Name="OkayButton" Width="110" Height="65" Background="{DynamicResource DialogsButtonBackgroundBrush}" 
-											 BorderThickness="1" BorderBrush="{DynamicResource DialogsButtonBorderBrush}" 
-											 ButtonHoverBackground="{DynamicResource DialogsButtonHoverBackgroundBrush}" Padding="2" Click="OkayButton_OnClick">
-					<TextBlock HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="8" FontFamily="{DynamicResource ModernFontRegular}" FontSize="14" 
-							   Foreground="{DynamicResource DialogsFontColourBrush}">
-						Okay
-					</TextBlock>
-				</customControls:ModernButton>
-			</StackPanel>
+
+			<ItemsControl ItemsSource="{Binding Path=(dialogs:ModernMessageBoxViewModel.Buttons)}" VerticalAlignment="Bottom" HorizontalAlignment="Left">
+				<ItemsControl.ItemsPanel>
+					<ItemsPanelTemplate>
+						<StackPanel Orientation="Horizontal"></StackPanel>
+					</ItemsPanelTemplate>
+				</ItemsControl.ItemsPanel>
+				<ItemsControl.ItemTemplate>
+					<DataTemplate>
+						<controls:ModernButton Tag="{Binding}" Style="{DynamicResource DialogButtonStyle}" Click="ActionButton_OnClick">
+							<TextBlock Style="{DynamicResource DialogButtonTextBlockStyle}" Text="{Binding Converter={StaticResource IValueEnumToString}, FallbackValue=Okay}" />
+						</controls:ModernButton>
+					</DataTemplate>
+				</ItemsControl.ItemTemplate>
+			</ItemsControl>
 		</Grid>
 	</Grid>
 </UserControl>
