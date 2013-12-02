@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:system="clr-namespace:System;assembly=mscorlib"
              xmlns:customControls="clr-namespace:Nitrogen.Wumbalo.Modern.Controls.CustomControls"
+             xmlns:dialogs="clr-namespace:Nitrogen.Wumbalo.ViewModels.Dialogs"
              mc:Ignorable="d" 
              MinHeight="300"
              MaxHeight="400"
@@ -53,16 +54,19 @@
 
 		<Grid x:Name="ContentGrid" Opacity="0.0" Margin="125,20,20,20">
 			<StackPanel VerticalAlignment="Top" HorizontalAlignment="Left" MaxWidth="600">
-				<TextBlock Text="{Binding Path=Title, FallbackValue={StaticResource DefaultTitleString}}" Foreground="White" 
+				<TextBlock Text="{Binding Path=(dialogs:ModernMessageBoxViewModel.Title), FallbackValue={StaticResource DefaultTitleString}}" Foreground="{DynamicResource DialogsFontColourBrush}" 
 						   FontFamily="{DynamicResource ModernFontLight}" FontSize="24" TextTrimming="CharacterEllipsis"/>
 
-				<TextBlock Text="{Binding Path=Message, FallbackValue={StaticResource DefaultMessageString}}" Foreground="White" Margin="0,10,0,0"
+				<TextBlock Text="{Binding Path=(dialogs:ModernMessageBoxViewModel.Message), FallbackValue={StaticResource DefaultMessageString}}" Foreground="{DynamicResource DialogsFontColourBrush}" Margin="0,10,0,0"
 						   FontFamily="{DynamicResource ModernFontSemiLight}" FontSize="14" TextWrapping="Wrap" />
 			</StackPanel>
 			
 			<StackPanel VerticalAlignment="Bottom" HorizontalAlignment="Left">
-				<customControls:ModernButton x:Name="OkayButton" Width="110" Height="65" Background="#FF151515" BorderThickness="1" BorderBrush="#FF1e1e1e" ButtonHoverBackground="#FF262626" Padding="2" Click="OkayButton_OnClick">
-					<TextBlock HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="8" FontFamily="{DynamicResource ModernFontRegular}" FontSize="14">
+				<customControls:ModernButton x:Name="OkayButton" Width="110" Height="65" Background="{DynamicResource DialogsButtonBackgroundBrush}" 
+											 BorderThickness="1" BorderBrush="{DynamicResource DialogsButtonBorderBrush}" 
+											 ButtonHoverBackground="{DynamicResource DialogsButtonHoverBackgroundBrush}" Padding="2" Click="OkayButton_OnClick">
+					<TextBlock HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="8" FontFamily="{DynamicResource ModernFontRegular}" FontSize="14" 
+							   Foreground="{DynamicResource DialogsFontColourBrush}">
 						Okay
 					</TextBlock>
 				</customControls:ModernButton>

@@ -30,7 +30,13 @@
 	<SolidColorBrush x:Key="OnyxLogoBrush" Color="#FFFFFFFF" />
 	<SolidColorBrush x:Key="USBPathBrush" Color="#FFFFFFFF" />
 	<SolidColorBrush x:Key="SearchGlassBrush" Color="#FF000000" />
-	
+
+	<!-- Dialogs -->
+	<SolidColorBrush x:Key="DialogsFontColourBrush" Color="#FFFFFFFF" />
+	<SolidColorBrush x:Key="DialogsButtonBackgroundBrush" Color="#FF151515" />
+	<SolidColorBrush x:Key="DialogsButtonBorderBrush" Color="#FF1e1e1e" />
+	<SolidColorBrush x:Key="DialogsButtonHoverBackgroundBrush" Color="#FF262626" />
+
 	<!-- Font Colours -->
 	<SolidColorBrush x:Key="WindowTitleBrush" Color="#FFBBBBBB" />
 	<Color x:Key="WindowTitleBrushColour" A="#FF" R="#63" G="#63" B="#63" />
