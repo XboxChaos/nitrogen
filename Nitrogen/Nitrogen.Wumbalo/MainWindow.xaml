@@ -81,7 +81,7 @@
 			</Grid>
 
 			<Grid x:Name="DialogGrid" Grid.Row="1" Margin="1,0,1,0" Visibility="Collapsed">
-				<Rectangle Fill="Black" Opacity="0.6" />
+				<Rectangle Fill="Black" Opacity="0.75" />
 				
 				<ItemsControl x:Name="DialogsControl" VerticalAlignment="Center" HorizontalAlignment="Stretch" />
 			</Grid>
