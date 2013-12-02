@@ -23,7 +23,7 @@
         // Structs
         VirtualTrigger,
         Shape,
-        MeterInfo,
+        Meter,
         EntityFilter,
         WaypointIcon,
     }

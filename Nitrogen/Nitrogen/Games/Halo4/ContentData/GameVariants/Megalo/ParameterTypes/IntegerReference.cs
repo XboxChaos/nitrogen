@@ -1,4 +1,24 @@
-﻿using Nitrogen.ContentData.GameVariants.Megalo;
+﻿/*
+ *   Nitrogen - Halo Content API
+ *   Copyright © 2013 The Nitrogen Authors. All rights reserved.
+ * 
+ *   This file is part of Nitrogen.
+ *
+ *   Nitrogen is free software: you can redistribute it and/or modify
+ *   it under the terms of the GNU General Public License as published by
+ *   the Free Software Foundation, either version 3 of the License, or
+ *   (at your option) any later version.
+ *
+ *   Nitrogen is distributed in the hope that it will be useful,
+ *   but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *   GNU General Public License for more details.
+ *
+ *   You should have received a copy of the GNU General Public License
+ *   along with Nitrogen.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+using Nitrogen.ContentData.GameVariants.Megalo;
 using Nitrogen.IO;
 using System;
 using System.ComponentModel;
@@ -11,9 +31,9 @@ namespace Nitrogen.Games.Halo4.ContentData.GameVariants.Megalo.ParameterTypes
     {
         private byte type;
         private short value;
-        private byte index, id; 
+        private byte index, id;
 
-        public enum Type
+        public enum IntegerReferenceType
             : byte
         {
             Constant, // readonly
@@ -93,12 +113,12 @@ namespace Nitrogen.Games.Halo4.ContentData.GameVariants.Megalo.ParameterTypes
             DamageType,
         }
 
-        public Type IntegerReferenceType
+        public IntegerReferenceType ReferenceType
         {
-            get { return (Type)this.type; }
+            get { return (IntegerReferenceType)this.type; }
             set
             {
-                Contract.Requires<InvalidEnumArgumentException>(Enum.IsDefined(typeof(Type), value));
+                Contract.Requires<InvalidEnumArgumentException>(Enum.IsDefined(typeof(IntegerReferenceType), value));
                 this.type = (byte)value;
             }
         }
@@ -124,63 +144,63 @@ namespace Nitrogen.Games.Halo4.ContentData.GameVariants.Megalo.ParameterTypes
         public void Serialize(BitStream s)
         {
             s.Stream(ref this.type, 7);
-            Type type = (Type)this.type;
+            IntegerReferenceType type = (IntegerReferenceType)this.type;
             switch (type)
             {
-                case Type.Constant:
+                case IntegerReferenceType.Constant:
                     s.Stream(ref this.value);
                     break;
 
-                case Type.PlayerMemberVariable:
+                case IntegerReferenceType.PlayerMemberVariable:
                     s.Stream(ref this.id, 6);
                     s.Stream(ref this.index, 4);
                     break;
 
-                case Type.ObjectMemberVariable:
-                case Type.TeamMemberVariable:
+                case IntegerReferenceType.ObjectMemberVariable:
+                case IntegerReferenceType.TeamMemberVariable:
                     s.Stream(ref this.id, 5);
                     s.Stream(ref this.index, 4);
                     break;
 
-                case Type.GlobalVariable:
+                case IntegerReferenceType.GlobalVariable:
                     s.Stream(ref this.index, 5);
                     break;
 
-                case Type.ScratchVariable:
-                case Type.UserDefinedOption:
+                case IntegerReferenceType.ScratchVariable:
+                case IntegerReferenceType.UserDefinedOption:
                     s.Stream(ref this.index, 4);
                     break;
 
-                case Type.SpawnSequence:
-                case Type.UserData:
-                case Type.Unknown9:
-                case Type.Unknown31:
-                case Type.Unknown32:
-                case Type.TeamScore:
-                case Type.TeamLivesRemaining:
-                case Type.Unknown28:
-                case Type.Unknown29:
-                case Type.Unknown30:
+                case IntegerReferenceType.SpawnSequence:
+                case IntegerReferenceType.UserData:
+                case IntegerReferenceType.Unknown9:
+                case IntegerReferenceType.Unknown31:
+                case IntegerReferenceType.Unknown32:
+                case IntegerReferenceType.TeamScore:
+                case IntegerReferenceType.TeamLivesRemaining:
+                case IntegerReferenceType.Unknown28:
+                case IntegerReferenceType.Unknown29:
+                case IntegerReferenceType.Unknown30:
                     s.Stream(ref this.id, 5);
                     break;
 
-                case Type.PlayerScore:
-                case Type.Unknown12:
-                case Type.PlayerRating:
-                case Type.PlayerLivesRemaining:
-                case Type.PlayerSpawnDelay:
-                case Type.Unknown25:
-                case Type.Unknown26:
-                case Type.Unknown27:
+                case IntegerReferenceType.PlayerScore:
+                case IntegerReferenceType.Unknown12:
+                case IntegerReferenceType.PlayerRating:
+                case IntegerReferenceType.PlayerLivesRemaining:
+                case IntegerReferenceType.PlayerSpawnDelay:
+                case IntegerReferenceType.Unknown25:
+                case IntegerReferenceType.Unknown26:
+                case IntegerReferenceType.Unknown27:
                     s.Stream(ref this.id, 6);
                     break;
 
-                case Type.PlayerStatistic:
+                case IntegerReferenceType.PlayerStatistic:
                     s.Stream(ref this.id, 6);
                     s.Stream(ref this.index, 2);
                     break;
 
-                case Type.TeamStatistic:
+                case IntegerReferenceType.TeamStatistic:
                     s.Stream(ref this.id, 5);
                     s.Stream(ref this.index, 2);
                     break;
