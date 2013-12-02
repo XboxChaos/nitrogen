@@ -24,6 +24,7 @@
 			
 			<s:String x:Key="AppTitle">Wumbalo</s:String>
 			<converters:CreateApplicationTitle x:Key="IValueCreateApplicationTitle" />
+			<converters:EnumToString x:Key="IValueEnumToString" />
 		</ResourceDictionary>
 	</Application.Resources>
 </Application>
