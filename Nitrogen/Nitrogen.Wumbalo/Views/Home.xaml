@@ -46,7 +46,7 @@
 			</ItemsControl.ItemTemplate>
 		</ItemsControl>
 
-		<!-- Used only for Blend Work, Collpased on compile -->
+		<!-- Used only for Blend Work, Collapsed on compile -->
 		<StackPanel x:Name="HeadersForBlendPanel" Orientation="Horizontal" Grid.Row="0" VerticalAlignment="Bottom" Margin="30,0,0,0">
 			<ToggleButton Style="{DynamicResource HomeHeaderButton}" Content="Recents" IsChecked="False" />
 			<ToggleButton Style="{DynamicResource HomeHeaderButton}" Content="Home" IsChecked="True" />
@@ -370,7 +370,7 @@
 					</TextBlock>
 					
 					<!-- Row 1 -->
-					<controls:ModernButton x:Name="DevBasicessageBoxButton" Grid.Row="1" Grid.Column="0"  Style="{StaticResource ModernButtonWithNameStyle}" ButtonName="Basic Message Box" Click="DevBasicessageBoxButton_OnClick" />
+					<controls:ModernButton x:Name="DevBasicMessageBoxButton" Grid.Row="1" Grid.Column="0"  Style="{StaticResource ModernButtonWithNameStyle}" ButtonName="Basic Message Box" Click="DevBasicMessageBoxButton_OnClick" />
 				</Grid>
 
 			</StackPanel>

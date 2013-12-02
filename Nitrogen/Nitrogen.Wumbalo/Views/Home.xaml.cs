@@ -83,7 +83,7 @@ namespace Nitrogen.Wumbalo.Views
 
 		#region Debug Stuff
 
-		private void DevBasicessageBoxButton_OnClick(object sender, RoutedEventArgs e)
+		private void DevBasicMessageBoxButton_OnClick(object sender, RoutedEventArgs e)
 		{
 			ModernMessageBox.Show("This is a Message Box",
 				"Testing the default, and rather generic, message box. Le wumbalo. More text, need to fill up screen to test text wrapping. And to look important, ofcourse.");
