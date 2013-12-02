@@ -7,6 +7,7 @@
         xmlns:vectors="clr-namespace:Nitrogen.Wumbalo.Modern.Vectors"
         xmlns:viewModels="clr-namespace:Nitrogen.Wumbalo.ViewModels"
         xmlns:views="clr-namespace:Nitrogen.Wumbalo.Views"
+        xmlns:controls="clr-namespace:Nitrogen.Wumbalo.Modern.Dialogs.Controls"
         mc:Ignorable="d"
         Title="{Binding Path=(viewModels:MainViewModel.PageTitle), Mode=OneWay, Converter={StaticResource IValueCreateApplicationTitle}, FallbackValue=Wumbalo - Welcome!}"
         Height="800" Width="1200"
@@ -67,7 +68,7 @@
 				</Grid.RowDefinitions>
 
 				<!-- le app content -->
-				<Grid x:Name="ContentGrid" Grid.Row="0">
+				<Grid x:Name="ContentGrid" Grid.Row="0" Margin="1,0,1,0">
 					<views:Home x:Name="HomePage">
 						
 					</views:Home>
@@ -77,6 +78,12 @@
 				<Grid Grid.Row="1" Margin="10,0,0,-22">
 					<TextBlock Foreground="{DynamicResource WindowStatusBarBrush}" VerticalAlignment="Center">Wumbalo</TextBlock>
 				</Grid>
+			</Grid>
+
+			<Grid x:Name="DialogGrid" Grid.Row="1" Margin="1,0,1,0" Visibility="Collapsed">
+				<Rectangle Fill="Black" Opacity="0.6" />
+				
+				<ItemsControl x:Name="DialogsControl" VerticalAlignment="Center" HorizontalAlignment="Stretch" />
 			</Grid>
 
 			<Grid Grid.Row="0" Grid.RowSpan="2" Margin="-1, -1, -1, -23" x:Name="ResizingGrid">
@@ -98,8 +105,6 @@
 				       Foreground="{x:Null}" Height="8" Margin="0,0,11,0" HorizontalAlignment="Stretch" VerticalAlignment="Bottom"
 				       Cursor="SizeNS" />
 			</Grid>
-
-			<Rectangle Grid.Row="0" Grid.RowSpan="2" x:Name="OpacityRectangle" Opacity="0.65" Fill="{DynamicResource WindowOpacityBrush}" Visibility="Collapsed" />
 		</Grid>
 	</Border>
 </Window>

@@ -1,13 +1,14 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Controls.Primitives;
 using System.Windows.Interop;
+using Nitrogen.Wumbalo.Helpers;
 using Nitrogen.Wumbalo.Helpers.Native;
 using Nitrogen.Wumbalo.Models.Home;
 using Nitrogen.Wumbalo.ViewModels;
-using Nitrogen.Wumbalo.Views;
 
 namespace Nitrogen.Wumbalo
 {
@@ -44,6 +45,9 @@ namespace Nitrogen.Wumbalo
 
 			// Scroll to Home
 			HomePage.ScrollToSection(HomePage.ViewModel.Headers.First(h => h.HeaderType == HeaderType.Home));
+
+			// Le Save
+			LeStorage.MainWindow = this;
 		}
 
 		#region Recreating Normal Window Actions
@@ -157,6 +161,15 @@ namespace Nitrogen.Wumbalo
 
 		#endregion
 		
+		#endregion
+
+		#region Do Dialog Stuff
+		// TODO: Make this not shit
+		public void ShowDialog(UIElement dialog)
+		{
+			DialogGrid.Visibility = Visibility.Visible;
+			DialogsControl.ItemsSource = new List<UIElement> { dialog };
+		}
 		#endregion
 	}
 }

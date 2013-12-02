@@ -92,15 +92,21 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Converters\CreateApplicationTitle.cs" />
+    <Compile Include="Helpers\LeStorage.cs" />
     <Compile Include="Models\Home\Header.cs" />
     <Compile Include="Models\Home\Recent.cs" />
     <Compile Include="Modern\Controls\CustomControls\LiveButton.cs" />
     <Compile Include="Modern\Controls\CustomControls\ModernButton.cs" />
     <Compile Include="Modern\Controls\CustomControls\ScrollViewerOffsetMedior.cs" />
     <Compile Include="Modern\Controls\CustomControls\WatermarkTextBox.cs" />
+    <Compile Include="Modern\Dialogs\Controls\ModernMessageBox.xaml.cs">
+      <DependentUpon>ModernMessageBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Modern\Dialogs\ModernMessageBox.cs" />
     <Compile Include="Modern\Vectors\Resize.xaml.cs">
       <DependentUpon>Resize.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\Dialogs\ModernMessageBoxViewModel.cs" />
     <Compile Include="ViewModels\HomeViewModel.cs" />
     <Compile Include="ViewModels\Inpc.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
@@ -169,6 +175,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Modern\Controls\TextBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Modern\Dialogs\Controls\ModernMessageBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

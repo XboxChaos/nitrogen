@@ -119,6 +119,35 @@
 					</ItemsControl>
 				</Grid>
 
+				<Grid x:Name="DevicesGrid" Margin="20,0,0,0">
+					<Grid.RowDefinitions>
+						<RowDefinition Height="20" />
+						<RowDefinition Height="150" />
+						<RowDefinition Height="150" />
+						<RowDefinition Height="150" />
+					</Grid.RowDefinitions>
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="150" />
+					</Grid.ColumnDefinitions>
+
+					<controls:LiveButton Grid.Column="0" Grid.Row="1" Title="External Device" Description="Name: Mah USB&#x0a;Storage: 23.4GB&#x0a;Free Space: 3.4GB&#x0a;Type: Xbox 360&#x0a;Drive: C:\">
+						<Viewbox Stretch="Uniform" Margin="35">
+							<Canvas Width="475.248" Height="228.092">
+								<Canvas.RenderTransform>
+									<TranslateTransform X="0" Y="0"/>
+								</Canvas.RenderTransform>
+								<Canvas.Resources/>
+								<Path Fill="{DynamicResource USBPathBrush}">
+									<Path.Data>
+										<PathGeometry Figures="m 237.631 -111.169 -28.896 50.037 20.613 0 0 255.753 -52.612 -49.798 c -3.397 -4.238 -5.78 -9.783 -5.912 -15.487 0 -23.075 -0.006 -36.778 -0.016 -41.822 9.741 -3.419 16.772 -12.603 16.772 -23.521 0 -13.812 -11.208 -25.021 -25.025 -25.021 -13.823 0 -25.027 11.208 -25.027 25.021 0 10.918 7.027 20.102 16.76 23.521 l -0.007 41.332 c 0 11.202 6.146 22.94 13.351 30.411 -0.214 -0.204 -0.442 -0.416 0.004 0.012 0.178 0.158 55.814 52.834 55.814 52.834 3.392 4.229 5.76 9.771 5.896 15.471 l 0 28.932 c -19.113 3.835 -33.513 20.713 -33.513 40.959 0 23.083 18.711 41.794 41.787 41.794 23.083 0 41.795 -18.711 41.795 -41.794 0 -20.25 -14.412 -37.128 -33.541 -40.963 l 0 -28.425 c 0 -0.073 0.004 -0.146 0 -0.22 l 0 -62.871 c 0.145 -5.689 2.516 -11.224 5.912 -15.449 0 0 55.632 -52.664 55.812 -52.827 0.447 -0.422 0.214 -0.212 0.004 -0.004 7.204 -7.471 13.346 -19.214 13.346 -30.418 l -0.009 -39.832 16.777 0 0 -50.05 -50.045 0 0 50.05 16.755 0 c 0 0 -0.019 10.491 -0.019 40.32 -0.131 5.705 -2.511 11.256 -5.908 15.492 l -52.622 49.809 0 -193.209 20.646 0 -28.892 -50.037 z" 
+													  FillRule="NonZero"/>
+									</Path.Data>
+								</Path>
+							</Canvas>
+						</Viewbox>
+					</controls:LiveButton>
+				</Grid>
+				
 				<Grid x:Name="HomeGrid" Margin="20,0,0,0">
 					<Grid.RowDefinitions>
 						<RowDefinition Height="20" />
@@ -136,7 +165,7 @@
 					</Grid.ColumnDefinitions>
 
 					<!-- Account -->
-					<Button Grid.Row="1" Grid.RowSpan="3" Grid.Column="0" Grid.ColumnSpan="1" Style="{DynamicResource ModernButtonStyle}">
+					<controls:ModernButton Grid.Row="1" Grid.RowSpan="3" Grid.Column="0" Grid.ColumnSpan="1">
 						<Grid VerticalAlignment="Stretch" RenderTransformOrigin="0.5,0.5">
 							<StackPanel>
 								<Image Source="http://images-eds.xboxlive.com/image?url=z951ykn43p4FqWbbFvR2Ec.8vbDhj8G2Xe7JngaTToBrrCmIEEXHC9UNrdJ6P7KIbgsfD63mXFU_1J9M4K4P9MC9JmvpAK38Xkaw0hKBNU7imD1DYrHPio.yGWLd9AkU&amp;format=png&amp;w=402&amp;h=402">
@@ -158,14 +187,14 @@
 								<TextBlock FontSize="14">total downloads</TextBlock>
 							</StackPanel>
 						</Grid>
-					</Button>
+					</controls:ModernButton>
 
 					<!-- Viewport -->
-					<Button Grid.Row="1" Grid.RowSpan="2" Grid.Column="1" Grid.ColumnSpan="4" Style="{DynamicResource ModernButtonStyle}">
+					<controls:ModernButton Grid.Row="1" Grid.RowSpan="2" Grid.Column="1" Grid.ColumnSpan="4">
 						<TextBlock FontFamily="{DynamicResource ModernFontLight}" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="100">
 							viewport
 						</TextBlock>
-					</Button>
+					</controls:ModernButton>
 
 					<!-- Apps -->
 					<controls:ModernButton Grid.Row="3" Grid.RowSpan="1" Grid.Column="1" Grid.ColumnSpan="1" Style="{DynamicResource ModernButtonWithNameStyle}"
@@ -237,7 +266,7 @@
 						<ColumnDefinition Width="250" />
 					</Grid.ColumnDefinitions>
 
-					<controls:ModernButton Grid.Row="1" Grid.RowSpan="2" Grid.Column="0" Style="{StaticResource ModernButtonStyle}">
+					<controls:ModernButton Grid.Row="1" Grid.RowSpan="2" Grid.Column="0">
 						<controls:ModernButton.Background>
 							<SolidColorBrush Color="{DynamicResource ModernButtonBackgroundSpecialBrushColour}"/>
 						</controls:ModernButton.Background>
@@ -253,7 +282,7 @@
 							</TextBlock>
 						</Grid>
 					</controls:ModernButton>
-					<controls:ModernButton Grid.Row="1" Grid.RowSpan="2" Grid.Column="1" Style="{StaticResource ModernButtonStyle}">
+					<controls:ModernButton Grid.Row="1" Grid.RowSpan="2" Grid.Column="1">
 						<controls:ModernButton.Background>
 							<SolidColorBrush Color="{DynamicResource ModernButtonBackgroundSpecialBrushColour}"/>
 						</controls:ModernButton.Background>
@@ -269,7 +298,7 @@
 							</TextBlock>
 						</Grid>
 					</controls:ModernButton>
-					<controls:ModernButton Grid.Row="1" Grid.RowSpan="2" Grid.Column="2" Style="{StaticResource ModernButtonStyle}">
+					<controls:ModernButton Grid.Row="1" Grid.RowSpan="2" Grid.Column="2">
 						<controls:ModernButton.Background>
 							<SolidColorBrush Color="{DynamicResource ModernButtonBackgroundSpecialBrushColour}"/>
 						</controls:ModernButton.Background>
@@ -321,7 +350,7 @@
 					</Grid>
 				</Grid>
 
-				<Grid x:Name="DevicesGrid" Margin="20,0,0,0">
+				<Grid x:Name="DevelopmentGrid" Margin="20,0,0,0" Visibility="Collapsed">
 					<Grid.RowDefinitions>
 						<RowDefinition Height="20" />
 						<RowDefinition Height="150" />
@@ -330,30 +359,19 @@
 					</Grid.RowDefinitions>
 					<Grid.ColumnDefinitions>
 						<ColumnDefinition Width="150" />
-						<ColumnDefinition Width="150" />
-						<ColumnDefinition Width="150" />
-						<ColumnDefinition Width="150" />
-						<ColumnDefinition Width="150" />
-						<ColumnDefinition Width="150" />
 					</Grid.ColumnDefinitions>
 
-					<controls:LiveButton Grid.Column="0" Grid.Row="1" Title="External Device" Description="Name: Mah USB&#x0a;Storage: 23.4GB&#x0a;Free Space: 3.4GB&#x0a;Type: Xbox 360&#x0a;Drive: C:\">
-						<Viewbox Stretch="Uniform" Margin="35">
-							<Canvas Width="475.248" Height="228.092">
-								<Canvas.RenderTransform>
-									<TranslateTransform X="0" Y="0"/>
-								</Canvas.RenderTransform>
-								<Canvas.Resources/>
-								<Path Fill="{DynamicResource USBPathBrush}">
-									<Path.Data>
-										<PathGeometry Figures="m 237.631 -111.169 -28.896 50.037 20.613 0 0 255.753 -52.612 -49.798 c -3.397 -4.238 -5.78 -9.783 -5.912 -15.487 0 -23.075 -0.006 -36.778 -0.016 -41.822 9.741 -3.419 16.772 -12.603 16.772 -23.521 0 -13.812 -11.208 -25.021 -25.025 -25.021 -13.823 0 -25.027 11.208 -25.027 25.021 0 10.918 7.027 20.102 16.76 23.521 l -0.007 41.332 c 0 11.202 6.146 22.94 13.351 30.411 -0.214 -0.204 -0.442 -0.416 0.004 0.012 0.178 0.158 55.814 52.834 55.814 52.834 3.392 4.229 5.76 9.771 5.896 15.471 l 0 28.932 c -19.113 3.835 -33.513 20.713 -33.513 40.959 0 23.083 18.711 41.794 41.787 41.794 23.083 0 41.795 -18.711 41.795 -41.794 0 -20.25 -14.412 -37.128 -33.541 -40.963 l 0 -28.425 c 0 -0.073 0.004 -0.146 0 -0.22 l 0 -62.871 c 0.145 -5.689 2.516 -11.224 5.912 -15.449 0 0 55.632 -52.664 55.812 -52.827 0.447 -0.422 0.214 -0.212 0.004 -0.004 7.204 -7.471 13.346 -19.214 13.346 -30.418 l -0.009 -39.832 16.777 0 0 -50.05 -50.045 0 0 50.05 16.755 0 c 0 0 -0.019 10.491 -0.019 40.32 -0.131 5.705 -2.511 11.256 -5.908 15.492 l -52.622 49.809 0 -193.209 20.646 0 -28.892 -50.037 z" 
-													  FillRule="NonZero"/>
-									</Path.Data>
-								</Path>
-							</Canvas>
-						</Viewbox>
-					</controls:LiveButton>
+					<TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Margin="5,0,0,0" FontFamily="{DynamicResource ModernFontSemiBold}" FontSize="14">
+						<TextBlock.Foreground>
+							<SolidColorBrush Color="{DynamicResource WindowStatusBarBrushColour}"/>
+						</TextBlock.Foreground>
+						PRIVATE DEVELOPMENT TOOLS
+					</TextBlock>
+					
+					<!-- Row 1 -->
+					<controls:ModernButton x:Name="DevBasicessageBoxButton" Grid.Row="1" Grid.Column="0"  Style="{StaticResource ModernButtonWithNameStyle}" ButtonName="Basic Message Box" Click="DevBasicessageBoxButton_OnClick" />
 				</Grid>
+
 			</StackPanel>
 		</ScrollViewer>
 

@@ -7,7 +7,8 @@ namespace Nitrogen.Wumbalo.Models.Home
 		Recents,
 		Home,
 		Onyx,
-		Devices
+		Devices,
+		Development
 	}
 
 	public class Header : Inpc

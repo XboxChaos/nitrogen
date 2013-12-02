@@ -16,9 +16,12 @@ namespace Nitrogen.Wumbalo.ViewModels
 			//Headers.CollectionChanged += Headers_CollectionChanged;
 
 			Headers.Add(new Header { IsSelected = false, Name = "Recents", Tag = "Recents", HeaderType = HeaderType.Recents });
+			Headers.Add(new Header { IsSelected = false, Name = "Devices", Tag = "Devices", HeaderType = HeaderType.Devices });
 			Headers.Add(new Header { IsSelected = true, Name = "Home", Tag = "Home", HeaderType = HeaderType.Home });
 			Headers.Add(new Header { IsSelected = false, Name = "Onyx", Tag = "Onyx", HeaderType = HeaderType.Onyx });
-			Headers.Add(new Header { IsSelected = false, Name = "Devices", Tag = "Devices", HeaderType = HeaderType.Devices });
+#if DEBUG
+			Headers.Add(new Header { IsSelected = false, Name = "Development", Tag = "Development", HeaderType = HeaderType.Development });
+#endif
 
 			for (var i = 0; i < new Random().Next(8, 16); i++)
 				Recents.Add(new Recent { Name = string.Format("Test {0}", i) });

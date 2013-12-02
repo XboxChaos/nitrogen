@@ -4,6 +4,7 @@ using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using Nitrogen.Wumbalo.Models.Home;
 using Nitrogen.Wumbalo.ViewModels;
+using Nitrogen.Wumbalo.Modern.Dialogs;
 
 namespace Nitrogen.Wumbalo.Views
 {
@@ -21,11 +22,15 @@ namespace Nitrogen.Wumbalo.Views
 			ViewModel = new HomeViewModel();
 			DataContext = ViewModel;
 			
-			#region Hide Hipster Designer Stuff
+			#region Hide Development Stuff
 			
 			HeadersForBlendPanel.Visibility = Visibility.Collapsed;
-			
+
 			#endregion
+
+#if DEBUG
+			DevelopmentGrid.Visibility = Visibility.Visible;
+#endif
 		}
 
 		#region Events
@@ -70,6 +75,15 @@ namespace Nitrogen.Wumbalo.Views
 			foreach (var viewHeader in ViewModel.Headers)
 				viewHeader.IsSelected = false;
 			ViewModel.Headers.First(h => h.Tag == header.Tag).IsSelected = true;
+		}
+
+		#endregion
+
+		#region Debug Stuff
+
+		private void DevBasicessageBoxButton_OnClick(object sender, RoutedEventArgs e)
+		{
+			ModernMessageBox.Show("This is a Message Box", "Testing the default, and rather generic, message box. Le wumbalo. More text, need to fill up screen to test text wrapping. And to look important, ofcourse.");
 		}
 
 		#endregion
