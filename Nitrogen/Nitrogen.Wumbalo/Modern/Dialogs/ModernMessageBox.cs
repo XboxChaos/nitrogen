@@ -26,6 +26,7 @@ namespace Nitrogen.Wumbalo.Modern.Dialogs
 		public static void Show(string title, string message)
 		{
 			var dialog = new Controls.ModernMessageBox(new ModernMessageBoxViewModel(title, message));
+			dialog.OnClose += (sender, args) => LeStorage.MainWindow.HideDialog();
 			LeStorage.MainWindow.ShowDialog(dialog);
 		}
 	}

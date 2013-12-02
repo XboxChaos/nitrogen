@@ -359,6 +359,7 @@
 					</Grid.RowDefinitions>
 					<Grid.ColumnDefinitions>
 						<ColumnDefinition Width="150" />
+						<ColumnDefinition Width="150" />
 					</Grid.ColumnDefinitions>
 
 					<TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Margin="5,0,0,0" FontFamily="{DynamicResource ModernFontSemiBold}" FontSize="14">

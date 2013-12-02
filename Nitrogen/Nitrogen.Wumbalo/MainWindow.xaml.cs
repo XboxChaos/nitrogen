@@ -170,6 +170,11 @@ namespace Nitrogen.Wumbalo
 			DialogGrid.Visibility = Visibility.Visible;
 			DialogsControl.ItemsSource = new List<UIElement> { dialog };
 		}
+		public void HideDialog()
+		{
+			DialogGrid.Visibility = Visibility.Collapsed;
+			DialogsControl.ItemsSource = new List<UIElement>();
+		}
 		#endregion
 	}
 }

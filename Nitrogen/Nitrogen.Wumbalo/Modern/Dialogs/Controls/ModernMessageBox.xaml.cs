@@ -1,4 +1,6 @@
-﻿using Nitrogen.Wumbalo.ViewModels.Dialogs;
+﻿using System;
+using System.Windows;
+using Nitrogen.Wumbalo.ViewModels.Dialogs;
 
 namespace Nitrogen.Wumbalo.Modern.Dialogs.Controls
 {
@@ -15,6 +17,13 @@ namespace Nitrogen.Wumbalo.Modern.Dialogs.Controls
 
 			_viewModel = viewModel;
 			DataContext = _viewModel;
+		}
+
+		public event EventHandler OnClose;
+
+		private void OkayButton_OnClick(object sender, RoutedEventArgs e)
+		{
+			OnClose(null, null);
 		}
 	}
 }
