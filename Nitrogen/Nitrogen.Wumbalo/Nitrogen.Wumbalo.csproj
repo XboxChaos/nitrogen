@@ -92,6 +92,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Converters\CreateApplicationTitle.cs" />
+    <Compile Include="Converters\EnumToString.cs" />
     <Compile Include="Helpers\LeStorage.cs" />
     <Compile Include="Models\Home\Header.cs" />
     <Compile Include="Models\Home\Recent.cs" />
