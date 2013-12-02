@@ -6,9 +6,9 @@ namespace Nitrogen.Wumbalo.ViewModels.Dialogs
 	public enum ModernMessageBoxButton
 	{
 		Okay,
-		Cancel,
 		Yes,
 		No,
+		Cancel,
 		Aite
 	}
 

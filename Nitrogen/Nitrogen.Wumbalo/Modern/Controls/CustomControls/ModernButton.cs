@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Media;
 
 namespace Nitrogen.Wumbalo.Modern.Controls.CustomControls
@@ -22,6 +23,11 @@ namespace Nitrogen.Wumbalo.Modern.Controls.CustomControls
 			ButtonHoverBackgroundProperty = DependencyProperty.Register("ButtonHoverBackground", typeof(SolidColorBrush), typeof(ModernButton));
 		}
 
+		public ModernButton()
+		{
+			KeyUp += OnKeyUp;
+		}
+
 		/// <summary>
 		/// 
 		/// </summary>
@@ -39,5 +45,16 @@ namespace Nitrogen.Wumbalo.Modern.Controls.CustomControls
 			get { return (SolidColorBrush)GetValue(ButtonHoverBackgroundProperty); }
 			set { SetValue(ButtonHoverBackgroundProperty, value); }
 		}
+
+		#region Events
+
+		private void OnKeyUp(object sender, KeyEventArgs keyEventArgs)
+		{
+			if (keyEventArgs.Key == Key.Enter || 
+				keyEventArgs.Key == Key.Return)
+				OnClick();
+		}
+
+		#endregion
 	}
 }

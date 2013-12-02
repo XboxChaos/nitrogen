@@ -53,6 +53,9 @@
 						<Trigger Property="IsPressed" Value="true">
 							<Setter Property="Height" TargetName="GridNameOver" Value="38" />
 						</Trigger>
+						<Trigger Property="IsFocused" Value="true">
+							<Setter Property="BorderBrush" TargetName="Border" Value="{DynamicResource WindowButtonBorderBrush}" />
+						</Trigger>
 					</ControlTemplate.Triggers>
 				</ControlTemplate>
 			</Setter.Value>
@@ -101,6 +104,9 @@
 						<Trigger Property="IsMouseOver" Value="true">
 							<Setter Property="BorderBrush" TargetName="Border" Value="{DynamicResource WindowButtonBorderBrush}" />
 						</Trigger>
+						<Trigger Property="IsFocused" Value="true">
+							<Setter Property="BorderBrush" TargetName="Border" Value="{DynamicResource WindowButtonBorderBrush}" />
+						</Trigger>
 					</ControlTemplate.Triggers>
 				</ControlTemplate>
 			</Setter.Value>
@@ -143,6 +149,9 @@
 						<Trigger Property="IsMouseOver" Value="true">
 							<Setter Property="BorderBrush" TargetName="Border" Value="{DynamicResource WindowButtonBorderBrush}" />
 							<Setter Property="Background" TargetName="InnerBorder" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=ButtonHoverBackground}" />
+						</Trigger>
+						<Trigger Property="IsFocused" Value="true">
+							<Setter Property="BorderBrush" TargetName="Border" Value="{DynamicResource WindowButtonBorderBrush}" />
 						</Trigger>
 					</ControlTemplate.Triggers>
 				</ControlTemplate>
@@ -262,6 +271,9 @@
 					</Border>
 					<ControlTemplate.Triggers>
 						<Trigger Property="IsMouseOver" Value="true">
+							<Setter Property="BorderBrush" TargetName="Border" Value="{DynamicResource WindowButtonBorderBrush}" />
+						</Trigger>
+						<Trigger Property="IsFocused" Value="true">
 							<Setter Property="BorderBrush" TargetName="Border" Value="{DynamicResource WindowButtonBorderBrush}" />
 						</Trigger>
 					</ControlTemplate.Triggers>

@@ -82,20 +82,33 @@
 						   FontFamily="{DynamicResource ModernFontSemiLight}" FontSize="14" TextWrapping="Wrap" />
 			</StackPanel>
 
-			<ItemsControl ItemsSource="{Binding Path=(dialogs:ModernMessageBoxViewModel.Buttons)}" VerticalAlignment="Bottom" HorizontalAlignment="Left">
-				<ItemsControl.ItemsPanel>
-					<ItemsPanelTemplate>
-						<StackPanel Orientation="Horizontal"></StackPanel>
-					</ItemsPanelTemplate>
-				</ItemsControl.ItemsPanel>
-				<ItemsControl.ItemTemplate>
-					<DataTemplate>
-						<controls:ModernButton Tag="{Binding}" Style="{DynamicResource DialogButtonStyle}" Click="ActionButton_OnClick">
-							<TextBlock Style="{DynamicResource DialogButtonTextBlockStyle}" Text="{Binding Converter={StaticResource IValueEnumToString}, FallbackValue=Okay}" />
-						</controls:ModernButton>
-					</DataTemplate>
-				</ItemsControl.ItemTemplate>
-			</ItemsControl>
+			<StackPanel x:Name="ButtonPanel"  VerticalAlignment="Bottom" HorizontalAlignment="Left" Orientation="Horizontal">
+				<controls:ModernButton x:Name="OkayButton" Tag="Okay" Style="{DynamicResource DialogButtonStyle}" Click="ActionButton_OnClick" Visibility="Collapsed">
+					<TextBlock Style="{DynamicResource DialogButtonTextBlockStyle}">
+						Okay
+					</TextBlock>
+				</controls:ModernButton>
+				<controls:ModernButton x:Name="YesButton" Tag="Yes" Style="{DynamicResource DialogButtonStyle}" Click="ActionButton_OnClick" Visibility="Collapsed">
+					<TextBlock Style="{DynamicResource DialogButtonTextBlockStyle}">
+						Yes
+					</TextBlock>
+				</controls:ModernButton>
+				<controls:ModernButton x:Name="NoButton" Tag="No" Style="{DynamicResource DialogButtonStyle}" Click="ActionButton_OnClick" Visibility="Collapsed">
+					<TextBlock Style="{DynamicResource DialogButtonTextBlockStyle}">
+						No
+					</TextBlock>
+				</controls:ModernButton>
+				<controls:ModernButton x:Name="CancelButton" Tag="Cancel" Style="{DynamicResource DialogButtonStyle}" Click="ActionButton_OnClick" Visibility="Collapsed">
+					<TextBlock Style="{DynamicResource DialogButtonTextBlockStyle}">
+						Cancel
+					</TextBlock>
+				</controls:ModernButton>
+				<controls:ModernButton x:Name="AiteButton" Tag="Aite" Style="{DynamicResource DialogButtonStyle}" Click="ActionButton_OnClick" Visibility="Collapsed">
+					<TextBlock Style="{DynamicResource DialogButtonTextBlockStyle}">
+						Aite
+					</TextBlock>
+				</controls:ModernButton>
+			</StackPanel>
 		</Grid>
 	</Grid>
 </UserControl>
