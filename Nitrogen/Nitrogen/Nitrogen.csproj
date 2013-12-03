@@ -191,6 +191,10 @@
     <Compile Include="Games\Halo4\ContentData\GameVariants\Megalo\ParameterTypes\IntegerReference.cs" />
     <Compile Include="Games\Halo4\ContentData\GameVariants\Megalo\ParameterTypes\MeterData.cs" />
     <Compile Include="Games\Halo4\ContentData\GameVariants\Megalo\ParameterTypes\ShapeData.cs" />
+    <Compile Include="Games\Halo4\ContentData\GameVariants\Megalo\ParameterTypes\StringReference.cs" />
+    <Compile Include="Games\Halo4\ContentData\GameVariants\Megalo\ParameterTypes\StringReferenceMultiToken.cs" />
+    <Compile Include="Games\Halo4\ContentData\GameVariants\Megalo\ParameterTypes\StringReferenceSingleToken.cs" />
+    <Compile Include="Games\Halo4\ContentData\GameVariants\Megalo\ParameterTypes\StringToken.cs" />
     <Compile Include="Games\Halo4\ContentData\GameVariants\Megalo\ParameterTypes\TeamReference.cs" />
     <Compile Include="Games\Halo4\ContentData\GameVariants\Megalo\ParameterTypes\TimerReference.cs" />
     <Compile Include="Games\Halo4\ContentData\GameVariants\Megalo\UserDefinedOptionValue.cs" />

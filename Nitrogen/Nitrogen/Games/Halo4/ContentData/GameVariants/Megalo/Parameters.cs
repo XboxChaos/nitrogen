@@ -33,6 +33,9 @@ namespace Nitrogen.Games.Halo4.ContentData.GameVariants.Megalo
                 { ParameterType.IntegerReference, new IntegerReference() },
                 { ParameterType.TimerReference, new TimerReference() },
                 { ParameterType.TeamReference, new TeamReference() },
+                { ParameterType.StringReference, new StringReference() },
+                { ParameterType.StringReferenceSingleToken, new StringReferenceSingleToken() },
+                { ParameterType.StringReferenceMultiToken, new StringReferenceMultiToken() },
 
                 { ParameterType.Shape, new ShapeData() },
                 { ParameterType.Meter, new MeterData() },
@@ -41,11 +44,7 @@ namespace Nitrogen.Games.Halo4.ContentData.GameVariants.Megalo
                  * GenericReference
                  * PlayerReference
                  * ObjectReference
-                 * TeamReference
                  * TargetReference
-                 * StringReference
-                 * StringReferenceSingleToken
-                 * StringReferenceMultiToken
                  * VirtualTrigger
                  * EntityFilter
                  * WaypointIcon
