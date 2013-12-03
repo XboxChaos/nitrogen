@@ -20,7 +20,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>..\..\Builds\Debug\Nitrogen.Wumbalo\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -29,7 +29,7 @@
     <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>none</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\..\Builds\Release\</OutputPath>
+    <OutputPath>..\..\Builds\Release\Nitrogen.Wumbalo\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -226,6 +226,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Assets\Images\" />
+    <Folder Include="Views\Apps\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Nitrogen\Nitrogen.csproj">
