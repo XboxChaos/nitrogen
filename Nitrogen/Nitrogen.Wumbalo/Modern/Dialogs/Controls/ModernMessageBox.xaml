@@ -82,30 +82,10 @@
 						   FontFamily="{DynamicResource ModernFontSemiLight}" FontSize="14" TextWrapping="Wrap" />
 			</StackPanel>
 
-			<StackPanel x:Name="ButtonPanel"  VerticalAlignment="Bottom" HorizontalAlignment="Left" Orientation="Horizontal">
-				<controls:ModernButton x:Name="OkayButton" Tag="Okay" Style="{DynamicResource DialogButtonStyle}" Click="ActionButton_OnClick" Visibility="Collapsed">
+			<StackPanel x:Name="ButtonPanel" VerticalAlignment="Bottom" HorizontalAlignment="Left" Orientation="Horizontal">
+				<controls:ModernButton x:Name="TestButton" Tag="Test" Style="{DynamicResource DialogButtonStyle}" Click="ActionButton_OnClick">
 					<TextBlock Style="{DynamicResource DialogButtonTextBlockStyle}">
-						Okay
-					</TextBlock>
-				</controls:ModernButton>
-				<controls:ModernButton x:Name="YesButton" Tag="Yes" Style="{DynamicResource DialogButtonStyle}" Click="ActionButton_OnClick" Visibility="Collapsed">
-					<TextBlock Style="{DynamicResource DialogButtonTextBlockStyle}">
-						Yes
-					</TextBlock>
-				</controls:ModernButton>
-				<controls:ModernButton x:Name="NoButton" Tag="No" Style="{DynamicResource DialogButtonStyle}" Click="ActionButton_OnClick" Visibility="Collapsed">
-					<TextBlock Style="{DynamicResource DialogButtonTextBlockStyle}">
-						No
-					</TextBlock>
-				</controls:ModernButton>
-				<controls:ModernButton x:Name="CancelButton" Tag="Cancel" Style="{DynamicResource DialogButtonStyle}" Click="ActionButton_OnClick" Visibility="Collapsed">
-					<TextBlock Style="{DynamicResource DialogButtonTextBlockStyle}">
-						Cancel
-					</TextBlock>
-				</controls:ModernButton>
-				<controls:ModernButton x:Name="AiteButton" Tag="Aite" Style="{DynamicResource DialogButtonStyle}" Click="ActionButton_OnClick" Visibility="Collapsed">
-					<TextBlock Style="{DynamicResource DialogButtonTextBlockStyle}">
-						Aite
+						Test Button
 					</TextBlock>
 				</controls:ModernButton>
 			</StackPanel>

@@ -1,7 +1,7 @@
 ﻿using System;
-using System.IO;
-using System.Runtime.InteropServices;
+using System.Linq;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Threading;
 using Nitrogen.Wumbalo.Modern.Controls.CustomControls;
@@ -14,14 +14,11 @@ namespace Nitrogen.Wumbalo.Modern.Dialogs.Controls
 	/// </summary>
 	public partial class ModernMessageBox
 	{
-		private readonly ModernMessageBoxViewModel _viewModel;
-
 		public ModernMessageBox(ModernMessageBoxViewModel viewModel)
 		{
 			InitializeComponent();
 
-			_viewModel = viewModel;
-			DataContext = _viewModel;
+			DataContext = viewModel;
 
 			// Events
 			KeyUp += OnKeyUp;
@@ -30,25 +27,22 @@ namespace Nitrogen.Wumbalo.Modern.Dialogs.Controls
 			// Setup Buttons - I know this is really hacky and horrible, but it's the only way
 			// to do it and be able to give the first button focus, without some stupid xaml
 			// workaround that is 100 times worse than shit method. Tell me about it.
-			foreach (var button in _viewModel.Buttons)
-				switch (button)
+			ButtonPanel.Children.Clear();
+			foreach (var modernButton in viewModel.Buttons.Select(button => button.ToString("G")).Select(enumSafeName => new ModernButton
+			{
+				Tag = enumSafeName,
+				Name = string.Format("{0}Button", enumSafeName),
+				Content = new TextBlock
 				{
-					case ModernMessageBoxButton.Okay:
-						OkayButton.Visibility = Visibility.Visible;
-						break;
-					case ModernMessageBoxButton.Yes:
-						YesButton.Visibility = Visibility.Visible;
-						break;
-					case ModernMessageBoxButton.No:
-						NoButton.Visibility = Visibility.Visible;
-						break;
-					case ModernMessageBoxButton.Cancel:
-						CancelButton.Visibility = Visibility.Visible;
-						break;
-					case ModernMessageBoxButton.Aite:
-						AiteButton.Visibility = Visibility.Visible;
-						break;
-				}
+					Text = enumSafeName,
+					Style = (Style) FindResource("DialogButtonTextBlockStyle")
+				},
+				Style = (Style) FindResource("DialogButtonStyle")
+			}))
+			{
+				modernButton.Click += ActionButton_OnClick;
+				ButtonPanel.Children.Add(modernButton);
+			}
 		}
 
 		#region Events
