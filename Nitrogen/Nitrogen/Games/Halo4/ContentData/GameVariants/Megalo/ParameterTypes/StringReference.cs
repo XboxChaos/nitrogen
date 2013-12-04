@@ -28,7 +28,7 @@ using System.Diagnostics.Contracts;
 namespace Nitrogen.Games.Halo4.ContentData.GameVariants.Megalo.ParameterTypes
 {
     public class StringReference
-        : IScriptObject
+        : IParameter
     {
         private sbyte stringIndex;
         private List<StringToken> tokens;

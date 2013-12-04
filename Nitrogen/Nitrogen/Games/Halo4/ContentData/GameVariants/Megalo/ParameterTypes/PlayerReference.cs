@@ -26,26 +26,26 @@ using System.Diagnostics.Contracts;
 
 namespace Nitrogen.Games.Halo4.ContentData.GameVariants.Megalo.ParameterTypes
 {
-    public enum TimerReferenceType
+    public enum PlayerReferenceType
         : byte
     {
         GlobalVariable,
         PlayerMemberVariable,
-        TeamMemberVariable,
-        ObjectMemberVariable
+        ObjectMemberVariable,
+        TeamMemberVariable
     }
 
-    public class TimerReference
+    public class PlayerReference
         : IParameter
     {
         private byte type, index, id;
 
-        public TimerReferenceType ReferenceType
+        public PlayerReferenceType ReferenceType
         {
-            get { return (TimerReferenceType)this.type; }
+            get { return (PlayerReferenceType)this.type; }
             set
             {
-                Contract.Requires<InvalidEnumArgumentException>(Enum.IsDefined(typeof(TimerReferenceType), value));
+                Contract.Requires<InvalidEnumArgumentException>(Enum.IsDefined(typeof(PlayerReferenceType), value));
                 this.type = (byte)value;
             }
         }
@@ -64,25 +64,21 @@ namespace Nitrogen.Games.Halo4.ContentData.GameVariants.Megalo.ParameterTypes
 
         public void Serialize(BitStream s)
         {
-            s.Stream(ref this.type, 3);
-            TimerReferenceType type = (TimerReferenceType)this.type;
+            s.Stream(ref this.type, 2);
+            PlayerReferenceType type = (PlayerReferenceType)this.type;
             switch (type)
             {
-                case TimerReferenceType.GlobalVariable:
-                    s.Stream(ref this.index, 3);
+                case PlayerReferenceType.GlobalVariable:
+                    s.Stream(ref this.id, 6);
                     break;
 
-                case TimerReferenceType.PlayerMemberVariable:
+                case PlayerReferenceType.PlayerMemberVariable:
                     s.Stream(ref this.id, 6);
                     s.Stream(ref this.index, 2);
                     break;
 
-                case TimerReferenceType.TeamMemberVariable:
-                    s.Stream(ref this.id, 5);
-                    s.Stream(ref this.index, 2);
-                    break;
-
-                case TimerReferenceType.ObjectMemberVariable:
+                case PlayerReferenceType.ObjectMemberVariable:
+                case PlayerReferenceType.TeamMemberVariable:
                     s.Stream(ref this.id, 5);
                     s.Stream(ref this.index, 2);
                     break;

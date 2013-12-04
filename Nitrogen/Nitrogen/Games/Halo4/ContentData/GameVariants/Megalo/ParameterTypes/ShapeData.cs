@@ -26,8 +26,16 @@ using System.Diagnostics.Contracts;
 
 namespace Nitrogen.Games.Halo4.ContentData.GameVariants.Megalo.ParameterTypes
 {
+    public enum Shape
+    {
+        None,
+        Sphere,
+        Cylinder,
+        Box
+    }
+
     public class ShapeData
-        : IScriptObject
+        : IParameter
     {
         private IntegerReference radius, top, bottom, length, width;
         private byte shapeType;
@@ -39,14 +47,6 @@ namespace Nitrogen.Games.Halo4.ContentData.GameVariants.Megalo.ParameterTypes
             this.bottom = new IntegerReference();
             this.length = new IntegerReference();
             this.width = new IntegerReference();
-        }
-
-        public enum Shape
-        {
-            None,
-            Sphere,
-            Cylinder,
-            Box
         }
 
         public Shape ShapeType

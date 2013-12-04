@@ -26,21 +26,21 @@ using System.Diagnostics.Contracts;
 
 namespace Nitrogen.Games.Halo4.ContentData.GameVariants.Megalo.ParameterTypes
 {
+    public enum TeamReferenceType
+        : byte
+    {
+        GlobalVariable,
+        PlayerMemberVariable,
+        ObjectMemberVariable,
+        TeamMemberVariable,
+        PlayerOwnerTeam,
+        ObjectOwnerTeam
+    }
+
     public class TeamReference
-        : IScriptObject
+        : IParameter
     {
         private byte type, index, id;
-
-        public enum TeamReferenceType
-            : byte
-        {
-            GlobalVariable,
-            PlayerMemberVariable,
-            ObjectMemberVariable,
-            TeamMemberVariable,
-            PlayerOwnerTeam,
-            ObjectOwnerTeam
-        }
 
         public TeamReferenceType ReferenceType
         {

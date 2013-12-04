@@ -26,92 +26,92 @@ using System.Diagnostics.Contracts;
 
 namespace Nitrogen.Games.Halo4.ContentData.GameVariants.Megalo.ParameterTypes
 {
+    public enum IntegerReferenceType
+        : byte
+    {
+        Constant,
+        PlayerMemberVariable, // var index
+        ObjectMemberVariable, // var index
+        TeamMemberVariable, // var index
+        GlobalVariable, // var index
+        ScratchVariable, // scratch index
+        UserDefinedOption, // option index; readonly
+        SpawnSequence, // readonly
+        UserData, // readonly
+        Unknown9, // readonly; halo 4 only
+        TeamScore,
+        PlayerScore,
+        Unknown12, // requisition related; involves scenario data; readonly
+        PlayerRating, // readonly
+        PlayerStatistic, // stat index
+        TeamStatistic, // stat index
+        Unused16, // readonly; always returns zero
+        CurrentRound, // readonly
+        GetSymmetry, // bool; readonly
+        Symmetry, // bool
+        GameVariantControlsVictory, // bool
+        ScoreLimit,
+        TeamLivesRemaining,
+        PlayerLivesRemaining,
+        PlayerSpawnDelay,
+
+        // all properties below are readonly ---
+        Unknown25, // readonly; player
+        Unknown26, // readonly; player
+        Unknown27, // readonly; player
+        Unknown28, // readonly; team
+        Unknown29, // readonly; team
+        Unknown30, // readonly; team
+        Unknown31, // readonly; MP property index; object; used in dominion (dom_res_zone)
+        Unknown32, // readonly; MP property index; object
+        ScoreToWin,
+        Unknown34, // bool
+        TeamsEnabled, // bool
+        RoundTimeLimit,
+        NumberOfRounds,
+        RoundsResetMap, // bool
+        EarlyVictoryWinCount,
+        LivesPerRound,
+        TeamLivesPerRound,
+        RespawnDuration,
+        SuicidePenalty,
+        BetrayalPenalty,
+        RespawnGrowthTime,
+        InitialLoadoutSelectionTime,
+        RespawnTraitsDuration,
+        FriendlyFire, // bool
+        BetrayalBooting, // bool
+        EnemyVoice, // bool
+        OpenChannelVoice, // bool
+        DeadPlayerVoice, // bool
+        GrenadesOnMap, // bool
+        IndestructibleVehicles,
+        DamageBoostAlphaDuration,
+        SpeedBoostAlphaDuration,
+        OvershieldAlphaDuration,
+        CustomPowerupAlphaDuration,
+        DamageBoostBetaDuration,
+        SpeedBoostBetaDuration,
+        OvershieldBetaDuration,
+        CustomPowerupBetaDuration,
+        MapLoadoutsEnabled,
+        InitialOrdnanceEnabled,
+        RandomOrdnanceEnabled,
+        ObjectiveOrdnanceEnabled,
+        PersonalOrdnanceEnabled,
+        OrdnanceSystemEnabled,
+        KillCamEnabled,
+        FinalKillCamEnabled,
+        OvertimeDuration,
+        DamageType,
+    }
+
     public class IntegerReference
-        : IScriptObject
+        : IParameter
     {
         private byte type;
         private short value;
         private byte index, id;
-
-        public enum IntegerReferenceType
-            : byte
-        {
-            Constant, // readonly
-            PlayerMemberVariable, // var index
-            ObjectMemberVariable, // var index
-            TeamMemberVariable, // var index
-            GlobalVariable, // var index
-            ScratchVariable, // scratch index
-            UserDefinedOption, // option index; readonly
-            SpawnSequence, // readonly
-            UserData, // readonly
-            Unknown9, // readonly; halo 4 only
-            TeamScore,
-            PlayerScore,
-            Unknown12, // requisition related; involves scenario data; readonly
-            PlayerRating, // readonly
-            PlayerStatistic, // stat index
-            TeamStatistic, // stat index
-            Unused16, // readonly; always returns zero
-            CurrentRound, // readonly
-            GetSymmetry, // bool; readonly
-            Symmetry, // bool
-            GameVariantControlsVictory, // bool
-            ScoreLimit,
-            TeamLivesRemaining,
-            PlayerLivesRemaining,
-            PlayerSpawnDelay,
-
-            // all properties below are readonly ---
-            Unknown25, // readonly; player
-            Unknown26, // readonly; player
-            Unknown27, // readonly; player
-            Unknown28, // readonly; team
-            Unknown29, // readonly; team
-            Unknown30, // readonly; team
-            Unknown31, // readonly; MP property index; object; used in dominion (dom_res_zone)
-            Unknown32, // readonly; MP property index; object
-            ScoreToWin,
-            Unknown34, // bool
-            TeamsEnabled, // bool
-            RoundTimeLimit,
-            NumberOfRounds,
-            RoundsResetMap, // bool
-            EarlyVictoryWinCount,
-            LivesPerRound,
-            TeamLivesPerRound,
-            RespawnDuration,
-            SuicidePenalty,
-            BetrayalPenalty,
-            RespawnGrowthTime,
-            InitialLoadoutSelectionTime,
-            RespawnTraitsDuration,
-            FriendlyFire, // bool
-            BetrayalBooting, // bool
-            EnemyVoice, // bool
-            OpenChannelVoice, // bool
-            DeadPlayerVoice, // bool
-            GrenadesOnMap, // bool
-            IndestructibleVehicles,
-            DamageBoostAlphaDuration,
-            SpeedBoostAlphaDuration,
-            OvershieldAlphaDuration,
-            CustomPowerupAlphaDuration,
-            DamageBoostBetaDuration,
-            SpeedBoostBetaDuration,
-            OvershieldBetaDuration,
-            CustomPowerupBetaDuration,
-            MapLoadoutsEnabled,
-            InitialOrdnanceEnabled,
-            RandomOrdnanceEnabled,
-            ObjectiveOrdnanceEnabled,
-            PersonalOrdnanceEnabled,
-            OrdnanceSystemEnabled,
-            KillCamEnabled,
-            FinalKillCamEnabled,
-            OvertimeDuration,
-            DamageType,
-        }
 
         public IntegerReferenceType ReferenceType
         {

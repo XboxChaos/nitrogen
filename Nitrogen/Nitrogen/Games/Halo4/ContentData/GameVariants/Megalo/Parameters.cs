@@ -27,8 +27,10 @@ namespace Nitrogen.Games.Halo4.ContentData.GameVariants.Megalo
 {
     public class Parameters
     {
-        private static Dictionary<ParameterType, IScriptObject> Definitions =
-            new Dictionary<ParameterType, IScriptObject>
+        // FOOD FOR THOUGHT: IS THIS SHIT EVEN NECESSARY??
+
+        private static Dictionary<ParameterType, IParameter> Definitions =
+            new Dictionary<ParameterType, IParameter>
             {
                 { ParameterType.IntegerReference, new IntegerReference() },
                 { ParameterType.TimerReference, new TimerReference() },
@@ -36,14 +38,15 @@ namespace Nitrogen.Games.Halo4.ContentData.GameVariants.Megalo
                 { ParameterType.StringReference, new StringReference() },
                 { ParameterType.StringReferenceSingleToken, new StringReferenceSingleToken() },
                 { ParameterType.StringReferenceMultiToken, new StringReferenceMultiToken() },
+                { ParameterType.PlayerReference, new PlayerReference() },
+                { ParameterType.ObjectReference, new ObjectReference() },
+                { ParameterType.TargetReference, new TargetReference() },
 
                 { ParameterType.Shape, new ShapeData() },
                 { ParameterType.Meter, new MeterData() },
 
                 /*
                  * GenericReference
-                 * PlayerReference
-                 * ObjectReference
                  * TargetReference
                  * VirtualTrigger
                  * EntityFilter

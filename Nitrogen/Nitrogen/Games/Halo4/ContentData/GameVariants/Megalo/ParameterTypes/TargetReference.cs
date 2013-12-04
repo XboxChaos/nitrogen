@@ -26,80 +26,68 @@ using System.Diagnostics.Contracts;
 
 namespace Nitrogen.Games.Halo4.ContentData.GameVariants.Megalo.ParameterTypes
 {
-    public enum MeterType
+    public enum TargetReferenceType
+        : byte
     {
-        None,
-        Fraction,
-        Timer
+        TeamReference,
+        PlayerReference,
     }
 
-    public class MeterData
+    public class TargetReference
         : IParameter
     {
         private byte type;
-        private IntegerReference numerator, denominator;
-        private TimerReference timer;
+        private TeamReference teamRef;
+        private PlayerReference playerRef;
 
-        public MeterData()
+        public TargetReference()
         {
-            this.numerator = new IntegerReference();
-            this.denominator = new IntegerReference();
-            this.timer = new TimerReference();
+            this.teamRef = new TeamReference();
+            this.playerRef = new PlayerReference();
         }
 
-        public MeterType Type
+        public TargetReferenceType ReferenceType
         {
-            get { return (MeterType)this.type; }
+            get { return (TargetReferenceType)this.type; }
             set
             {
-                Contract.Requires<InvalidEnumArgumentException>(Enum.IsDefined(typeof(MeterType), value));
+                Contract.Requires<InvalidEnumArgumentException>(Enum.IsDefined(typeof(TargetReferenceType), value));
                 this.type = (byte)value;
             }
         }
 
-        public IntegerReference Numerator
+        public TeamReference Team
         {
-            get { return this.numerator; }
+            get { return this.teamRef; }
             set
             {
                 Contract.Requires<ArgumentNullException>(value != null);
-                this.numerator = value;
+                this.teamRef = value;
             }
         }
 
-        public IntegerReference Denominator
+        public PlayerReference Player
         {
-            get { return this.denominator; }
+            get { return this.playerRef; }
             set
             {
                 Contract.Requires<ArgumentNullException>(value != null);
-                this.denominator = value;
-            }
-        }
-
-        public TimerReference Timer
-        {
-            get { return this.timer; }
-            set
-            {
-                Contract.Requires<ArgumentNullException>(value != null);
-                this.timer = value;
+                this.playerRef = value;
             }
         }
 
         public void Serialize(BitStream s)
         {
             s.Stream(ref this.type, 2);
-            var meterType = (MeterType)this.type;
-            switch (meterType)
+            TargetReferenceType type = (TargetReferenceType)this.type;
+            switch (type)
             {
-                case MeterType.Fraction:
-                    s.Serialize(this.numerator);
-                    s.Serialize(this.denominator);
+                case TargetReferenceType.TeamReference:
+                    s.Serialize(this.teamRef);
                     break;
 
-                case MeterType.Timer:
-                    s.Serialize(this.timer);
+                case TargetReferenceType.PlayerReference:
+                    s.Serialize(this.playerRef);
                     break;
             }
         }

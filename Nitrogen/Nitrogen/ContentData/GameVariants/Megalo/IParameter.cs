@@ -3,9 +3,9 @@ using System;
 
 namespace Nitrogen.ContentData.GameVariants.Megalo
 {
-    public interface IScriptObject
+    public interface IParameter
         : ISerializable<BitStream>
     {
-        
+
     }
 }
