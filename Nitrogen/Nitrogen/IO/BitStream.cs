@@ -1,182 +1,140 @@
-﻿/*
- *   Nitrogen - Halo Content API
- *   Copyright © 2013 The Nitrogen Authors. All rights reserved.
- * 
- *   This file is part of Nitrogen.
- *
- *   Nitrogen is free software: you can redistribute it and/or modify
- *   it under the terms of the GNU General Public License as published by
- *   the Free Software Foundation, either version 3 of the License, or
- *   (at your option) any later version.
- *
- *   Nitrogen is distributed in the hope that it will be useful,
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *   GNU General Public License for more details.
- *
- *   You should have received a copy of the GNU General Public License
- *   along with Nitrogen.  If not, see <http://www.gnu.org/licenses/>.
- */
-
+﻿using Nitrogen.Utilities;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Diagnostics.Contracts;
 using System.IO;
 using System.Text;
 
 namespace Nitrogen.IO
 {
+    [ContractVerification(true)]
     public class BitStream
-        : BinaryStream
+        : IDisposable
     {
-        private Lazy<BitReader> reader;
-        private Lazy<BitWriter> writer;
+        private Lazy<BitReader> _reader;
+        private Lazy<BitWriter> _writer;
+        private StreamState _state;
 
         public BitStream(Stream stream, StreamState initialState, bool leaveOpen = false)
-            : base(stream, initialState, leaveOpen)
         {
-            this.reader = new Lazy<BitReader>(() => new BitReader(this, leaveOpen));
-            this.writer = new Lazy<BitWriter>(() => new BitWriter(this, leaveOpen));
+            Contract.Requires<ArgumentNullException>(stream != null);
+            Contract.Requires(initialState.IsDefined());
+
+            _reader = new Lazy<BitReader>(() => new BitReader(stream, leaveOpen));
+            _writer = new Lazy<BitWriter>(() => new BitWriter(stream, leaveOpen));
+            _state = initialState;
         }
 
-        public override BinaryReader Reader { get { return this.reader.Value; } }
+        public virtual BitReader Reader { get { return _reader.Value; } }
 
-        public override BinaryWriter Writer { get { return this.writer.Value; } }
+        public virtual BitWriter Writer { get { return _writer.Value; } }
 
-        public void Stream(ref byte value, int bits)
+        public StreamState State
         {
-            if (State == StreamState.Read)
+            get { return _state; }
+            set
             {
-                ulong val;
-                this.reader.Value.Read(out val, bits);
-                value = (byte)val;
-            }
-            else if (State == StreamState.Write)
-            {
-                this.writer.Value.Write(value, bits);
-            }
-        }
-
-        public void Stream(ref sbyte value, int bits)
-        {
-            if (State == StreamState.Read)
-            {
-                ulong val;
-                this.reader.Value.Read(out val, bits);
-                value = (sbyte)val;
-            }
-            else if (State == StreamState.Write)
-            {
-                this.writer.Value.Write(value, bits);
+                Contract.Requires(value.IsDefined());
+                _state = value;
             }
         }
 
-        public void Stream(ref ushort value, int bits)
+        public void Stream(ref bool value)
         {
-            if (State == StreamState.Read)
-            {
-                ulong val;
-                this.reader.Value.Read(out val, bits);
-                value = (ushort)val;
-            }
-            else if (State == StreamState.Write)
-            {
-                this.writer.Value.Write(value, bits);
-            }
+            if (_state == StreamState.Read) { value = Reader.ReadBit(); }
+            if (_state == StreamState.Write) { Writer.WriteBit(value); }
         }
 
-        public void Stream(ref short value, int bits)
+        public void Stream(ref byte value, int bits = sizeof(byte) * 8)
         {
-            if (State == StreamState.Read)
-            {
-                ulong val;
-                this.reader.Value.Read(out val, bits);
-                value = (short)val;
-            }
-            else if (State == StreamState.Write)
-            {
-                this.writer.Value.Write(value, bits);
-            }
+            if (_state == StreamState.Read) { value = (byte)Reader.ReadUIntN(bits); }
+            if (_state == StreamState.Write) { Writer.Write(value, bits); }
         }
 
-        public void Stream(ref uint value, int bits)
+        public void Stream(ref short value, int bits = sizeof(short) * 8)
         {
-            if (State == StreamState.Read)
-            {
-                ulong val;
-                this.reader.Value.Read(out val, bits);
-                value = (uint)val;
-            }
-            else if (State == StreamState.Write)
-            {
-                this.writer.Value.Write(value, bits);
-            }
+            if (_state == StreamState.Read) { value = (short)Reader.ReadUIntN(bits); }
+            if (_state == StreamState.Write) { Writer.Write(value, bits); }
         }
 
-        public void Stream(ref int value, int bits)
+        public void Stream(ref int value, int bits = sizeof(int) * 8)
         {
-            if (State == StreamState.Read)
-            {
-                ulong val;
-                this.reader.Value.Read(out val, bits);
-                value = (int)val;
-            }
-            else if (State == StreamState.Write)
-            {
-                this.writer.Value.Write(value, bits);
-            }
+            if (_state == StreamState.Read) { value = (int)Reader.ReadUIntN(bits); }
+            if (_state == StreamState.Write) { Writer.Write(value, bits); }
         }
 
-        public void Stream(ref ulong value, int bits)
+        public void Stream(ref long value, int bits = sizeof(long) * 8)
         {
-            if (State == StreamState.Read)
-            {
-                ulong val;
-                this.reader.Value.Read(out val, bits);
-                value = (ulong)val;
-            }
-            else if (State == StreamState.Write)
-            {
-                this.writer.Value.Write(value, bits);
-            }
+            if (_state == StreamState.Read) { value = (long)Reader.ReadUIntN(bits); }
+            if (_state == StreamState.Write) { Writer.Write(value, bits); }
         }
 
-        public void Stream(ref long value, int bits)
+        public void Stream(ref DateTime value, int bits = sizeof(double) * 8)
         {
-            if (State == StreamState.Read)
-            {
-                ulong val;
-                this.reader.Value.Read(out val, bits);
-                value = (long)val;
-            }
-            else if (State == StreamState.Write)
-            {
-                this.writer.Value.Write(value, bits);
-            }
+            if (_state == StreamState.Read) { value = Reader.ReadDateTime(); }
+            if (_state == StreamState.Write) { Writer.Write(value); }
         }
 
-        public void Stream(IList<bool> values, int offset, int count)
+        public void Stream(ref sbyte value, int bits = sizeof(sbyte) * 8)
         {
-            for (int i = offset; i < offset + count; i++)
-            {
-                bool value = values[i];
-                Stream(ref value);
-                values[i] = value;
-            }
+			if ( _state == StreamState.Read )
+			{
+				value = (sbyte) Reader.ReadIntN(bits);
+			}
+            if (_state == StreamState.Write) { Writer.Write(value, bits); }
         }
 
-        public void Stream(ref float value, int bits, float min, float max, bool signed, bool rounded = true, bool flag = true)
+        public void Stream(ref ushort value, int bits = sizeof(ushort) * 8)
         {
-            if (State == StreamState.Read)
-            {
-                value = this.reader.Value.ReadEncodedFloat(bits, min, max, signed, rounded, flag);
-            }
+            if (_state == StreamState.Read) { value = (ushort)Reader.ReadIntN(bits); }
+            if (_state == StreamState.Write) { Writer.Write(value, bits); }
         }
 
-        public void Pad(int bitCount)
+        public void Stream(ref uint value, int bits = sizeof(uint) * 8)
         {
-            Stream(new bool[bitCount], 0, bitCount);
+            if (_state == StreamState.Read) { value = (uint)Reader.ReadIntN(bits); }
+            if (_state == StreamState.Write) { Writer.Write(value, bits); }
+        }
+
+        public void Stream(ref ulong value, int bits = sizeof(ulong) * 8)
+        {
+            if (_state == StreamState.Read) { value = (ulong)Reader.ReadIntN(bits); }
+            if (_state == StreamState.Write) { Writer.Write(value, bits); }
+        }
+
+		public void Stream (ref float value)
+		{
+			if ( _state == StreamState.Read ) { value = (float) Reader.ReadIntN(sizeof(float) * 8); }
+			if ( _state == StreamState.Write ) { Writer.Write((int) value, sizeof(float) * 8); }
+		}
+
+        public void StreamNullTerminatedString(ref string value, Encoding encoding, int maxLength = 0)
+        {
+            if (_state == StreamState.Read)
+                value = Reader.ReadNullTerminatedString(encoding, maxLength);
+            else if (_state == StreamState.Write)
+                Writer.WriteNullTerminatedString(value, encoding, maxLength);
+        }
+
+        public void StreamString(ref string value, Encoding encoding, int length)
+        {
+            if (_state == StreamState.Read)
+                value = Reader.ReadString(encoding, length);
+            else if (_state == StreamState.Write)
+                Writer.WriteString(value, encoding, length);
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                if (_reader != null && _reader.IsValueCreated) { _reader.Value.Dispose(); }
+                if (_writer != null && _writer.IsValueCreated) { _writer.Value.Dispose(); }
+            }
         }
     }
 }

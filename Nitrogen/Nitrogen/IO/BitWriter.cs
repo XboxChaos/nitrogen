@@ -1,57 +1,77 @@
-﻿/*
- *   Nitrogen - Halo Content API
- *   Copyright © 2013 The Nitrogen Authors. All rights reserved.
- * 
- *   This file is part of Nitrogen.
- *
- *   Nitrogen is free software: you can redistribute it and/or modify
- *   it under the terms of the GNU General Public License as published by
- *   the Free Software Foundation, either version 3 of the License, or
- *   (at your option) any later version.
- *
- *   Nitrogen is distributed in the hope that it will be useful,
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *   GNU General Public License for more details.
- *
- *   You should have received a copy of the GNU General Public License
- *   along with Nitrogen.  If not, see <http://www.gnu.org/licenses/>.
- */
-
+﻿using Nitrogen.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
+using System.IO;
+using System.Linq;
 using System.Text;
 
 namespace Nitrogen.IO
 {
-    public sealed class BitWriter
-        : BinaryWriter
+    [ContractVerification(true)]
+    public class BitWriter
+        : IDisposable
     {
         private const int WindowSize = sizeof(ulong) * 8;
 
-        private ulong window;
-        private int windowPos;
+        private ulong _window;
+        private int _windowPos;
+        private Stream _stream;
 
-        public BitWriter(BitStream stream, bool leaveOpen = false)
-            : base(stream, leaveOpen) { }
+        private readonly bool _leaveOpen;
+
+        public BitWriter(Stream stream, bool leaveOpen = false)
+        {
+            Contract.Requires(stream != null);
+            _stream = stream;
+            _leaveOpen = leaveOpen;
+        }
+
+        /// <summary>
+        /// Prevents a default instance of the <see cref="BitWriter"/> class from being created
+        /// except in derived classes.
+        /// </summary>
+        protected BitWriter() { }
+
+        ~BitWriter()
+        {
+            Dispose(false);
+        }
+
+        /// <summary>
+        /// Gets the underlying stream.
+        /// </summary>
+        public virtual Stream BaseStream { get { return _stream; } }
 
         public void Flush()
         {
-            var bytes = BitConverter.GetBytes(this.window);
+            Contract.Requires<InvalidOperationException>(BaseStream != null);
+
+            var bytes = BitConverter.GetBytes(_window);
             if (BitConverter.IsLittleEndian)
                 Array.Reverse(bytes);
 
-            int length = (this.windowPos + 7) / 8;
-            BaseStream.Write(bytes, 0, length);
-            this.window = 0;
-            this.windowPos = 0;
+            int length = (_windowPos + 7) / 8;
+            _stream.Write(bytes, 0, length);
+            _window = 0;
+            _windowPos = 0;
         }
 
-        public override void Dispose()
+        public void Dispose()
         {
-            Flush();
-            base.Dispose();
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        public void WriteBit(bool value)
+        {
+            Write(value ? 1 : 0, 1);
+        }
+
+        public virtual void Write(DateTime value)
+        {
+            Contract.Requires(BaseStream != null && BaseStream.CanWrite);
+            Write((ulong)value.ToUnixTime(), sizeof(ulong) * 8);
         }
 
         public void Write(ulong value, int bits)
@@ -60,11 +80,11 @@ namespace Nitrogen.IO
 
             while (bits > 0)
             {
-                this.window |= ((value >> (bits - 1)) & 1) << (WindowSize - 1 - this.windowPos);
-                this.windowPos++;
+                _window |= ((value >> (bits - 1)) & 1) << (WindowSize - 1 - _windowPos);
+                _windowPos++;
                 bits--;
 
-                if (this.windowPos == WindowSize)
+                if (_windowPos == WindowSize)
                     Flush();
             }
         }
@@ -75,85 +95,63 @@ namespace Nitrogen.IO
             Write((ulong)value, bits);
         }
 
-        public override void Write(bool value)
+        /// <summary>
+        /// Writes a null-terminated string to the underlying stream in the specified <paramref name="encoding"/>.
+        /// </summary>
+        /// <param name="value">The string value.</param>
+        /// <param name="encoding">The character encoding of the string value.</param>
+        public virtual void WriteNullTerminatedString(string value, Encoding encoding, int maxLength = 0)
         {
-            Write(value ? 1 : 0, 1);
+            Contract.Requires<ArgumentNullException>(value != null && encoding != null);
+
+            value += "\0";
+            byte[] encodedValue = new byte[encoding.GetByteCount(value)];
+            Array.Copy(encoding.GetBytes(value), encodedValue, encodedValue.Length);
+			foreach ( byte b in encodedValue )
+			{
+				Write(b, 8);
+			}
         }
 
-        public override void Write(byte value)
+        /// <summary>
+        /// Writes a fixed-length string to the underlying stream in the specified <paramref name="encoding"/>.
+        /// The value is to be padded with null bytes to meet the desired <paramref name="length"/>.
+        /// </summary>
+        /// <param name="value">The string value.</param>
+        /// <param name="encoding">The character encoding of the string value.</param>
+        /// <param name="length">
+        /// The length (in bytes) of the string value to be written to the underlying stream.
+        /// </param>
+        /// <param name="nullTerminated">
+        /// <c>true</c> if the string is null-terminated; otherwise, <c>false</c>.
+        /// </param>
+        public virtual void WriteString(string value, Encoding encoding, int length)
         {
-            Write(value, 8);
-        }
+            Contract.Requires<ArgumentNullException>(value != null && encoding != null);
+            Contract.Requires<ArgumentOutOfRangeException>(length >= 0);
+            Contract.Requires<ArgumentException>(encoding.GetByteCount(value) <= length);
 
-        public override void Write(sbyte value)
-        {
-            Write(value, 8);
-        }
+            byte[] encodedValue = encoding.GetBytes(value);
+            foreach (byte b in encodedValue) { Write(b, 8); }
 
-        public override void Write(short value)
-        {
-            Write(value, 16);
-        }
-
-        public override void Write(ushort value)
-        {
-            Write(value, 16);
-        }
-
-        public override void Write(int value)
-        {
-            Write(value, 32);
-        }
-
-        public override void Write(uint value)
-        {
-            Write(value, 32);
-        }
-
-        public override void Write(long value)
-        {
-            Write(value, 64);
-        }
-
-        public override void Write(ulong value)
-        {
-            Write(value, 64);
-        }
-
-        public void WriteEncodedFloat(float value, int n, float min, float max, bool signed, bool isRounded = true, bool flag = true)
-        {
-            uint maxInt = (uint)(1 << n);
-            if (signed)
+            if (encodedValue.Length < length)
             {
-                maxInt--;
-                if (value == 0.5f * (max + min))
-                {
-                    Write((maxInt - 1) >> 1, n);
-                    return;
-                }
+                byte[] padding = new byte[length - encodedValue.Length];
+                foreach (byte b in padding) { Write(b, 8); }
             }
+        }
 
-            if (flag)
-            {
-                if (value == min)
-                {
-                    Write(0, n);
-                    return;
-                }
-                    
-                if (value == max)
-                {
-                    Write(maxInt - 1, n);
-                    return;
-                }
+        protected virtual void Dispose(bool disposing)
+        {
+            Flush();
 
-                float y = (max - min) / (float)(maxInt - 2);
-                Write((uint)((value - min - y * 0.5f) / y + 1), n);
-            }
-            else
+            if (disposing)
             {
-                float y = (max - min) / (float)maxInt;
-                Write((uint)((value - min - y * 0.5f) / y), n);
+                if (!_leaveOpen && _stream != null)
+                {
+                    _stream.Dispose();
+                    _stream = null;
+                }
             }
         }
     }

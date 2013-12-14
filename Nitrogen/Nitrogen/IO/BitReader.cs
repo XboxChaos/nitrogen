@@ -1,308 +1,48 @@
-﻿/*
- *   Nitrogen - Halo Content API
- *   Copyright © 2013 The Nitrogen Authors. All rights reserved.
- * 
- *   This file is part of Nitrogen.
- *
- *   Nitrogen is free software: you can redistribute it and/or modify
- *   it under the terms of the GNU General Public License as published by
- *   the Free Software Foundation, either version 3 of the License, or
- *   (at your option) any later version.
- *
- *   Nitrogen is distributed in the hope that it will be useful,
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *   GNU General Public License for more details.
- *
- *   You should have received a copy of the GNU General Public License
- *   along with Nitrogen.  If not, see <http://www.gnu.org/licenses/>.
- */
-
+﻿using Nitrogen.Utilities;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics.Contracts;
 using System.IO;
 using System.Text;
 
 namespace Nitrogen.IO
 {
-    public sealed class BitReader
-        : BinaryReader
+    [ContractVerification(true)]
+    public class BitReader
+        : IDisposable
     {
         private const int WindowSize = sizeof(ulong) * 8;
 
-        private ulong window;
-        private int bitsAvailable;
+        private Stream _stream;
+        private ulong _window;
+        private int _bitsAvailable;
+        private byte _currentByte;
+        private long _currentBitPos;
+        private int _currentBit = 8;
 
-        private byte currentByte;
-        private int currentBit = 8;
-        private long currentBitPos = 0;
+        private readonly bool _leaveOpen;
 
-        public BitReader(BitStream stream, bool leaveOpen = false)
-            : base(stream, leaveOpen) { }
-
-        public int Read(out long output, int n)
+        public BitReader(Stream stream, bool leaveOpen = false)
         {
-            Contract.Requires<ArgumentOutOfRangeException>(n > 0 && n <= WindowSize);
-
-            ulong val;
-            Read(out val, n);
-            output = ExtendSign(val, n);
-            return n;
-        }
-
-        public int Read(out ulong output, int n)
-        {
-            Contract.Requires<ArgumentOutOfRangeException>(n > 0 && n <= WindowSize);
-
-            EnsureBitsAvailable(n);
-
-            output = this.window >> (WindowSize - n);
-            if (n < WindowSize)
-                this.window <<= n;
-            else
-                this.window = 0;
-            this.bitsAvailable -= n;
-            this.currentBitPos += n;
-
-            return n;
-        }
-
-        public override int Read(out bool output)
-        {
-            ulong val;
-            Read(out val, 1);
-            output = val == 1;
-            return 1;
-        }
-
-        public override int Read(out byte output)
-        {
-            ulong val;
-            Read(out val, 8);
-            output = (byte)val;
-            return 8;
-        }
-
-        public override int Read(out sbyte output)
-        {
-            ulong val;
-            Read(out val, 8);
-            output = (sbyte)val;
-            return 8;
-        }
-
-        public override int Read(out short output)
-        {
-            ulong val;
-            Read(out val, 16);
-            output = (short)val;
-            return 16;
-        }
-
-        public override int Read(out ushort output)
-        {
-            ulong val;
-            Read(out val, 16);
-            output = (ushort)val;
-            return 16;
-        }
-
-        public override int Read(out int output)
-        {
-            ulong val;
-            Read(out val, 32);
-            output = (int)val;
-            return 32;
-        }
-
-        public override int Read(out uint output)
-        {
-            ulong val;
-            Read(out val, 32);
-            output = (uint)val;
-            return 32;
-        }
-
-        public override int Read(out long output)
-        {
-            return Read(out output, 64);
-        }
-
-        public override int Read(out ulong output)
-        {
-            return Read(out output, 64);
-        }
-
-        public override int Read(out string output, Encoding encoding, long maxLength = 0)
-        {
-            int count = 0;
-            int delimiterSize = encoding.GetByteCount("\0");
-            byte[] buffer = new byte[delimiterSize];
-            var builder = new StringBuilder();
-            long max = maxLength > 0 ? BaseStream.Position + maxLength : BaseStream.Length;
-            max *= 8;
-            while (this.currentBitPos < max)
-            {
-                count += Read(buffer, buffer.Length);
-                string value = encoding.GetString(buffer);
-                if (value == "\0")
-                    break;
-                builder.Append(value);
-            }
-            output = builder.ToString();
-            return count;
-        }
-
-        public override int Read(out string output, Encoding encoding, int length)
-        {
-            byte[] buffer = new byte[length];
-            int count = Read(buffer, buffer.Length);
-            output = encoding.GetString(buffer).Trim('\0');
-            return count;
-        }
-
-        public override int Read(out float output)
-        {
-            byte[] buffer = new byte[4];
-            int read = Read(buffer, buffer.Length);
-            if (BitConverter.IsLittleEndian)
-            {
-                // Byte swap
-                byte temp = buffer[0];
-                buffer[0] = buffer[3];
-                buffer[3] = temp;
-                temp = buffer[1];
-                buffer[1] = buffer[2];
-                buffer[2] = temp;
-            }
-            float result = BitConverter.ToSingle(buffer, 0);
-            output = result;
-            return read;
-        }
-
-        public float ReadEncodedFloat(int n, float min, float max, bool signed, bool isRounded = true, bool flag = true)
-        {
-            ulong encodedValue;
-            Read(out encodedValue, n);
-
-            uint maxInt = (uint)(1 << n);
-            float result;
-            if (signed)
-            {
-                maxInt--;
-                if ((encodedValue << 1) == maxInt - 1)
-                    result = 0.5f * (max + min);
-            }
-
-            if (flag)
-            {
-                if (encodedValue == 0)
-                    return min;
-                if (encodedValue == max - 1)
-                    return max;
-
-                float y = (max - min) / (float)(maxInt - 2);
-                result = (float)(encodedValue - 1) * y + y * 0.5f + min;
-            }
-            else
-            {
-                float y = (max - min) / (float)maxInt;
-                result = (float)encodedValue * y + y * 0.5f + min;
-            }
-
-            if (isRounded)
-            {
-                int rounded = (int)(result + 0.5f);
-                if (Math.Abs((float)rounded - result) <= .002f)
-                    result = (float)rounded;
-            }
-
-            return result;
+            Contract.Requires(stream != null);
+            _stream = stream;
+            _leaveOpen = leaveOpen;
         }
 
         /// <summary>
-        /// Seeks to an offset within a byte in the stream.
+        /// Prevents a default instance of the <see cref="BitReader"/> class from being created
+        /// except in derived classes.
         /// </summary>
-        /// <param name="bytePos">The position of the byte to seek inside.</param>
-        /// <param name="bitOffset">The offset of the bit from the start of the byte to seek to. 0 = MSB.</param>
-        public void Seek(long bytePos, int bitOffset)
-        {
-            Contract.Requires<ArgumentException>(bytePos >= 0);
-            Contract.Requires<ArgumentException>(bitOffset >= 0 && bitOffset < 8);
-
-            BaseStream.Position = bytePos;
-            this.currentBitPos = bytePos * 8 + bitOffset;
-            ResetWindow(); // Technically, we might not need to reset the window and cache a new byte if the seek position is close to our current position, but meh
-            CacheByte();
-            this.currentBit = bitOffset;
-        }
+        protected BitReader() { }
 
         /// <summary>
-        /// Ensures that a specified number of bits is available in the window.
-        /// If not, the window is refilled as much as possible.
+        /// Gets the underlying stream.
         /// </summary>
-        /// <param name="count">The number of bits needed.</param>
-        private void EnsureBitsAvailable(int count)
-        {
-            Contract.Requires<ArgumentOutOfRangeException>(count > 0 && count <= WindowSize);
-
-            if (this.bitsAvailable < count)
-            {
-                // Refill as much of the window as possible
-                while (this.bitsAvailable < WindowSize)
-                {
-                    if (this.currentBit == 8 && !CacheByte())
-                    {
-                        if (this.bitsAvailable < count)
-                            throw new EndOfStreamException("Unexpected end of stream encountered");
-
-                        break;
-                    }
-
-                    // We can only extract at most 8 bits from the current byte
-                    var extractCount = Math.Min(8 - this.currentBit, WindowSize - this.bitsAvailable);
-
-                    // Shift the byte over and mask out any extra bits to the left
-                    var bits = (ulong)((this.currentByte >> (8 - this.currentBit - extractCount)) & (0xFF >> (8 - extractCount)));
-
-                    // Add it to the window
-                    this.window |= bits << (WindowSize - this.bitsAvailable - extractCount);
-
-                    // Advance by the number of bits read
-                    this.bitsAvailable += extractCount;
-                    this.currentBit += extractCount;
-                }
-            }
-        }
-
-        /// <summary>
-        /// Reads a byte from the stream and caches it.
-        /// </summary>
-        /// <returns><c>true</c> if the byte was successfully cached.</returns>
-        private bool CacheByte()
-        {
-            var b = BaseStream.ReadByte();
-            if (b == -1)
-                return false;
-            this.currentByte = (byte)b;
-            this.currentBit = 0;
-            return true;
-        }
-
-        /// <summary>
-        /// Resets the cache window.
-        /// </summary>
-        private void ResetWindow()
-        {
-            this.window = 0;
-            this.bitsAvailable = 0;
-        }
+        public virtual Stream BaseStream { get { return _stream; } }
 
         /// <summary>
         /// Extends the sign of an unsigned integer.
         /// </summary>
-        /// <param name="val">The value to sign-extend.</param>
+        /// <param name="val">A value to sign-extend.</param>
         /// <param name="size">The original width of the value in bits.</param>
         /// <returns>The signed integer.</returns>
         private static long ExtendSign(ulong val, int size)
@@ -313,6 +53,201 @@ namespace Nitrogen.IO
                 return (long)(val | (ulong.MaxValue << size));
             }
             return (long)val;
+        }
+
+        /// <summary>
+        /// Reads a signed bits-bit integer from the stream.
+        /// </summary>
+        /// <param name="bits">The number of bits to read.</param>
+        /// <returns>The integer that was read.</returns>
+        public virtual long ReadIntN(int n)
+        {
+            Contract.Requires<ArgumentOutOfRangeException>(n > 0 && n <= WindowSize);
+            var unsigned = ReadUIntN(n);
+            return ExtendSign(unsigned, n);
+        }
+
+        /// <summary>
+        /// Reads an unsigned bits-bit integer from the stream.
+        /// </summary>
+        /// <param name="bits">The number of bits to read.</param>
+        /// <returns>The integer that was read.</returns>
+        public virtual ulong ReadUIntN(int n)
+        {
+            Contract.Requires<ArgumentOutOfRangeException>(n > 0 && n <= WindowSize);
+
+            EnsureBitsAvailable(n);
+
+            // Pull bits from the left of the window
+            var result = _window >> (WindowSize - n);
+            if (n < WindowSize)
+                _window <<= n;
+            else
+                _window = 0;
+            _bitsAvailable -= n;
+            _currentBitPos += n;
+
+            return result;
+        }
+
+        public bool ReadBit()
+        {
+            return ReadUIntN(1) == 1;
+        }
+
+        public DateTime ReadDateTime()
+        {
+            Contract.Requires(BaseStream != null && BaseStream.CanRead);
+			return ReadIntN(sizeof(long) * 8).ToDateTime();
+        }
+
+        /// <summary>
+        /// Reads an array of bytes from the stream.
+        /// </summary>
+        /// <param name="count">The number of bytes to read.</param>
+        /// <returns>The byte array that was read.</returns>
+        public byte[] ReadBytes(int count)
+        {
+            Contract.Requires<ArgumentOutOfRangeException>(count > 0);
+
+            var result = new byte[count];
+            for (var i = 0; i < count; i++)
+                result[i] = (byte)ReadUIntN(8);
+            return result;
+        }
+
+        /// <summary>
+        /// Reads bytes from the stream into an existing array.
+        /// </summary>
+        /// <param name="buffer">The array to store the read bytes to.</param>
+        /// <param name="offset">The index of the element to start storing bytes to.</param>
+        /// <param name="count">The number of bytes to read.</param>
+        public void ReadBytes(byte[] buffer, int offset, int count)
+        {
+            for (var i = 0; i < count; i++)
+                buffer[offset + i] = (byte)ReadUIntN(8);
+        }
+
+		public byte ReadByte ()
+		{
+			return (byte) ReadUIntN(sizeof(byte));
+		}
+
+		public sbyte ReadSByte ()
+		{
+			return (sbyte) ReadIntN(sizeof(sbyte));
+		}
+
+        public virtual string ReadNullTerminatedString(Encoding encoding, int maxLength)
+        {
+            Contract.Requires<ArgumentNullException>(encoding != null);
+            Contract.Requires<IOException>(BaseStream != null && BaseStream.CanRead);
+
+            int delimiterSize = encoding.GetByteCount("\0");
+            byte[] buffer = new byte[delimiterSize];
+            var builder = new StringBuilder();
+            long max = maxLength > 0 ? (_currentBitPos + (maxLength * 8)) : _stream.Length * 8;
+            while (_currentBitPos < max)
+            {
+                ReadBytes(buffer, 0, buffer.Length);
+                string value = encoding.GetString(buffer, 0, buffer.Length);
+                if (value == "\0")
+                    break;
+                builder.Append(value);
+            }
+            return builder.ToString();
+        }
+
+        public virtual string ReadString(Encoding encoding, int length, bool trimmed = true)
+        {
+            Contract.Requires<ArgumentNullException>(encoding != null);
+            Contract.Requires<IOException>(BaseStream != null && BaseStream.CanRead);
+            Contract.Requires<ArgumentNullException>(length >= 0);
+
+            byte[] buffer = new byte[length];
+            ReadBytes(buffer, 0, buffer.Length);
+            return encoding.GetString(buffer, 0, buffer.Length).Trim('\0');
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        /// <summary>
+        /// Reads a byte from the stream and caches it.
+        /// </summary>
+        /// <returns>
+        /// <c>true</c> if the byte was successfully cached; otherwise, <c>false</c>.
+        /// </returns>
+        private bool CacheByte()
+        {
+            var b = BaseStream.ReadByte();
+            if (b == -1)
+                return false;
+            _currentByte = (byte)b;
+            _currentBit = 0;
+            return true;
+        }
+
+        /// <summary>
+        /// Resets the cache window.
+        /// </summary>
+        private void ResetWindow()
+        {
+            _window = 0;
+            _bitsAvailable = 0;
+        }
+
+        /// <summary>
+        /// Ensures that a specified number of bits is available in the window. If not, the window
+        /// is refilled as much as possible.
+        /// </summary>
+        /// <param name="count">The number of bits needed.</param>
+        private void EnsureBitsAvailable(int count)
+        {
+            Contract.Requires<ArgumentOutOfRangeException>(count > 0 && count <= WindowSize);
+
+            if (_bitsAvailable < count)
+            {
+                // Refill as much of the window as possible
+                while (_bitsAvailable < WindowSize)
+                {
+                    if (_currentBit == 8 && !CacheByte())
+                    {
+                        //if (_bitsAvailable < count)
+                        //    throw new EndOfStreamException("Unexpected end of stream encountered");
+
+                        break;
+                    }
+
+                    // We can only extract at most 8 bits from the current byte
+                    var extractCount = Math.Min(8 - _currentBit, WindowSize - _bitsAvailable);
+
+                    // Shift the byte over and mask out any extra bits to the left
+                    var bits = (ulong)((_currentByte >> (8 - _currentBit - extractCount)) & (0xFF >> (8 - extractCount)));
+
+                    // Add it to the window
+                    _window |= bits << (WindowSize - _bitsAvailable - extractCount);
+
+                    // Advance by the number of bits read
+                    _bitsAvailable += extractCount;
+                    _currentBit += extractCount;
+                }
+            }
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                if (!_leaveOpen && _stream != null)
+                {
+                    _stream.Dispose();
+                    _stream = null;
+                }
+            }
         }
     }
 }

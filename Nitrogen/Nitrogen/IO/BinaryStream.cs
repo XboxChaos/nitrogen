@@ -1,324 +1,174 @@
-﻿/*
- *   Nitrogen - Halo Content API
- *   Copyright © 2013 The Nitrogen Authors. All rights reserved.
- * 
- *   This file is part of Nitrogen.
- *
- *   Nitrogen is free software: you can redistribute it and/or modify
- *   it under the terms of the GNU General Public License as published by
- *   the Free Software Foundation, either version 3 of the License, or
- *   (at your option) any later version.
- *
- *   Nitrogen is distributed in the hope that it will be useful,
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *   GNU General Public License for more details.
- *
- *   You should have received a copy of the GNU General Public License
- *   along with Nitrogen.  If not, see <http://www.gnu.org/licenses/>.
- */
-
+﻿using Nitrogen.Utilities;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Diagnostics.Contracts;
 using System.IO;
 using System.Text;
 
 namespace Nitrogen.IO
 {
-    public abstract class BinaryStream
-        : Stream, IDisposable
+    [ContractVerification(true)]
+    public class BinaryStream
+        : IDisposable
     {
-        private bool leaveOpen;
-        private Stream stream;
+        private Lazy<BinaryReader> _reader;
+        private Lazy<BinaryWriter> _writer;
+        private StreamState _state;
+        private Stream _stream;
 
-        protected BinaryStream(Stream stream, StreamState initialState, bool leaveOpen = false)
+        public BinaryStream(Stream stream, StreamState initialState, ByteOrder endianness = ByteOrder.Default, bool leaveOpen = false)
         {
             Contract.Requires<ArgumentNullException>(stream != null);
-            Contract.Requires<ArgumentException>(stream.CanWrite && stream.CanRead);
-            Contract.Requires<InvalidEnumArgumentException>(Enum.IsDefined(typeof(StreamState), initialState));
+            Contract.Requires(initialState.IsDefined() && endianness.IsDefined());
 
-            this.leaveOpen = leaveOpen;
-            this.stream = stream;
-            State = initialState;
+            _reader = new Lazy<BinaryReader>(() => new BinaryReader(stream, endianness, leaveOpen));
+            _writer = new Lazy<BinaryWriter>(() => new BinaryWriter(stream, endianness, leaveOpen));
+            _state = initialState;
+            _stream = stream;
         }
 
-        public StreamState State { get; set; }
+        public virtual BinaryReader Reader { get { return _reader.Value; } }
 
-        public abstract BinaryReader Reader { get; }
+        public virtual BinaryWriter Writer { get { return _writer.Value; } }
 
-        public abstract BinaryWriter Writer { get; }
+        public virtual Stream BaseStream { get { return _stream; } }
 
-        public virtual void Stream(ref bool value)
+        public StreamState State
         {
-            if (State == StreamState.Read)
-                Reader.Read(out value);
-            else if (State == StreamState.Write)
-                Writer.Write(value);
-        }
-
-        public virtual void Stream(ref sbyte value)
-        {
-            if (State == StreamState.Read)
-                Reader.Read(out value);
-            else if (State == StreamState.Write)
-                Writer.Write(value);
-        }
-
-        public virtual void Stream(ref byte value)
-        {
-            if (State == StreamState.Read)
-                Reader.Read(out value);
-            else if (State == StreamState.Write)
-                Writer.Write(value);
-        }
-
-        public virtual void Stream(ref short value)
-        {
-            if (State == StreamState.Read)
-                Reader.Read(out value);
-            else if (State == StreamState.Write)
-                Writer.Write(value);
-        }
-
-        public virtual void Stream(ref ushort value)
-        {
-            if (State == StreamState.Read)
-                Reader.Read(out value);
-            else if (State == StreamState.Write)
-                Writer.Write(value);
-        }
-
-        public virtual void Stream(ref int value)
-        {
-            if (State == StreamState.Read)
-                Reader.Read(out value);
-            else if (State == StreamState.Write)
-                Writer.Write(value);
-        }
-
-        public virtual void Stream(ref uint value)
-        {
-            if (State == StreamState.Read)
-                Reader.Read(out value);
-            else if (State == StreamState.Write)
-                Writer.Write(value);
-        }
-
-        public virtual void Stream(ref long value)
-        {
-            if (State == StreamState.Read)
-                Reader.Read(out value);
-            else if (State == StreamState.Write)
-                Writer.Write(value);
-        }
-
-        public virtual void Stream(ref ulong value)
-        {
-            if (State == StreamState.Read)
-                Reader.Read(out value);
-            else if (State == StreamState.Write)
-                Writer.Write(value);
-        }
-
-        public virtual void Stream(ref float value)
-        {
-            if (State == StreamState.Read)
-                Reader.Read(out value);
-            else if (State == StreamState.Write)
-                Writer.Write(value);
-        }
-
-        public virtual void Stream(ref double value)
-        {
-            if (State == StreamState.Read)
-                Reader.Read(out value);
-            else if (State == StreamState.Write)
-                Writer.Write(value);
-        }
-
-        public virtual void Stream(ref DateTime value)
-        {
-            if (State == StreamState.Read)
-                Reader.Read(out value);
-            else if (State == StreamState.Write)
-                Writer.Write(value);
-        }
-
-        public virtual void Stream(IList<sbyte> values, int offset, int count)
-        {
-            for (int i = offset; i < offset + count; i++)
+            get { return _state; }
+            set
             {
-                sbyte value = values[i];
-                Stream(ref value);
-                values[i] = value;
+                Contract.Requires(value.IsDefined());
+                _state = value;
             }
         }
 
-        public virtual void Stream(IList<byte> values, int offset, int count)
+        public void Stream(ref bool value)
         {
-            for (int i = offset; i < offset + count; i++)
-            {
-                byte value = values[i];
-                Stream(ref value);
-                values[i] = value;
-            }
+            if (_state == StreamState.Read)
+                value = Reader.ReadBoolean();
+            else if (_state == StreamState.Write)
+                Writer.Write(value);
         }
 
-        public virtual void Stream(IList<short> values, int offset, int count)
+        public void Stream(ref byte value)
         {
-            for (int i = offset; i < offset + count; i++)
-            {
-                short value = values[i];
-                Stream(ref value);
-                values[i] = value;
-            }
+            if (_state == StreamState.Read)
+                value = Reader.ReadByte();
+            else if (_state == StreamState.Write)
+                Writer.Write(value);
         }
 
-        public virtual void Stream(IList<ushort> values, int offset, int count)
+        public void Stream(ref sbyte value)
         {
-            for (int i = offset; i < offset + count; i++)
-            {
-                ushort value = values[i];
-                Stream(ref value);
-                values[i] = value;
-            }
+            if (_state == StreamState.Read)
+                value = Reader.ReadSByte();
+            else if (_state == StreamState.Write)
+                Writer.Write(value);
         }
 
-        public virtual void Stream(IList<int> values, int offset, int count)
+        public void Stream(ref short value)
         {
-            for (int i = offset; i < offset + count; i++)
-            {
-                int value = values[i];
-                Stream(ref value);
-                values[i] = value;
-            }
+            if (_state == StreamState.Read)
+                value = Reader.ReadInt16();
+            else if (_state == StreamState.Write)
+                Writer.Write(value);
         }
 
-        public virtual void Stream(IList<uint> values, int offset, int count)
+        public void Stream(ref ushort value)
         {
-            for (int i = offset; i < offset + count; i++)
-            {
-                uint value = values[i];
-                Stream(ref value);
-                values[i] = value;
-            }
+            if (_state == StreamState.Read)
+                value = Reader.ReadUInt16();
+            else if (_state == StreamState.Write)
+                Writer.Write(value);
         }
 
-        public virtual void Stream(IList<long> values, int offset, int count)
+        public void Stream(ref int value)
         {
-            for (int i = offset; i < offset + count; i++)
-            {
-                long value = values[i];
-                Stream(ref value);
-                values[i] = value;
-            }
+            if (_state == StreamState.Read)
+                value = Reader.ReadInt32();
+            else if (_state == StreamState.Write)
+                Writer.Write(value);
         }
 
-        public virtual void Stream(IList<ulong> values, int offset, int count)
+        public void Stream(ref uint value)
         {
-            for (int i = offset; i < offset + count; i++)
-            {
-                ulong value = values[i];
-                Stream(ref value);
-                values[i] = value;
-            }
+            if (_state == StreamState.Read)
+                value = Reader.ReadUInt32();
+            else if (_state == StreamState.Write)
+                Writer.Write(value);
         }
 
-        public virtual void Stream(IList<float> values, int offset, int count)
+        public void Stream(ref long value)
         {
-            for (int i = offset; i < offset + count; i++)
-            {
-                float value = values[i];
-                Stream(ref value);
-                values[i] = value;
-            }
+            if (_state == StreamState.Read)
+                value = Reader.ReadInt64();
+            else if (_state == StreamState.Write)
+                Writer.Write(value);
         }
 
-        public virtual void Stream(IList<double> values, int offset, int count)
+        public void Stream(ref ulong value)
         {
-            for (int i = offset; i < offset + count; i++)
-            {
-                double value = values[i];
-                Stream(ref value);
-                values[i] = value;
-            }
+            if (_state == StreamState.Read)
+                value = Reader.ReadUInt64();
+            else if (_state == StreamState.Write)
+                Writer.Write(value);
         }
 
-        public virtual void StreamNullTerminatedString(ref string output, Encoding encoding, long maxLength = 0)
+        public void Stream(ref float value)
         {
-            if (State == StreamState.Read)
-                Reader.Read(out output, encoding, maxLength);
-            else
-                Writer.Write(output, encoding, maxLength);
+            if (_state == StreamState.Read)
+                value = Reader.ReadSingle();
+            else if (_state == StreamState.Write)
+                Writer.Write(value);
         }
 
-        public virtual void StreamString(ref string output, Encoding encoding, int length)
+        public void Stream(ref double value)
         {
-            if (State == StreamState.Read)
-                Reader.Read(out output, encoding, length);
-            else
-                Writer.Write(output, encoding, length);
+            if (_state == StreamState.Read)
+                value = Reader.ReadDouble();
+            else if (_state == StreamState.Write)
+                Writer.Write(value);
         }
 
-        #region Stream Members
-
-        public override bool CanRead { get { return this.stream.CanRead; } }
-
-        public override bool CanSeek { get { return this.stream.CanSeek; } }
-
-        public override bool CanWrite { get { return this.stream.CanWrite; } }
-
-        public override long Length { get { return this.stream.Length; } }
-
-        public override long Position
+        public void Stream(ref DateTime value)
         {
-            get { return this.stream.Position; }
-            set { this.stream.Position = value; }
+            if (_state == StreamState.Read)
+                value = Reader.ReadDateTime();
+            else if (_state == StreamState.Write)
+                Writer.Write(value);
         }
 
-        public override void Flush() { this.stream.Flush(); }
-
-        public override int Read(byte[] buffer, int offset, int count)
+        public void StreamNullTerminatedString(ref string value, Encoding encoding, int maxLength = 0)
         {
-            return this.stream.Read(buffer, offset, count);
+            if (_state == StreamState.Read)
+                value = Reader.ReadNullTerminatedString(encoding, maxLength);
+            else if (_state == StreamState.Write)
+                Writer.WriteNullTerminatedString(value, encoding, maxLength);
         }
 
-        public override long Seek(long offset, SeekOrigin origin)
+        public void StreamString(ref string value, Encoding encoding, int length)
         {
-            return this.stream.Seek(offset, origin);
+            if (_state == StreamState.Read)
+                value = Reader.ReadString(encoding, length);
+            else if (_state == StreamState.Write)
+                Writer.WriteString(value, encoding, length);
         }
 
-        public override void SetLength(long value)
+        public void Dispose()
         {
-            this.stream.SetLength(value);
+            Dispose(true);
         }
 
-        public override void Write(byte[] buffer, int offset, int count)
+        protected virtual void Dispose(bool disposing)
         {
-            this.stream.Write(buffer, offset, count);
-        }
-
-        #endregion
-
-        #region IDisposable Members
-
-        protected override void Dispose(bool disposing)
-        {
-            base.Dispose(disposing);
-
             if (disposing)
             {
-                if (this.stream != null && !this.leaveOpen)
-                {
-                    this.stream.Dispose();
-                }
+                if (_reader != null && _reader.IsValueCreated) { _reader.Value.Dispose(); }
+                if (_writer != null && _writer.IsValueCreated) { _writer.Value.Dispose(); }
 
-                this.stream = null;
+                _stream = null;
             }
         }
-
-        #endregion
     }
 }

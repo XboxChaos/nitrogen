@@ -1,122 +1,102 @@
-﻿/*
- *   Nitrogen - Halo Content API
- *   Copyright © 2013 The Nitrogen Authors. All rights reserved.
- * 
- *   This file is part of Nitrogen.
- *
- *   Nitrogen is free software: you can redistribute it and/or modify
- *   it under the terms of the GNU General Public License as published by
- *   the Free Software Foundation, either version 3 of the License, or
- *   (at your option) any later version.
- *
- *   Nitrogen is distributed in the hope that it will be useful,
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *   GNU General Public License for more details.
- *
- *   You should have received a copy of the GNU General Public License
- *   along with Nitrogen.  If not, see <http://www.gnu.org/licenses/>.
- */
-
-using Nitrogen.IO;
+﻿using Nitrogen.IO;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics.Contracts;
 using System.IO;
-using System.Linq;
 using System.Text;
 
 namespace Nitrogen.Blf
 {
-    public abstract class Chunk
-        : ISerializable<EndianStream>
-    {
-        private int signature;
-        private int length;
-        private short version;
-        private MemoryStream buffer;
+	[Flags]
+	internal enum ChunkFlags
+	{
+		None = 0,
+		IsInitialized = 1 << 0,
+		IsHeader = 1 << 1,
+	}
 
-        protected Chunk(string signature, short version, int? length = null)
-        {
-            byte[] sigBytes = Encoding.ASCII.GetBytes(signature);
-            if (sigBytes.Length != 4)
-                throw new ArgumentException("Invalid signature '" + signature + "'", "signature");
+	internal sealed class Chunk
+		: ISerializable<BinaryStream>
+	{
+		private string _signature;
+		private short _version;
+		private short _flags;
+		private ISerializable<BinaryStream> _payload;
 
-            if (BitConverter.IsLittleEndian)
-                Array.Reverse(sigBytes);
+		public Chunk (string signature, short version, ChunkFlags flags, ISerializable<BinaryStream> payload)
+		{
+			Contract.Requires<ArgumentNullException>(signature != null && payload != null);
+			Contract.Requires(Encoding.UTF8.GetByteCount(signature) == 4);
 
-            this.signature = BitConverter.ToInt32(sigBytes, 0);
-            this.version = version;
-            this.buffer = new MemoryStream();
+			_signature = signature;
+			_version = version;
+			_flags = (short) flags;
+			_payload = payload;
+		}
 
-            if (length.HasValue)
-                this.length = length.Value;
-            else
-                RecalculateLength = true;
-        }
+		private Chunk () { }
 
-        [Flags]
-        protected enum ChunkFlags
-            : short
-        {
-            None            = 0,
-            IsInitialized   = 1 << 0,
-            IsHeader        = 1 << 1,
-        }
+		public string Signature { get { return _signature; } }
 
-        /// <summary>
-        /// Gets the flags of this chunk.
-        /// </summary>
-        protected virtual ChunkFlags Flags { get { return ChunkFlags.IsInitialized; } }
+		public short Version { get { return _version; } }
 
-        /// <summary>
-        /// Gets or sets a boolean value specifying whether the chunk length should be recalculated.
-        /// Set this to true for large, variable-length data such as screenshot images and film data.
-        /// </summary>
-        protected bool RecalculateLength { get; set; }
+		public ChunkFlags Flags { get { return (ChunkFlags) _flags; } }
 
-        protected abstract void SerializeEndianStreamData(EndianStream s);
+		public ISerializable<BinaryStream> Payload { get { return _payload; } }
 
-        public void Serialize(EndianStream s)
-        {
-            long offset = s.Position;
+		#region ISerializable<BinaryStream> Members
 
-            // Read chunk data into the buffer when deserializing.
-            if (s.State == StreamState.Read)
-            {
-                s.Seek(offset + 4, SeekOrigin.Begin);
-                s.Reader.Read(out this.length);
-                s.Seek(offset + 12, SeekOrigin.Begin);
+		void ISerializable<BinaryStream>.SerializeObject (BinaryStream s)
+		{
+			if ( s.State == StreamState.Read )
+			{
+				long offset = s.BaseStream.Position;
 
-                byte[] temp = new byte[this.length - 12];
-                s.Reader.Read(temp, temp.Length);
-                this.buffer.Write(temp, 0, temp.Length);
+				// chunk signature is actually an int32
+				var signatureBytes = BitConverter.GetBytes(s.Reader.ReadInt32());
+				if ( BitConverter.IsLittleEndian && s.Reader.Endianness != ByteOrder.LittleEndian )
+					Array.Reverse(signatureBytes);
+				_signature = Encoding.UTF8.GetString(signatureBytes, 0, 4);
 
-                s.Position = offset;
-            }
-            else if (s.State == StreamState.Write) // Clear the buffer in case
-            {
-                this.buffer.SetLength(0);
-            }
+				int length = s.Reader.ReadInt32();
+				_version = s.Reader.ReadInt16();
+				_flags = s.Reader.ReadInt16();
 
-            // Serialize the buffer.
-            this.buffer.Position = 0;
-            ByteOrder endianness = (s.IsLittleEndian ? ByteOrder.LittleEndian : ByteOrder.BigEndian);
-            using (var stream = new EndianStream(this.buffer, s.State, endianness, true))
-                SerializeEndianStreamData(stream);
+				byte[] buffer = new byte[length - 12];
+				s.BaseStream.Read(buffer, 0, buffer.Length);
 
-            if (RecalculateLength)
-                this.length = (int)this.buffer.Length + 12;
+				using ( var ms = new MemoryStream(buffer) )
+				using ( var bufferStream = new BinaryStream(ms, StreamState.Read, s.Reader.Endianness, leaveOpen: true) )
+					_payload.SerializeObject(bufferStream);
 
-            s.Stream(ref this.signature);
-            s.Stream(ref this.length);
-            s.Stream(ref this.version);
-            short flags = (short)Flags;
-            s.Stream(ref flags);
-            s.Stream(this.buffer.ToArray(), 0, (int)this.buffer.Length);
+				s.BaseStream.Position = offset + length;
+			}
+			else if ( s.State == StreamState.Write )
+			{
+				int length;
+				byte[] buffer;
+				using ( var ms = new MemoryStream() )
+				{
+					using ( var bufferStream = new BinaryStream(ms, StreamState.Write, s.Writer.Endianness, leaveOpen: true) )
+						_payload.SerializeObject(bufferStream);
 
-            // Move the stream to the end of this chunk.
-            s.Position = offset + this.length;
-        }
-    }
+					length = (int) ( ms.Length );
+					buffer = ms.ToArray();
+				}
+
+				// chunk signature is actually an int32
+				byte[] signature = Encoding.UTF8.GetBytes(_signature);
+				if ( BitConverter.IsLittleEndian && s.Reader.Endianness != ByteOrder.LittleEndian )
+					Array.Reverse(signature);
+				s.Writer.Write(BitConverter.ToInt32(signature, 0));
+
+				s.Writer.Write(length + 12);
+				s.Writer.Write(_version);
+				s.Writer.Write(_flags);
+
+				s.BaseStream.Write(buffer, 0, length);
+			}
+		}
+
+		#endregion
+	}
 }

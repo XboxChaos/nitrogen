@@ -1,289 +1,197 @@
-﻿/*
- *   Nitrogen - Halo Content API
- *   Copyright © 2013 The Nitrogen Authors. All rights reserved.
- * 
- *   This file is part of Nitrogen.
- *
- *   Nitrogen is free software: you can redistribute it and/or modify
- *   it under the terms of the GNU General Public License as published by
- *   the Free Software Foundation, either version 3 of the License, or
- *   (at your option) any later version.
- *
- *   Nitrogen is distributed in the hope that it will be useful,
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *   GNU General Public License for more details.
- *
- *   You should have received a copy of the GNU General Public License
- *   along with Nitrogen.  If not, see <http://www.gnu.org/licenses/>.
- */
-
+﻿using Nitrogen.Utilities;
 using System;
-using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 using System.IO;
 using System.Text;
 
 namespace Nitrogen.IO
 {
+    [ContractVerification(true)]
     public class BinaryReader
         : IDisposable
     {
-        private const int BufferSize = sizeof(ulong);
+        private Stream _stream;
+        private ByteOrder _endianness;
 
-        private Stream stream;
-        private bool leaveOpen;
-        private byte[] buffer;
+        private readonly bool _leaveOpen;
+        private readonly byte[] _buffer = new byte[sizeof(double)];
 
-        public BinaryReader(Stream stream, bool leaveOpen)
+        public BinaryReader(Stream input, ByteOrder endianness = ByteOrder.Default, bool leaveOpen = false)
         {
-            this.stream = stream;
-            this.leaveOpen = leaveOpen;
-            this.buffer = new byte[BufferSize];
+            Contract.Requires(input != null);
+            Contract.Requires(endianness.IsDefined());
+
+            _stream = input;
+            _endianness = endianness;
+            _leaveOpen = leaveOpen;
         }
 
-        private BinaryReader() { }
+        /// <summary>
+        /// Prevents a default instance of the <see cref="BinaryReader"/> class from being created
+        /// except in derived classes.
+        /// </summary>
+        protected BinaryReader() { }
 
-        protected Stream BaseStream { get { return this.stream; } }
+        /// <summary>
+        /// Gets the underlying stream.
+        /// </summary>
+        public virtual Stream BaseStream { get { return _stream; } }
 
-        public virtual int Read(out bool output)
+        /// <summary>
+        /// Gets or sets the endianness of the data to be written to the underlying stream.
+        /// </summary>
+        public ByteOrder Endianness
         {
-            int count = this.stream.Read(this.buffer, 0, sizeof(bool));
-            output = this.buffer[0] == 1;
-            return count;
-        }
-
-        public virtual int Read(out sbyte output)
-        {
-            int count = this.stream.Read(this.buffer, 0, sizeof(sbyte));
-            output = (sbyte)this.buffer[0];
-            return count;
-        }
-
-        public virtual int Read(out byte output)
-        {
-            int count = this.stream.Read(this.buffer, 0, sizeof(byte));
-            output = this.buffer[0];
-            return count;
-        }
-
-        public virtual int Read(out short output)
-        {
-            int count = this.stream.Read(this.buffer, 0, sizeof(short));
-            output = (short)((this.buffer[0] << 8) | this.buffer[1]);
-            return count;
-        }
-
-        public virtual int Read(out ushort output)
-        {
-            int count = this.stream.Read(this.buffer, 0, sizeof(ushort));
-            output = (ushort)((this.buffer[0] << 8) | this.buffer[1]);
-            return count;
-        }
-
-        public virtual int Read(out int output)
-        {
-            int count = this.stream.Read(this.buffer, 0, sizeof(int));
-            output = (int)((this.buffer[0] << 24) | (this.buffer[1] << 16) | (this.buffer[2] << 8) | this.buffer[3]);
-            return count;
-        }
-
-        public virtual int Read(out uint output)
-        {
-            int count = this.stream.Read(this.buffer, 0, sizeof(uint));
-            output = (uint)((this.buffer[0] << 24) | (this.buffer[1] << 16) | (this.buffer[2] << 8) | this.buffer[3]);
-            return count;
-        }
-
-        public virtual int Read(out long output)
-        {
-            uint one, two;
-            int count1 = Read(out one);
-            int count2 = Read(out two);
-            output = (one << 32) | two;
-            return count1 + count2;
-        }
-
-        public virtual int Read(out ulong output)
-        {
-            uint one, two;
-            int count1 = Read(out one);
-            int count2 = Read(out two);
-            output = (one << 32) | two;
-            return count1 + count2;
-        }
-
-        public virtual int Read(out float output)
-        {
-            throw new NotImplementedException();
-        }
-
-        public virtual int Read(out double output)
-        {
-            throw new NotImplementedException();
-        }
-
-        public virtual int Read(out DateTime output)
-        {
-            ulong totalSeconds;
-            int count = Read(out totalSeconds);
-            output = Utilities.UnixEpoch.AddSeconds(totalSeconds);
-            return count;
-        }
-
-        public virtual int Read(IList<sbyte> output, int length)
-        {
-            int count = 0;
-            for (int i = 0; i < length; i++)
+			get { return _endianness; }
+            set
             {
-                sbyte value;
-                count += Read(out value);
-                output[i] = value;
+                Contract.Requires(value.IsDefined());
+
+                if (value == ByteOrder.Default)
+                    value = BitConverter.IsLittleEndian ? ByteOrder.LittleEndian : ByteOrder.BigEndian;
+
+                _endianness = value;
             }
-            return count;
         }
 
-        public virtual int Read(IList<byte> output, int length)
+        public virtual bool ReadBoolean()
         {
-            int count = 0;
-            for (int i = 0; i < length; i++)
-            {
-                byte value;
-                count += Read(out value);
-                output[i] = value;
-            }
-            return count;
+            Contract.Requires<IOException>(BaseStream != null && BaseStream.CanRead);
+            return Read(sizeof(byte)) == 1;
         }
 
-        public virtual int Read(IList<short> output, int length)
+        public virtual byte ReadByte()
         {
-            int count = 0;
-            for (int i = 0; i < length; i++)
-            {
-                short value;
-                count += Read(out value);
-                output[i] = value;
-            }
-            return count;
+            Contract.Requires<IOException>(BaseStream != null && BaseStream.CanRead);
+            return (byte)Read(sizeof(byte));
         }
 
-        public virtual int Read(IList<ushort> output, int length)
+        public virtual sbyte ReadSByte()
         {
-            int count = 0;
-            for (int i = 0; i < length; i++)
-            {
-                ushort value;
-                count += Read(out value);
-                output[i] = value;
-            }
-            return count;
+            Contract.Requires<IOException>(BaseStream != null && BaseStream.CanRead);
+            return (sbyte)Read(sizeof(sbyte));
         }
 
-        public virtual int Read(IList<int> output, int length)
+        public virtual short ReadInt16()
         {
-            int count = 0;
-            for (int i = 0; i < length; i++)
-            {
-                int value;
-                count += Read(out value);
-                output[i] = value;
-            }
-            return count;
+            Contract.Requires<IOException>(BaseStream != null && BaseStream.CanRead);
+            return (short)Read(sizeof(short));
         }
 
-        public virtual int Read(IList<uint> output, int length)
+        public virtual ushort ReadUInt16()
         {
-            int count = 0;
-            for (int i = 0; i < length; i++)
-            {
-                uint value;
-                count += Read(out value);
-                output[i] = value;
-            }
-            return count;
+            Contract.Requires<IOException>(BaseStream != null && BaseStream.CanRead);
+            return (ushort)Read(sizeof(ushort));
         }
 
-        public virtual int Read(IList<long> output, int length)
+        public virtual int ReadInt32()
         {
-            int count = 0;
-            for (int i = 0; i < length; i++)
-            {
-                long value;
-                count += Read(out value);
-                output[i] = value;
-            }
-            return count;
+            Contract.Requires<IOException>(BaseStream != null && BaseStream.CanRead);
+            return (int)Read(sizeof(int));
         }
 
-        public virtual int Read(IList<ulong> output, int length)
+        public virtual uint ReadUInt32()
         {
-            int count = 0;
-            for (int i = 0; i < length; i++)
-            {
-                ulong value;
-                count += Read(out value);
-                output[i] = value;
-            }
-            return count;
+            Contract.Requires<IOException>(BaseStream != null && BaseStream.CanRead);
+            return (uint)Read(sizeof(uint));
         }
 
-        public virtual int Read(IList<float> output, int length)
+        public virtual long ReadInt64()
         {
-            int count = 0;
-            for (int i = 0; i < length; i++)
-            {
-                float value;
-                count += Read(out value);
-                output[i] = value;
-            }
-            return count;
+            Contract.Requires<IOException>(BaseStream != null && BaseStream.CanRead);
+            return (long)Read(sizeof(long));
         }
 
-        public virtual int Read(IList<double> output, int length)
+        public virtual ulong ReadUInt64()
         {
-            int count = 0;
-            for (int i = 0; i < length; i++)
-            {
-                double value;
-                count += Read(out value);
-                output[i] = value;
-            }
-            return count;
+            Contract.Requires<IOException>(BaseStream != null && BaseStream.CanRead);
+            return Read(sizeof(ulong));
         }
 
-        public virtual int Read(out string output, Encoding encoding, long maxLength = 0)
+        public virtual DateTime ReadDateTime()
         {
-            int count = 0;
+            Contract.Requires<IOException>(BaseStream != null && BaseStream.CanRead);
+            return ((long)Read(sizeof(long))).ToDateTime();
+        }
+
+        public virtual float ReadSingle()
+        {
+            Contract.Requires<IOException>(BaseStream != null && BaseStream.CanRead);
+            return Read(sizeof(float));
+        }
+
+        public virtual double ReadDouble()
+        {
+            Contract.Requires<IOException>(BaseStream != null && BaseStream.CanRead);
+            return Read(sizeof(double));
+        }
+
+        public virtual string ReadNullTerminatedString(Encoding encoding, int maxLength)
+        {
+            Contract.Requires<ArgumentNullException>(encoding != null);
+            Contract.Requires<IOException>(BaseStream != null && BaseStream.CanRead);
+
             int delimiterSize = encoding.GetByteCount("\0");
             byte[] buffer = new byte[delimiterSize];
             var builder = new StringBuilder();
-            long max = maxLength > 0 ? this.stream.Position + maxLength : this.stream.Length;
-            while (this.stream.Position < max)
+            long max = maxLength > 0 ? _stream.Position + maxLength : _stream.Length;
+            while (_stream.Position < max)
             {
-                count += this.stream.Read(buffer, 0, buffer.Length);
-                string value = encoding.GetString(buffer);
+                _stream.Read(buffer, 0, buffer.Length);
+                string value = encoding.GetString(buffer, 0, buffer.Length);
                 if (value == "\0")
                     break;
                 builder.Append(value);
             }
-            output = builder.ToString();
-            return count;
+            return builder.ToString();
         }
 
-        public virtual int Read(out string output, Encoding encoding, int length)
+        public virtual string ReadString(Encoding encoding, int length, bool trimmed = true)
         {
+            Contract.Requires<ArgumentNullException>(encoding != null);
+            Contract.Requires<IOException>(BaseStream != null && BaseStream.CanRead);
+            Contract.Requires<ArgumentNullException>(length >= 0);
+
             byte[] buffer = new byte[length];
-            int count = this.stream.Read(buffer, 0, buffer.Length);
-            output = encoding.GetString(buffer).Trim('\0');
-            return count;
+            _stream.Read(buffer, 0, buffer.Length);
+            return encoding.GetString(buffer, 0, buffer.Length).Trim('\0');
         }
 
-        public virtual void Dispose()
+        public void Dispose()
         {
-            if (this.stream != null && !this.leaveOpen)
-                this.stream.Dispose();
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
 
-            this.stream = null;
-            this.buffer = null;
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                if (!_leaveOpen && _stream != null)
+                {
+                    _stream.Dispose();
+                    _stream = null;
+                }
+            }
+        }
+
+        private ulong Read(int byteLength)
+        {
+            Contract.Requires<ArgumentOutOfRangeException>(byteLength > 0 && byteLength <= _buffer.Length);
+
+            int count = _stream.Read(_buffer, 0, byteLength);
+            Contract.Assert(count == byteLength);
+
+            ulong value = 0;
+            for (int i = 0; i < byteLength; i++)
+            {
+                int offset = i * 8;
+                if (Endianness == ByteOrder.BigEndian)
+                    offset = (byteLength - i - 1) * 8;
+
+                value |= (uint)((_buffer[i] << offset));
+            }
+            return value;
         }
     }
 }

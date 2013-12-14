@@ -1,199 +1,135 @@
-﻿/*
- *   Nitrogen - Halo Content API
- *   Copyright © 2013 The Nitrogen Authors. All rights reserved.
- * 
- *   This file is part of Nitrogen.
- *
- *   Nitrogen is free software: you can redistribute it and/or modify
- *   it under the terms of the GNU General Public License as published by
- *   the Free Software Foundation, either version 3 of the License, or
- *   (at your option) any later version.
- *
- *   Nitrogen is distributed in the hope that it will be useful,
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *   GNU General Public License for more details.
- *
- *   You should have received a copy of the GNU General Public License
- *   along with Nitrogen.  If not, see <http://www.gnu.org/licenses/>.
- */
-
+﻿using Nitrogen.Utilities;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 using System.IO;
 using System.Text;
 
 namespace Nitrogen.IO
 {
+    [ContractVerification(true)]
     public class BinaryWriter
         : IDisposable
     {
-        private bool leaveOpen;
-        private Stream stream;
+        private Stream _stream;
+        private ByteOrder _endianness;
 
-        public BinaryWriter(Stream stream, bool leaveOpen)
+        private readonly bool _leaveOpen;
+
+        public BinaryWriter(Stream output, ByteOrder endianness = ByteOrder.Default, bool leaveOpen = false)
         {
-            this.stream = stream;
-            this.leaveOpen = leaveOpen;
+            Contract.Requires(output != null);
+            Contract.Requires(endianness.IsDefined());
+
+            _stream = output;
+            _endianness = endianness;
+            _leaveOpen = leaveOpen;
         }
 
-        private BinaryWriter() { }
-
-        protected Stream BaseStream { get { return this.stream; } }
+        /// <summary>
+        /// Prevents a default instance of the <see cref="BinaryWriter"/> class from being created
+        /// except in derived classes.
+        /// </summary>
+        protected BinaryWriter() { }
 
         /// <summary>
-        /// Writes a boolean value to the underlying stream as a byte and advances the stream position
-        /// by one byte.
+        /// Gets the underlying stream.
         /// </summary>
-        /// <param name="value">The boolean value to write.</param>
+        public virtual Stream BaseStream { get { return _stream; } }
+
+        /// <summary>
+        /// Gets or sets the endianness of the data to be written to the underlying stream.
+        /// </summary>
+		public ByteOrder Endianness
+		{
+			get { return _endianness; }
+			set
+			{
+				Contract.Requires(value.IsDefined());
+
+				if ( value == ByteOrder.Default )
+					value = BitConverter.IsLittleEndian ? ByteOrder.LittleEndian : ByteOrder.BigEndian;
+
+				_endianness = value;
+			}
+		}
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
         public virtual void Write(bool value)
         {
-            this.stream.WriteByte((byte)(value ? 1 : 0));
+            Contract.Requires<IOException>(BaseStream != null && BaseStream.CanWrite);
+            _stream.WriteByte((byte)(value ? 1 : 0));
         }
 
-        /// <summary>
-        /// Writes a signed byte to the underlying stream and advances the stream position by one byte.
-        /// </summary>
-        /// <param name="value">The signed byte to write.</param>
         public virtual void Write(sbyte value)
         {
-            Write((byte)value);
+            Contract.Requires<IOException>(BaseStream != null && BaseStream.CanWrite);
+            _stream.WriteByte((byte)value);
         }
 
-        /// <summary>
-        /// Writes an unsigned byte to the underlying stream and advances the stream position by one byte.
-        /// </summary>
-        /// <param name="value">The unsigned byte to write.</param>
         public virtual void Write(byte value)
         {
-            this.stream.WriteByte(value);
+            Contract.Requires<IOException>(BaseStream != null && BaseStream.CanWrite);
+            _stream.WriteByte(value);
         }
 
-        /// <summary>
-        /// Writes a two-byte signed integer to the underlying stream and advances the stream position
-        /// by two bytes.
-        /// </summary>
-        /// <param name="value">The two-byte signed integer to write.</param>
         public virtual void Write(short value)
         {
-            Write((ushort)value);
+            Contract.Requires<IOException>(BaseStream != null && BaseStream.CanWrite);
+            Write(value, sizeof(short));
         }
 
         public virtual void Write(ushort value)
         {
-            WriteByteParams(
-                (byte)(value >> 8),
-                (byte)(value & 0xFF)
-            );
+            Contract.Requires<IOException>(BaseStream != null && BaseStream.CanWrite);
+            Write(value, sizeof(ushort));
         }
 
-        /// <summary>
-        /// Writes a four-byte signed integer to the underlying stream and advances the stream position
-        /// by four bytes.
-        /// </summary>
-        /// <param name="value">The four-byte signed integer to write.</param>
         public virtual void Write(int value)
         {
-            Write((uint)value);
+            Contract.Requires<IOException>(BaseStream != null && BaseStream.CanWrite);
+            Write(value, sizeof(int));
         }
 
         public virtual void Write(uint value)
         {
-            WriteByteParams(
-                (byte)(value >> 24),
-                (byte)((value >> 16) & 0xFF),
-                (byte)((value >> 8) & 0xFF),
-                (byte)(value & 0xFF)
-            );
+            Contract.Requires<IOException>(BaseStream != null && BaseStream.CanWrite);
+            Write(value, sizeof(uint));
         }
 
-        /// <summary>
-        /// Writes an eight-byte signed integer to the underlying stream and advances the stream position
-        /// by eight bytes.
-        /// </summary>
-        /// <param name="value">The eight-byte signed integer to write.</param>
         public virtual void Write(long value)
         {
-            Write((ulong)value);
+            Contract.Requires<IOException>(BaseStream != null && BaseStream.CanWrite);
+            Write(value, sizeof(long));
         }
 
         public virtual void Write(ulong value)
         {
-            WriteByteParams(
-                (byte)(value >> 56),
-                (byte)((value >> 48) & 0xFF),
-                (byte)((value >> 32) & 0xFF),
-                (byte)((value >> 24) & 0xFF),
-                (byte)((value >> 16) & 0xFF),
-                (byte)((value >> 8) & 0xFF),
-                (byte)(value & 0xFF)
-            );
+            Contract.Requires<IOException>(BaseStream != null && BaseStream.CanWrite);
+            Write(value, sizeof(ulong));
         }
 
         public virtual void Write(float value)
         {
-            Write((uint)value);
+            Contract.Requires<IOException>(BaseStream != null && BaseStream.CanWrite);
+            Write((uint)value, sizeof(float));
         }
 
         public virtual void Write(double value)
         {
-            Write((ulong)value);
+            Contract.Requires<IOException>(BaseStream != null && BaseStream.CanWrite);
+            Write((ulong)value, sizeof(double));
         }
 
         public virtual void Write(DateTime value)
         {
-            double totalSeconds = value.Subtract(Utilities.UnixEpoch).TotalSeconds;
-            Write(totalSeconds);
-        }
-
-        public virtual void Write(IEnumerable<sbyte> values)
-        {
-            foreach (var value in values) { Write(value); }
-        }
-
-        public virtual void Write(IEnumerable<byte> values)
-        {
-            foreach (var value in values) { Write(value); }
-        }
-
-        public virtual void Write(IEnumerable<short> values)
-        {
-            foreach (var value in values) { Write(value); }
-        }
-
-        public virtual void Write(IEnumerable<ushort> values)
-        {
-            foreach (var value in values) { Write(value); }
-        }
-
-        public virtual void Write(IEnumerable<int> values)
-        {
-            foreach (var value in values) { Write(value); }
-        }
-
-        public virtual void Write(IEnumerable<uint> values)
-        {
-            foreach (var value in values) { Write(value); }
-        }
-
-        public virtual void Write(IEnumerable<long> values)
-        {
-            foreach (var value in values) { Write(value); }
-        }
-
-        public virtual void Write(IEnumerable<ulong> values)
-        {
-            foreach (var value in values) { Write(value); }
-        }
-
-        public virtual void Write(IEnumerable<float> values)
-        {
-            foreach (var value in values) { Write(value); }
-        }
-
-        public virtual void Write(IEnumerable<double> values)
-        {
-            foreach (var value in values) { Write(value); }
+            Contract.Requires<IOException>(BaseStream != null && BaseStream.CanWrite);
+            Write(value.ToUnixTime());
         }
 
         /// <summary>
@@ -201,20 +137,15 @@ namespace Nitrogen.IO
         /// </summary>
         /// <param name="value">The string value.</param>
         /// <param name="encoding">The character encoding of the string value.</param>
-        /// <exception cref="ArgumentNullException">
-        /// <paramref name="value"/> or <paramref name="encoding"/> is null.
-        /// </exception>
-        public virtual void Write(string value, Encoding encoding, long maxLength = 0)
+        public virtual void WriteNullTerminatedString(string value, Encoding encoding, int maxLength = 0)
         {
-            byte[] valueBytes = new byte[encoding.GetByteCount(value + "\0")];
-            Array.Copy(encoding.GetBytes(value + "\0"), valueBytes, valueBytes.Length);
+            Contract.Requires<ArgumentNullException>(value != null && encoding != null);
 
-            if (maxLength > 0)
-            {
-                Array.Resize(ref valueBytes, (int)maxLength);
-            }
-
-            Write(valueBytes);
+            value += "\0";
+            byte[] encodedValue = new byte[encoding.GetByteCount(value)];
+            Array.Copy(encoding.GetBytes(value), encodedValue, encodedValue.Length);
+            if (maxLength > 0) { Array.Resize(ref encodedValue, maxLength); }
+            _stream.Write(encodedValue, 0, encodedValue.Length);
         }
 
         /// <summary>
@@ -229,34 +160,64 @@ namespace Nitrogen.IO
         /// <param name="nullTerminated">
         /// <c>true</c> if the string is null-terminated; otherwise, <c>false</c>.
         /// </param>
-        /// <exception cref="ArgumentNullException">
-        /// <paramref name="value"/> or <paramref name="encoding"/> is null.
-        /// </exception>
-        /// <exception cref="ArgumentOutOfRangeException">
-        /// A negative number is passed to <paramref name="length"/>.
-        /// </exception>
-        /// <exception cref="ArgumentException">
-        /// Encoded string length exceeds <paramref name="length"/>.
-        /// </exception>
-        public virtual void Write(string value, Encoding encoding, int length)
+        public virtual void WriteString(string value, Encoding encoding, int length)
         {
+            Contract.Requires<ArgumentNullException>(value != null && encoding != null);
+            Contract.Requires<ArgumentOutOfRangeException>(length >= 0);
+            Contract.Requires<ArgumentException>(encoding.GetByteCount(value) <= length);
+
             byte[] encodedValue = encoding.GetBytes(value);
-            Write(encodedValue);
-            Write(new byte[length - encodedValue.Length]);
+            _stream.Write(encodedValue, 0, encodedValue.Length);
+
+            if (encodedValue.Length < length)
+            {
+                byte[] padding = new byte[length - encodedValue.Length];
+                _stream.Write(padding, 0, padding.Length);
+            }
         }
 
-        #region IDisposable Members
-
-        public virtual void Dispose()
+        public void Write(IList<byte> values, int offset, int length)
         {
-            // TODO: Implement
+            Contract.Requires<ArgumentNullException>(values != null);
+            Contract.Requires<ArgumentOutOfRangeException>(offset >= 0 && length >= 0);
+            Contract.Requires<ArgumentOutOfRangeException>(offset + length <= values.Count);
+
+            for (int i = offset; i < length; i++)
+                Write(values[i]);
         }
 
-        #endregion
-
-        private void WriteByteParams(params byte[] values)
+        protected virtual void Dispose(bool disposing)
         {
-            this.Write(values);
+            if (disposing)
+            {
+                if (!_leaveOpen && _stream != null)
+                {
+                    _stream.Dispose();
+                    _stream = null;
+                }
+            }
+        }
+
+        private void Write(long value, int byteLength)
+        {
+            Contract.Requires<ArgumentOutOfRangeException>(byteLength > 0);
+            Write((ulong)value, byteLength);
+        }
+
+        private void Write(ulong value, int byteLength)
+        {
+            Contract.Requires<ArgumentOutOfRangeException>(byteLength > 0);
+
+            byte[] buffer = new byte[byteLength];
+            for (int i = 0; i < byteLength; i++)
+            {
+                int offset = i * 8;
+                if (Endianness == ByteOrder.BigEndian)
+                    offset = (byteLength - i - 1) * 8;
+
+                buffer[i] = (byte)((value >> offset) & 0xFF);
+            }
+            _stream.Write(buffer, 0, byteLength);
         }
     }
 }

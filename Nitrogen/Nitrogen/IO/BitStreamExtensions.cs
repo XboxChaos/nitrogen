@@ -1,123 +1,205 @@
-﻿/*
- *   Nitrogen - Halo Content API
- *   Copyright © 2013 The Nitrogen Authors. All rights reserved.
- * 
- *   This file is part of Nitrogen.
- *
- *   Nitrogen is free software: you can redistribute it and/or modify
- *   it under the terms of the GNU General Public License as published by
- *   the Free Software Foundation, either version 3 of the License, or
- *   (at your option) any later version.
- *
- *   Nitrogen is distributed in the hope that it will be useful,
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *   GNU General Public License for more details.
- *
- *   You should have received a copy of the GNU General Public License
- *   along with Nitrogen.  If not, see <http://www.gnu.org/licenses/>.
- */
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 
 namespace Nitrogen.IO
 {
     public static class BitStreamExtensions
     {
-        public static void StreamPlusOne<T>(this T s, ref sbyte value, int bitLength = 8)
-            where T : BitStream
+        public static void Serialize<T>(this BitStream s, T value)
+            where T : ISerializable<BitStream>, new()
         {
+            Contract.Requires<ArgumentNullException>(s != null);
+
+            if (value == null) { value = new T(); }
+            value.SerializeObject(s);
+        }
+
+        public static void Serialize<T>(this BitStream s, IList<T> values, int offset, int count)
+            where T : ISerializable<BitStream>, new()
+        {
+            Contract.Requires<ArgumentNullException>(s != null && values != null);
+            Contract.Requires<ArgumentOutOfRangeException>(offset >= 0 && count >= 0);
+
+            for (int i = offset; i < count; i++)
+            {
+                T value;
+                if (i < values.Count)
+                {
+                    value = values[i];
+                }
+                else
+                {
+                    value = new T();
+                    values.Add(value);
+                }
+                s.Serialize(value);
+            }
+        }
+
+		public static void StreamPlusOne (this BitStream s, ref sbyte value, int bits = sizeof(sbyte) * 8)
+		{
+			Contract.Requires<ArgumentNullException>(s != null);
+
+			if ( s.State == StreamState.Read )
+				value = (sbyte) ( s.Reader.ReadUIntN(bits) - 1 );
+			else if ( s.State == StreamState.Write )
+				s.Writer.Write(value + 1, bits);
+		}
+
+		public static void StreamPlusOne (this BitStream s, ref short value, int bits = sizeof(short) * 8)
+		{
+			Contract.Requires<ArgumentNullException>(s != null);
+
+			if ( s.State == StreamState.Read )
+				value = (sbyte) ( s.Reader.ReadUIntN(bits) - 1 );
+			else if ( s.State == StreamState.Write )
+				s.Writer.Write(value + 1, bits);
+		}
+
+		public static void StreamOptional(this BitStream s, ref byte? value, int bits = sizeof(byte) * 8, bool inverted = true)
+		{
+			Contract.Requires<ArgumentNullException>(s != null);
+
+			bool hasValue = value.HasValue;
+			if ( inverted ) { hasValue = !hasValue; }
+			s.Stream(ref hasValue);
+			if ( inverted ) { hasValue = !hasValue; }
+
+			value = null;
+			if (hasValue)
+			{
+				byte temp = value ?? 0;
+				s.Stream(ref temp, bits);
+				value = temp;
+			}
+		}
+
+		public static void StreamOptional (this BitStream s, ref sbyte? value, int bits = sizeof(byte) * 8, bool inverted = true)
+		{
+			Contract.Requires<ArgumentNullException>(s != null);
+
+			bool hasValue = value.HasValue;
+			if ( inverted ) { hasValue = !hasValue; }
+			s.Stream(ref hasValue);
+			if ( inverted ) { hasValue = !hasValue; }
+
+			value = null;
+			if ( hasValue )
+			{
+				sbyte temp = value ?? 0;
+				s.Stream(ref temp, bits);
+				value = temp;
+			}
+		}
+
+		public static void StreamOptional (this BitStream s, ref int? value, int bits = sizeof(byte) * 8, bool inverted = true)
+		{
+			Contract.Requires<ArgumentNullException>(s != null);
+
+			bool hasValue = value.HasValue;
+			if ( inverted ) { hasValue = !hasValue; }
+			s.Stream(ref hasValue);
+			if ( inverted ) { hasValue = !hasValue; }
+
+			value = null;
+			if ( hasValue )
+			{
+				int temp = value ?? 0;
+				s.Stream(ref temp, bits);
+				value = temp;
+			}
+		}
+
+        public static void StreamEncodedFloat(this BitStream s, ref float value, int bits, float min, float max, bool signed, bool isRounded = true, bool flag = true)
+        {
+            Contract.Requires<ArgumentNullException>(s != null);
+
             if (s.State == StreamState.Read)
             {
-                long temp;
-                (s.Reader as BitReader).Read(out temp, bitLength);
-                value = (sbyte)(temp - 1);
+                value = s.Reader.ReadEncodedFloat(bits, min, max, signed, isRounded, flag);
             }
             else if (s.State == StreamState.Write)
             {
-                (s.Writer as BitWriter).Write(value + 1, bitLength);
+                s.Writer.WriteEncodedFloat(value, bits, min, max, signed, isRounded, flag);
             }
         }
 
-        public static void StreamPlusOne<T>(this T s, ref short value, int bitLength = 16)
-            where T : BitStream
+        private static float ReadEncodedFloat(this BitReader s, int n, float min, float max, bool signed, bool isRounded, bool flag)
         {
-            if (s.State == StreamState.Read)
-            {
-                long temp;
-                (s.Reader as BitReader).Read(out temp, bitLength);
-                value = (short)(temp - 1);
-            }
-            else if (s.State == StreamState.Write)
-            {
-                (s.Writer as BitWriter).Write(value + 1, bitLength);
-            }
-        }
+            Contract.Requires<ArgumentNullException>(s != null);
 
-        public static void StreamOptional<T>(this T s, ref byte? value, int bitLength = 8, bool invert = true)
-            where T : BitStream
-        {
-            bool hasValue = value.HasValue;
-            
-            if (invert)
-                hasValue = !hasValue;
-            s.Stream(ref hasValue);
-            if (invert)
-                hasValue = !hasValue;
+            ulong encodedValue = s.ReadUIntN(n);
 
-            if (hasValue)
+            uint maxInt = (uint)(1 << n);
+            float result;
+            if (signed)
             {
-                byte temp = (value != null && value.HasValue) ? value.Value : (byte)0;
-                s.Stream(ref temp, bitLength);
-                value = temp;
+                maxInt--;
+                if ((encodedValue << 1) == maxInt - 1)
+                    result = 0.5f * (max + min);
+            }
+
+            if (flag)
+            {
+                if (encodedValue == 0)
+                    return min;
+                if (encodedValue == max - 1)
+                    return max;
+
+                float y = (max - min) / (float)(maxInt - 2);
+                result = (float)(encodedValue - 1) * y + y * 0.5f + min;
             }
             else
             {
-                value = null;
+                float y = (max - min) / (float)maxInt;
+                result = (float)encodedValue * y + y * 0.5f + min;
             }
+
+            if (isRounded)
+            {
+                int rounded = (int)(result + 0.5f);
+                if (Math.Abs((float)rounded - result) <= .002f)
+                    result = (float)rounded;
+            }
+
+            return result;
         }
 
-        public static void StreamOptional<T>(this T s, ref sbyte? value, int bitLength = 8, bool invert = true)
-            where T : BitStream
+        private static void WriteEncodedFloat(this BitWriter s, float value, int n, float min, float max, bool signed, bool isRounded, bool flag)
         {
-            bool hasValue = value.HasValue;
-
-            if (invert)
-                hasValue = !hasValue;
-            s.Stream(ref hasValue);
-            if (invert)
-                hasValue = !hasValue;
-
-            if (hasValue)
+            uint maxInt = (uint)(1 << n);
+            if (signed)
             {
-                sbyte temp = (value != null && value.HasValue) ? value.Value : (sbyte)0;
-                s.Stream(ref temp, bitLength);
-                value = temp;
+                maxInt--;
+                if (value == 0.5f * (max + min))
+                {
+                    s.Write((maxInt - 1) >> 1, n);
+                    return;
+                }
+            }
+
+            if (flag)
+            {
+                if (value == min)
+                {
+                    s.Write(0, n);
+                    return;
+                }
+                    
+                if (value == max)
+                {
+                    s.Write(maxInt - 1, n);
+                    return;
+                }
+
+                float y = (max - min) / (float)(maxInt - 2);
+                s.Write((uint)((value - min - y * 0.5f) / y + 1), n);
             }
             else
             {
-                value = null;
-            }
-        }
-
-        public static void StreamOptional<T>(this T s, ref int? value, int bitLength = 8, bool invert = true)
-            where T : BitStream
-        {
-            bool hasValue = value.HasValue;
-
-            if (invert)
-                hasValue = !hasValue;
-            s.Stream(ref hasValue);
-            if (invert)
-                hasValue = !hasValue;
-
-            if (hasValue)
-            {
-                int temp = (value != null && value.HasValue) ? value.Value : 0;
-                s.Stream(ref temp, bitLength);
-                value = temp;
-            }
-            else
-            {
-                value = null;
+                float y = (max - min) / (float)maxInt;
+                s.Write((uint)((value - min - y * 0.5f) / y), n);
             }
         }
     }

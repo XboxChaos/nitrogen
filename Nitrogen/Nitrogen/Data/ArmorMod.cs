@@ -1,0 +1,35 @@
+﻿namespace Nitrogen.Data
+{
+	public enum ArmorMod
+	{
+		Inherit = -3,
+		MapDefault,
+		None,
+		Sensor,
+		Mobility,
+		Grenadier,
+		Dexterity,
+		OrdnancePriority,
+		Awareness,
+		Shielding,
+		AAEfficiency,
+		Resupply,
+		Firepower,
+		SituationalReport,
+		Ammo,
+		Stealth,
+		Stability,
+		Nemesis,
+		DropRecon,
+		Wheelman,
+		Gunner,
+		Requisition,
+		FastTrack,
+		Explosives,
+		NoTacticalPackage,
+		NoSupportUpgrade,
+		Survivor,
+		Recharge,
+		Resistor,
+	}
+}

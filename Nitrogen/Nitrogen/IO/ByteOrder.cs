@@ -1,31 +1,23 @@
-﻿/*
- *   Nitrogen - Halo Content API
- *   Copyright © 2013 The Nitrogen Authors. All rights reserved.
- * 
- *   This file is part of Nitrogen.
- *
- *   Nitrogen is free software: you can redistribute it and/or modify
- *   it under the terms of the GNU General Public License as published by
- *   the Free Software Foundation, either version 3 of the License, or
- *   (at your option) any later version.
- *
- *   Nitrogen is distributed in the hope that it will be useful,
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *   GNU General Public License for more details.
- *
- *   You should have received a copy of the GNU General Public License
- *   along with Nitrogen.  If not, see <http://www.gnu.org/licenses/>.
- */
-
-namespace Nitrogen.IO
+﻿namespace Nitrogen.IO
 {
+    /// <summary>
+    /// Specifies the byte order (endianness) of integer values.
+    /// </summary>
     public enum ByteOrder
     {
+        /// <summary>
+        /// Indicates that the byte order of the current computer architecture should be used.
+        /// </summary>
         Default,
 
-        BigEndian,
+        /// <summary>
+        /// Indicates that integers are in LSB to MSB order.
+        /// </summary>
+        LittleEndian,
 
-        LittleEndian
+        /// <summary>
+        /// Indicates that integers are in MSB to LSB order.
+        /// </summary>
+        BigEndian,
     }
 }
