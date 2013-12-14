@@ -1,4 +1,4 @@
-#Nitrogen - Halo 4 Map & Game Variant API
+#Nitrogen - Halo 4 Variant API
 
 ##about;
 Nitrogen is a .NET-based interface to Halo 4 map and game variants.
