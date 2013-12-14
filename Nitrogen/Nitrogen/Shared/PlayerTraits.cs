@@ -845,15 +845,15 @@ namespace Nitrogen.Shared
             /// <summary>
             /// Gets or sets whether a player has infinite ammo.
             /// </summary>
-            public InfiniteAmmoMode InfiniteAmmo
-            {
-                get { return (InfiniteAmmoMode)_infiniteAmmo; }
-                set
-                {
-                    Contract.Requires(value.IsDefined());
-                    _infiniteAmmo = (byte)value;
-                }
-            }
+			public InfiniteAmmoMode InfiniteAmmo
+			{
+				get { return (InfiniteAmmoMode) _infiniteAmmo; }
+				set
+				{
+					Contract.Requires(value.IsDefined());
+					_infiniteAmmo = (byte) value;
+				}
+			}
 
             /// <summary>
             /// Gets or sets whether a player is able to pick up weapons on the ground.

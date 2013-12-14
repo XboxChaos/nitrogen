@@ -52,7 +52,7 @@ namespace Nitrogen.GameVariants
 					var engine = (sbyte) _variantData.Metadata.Engine;
 					bitStream.Stream(ref engine, 4);
 					if ( _variantData.Metadata.Engine == GameEngine.Forge || _variantData.Metadata.Engine == GameEngine.PVP )
-						bitStream.Serialize(new MegaloHeader(0, 0));
+						bitStream.Serialize(new MegaloHeader(0, ContentHeader.DefaultBuildNumber));
 
 					bitStream.Serialize(_variantData);
 				}

@@ -56,6 +56,7 @@ namespace Nitrogen.Metadata
 			_variantIcon = -1;
 			_createdBy = new ContentAuthor();
 			_modifiedBy = new ContentAuthor();
+			_engine = -1;
 		}
 
 		#region Public Properties

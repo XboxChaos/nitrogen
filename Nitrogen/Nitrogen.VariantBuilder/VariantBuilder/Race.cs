@@ -13,7 +13,7 @@ namespace Nitrogen.VariantBuilder
 	{
 		void IGameVariant.Create (GameVariant gt)
 		{
-			gt.HasWeaponTuning = true;
+			gt.HasWeaponTuning = false;
 			
 			#region Base Variant
 

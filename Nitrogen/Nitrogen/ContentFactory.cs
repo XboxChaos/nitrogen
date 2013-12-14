@@ -22,6 +22,9 @@ namespace Nitrogen
 			gameVariant.Metadata.ContentType = ContentType.GameVariant;
 			gameVariant.Metadata.FileLength = 0x7F29;
 
+			if ( gameVariant.Metadata.Engine == GameEngine.None )
+				gameVariant.Metadata.Engine = GameEngine.PVP;
+
 			var contentHeader = new ContentHeader(gameVariant.Metadata);
 			var multiplayerVariant = new MultiplayerVariant(gameVariant);
 

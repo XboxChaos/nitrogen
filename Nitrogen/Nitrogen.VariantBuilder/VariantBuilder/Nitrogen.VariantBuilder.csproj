@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Campaign.cs" />
     <Compile Include="_Builder\OutputPathAttribute.cs" />
     <Compile Include="_Builder\IGameVariant.cs" />
     <Compile Include="_Builder\Program.cs" />
