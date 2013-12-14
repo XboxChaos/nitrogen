@@ -38,11 +38,14 @@ namespace Nitrogen.GameVariants.Base
 			_secondaryColor = new Color();
 			_textColor = new Color();
 			_uiColor = new Color();
+
+			_teamName.Add(new LocalizedString(""));
         }
 
 		public LocalizedString Name
 		{
 			get { return _teamName.Get(0); }
+
 			set
 			{
 				Contract.Requires<ArgumentNullException>(value != null);

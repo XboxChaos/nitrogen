@@ -32,8 +32,10 @@ namespace Nitrogen.Shared
 		{
 			Contract.Requires<ArgumentNullException>(value != null);
 
-			foreach ( var language in _table.Keys )
-				Set(language, value);
+			var temp = new Dictionary<Language, string>();
+			foreach ( var locale in _table )
+				temp.Add(locale.Key, value);
+			_table = temp;
 		}
 
 		public virtual void Set (Language language, string value)
