@@ -41,6 +41,12 @@ namespace Nitrogen.GameVariants.Base
 			}
 		}
 
+		public Team GetTeam(int index)
+		{
+			Contract.Requires<IndexOutOfRangeException>(index >= 0 && index < TeamCount);
+			return _teams[index];
+		}
+
 		public Team[] GetTeams ()
 		{
 			return _teams;

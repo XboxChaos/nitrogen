@@ -92,6 +92,19 @@ namespace Nitrogen.GameVariants
 		}
 
 		/// <summary>
+		/// Gets or sets the social settings for this game variant.
+		/// </summary>
+		public SocialSettings SocialSettings
+		{
+			get { return _social; }
+			set
+			{
+				Contract.Requires<ArgumentNullException>(value != null);
+				_social = value;
+			}
+		}
+
+		/// <summary>
 		/// Gets or sets the map overrides settings for this game variant.
 		/// </summary>
 		public MapOverrides MapOverrides

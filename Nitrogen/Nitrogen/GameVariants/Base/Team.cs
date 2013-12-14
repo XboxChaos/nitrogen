@@ -1,6 +1,7 @@
 ﻿using Nitrogen.IO;
 using Nitrogen.Shared;
 using System;
+using System.Diagnostics.Contracts;
 
 namespace Nitrogen.GameVariants.Base
 {
@@ -38,6 +39,16 @@ namespace Nitrogen.GameVariants.Base
 			_textColor = new Color();
 			_uiColor = new Color();
         }
+
+		public LocalizedString Name
+		{
+			get { return _teamName.Get(0); }
+			set
+			{
+				Contract.Requires<ArgumentNullException>(value != null);
+				_teamName.Set(0, value);
+			}
+		}
 
 		#region ISerializable<BitStream> Members
 

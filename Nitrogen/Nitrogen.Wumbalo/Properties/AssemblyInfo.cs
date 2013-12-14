@@ -6,12 +6,11 @@ using System.Windows;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 
-[assembly: AssemblyTitle("Nitrogen.Wumbalo")]
-[assembly: AssemblyDescription("Halo Data File Editor")]
-[assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("The Guilty Spark Project")]
-[assembly: AssemblyProduct("Nitrogen")]
-[assembly: AssemblyCopyright("Copyright © 2013 Matt Saville & Aaron Dierking")]
+[assembly: AssemblyTitle("Wumbalo")]
+[assembly: AssemblyDescription("Halo 4 Map & Variant Editor")]
+[assembly: AssemblyCompany("Project Guilty Spark")]
+[assembly: AssemblyProduct("Nitrogen.Wumbalo")]
+[assembly: AssemblyCopyright("Copyright © 2013 The Nitrogen Authors. All rights reserved.")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

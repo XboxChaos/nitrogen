@@ -21,6 +21,6 @@
 		NoMantis,
 		NoHeavy,
 		NoVehicles,
-		NoVehiclesExceptMongoose
+		DeleteAllExceptMongoose
 	}
 }
