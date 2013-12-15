@@ -22,7 +22,7 @@
 		PlasmaRepeater,
 		NeedleRifle,
 		FocusRifle,
-	    PlasmaLauncher,
+		PlasmaLauncher,
 		EliteShot,
 		GrenadeLauncher,
 		GolfClub,

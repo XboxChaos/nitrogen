@@ -130,12 +130,12 @@ namespace Nitrogen.IO
 
 		public byte ReadByte ()
 		{
-			return (byte) ReadUIntN(sizeof(byte));
+			return (byte) ReadUIntN(8);
 		}
 
 		public sbyte ReadSByte ()
 		{
-			return (sbyte) ReadIntN(sizeof(sbyte));
+			return (sbyte) ReadIntN(8);
 		}
 
         public virtual string ReadNullTerminatedString(Encoding encoding, int maxLength)

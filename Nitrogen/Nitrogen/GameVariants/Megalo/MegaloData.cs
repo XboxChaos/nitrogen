@@ -139,7 +139,6 @@ namespace Nitrogen.GameVariants.Megalo
 			s.Stream(ref _disabledUserDefinedOptions);
 			s.Stream(ref _hiddenUserDefinedOptions);
 			s.SerializeObjects(_conditions, countBitLength: 10);
-
 			
 
 			/*ushort count = Register<ushort>("Count", n: 11);

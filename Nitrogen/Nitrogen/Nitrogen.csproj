@@ -133,6 +133,9 @@
     <Compile Include="GameVariants\Megalo\Definitions\ParameterDefinition.cs" />
     <Compile Include="GameVariants\Megalo\Definitions\ScriptDatabase.cs" />
     <Compile Include="GameVariants\Megalo\Definitions\XmlDefinitionsTransport.cs" />
+    <Compile Include="GameVariants\Megalo\Parameters.cs" />
+    <Compile Include="GameVariants\Megalo\ParameterTypes\FloatValue.cs" />
+    <Compile Include="GameVariants\Megalo\ParameterTypes\IntegerValue.cs" />
     <Compile Include="ResourceData\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -153,7 +156,7 @@
     <Compile Include="GameVariants\Base\TeamSettings.cs" />
     <Compile Include="GameVariants\MegaloVariant.cs" />
     <Compile Include="GameVariants\Megalo\GlobalGameOptions.cs" />
-    <Compile Include="GameVariants\Megalo\IParameter.cs" />
+    <Compile Include="GameVariants\Megalo\Parameter.cs" />
     <Compile Include="GameVariants\Megalo\MapLoadout.cs" />
     <Compile Include="GameVariants\Megalo\MapPermissions.cs" />
     <Compile Include="GameVariants\Megalo\MegaloData.cs" />
@@ -214,9 +217,7 @@
       <HintPath>..\..\Dependencies\Ionic.Zlib.CF.dll</HintPath>
     </Reference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="GameVariants\Megalo\ParameterTypes\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <EmbeddedResource Include="ResourceData\Conditions.xml" />
     <EmbeddedResource Include="ResourceData\Resources.resx">

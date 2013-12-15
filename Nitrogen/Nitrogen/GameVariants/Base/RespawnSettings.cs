@@ -152,12 +152,18 @@ namespace Nitrogen.GameVariants.Base
 
         /// <summary>
         /// Gets or sets how long in seconds the respawn traits are active after respawning.
+		/// 
+		/// The value must fall in the range between 0 and 60 or an exception will be thrown.
         /// </summary>
-        public byte RespawnTraitsDuration
-        {
-            get { return _respawnTraitDuration; }
-            set { _respawnTraitDuration = value; }
-        }
+		public byte RespawnTraitsDuration
+		{
+			get { return _respawnTraitDuration; }
+			set
+			{
+				Contract.Requires<ArgumentOutOfRangeException>(value >= 0 && value <= 60);
+				_respawnTraitDuration = value;
+			}
+		}
 
         /// <summary>
         /// Gets or sets the trait set applied to players whenever they respawn.
@@ -170,7 +176,7 @@ namespace Nitrogen.GameVariants.Base
 
         void ISerializable<BitStream>.SerializeObject(BitStream s)
         {
-            /* Crash Prevention: Respawn time must be less than secondary respawn time.
+            /* Crash Prevention: Respawn time must be less than or equal to secondary respawn time.
              * 
              * Matt: Should we put this in a separate method since we are technically supposed to
              *       stream data, not modify them here? There's also the possibility of different

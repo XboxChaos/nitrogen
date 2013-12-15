@@ -118,9 +118,9 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="ActionDatabase" xml:space="preserve">
-    <value>Nitrogen.Resources.Actions.xml</value>
+    <value>Nitrogen.ResourceData.Actions.xml</value>
   </data>
   <data name="ConditionDatabase" xml:space="preserve">
-    <value>Nitrogen.Resources.Conditions.xml</value>
+    <value>Nitrogen.ResourceData.Conditions.xml</value>
   </data>
 </root>

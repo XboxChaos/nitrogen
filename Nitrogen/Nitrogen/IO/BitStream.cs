@@ -154,6 +154,23 @@ namespace Nitrogen.IO
 			}
 		}
 
+		public void Stream (IList<uint> values, int bits = sizeof(uint) * 8)
+		{
+			for ( int i = 0; i < values.Count; i++ )
+			{
+				uint value = values[i];
+				Stream(ref value, bits);
+				values[i] = value;
+			}
+		}
+
+		public void StreamUnsigned (ref sbyte value, int bits = sizeof(byte) * 8)
+		{
+			byte temp = (byte) value;
+			Stream(ref temp, bits);
+			value = (sbyte) temp;
+		}
+
 		public void Dispose ()
 		{
 			Dispose(true);

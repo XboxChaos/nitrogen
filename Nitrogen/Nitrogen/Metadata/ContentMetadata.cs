@@ -325,14 +325,14 @@ namespace Nitrogen.Metadata
 
 		void ISerializable<BitStream>.SerializeObject (BitStream s)
 		{
-			s.Stream(ref _contentType, 4);
+			s.StreamPlusOne(ref _contentType, 4);
 			s.Stream(ref _fileLength);
 			for ( int i = 0; i < _contentIds.Length; i++ ) { s.Stream(ref _contentIds[i]); }
-			s.Stream(ref _activity, 2);
-			s.Stream(ref _mode, 3);
-			s.Stream(ref _engine, 3);
+			s.StreamUnsigned(ref _activity, 2);
+			s.StreamUnsigned(ref _mode, 3);
+			s.StreamUnsigned(ref _engine, 3);
 			s.Stream(ref _map);
-			s.Stream(ref _category);
+			s.StreamUnsigned(ref _category);
 			s.Stream(ref _dateCreated);
 			s.SerializeObject(_createdBy);
 			s.Stream(ref _dateModified);

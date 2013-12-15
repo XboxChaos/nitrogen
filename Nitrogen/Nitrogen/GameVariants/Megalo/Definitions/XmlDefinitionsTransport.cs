@@ -46,7 +46,7 @@ namespace Nitrogen.GameVariants.Megalo.Definitions
 					string paramType = paramElement.Name.LocalName;
 					var param = new ParameterDefinition
 					{
-						Type = (ParameterType) Enum.Parse(typeof(ParameterType), paramType, false),
+						ParameterType = (ParameterType) Enum.Parse(typeof(ParameterType), paramType, false),
 
 						Name = XmlUtilities.GetStringAttribute(paramElement, "Name", null),
 						Unsigned = XmlUtilities.GetBoolAttribute(paramElement, "Unsigned", false),

@@ -5,7 +5,7 @@ namespace Nitrogen.GameVariants.Megalo.Definitions
 {
 	internal struct ParameterDefinition
 	{
-		public ParameterType Type { get; set; }
+		public ParameterType ParameterType { get; set; }
 
 		public string Name { get; set; }
 

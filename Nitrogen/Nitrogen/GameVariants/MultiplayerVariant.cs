@@ -51,6 +51,7 @@ namespace Nitrogen.GameVariants
 				{
 					var engine = (sbyte) _variantData.Metadata.Engine;
 					bitStream.Stream(ref engine, 4);
+					_variantData.Metadata.Engine = (GameEngine) engine;
 					if ( _variantData.Metadata.Engine == GameEngine.Forge || _variantData.Metadata.Engine == GameEngine.PVP )
 						bitStream.SerializeObject(new MegaloHeader(0, ContentHeader.DefaultBuildNumber));
 

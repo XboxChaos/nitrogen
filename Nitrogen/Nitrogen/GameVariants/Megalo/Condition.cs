@@ -3,6 +3,7 @@ using Nitrogen.IO;
 using Nitrogen.ResourceData;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 
 namespace Nitrogen.GameVariants.Megalo
 {
@@ -14,16 +15,51 @@ namespace Nitrogen.GameVariants.Megalo
 		private byte _opcode;
 		private bool _inverse;
 		private ushort _unionId, _startAction;
-		private List<IParameter> _parameters;
+		private Parameters _parameters;
 
 		static Condition ()
 		{
 			Database = new ScriptDatabase(new XmlDefinitionsTransport(Resources.ConditionDatabase));
 		}
 
-		public Condition ()
+		public Condition () : this(0) { }
+
+		public Condition (byte opcode)
 		{
-			_parameters = new List<IParameter>();
+			_opcode = opcode;
+			_parameters = new Parameters();
+		}
+
+		public virtual string Name { get { return Database.Definitions.Get(_opcode).Name; } }
+
+		public byte Opcode { get { return _opcode; } }
+
+		public bool IsInverse
+		{
+			get { return _inverse; }
+			set { _inverse = value; }
+		}
+
+		public ushort UnionId
+		{
+			get { return _unionId; }
+			set { _unionId = value; }
+		}
+
+		internal ushort StartAction
+		{
+			get { return _startAction; }
+			set { _startAction = value; }
+		}
+
+		public Parameters Parameters
+		{
+			get { return _parameters; }
+			set
+			{
+				Contract.Requires<ArgumentNullException>(value != null);
+				_parameters = value;
+			}
 		}
 
 		#region ISerializable<BitStream> Members
@@ -39,10 +75,7 @@ namespace Nitrogen.GameVariants.Megalo
 			s.Stream(ref _startAction, 11);
 
 			var definition = Database.GetDefinition(_opcode);
-			foreach (var parameter in definition.Parameters)
-			{
-
-			}
+			_parameters.Serialize(s, definition);
 		}
 
 		#endregion

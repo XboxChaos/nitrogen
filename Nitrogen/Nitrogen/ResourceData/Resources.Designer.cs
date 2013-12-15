@@ -61,7 +61,7 @@ namespace Nitrogen.ResourceData {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Nitrogen.Resources.Actions.xml.
+        ///   Looks up a localized string similar to Nitrogen.ResourceData.Actions.xml.
         /// </summary>
         internal static string ActionDatabase {
             get {
@@ -70,7 +70,7 @@ namespace Nitrogen.ResourceData {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Nitrogen.Resources.Conditions.xml.
+        ///   Looks up a localized string similar to Nitrogen.ResourceData.Conditions.xml.
         /// </summary>
         internal static string ConditionDatabase {
             get {
