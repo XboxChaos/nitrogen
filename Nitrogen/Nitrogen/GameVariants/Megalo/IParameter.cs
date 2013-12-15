@@ -6,5 +6,6 @@ namespace Nitrogen.GameVariants.Megalo
 	internal interface IParameter
 		: ISerializable<BitStream>
 	{
+		ParameterType ParameterType { get; }
 	}
 }

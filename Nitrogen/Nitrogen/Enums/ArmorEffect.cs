@@ -1,4 +1,4 @@
-﻿namespace Nitrogen.Data
+﻿namespace Nitrogen.Enums
 {
 	public enum ArmorEffect
 	{

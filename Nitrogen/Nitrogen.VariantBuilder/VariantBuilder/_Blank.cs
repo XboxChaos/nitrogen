@@ -1,4 +1,4 @@
-﻿using Nitrogen.Data;
+﻿using Nitrogen.Enums;
 using Nitrogen.GameVariants;
 using Nitrogen.GameVariants.Base;
 using Nitrogen.GameVariants.Megalo;

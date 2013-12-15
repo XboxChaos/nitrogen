@@ -2,7 +2,7 @@
 using Nitrogen.IO;
 using System;
 using System.Diagnostics.Contracts;
-using Nitrogen.Data;
+using Nitrogen.Enums;
 
 namespace Nitrogen.Shared
 {

@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nitrogen.Wumbalo", "Nitroge
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nitrogen.VariantBuilder", "Nitrogen.VariantBuilder\VariantBuilder\Nitrogen.VariantBuilder.csproj", "{B555408E-AA3B-4854-AD97-8DB08993D3FB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nitrogen.Test", "Nitrogen.Test\Nitrogen.Test.csproj", "{D50673F1-CE13-4021-A727-C862E1E34672}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +37,10 @@ Global
 		{B555408E-AA3B-4854-AD97-8DB08993D3FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B555408E-AA3B-4854-AD97-8DB08993D3FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B555408E-AA3B-4854-AD97-8DB08993D3FB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D50673F1-CE13-4021-A727-C862E1E34672}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D50673F1-CE13-4021-A727-C862E1E34672}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D50673F1-CE13-4021-A727-C862E1E34672}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D50673F1-CE13-4021-A727-C862E1E34672}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

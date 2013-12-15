@@ -19,6 +19,7 @@ namespace Nitrogen.GameVariants.Megalo
 		private List<MapLoadout> _mapLoadouts;
 		private int[] _disabledOptions, _hiddenOptions;
 		private int _disabledUserDefinedOptions, _hiddenUserDefinedOptions;
+		private List<Condition> _conditions;
 
 		public MegaloData()
 		{
@@ -37,6 +38,7 @@ namespace Nitrogen.GameVariants.Megalo
 			_localizedDescription = new StringTable();
 			_introDescription = new StringTable();
 			_categoryName = new StringTable();
+			_conditions = new List<Condition>();
 		}
 
 		#region Properties
@@ -136,6 +138,71 @@ namespace Nitrogen.GameVariants.Megalo
 			s.Stream(_hiddenOptions);
 			s.Stream(ref _disabledUserDefinedOptions);
 			s.Stream(ref _hiddenUserDefinedOptions);
+			s.SerializeObjects(_conditions, countBitLength: 10);
+
+			
+
+			/*ushort count = Register<ushort>("Count", n: 11);
+			for (var i = 0; i < count; i++)
+			{
+				Group("Action[" + i + "]", () =>
+				{
+					byte opcode = Register<byte>("Opcode");
+					if (opcode > 0)
+					{
+						Group("Parameters", () =>
+						{
+							var action = GameRegistry.Halo4.MegaloActionsDatabase.GetDefinition(opcode);
+							Import<DefinitionParameters>(new Context { { "Definition", action } });
+						});
+					}
+				});
+			}*/
+
+			/*byte count = Register<byte>("Count");
+			for (var i = 0; i < count; i++)
+			{
+				Group("Trigger[" + i + "]", () =>
+				{
+					var enumType = Register<byte>("EnumType", n: 3);
+					Register<byte>("Type", n: 4);
+
+					switch (enumType)
+					{
+						case 5:
+							bool isFilterIndexNull = Register<bool>("IsFilterIndexNull");
+							if (!isFilterIndexNull)
+								Register<byte>("FilterIndex", n: 4);
+							break;
+
+						case 6:
+							Register<bool>("GameObjectType");
+
+							bool isGameObjectFilterIndexNull = Register<bool>("IsGameObjectFilterIndexNull");
+							if (!isGameObjectFilterIndexNull)
+								Register<byte>("GameObjectFilterIndex", n: 2);
+							break;
+					}
+
+					Register<uint>("ConditionIndex", n: 10);
+					Register<uint>("ConditionCount", n: 10);
+					Register<uint>("ActionIndex", n: 11);
+					Register<uint>("ActionCount", n: 11);
+					Register<byte>("FrameUpdateFrequency");
+					Register<byte>("FrameUpdateOffset");
+				});
+			}*/
+			/* 
+				{ "Conditions", DefineConditions },
+				{ "Actions", DefineActions },
+				{ "Triggers", DefineTriggers },
+				{ "CustomStats", DefineCustomStats },
+				{ "Variables", DefineVariables },
+				{ "Widgets", DefineHudWidgets },
+				{ "Events", DefineEvents },
+				{ "RequiredObjectTypes", DefineRequiredObjectTypes },
+				{ "ObjectFilters", DefineObjectFilters },
+				{ "CandySpawnerFilters", DefineCandySpawnersFilters },*/
 		}
 
 		#endregion

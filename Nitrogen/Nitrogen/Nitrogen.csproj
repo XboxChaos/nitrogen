@@ -113,19 +113,31 @@
     <Compile Include="Blf\BlobFooter.cs" />
     <Compile Include="Blf\BlobHeader.cs" />
     <Compile Include="Blf\Chunk.cs" />
-    <Compile Include="Data\ArmorAbility.cs" />
-    <Compile Include="Data\ArmorAbilitySet.cs" />
-    <Compile Include="Data\ArmorEffect.cs" />
-    <Compile Include="Data\ArmorMod.cs" />
-    <Compile Include="Data\EmblemBackground.cs" />
-    <Compile Include="Data\EmblemForeground.cs" />
-    <Compile Include="Data\EmblemColor.cs" />
-    <Compile Include="Data\GrenadeCount.cs" />
-    <Compile Include="Data\ModelVariant.cs" />
-    <Compile Include="Data\OrdnanceSubstitutionSets.cs" />
-    <Compile Include="Data\VehicleSet.cs" />
-    <Compile Include="Data\Weapon.cs" />
-    <Compile Include="Data\WeaponSet.cs" />
+    <Compile Include="Enums\ArmorAbility.cs" />
+    <Compile Include="Enums\ArmorAbilitySet.cs" />
+    <Compile Include="Enums\ArmorEffect.cs" />
+    <Compile Include="Enums\ArmorMod.cs" />
+    <Compile Include="Enums\EmblemBackground.cs" />
+    <Compile Include="Enums\EmblemForeground.cs" />
+    <Compile Include="Enums\EmblemColor.cs" />
+    <Compile Include="Enums\GrenadeCount.cs" />
+    <Compile Include="Enums\ModelVariant.cs" />
+    <Compile Include="Enums\OrdnanceSubstitutionSets.cs" />
+    <Compile Include="Enums\VehicleSet.cs" />
+    <Compile Include="Enums\Weapon.cs" />
+    <Compile Include="Enums\WeaponSet.cs" />
+    <Compile Include="GameVariants\Megalo\Condition.cs" />
+    <Compile Include="GameVariants\Megalo\Definitions\Definition.cs" />
+    <Compile Include="GameVariants\Megalo\Definitions\DefinitionDatabase.cs" />
+    <Compile Include="GameVariants\Megalo\Definitions\IDefinitionsTransport.cs" />
+    <Compile Include="GameVariants\Megalo\Definitions\ParameterDefinition.cs" />
+    <Compile Include="GameVariants\Megalo\Definitions\ScriptDatabase.cs" />
+    <Compile Include="GameVariants\Megalo\Definitions\XmlDefinitionsTransport.cs" />
+    <Compile Include="ResourceData\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Shared\Loadout.cs" />
     <Compile Include="GameVariants\Base\LoadoutPalette.cs" />
     <Compile Include="GameVariants\Base\LoadoutSettings.cs" />
@@ -192,6 +204,7 @@
     <Compile Include="IO\StreamState.cs" />
     <Compile Include="Utilities\SaltedSHA1.cs" />
     <Compile Include="Utilities\TypeExtensions.cs" />
+    <Compile Include="Utilities\XmlUtilities.cs" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
@@ -203,6 +216,13 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="GameVariants\Megalo\ParameterTypes\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ResourceData\Conditions.xml" />
+    <EmbeddedResource Include="ResourceData\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

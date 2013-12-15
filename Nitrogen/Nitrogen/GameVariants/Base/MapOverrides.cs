@@ -1,4 +1,4 @@
-﻿using Nitrogen.Data;
+﻿using Nitrogen.Enums;
 using Nitrogen.IO;
 using Nitrogen.Shared;
 using System;
