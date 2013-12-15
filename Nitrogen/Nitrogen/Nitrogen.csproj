@@ -29,7 +29,7 @@
     <CodeContractsRuntimeThrowOnFailure>True</CodeContractsRuntimeThrowOnFailure>
     <CodeContractsRuntimeCallSiteRequires>False</CodeContractsRuntimeCallSiteRequires>
     <CodeContractsRuntimeSkipQuantifiers>False</CodeContractsRuntimeSkipQuantifiers>
-    <CodeContractsRunCodeAnalysis>True</CodeContractsRunCodeAnalysis>
+    <CodeContractsRunCodeAnalysis>False</CodeContractsRunCodeAnalysis>
     <CodeContractsNonNullObligations>True</CodeContractsNonNullObligations>
     <CodeContractsBoundsObligations>True</CodeContractsBoundsObligations>
     <CodeContractsArithmeticObligations>True</CodeContractsArithmeticObligations>
@@ -126,7 +126,7 @@
     <Compile Include="Data\VehicleSet.cs" />
     <Compile Include="Data\Weapon.cs" />
     <Compile Include="Data\WeaponSet.cs" />
-    <Compile Include="GameVariants\Base\Loadout.cs" />
+    <Compile Include="Shared\Loadout.cs" />
     <Compile Include="GameVariants\Base\LoadoutPalette.cs" />
     <Compile Include="GameVariants\Base\LoadoutSettings.cs" />
     <Compile Include="GameVariants\Base\MapOverrides.cs" />
@@ -140,9 +140,13 @@
     <Compile Include="GameVariants\Base\TeamEmblem.cs" />
     <Compile Include="GameVariants\Base\TeamSettings.cs" />
     <Compile Include="GameVariants\MegaloVariant.cs" />
+    <Compile Include="GameVariants\Megalo\GlobalGameOptions.cs" />
     <Compile Include="GameVariants\Megalo\IParameter.cs" />
+    <Compile Include="GameVariants\Megalo\MapLoadout.cs" />
+    <Compile Include="GameVariants\Megalo\MapPermissions.cs" />
     <Compile Include="GameVariants\Megalo\MegaloData.cs" />
     <Compile Include="GameVariants\Megalo\ParameterType.cs" />
+    <Compile Include="GameVariants\Megalo\PlayerRatingParameters.cs" />
     <Compile Include="GameVariants\Megalo\UserDefinedOption.cs" />
     <Compile Include="GameVariants\Megalo\UserDefinedOptionValue.cs" />
     <Compile Include="GameVariants\Megalo\UserDefinedTraits.cs" />
@@ -196,6 +200,9 @@
     <Reference Include="Ionic.Zlib.CF">
       <HintPath>..\..\Dependencies\Ionic.Zlib.CF.dll</HintPath>
     </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="GameVariants\Megalo\ParameterTypes\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

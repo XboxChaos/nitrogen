@@ -1,4 +1,5 @@
 ﻿using Nitrogen.IO;
+using Nitrogen.Shared;
 using System;
 using System.Diagnostics.Contracts;
 

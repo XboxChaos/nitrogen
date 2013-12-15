@@ -2,7 +2,7 @@
 using Nitrogen.IO;
 using System;
 
-namespace Nitrogen.GameVariants.Base
+namespace Nitrogen.Shared
 {
 	/// <summary>
 	/// Represents a loadout.

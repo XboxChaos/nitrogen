@@ -43,6 +43,12 @@ namespace Nitrogen.IO
 			SerializeObjects(s, values, 0, count);
 		}
 
+		public static void SerializeObjects<T> (this BitStream s, IList<T> values)
+			where T : ISerializable<BitStream>, new()
+		{
+			SerializeObjects(s, values, 32);
+		}
+
 		public static void StreamPlusOne (this BitStream s, ref sbyte value, int bits = sizeof(sbyte) * 8)
 		{
 			Contract.Requires<ArgumentNullException>(s != null);
