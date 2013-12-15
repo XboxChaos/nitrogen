@@ -193,7 +193,7 @@ namespace Nitrogen.GameVariants.Base
             s.Stream(ref _respawnTimeGrowth, bits: 4);
             s.Stream(ref _initialLoadoutDuration, bits: 4);
 			s.Stream(ref _respawnTraitDuration, bits: 6);
-            s.Serialize(_traits);
+            s.SerializeObject(_traits);
         }
     }
 }

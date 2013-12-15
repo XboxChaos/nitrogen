@@ -164,18 +164,27 @@ namespace Nitrogen.GameVariants
 
 		void ISerializable<BitStream>.SerializeObject (BitStream s)
 		{
-			s.Serialize(_metadata);
+			s.SerializeObject(_metadata);
 			s.Stream(ref _unknownFlag1);
 			s.Stream(ref _unknownFlag2);
-			s.Serialize(_general);
-			s.Serialize(_prototype);
-			s.Serialize(_respawn);
-			s.Serialize(_social);
-			s.Serialize(_mapOverrides);
-			s.Serialize(_requisition);
-			s.Serialize(_teams);
-			s.Serialize(_loadouts);
-			s.Serialize(_ordnance);
+			s.SerializeObject(_general);
+			s.SerializeObject(_prototype);
+			s.SerializeObject(_respawn);
+			s.SerializeObject(_social);
+			s.SerializeObject(_mapOverrides);
+			s.SerializeObject(_requisition);
+			s.SerializeObject(_teams);
+			s.SerializeObject(_loadouts);
+			s.SerializeObject(_ordnance);
+
+			switch ( _metadata.Engine )
+			{
+				case GameEngine.PVP:
+				case GameEngine.Forge:
+					if ( _engineData == null )
+						_engineData = new Megalo.MegaloData();
+					break;
+			}
 
 			if ( _engineData != null )
 				_engineData.SerializeObject(s);

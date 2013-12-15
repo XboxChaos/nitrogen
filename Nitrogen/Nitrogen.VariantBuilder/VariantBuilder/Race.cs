@@ -9,9 +9,9 @@ using System;
 namespace Nitrogen.VariantBuilder
 {
 	[OutputPath("C:/Users/Matt/Desktop/race.game")]
-	public sealed class Race : IGameVariant
+	public sealed class Race : IMegaloVariant
 	{
-		void IGameVariant.Create (GameVariant gt)
+		void IMegaloVariant.Create (MegaloVariant gt)
 		{
 			gt.HasWeaponTuning = false;
 			

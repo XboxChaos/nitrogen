@@ -58,7 +58,7 @@ namespace Nitrogen.GameVariants.Base
 		{
 			s.Stream(ref _teamModelOverride, bits: 3);
 			s.Stream(ref _designatorSwitchType, bits: 2);
-			s.Serialize(_teams, 0, TeamCount);
+			s.SerializeObjects(_teams, 0, TeamCount);
 		}
 
 		#endregion

@@ -66,12 +66,12 @@ namespace Nitrogen.GameVariants.Base
 			_teamName.Serialize(s, offsetBitLength: 10, lengthBitLength: 10, countBitLength: 1);
 			s.Stream(ref _index, bits: 4);
 			s.Stream(ref _overrideTeamModel);
-			s.Serialize(_primaryColor);
-			s.Serialize(_secondaryColor);
-			s.Serialize(_textColor);
-			s.Serialize(_uiColor);
+			s.SerializeObject(_primaryColor);
+			s.SerializeObject(_secondaryColor);
+			s.SerializeObject(_textColor);
+			s.SerializeObject(_uiColor);
 			s.Stream(ref _fireteamCount, bits: 5);
-			s.Serialize(_emblem);
+			s.SerializeObject(_emblem);
 		}
 
 		#endregion

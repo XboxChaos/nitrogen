@@ -2,7 +2,7 @@
 
 namespace Nitrogen.VariantBuilder
 {
-	interface IGameVariant
+	interface IMegaloVariant
 	{
 		void Create (MegaloVariant gt);
 	}

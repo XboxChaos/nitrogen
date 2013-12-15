@@ -43,7 +43,7 @@ namespace Nitrogen.MapVariants
 				}
 
 				using ( var bitStream = new BitStream(buffer, s.State, true) )
-					bitStream.Serialize(_variantData);
+					bitStream.SerializeObject(_variantData);
 			}
 
 			if ( s.State == StreamState.Write )

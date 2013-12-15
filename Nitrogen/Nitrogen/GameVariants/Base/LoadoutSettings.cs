@@ -94,7 +94,7 @@ namespace Nitrogen.GameVariants.Base
 			s.Stream(ref _unknownFlag1);
 			s.Stream(ref _unknownFlag2);
 			s.Stream(ref _mapLoadoutsEnabled);
-			s.Serialize(_palettes, 0, PaletteCount);
+			s.SerializeObjects(_palettes, 0, PaletteCount);
 		}
 
 		#endregion

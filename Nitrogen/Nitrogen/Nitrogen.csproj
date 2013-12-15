@@ -139,8 +139,13 @@
     <Compile Include="GameVariants\Base\Team.cs" />
     <Compile Include="GameVariants\Base\TeamEmblem.cs" />
     <Compile Include="GameVariants\Base\TeamSettings.cs" />
+    <Compile Include="GameVariants\MegaloVariant.cs" />
     <Compile Include="GameVariants\Megalo\IParameter.cs" />
+    <Compile Include="GameVariants\Megalo\MegaloData.cs" />
     <Compile Include="GameVariants\Megalo\ParameterType.cs" />
+    <Compile Include="GameVariants\Megalo\UserDefinedOption.cs" />
+    <Compile Include="GameVariants\Megalo\UserDefinedOptionValue.cs" />
+    <Compile Include="GameVariants\Megalo\UserDefinedTraits.cs" />
     <Compile Include="Language.cs" />
     <Compile Include="MapVariants\MapObjects\MapObject.cs" />
     <Compile Include="MapVariants\MapVariant.cs" />
@@ -151,7 +156,6 @@
     <Compile Include="MapVariants\Shapes\Sphere.cs" />
     <Compile Include="MapVariants\VectorSerializationInfo.cs" />
     <Compile Include="Shared\LocalizedString.cs" />
-    <Compile Include="GameVariants\Megalo\MegaloVariant.cs" />
     <Compile Include="Metadata\ContentHeader.cs" />
     <Compile Include="Metadata\ContentMetadata.cs" />
     <Compile Include="Shared\PlayerTraits.cs" />

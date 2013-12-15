@@ -49,7 +49,7 @@ namespace Nitrogen.MapVariants
 
 		void ISerializable<BitStream>.SerializeObject (BitStream s)
 		{
-			s.Serialize(_metadata);
+			s.SerializeObject(_metadata);
 			s.Stream(ref _encodingVersion);
 			s.Stream(ref _unknownInt1);
 			s.Stream(ref _unknownInt2);
@@ -66,14 +66,14 @@ namespace Nitrogen.MapVariants
 			/*
            
             // Object Table
-            this.Objects.Serialize(s);
+            this.Objects.SerializeObjects(s);
 
             // Object Type Count Table
             for (int i = 0; i < this.objectTypeCountTable.Length; i++)
             {
                 if (i < this.objectTypeCount)
                 {
-                    s.Serialize(this.objectTypeCountTable[i]);
+                    s.SerializeObjects(this.objectTypeCountTable[i]);
                 }
             }*/
 		}

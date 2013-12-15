@@ -6,36 +6,42 @@ namespace Nitrogen.IO
 {
     public static class BitStreamExtensions
     {
-        public static void Serialize<T>(this BitStream s, T value)
-            where T : ISerializable<BitStream>, new()
-        {
-            Contract.Requires<ArgumentNullException>(s != null);
+		public static void SerializeObject<T> (this BitStream s, T value)
+			where T : ISerializable<BitStream>
+		{
+			Contract.Requires<ArgumentNullException>(s != null & value != null);
+			value.SerializeObject(s);
+		}
 
-            if (value == null) { value = new T(); }
-            value.SerializeObject(s);
-        }
+		public static void SerializeObjects<T> (this BitStream s, IList<T> values, int offset, int count)
+			where T : ISerializable<BitStream>, new()
+		{
+			Contract.Requires<ArgumentNullException>(s != null && values != null);
+			Contract.Requires<ArgumentOutOfRangeException>(offset >= 0 && count >= 0);
 
-        public static void Serialize<T>(this BitStream s, IList<T> values, int offset, int count)
-            where T : ISerializable<BitStream>, new()
-        {
-            Contract.Requires<ArgumentNullException>(s != null && values != null);
-            Contract.Requires<ArgumentOutOfRangeException>(offset >= 0 && count >= 0);
+			for ( int i = offset; i < count; i++ )
+			{
+				T value;
+				if ( i < values.Count )
+				{
+					value = values[i];
+				}
+				else
+				{
+					value = new T();
+					values.Add(value);
+				}
+				s.SerializeObject(value);
+			}
+		}
 
-            for (int i = offset; i < count; i++)
-            {
-                T value;
-                if (i < values.Count)
-                {
-                    value = values[i];
-                }
-                else
-                {
-                    value = new T();
-                    values.Add(value);
-                }
-                s.Serialize(value);
-            }
-        }
+		public static void SerializeObjects<T> (this BitStream s, IList<T> values, int countBitLength)
+			where T : ISerializable<BitStream>, new()
+		{
+			int count = values.Count;
+			s.Stream(ref count, countBitLength);
+			SerializeObjects(s, values, 0, count);
+		}
 
 		public static void StreamPlusOne (this BitStream s, ref sbyte value, int bits = sizeof(sbyte) * 8)
 		{

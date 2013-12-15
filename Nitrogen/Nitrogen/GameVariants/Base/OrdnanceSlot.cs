@@ -51,7 +51,7 @@ namespace Nitrogen.GameVariants.Base
 
 		void ISerializable<BitStream>.SerializeObject (BitStream s)
 		{
-			s.Serialize(_items, 0, Capacity);
+			s.SerializeObjects(_items, 0, Capacity);
 		}
 
 		#endregion

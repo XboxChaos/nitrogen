@@ -105,11 +105,11 @@ namespace Nitrogen.Shared
 
         void ISerializable<BitStream>.SerializeObject(BitStream s)
         {
-            s.Serialize(_armorTraits);
-            s.Serialize(_equipmentTraits);
-            s.Serialize(_movementTraits);
-            s.Serialize(_appearanceTraits);
-            s.Serialize(_hudAudioTraits);
+            s.SerializeObject(_armorTraits);
+            s.SerializeObject(_equipmentTraits);
+            s.SerializeObject(_movementTraits);
+            s.SerializeObject(_appearanceTraits);
+            s.SerializeObject(_hudAudioTraits);
         }
 
         #region Armor
@@ -1333,8 +1333,8 @@ namespace Nitrogen.Shared
                 s.Stream(ref _waypointVisibility, bits: 2);
                 s.Stream(ref _gamertagVisibility, bits: 2);
                 s.Stream(ref _aura, bits: 3);
-                s.Serialize(_primary);
-                s.Serialize(_secondary);
+                s.SerializeObject(_primary);
+                s.SerializeObject(_secondary);
                 s.Stream(ref _useDefaultModel);
                 s.Stream(ref _modelStringIndex);
                 s.Stream(ref _deathEffect);

@@ -10,9 +10,9 @@ namespace Nitrogen.VariantBuilder
 {
 	// Uncomment the line below to create a gametype BLF file (and change the output path too :P)
 	//[OutputPath("C:/Users/Matt/Desktop/blank.game")]
-	public sealed class Blank : IGameVariant
+	public sealed class Blank : IMegaloVariant
 	{
-		void IGameVariant.Create (GameVariant gt)
+		void IMegaloVariant.Create (MegaloVariant gt)
 		{
 			// make your gametype here
 

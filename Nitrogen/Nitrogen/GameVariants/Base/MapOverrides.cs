@@ -178,11 +178,11 @@ namespace Nitrogen.GameVariants.Base
 			s.Stream(ref _aaOnMap);
 			s.Stream(ref _shortcutsOnMap);
 			s.Stream(ref _grenadesOnMap);
-			s.Serialize(_baseTraits);
+			s.SerializeObject(_baseTraits);
 			s.Stream(ref _weaponSet);
 			s.Stream(ref _vehicleSet);
 			s.Stream(ref _aaSet);
-			s.Serialize(_powerups, 0, PowerupCount);
+			s.SerializeObjects(_powerups, 0, PowerupCount);
 		}
 
 		#endregion

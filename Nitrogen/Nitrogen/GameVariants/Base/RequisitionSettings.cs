@@ -33,7 +33,7 @@ namespace Nitrogen.GameVariants.Base
 			int count = _data.Count;
 			s.Stream(ref count, 7);
 
-			s.Serialize(_data, 0, count);
+			s.SerializeObjects(_data, 0, count);
 			s.Stream(ref _unk2);
 		}
 

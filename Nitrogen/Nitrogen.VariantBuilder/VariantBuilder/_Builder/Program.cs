@@ -19,13 +19,13 @@ namespace Nitrogen.VariantBuilder
 
 			foreach ( var variant in variants )
 			{
-				var gt = Activator.CreateInstance(variant) as IGameVariant;
+				var gt = Activator.CreateInstance(variant) as IMegaloVariant;
 				Console.WriteLine("Creating {0}...", gt.GetType().Name);
 
 				var output = gt.GetType().GetCustomAttribute<OutputPathAttribute>();
 				if ( output == null ) { continue; }
 
-				var gameVariant = new GameVariant();
+				var gameVariant = new MegaloVariant();
 				gt.Create(gameVariant);
 				gameVariant.Metadata.Category = 25;
 

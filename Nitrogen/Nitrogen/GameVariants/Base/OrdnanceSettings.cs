@@ -310,7 +310,7 @@ namespace Nitrogen.GameVariants.Base
 			s.StreamNullTerminatedString(ref _personalDropSet, Encoding.UTF8, maxLength: 32);
 			s.StreamNullTerminatedString(ref _substitutionSet, Encoding.UTF8, maxLength: 32);
 			s.Stream(ref _overridePersonalOrdnance);
-			s.Serialize(_personalOrdnance, 0, 4);
+			s.SerializeObjects(_personalOrdnance, 0, 4);
 			s.StreamEncodedFloat(ref _pointReq, bits: 30, min: 0, max: 10000, signed: false, isRounded: true, flag: false);
 			s.StreamEncodedFloat(ref _pointIncrement, bits: 30, min: 0, max: 10000, signed: false, isRounded: true, flag: false);
 		}

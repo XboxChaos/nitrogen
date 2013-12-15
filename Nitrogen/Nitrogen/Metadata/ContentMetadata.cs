@@ -334,9 +334,9 @@ namespace Nitrogen.Metadata
 			s.Stream(ref _map);
 			s.Stream(ref _category);
 			s.Stream(ref _dateCreated);
-			s.Serialize(_createdBy);
+			s.SerializeObject(_createdBy);
 			s.Stream(ref _dateModified);
-			s.Serialize(_modifiedBy);
+			s.SerializeObject(_modifiedBy);
 			s.StreamNullTerminatedString(ref _name, Encoding.BigEndianUnicode);
 			s.StreamNullTerminatedString(ref _description, Encoding.BigEndianUnicode);
 

@@ -187,10 +187,10 @@ namespace Nitrogen.GameVariants.Base
 
 		void ISerializable<BitStream>.SerializeObject (BitStream s)
 		{
-			s.Serialize(_primary);
+			s.SerializeObject(_primary);
 			s.Stream(ref _primaryDuration, 7);
 
-			s.Serialize(_secondary);
+			s.SerializeObject(_secondary);
 			s.Stream(ref _secondaryDuration, 7);
 		}
 

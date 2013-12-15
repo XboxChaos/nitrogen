@@ -72,7 +72,7 @@ namespace Nitrogen.GameVariants.Base
 
 		void ISerializable<BitStream>.SerializeObject (BitStream s)
 		{
-			s.Serialize(_loadouts, 0, LoadoutCount);
+			s.SerializeObjects(_loadouts, 0, LoadoutCount);
 		}
 
 		#endregion
