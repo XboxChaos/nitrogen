@@ -1,10 +1,11 @@
-﻿using Nitrogen.IO;
+﻿using Nitrogen.GameVariants.Megalo.Definitions;
+using Nitrogen.IO;
 using System;
 
 namespace Nitrogen.GameVariants.Megalo.ParameterTypes
 {
 	public sealed class FloatValue
-		: Parameter
+		: IParameter
 	{
 		public FloatValue () { }
 
@@ -13,9 +14,13 @@ namespace Nitrogen.GameVariants.Megalo.ParameterTypes
 			
 		}
 
-		public override void SerializeObject (BitStream s)
+		#region IParameter Members
+
+		void IParameter.SerializeObject (BitStream s, ParameterDefinition definition)
 		{
 			throw new NotImplementedException();
 		}
+
+		#endregion
 	}
 }

@@ -1,10 +1,11 @@
-﻿using Nitrogen.IO;
+﻿using Nitrogen.GameVariants.Megalo.Definitions;
+using Nitrogen.IO;
 using System;
 
 namespace Nitrogen.GameVariants.Megalo.ParameterTypes
 {
 	public sealed class OptionalInt16Value
-		: Parameter
+		: IParameter
 	{
 		private short? _value;
 
@@ -21,14 +22,16 @@ namespace Nitrogen.GameVariants.Megalo.ParameterTypes
 			set { _value = value; }
 		}
 
-		internal bool UsePlusOneEncoding { get; set; }
+		#region IParameter Members
 
-		public override void SerializeObject (BitStream s)
+		void IParameter.SerializeObject (BitStream s, ParameterDefinition definition)
 		{
-			if ( UsePlusOneEncoding )
+			if ( definition.UsePlusOneEncoding )
 				s.StreamPlusOneOptional(ref _value);
 			else
 				s.StreamOptional(ref _value);
 		}
+
+		#endregion
 	}
 }

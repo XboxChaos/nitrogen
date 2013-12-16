@@ -4,7 +4,7 @@ using System;
 namespace Nitrogen.GameVariants.Megalo.ParameterTypes
 {
 	public sealed class OptionalUInt16Value
-		: Parameter
+		: IParameter
 	{
 		private ushort? _value;
 
@@ -21,9 +21,13 @@ namespace Nitrogen.GameVariants.Megalo.ParameterTypes
 			set { _value = value; }
 		}
 
-		public override void SerializeObject (BitStream s)
+		#region IParameter Members
+
+		void IParameter.SerializeObject (BitStream s, Definitions.ParameterDefinition definition)
 		{
 			s.StreamOptional(ref _value);
 		}
+
+		#endregion
 	}
 }

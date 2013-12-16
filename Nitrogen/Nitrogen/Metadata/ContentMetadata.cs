@@ -5,6 +5,7 @@ using System.Diagnostics.Contracts;
 using System.IO;
 using System.Linq;
 using System.Text;
+using Nitrogen.Enums;
 
 namespace Nitrogen.Metadata
 {
@@ -121,10 +122,10 @@ namespace Nitrogen.Metadata
 		/// <summary>
 		/// Gets or sets the icon of this game variant.
 		/// </summary>
-		public sbyte VariantIcon
+		public VariantIcon VariantIcon
 		{
-			get { return _variantIcon; }
-			set { _variantIcon = value; }
+			get { return (VariantIcon) _variantIcon; }
+			set { _variantIcon = (sbyte) value; }
 		}
 
 		/// <summary>

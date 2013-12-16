@@ -5,7 +5,7 @@ using System.Diagnostics.Contracts;
 namespace Nitrogen.GameVariants.Megalo.ParameterTypes
 {
 	public sealed class UInt16Value
-		: Parameter
+		: IParameter
 	{
 		private ushort _value;
 
@@ -22,11 +22,13 @@ namespace Nitrogen.GameVariants.Megalo.ParameterTypes
 			set { _value = value; }
 		}
 
-		internal bool UsePlusOneEncoding { get; set; }
+		#region IParameter Members
 
-		public override void SerializeObject (BitStream s)
+		void IParameter.SerializeObject (BitStream s, Definitions.ParameterDefinition definition)
 		{
 			s.Stream(ref _value);
 		}
+
+		#endregion
 	}
 }

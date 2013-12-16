@@ -7,22 +7,25 @@ using System.Collections.Generic;
 namespace Nitrogen.GameVariants.Megalo
 {
 	public sealed class Parameters
-		: List<Parameter>
 	{
-		private static Dictionary<ParameterType, Type> ParameterTypes = new Dictionary<ParameterType, Type>
+		private List<IParameter> _parameters;
+
+		public Parameters ()
 		{
-			{ ParameterType.None, null },
-		};
+			_parameters = new List<IParameter>();
+		}
 
 		internal void Serialize (BitStream s, Definition definition)
 		{
 			if ( s.State == StreamState.Read )
-				Clear();
+				_parameters.Clear();
 
-			if ( s.State == StreamState.Write && definition.Parameters.Count != Count )
+			if ( s.State == StreamState.Write && definition.Parameters.Count != _parameters.Count )
 				throw new Exception(string.Format("Parameter count mismatch for {0}", definition.Name ?? definition.Opcode.ToString()));
 
-			for ( int i = 0; i < definition.Parameters.Count; i++ )
+			// TODO: REWRITE THIS SHIT
+
+			/*for ( int i = 0; i < definition.Parameters.Count; i++ )
 			{
 				if ( s.State == StreamState.Write )
 				{
@@ -63,9 +66,10 @@ namespace Nitrogen.GameVariants.Megalo
 					this.Add(param);
 					s.SerializeObject(param);
 				}
-			}
+			}*/
 		}
 
+		/*
 		private Parameter ProcessIntegerParameter(ParameterDefinition paramDefinition)
 		{
 			Parameter param;
@@ -103,6 +107,6 @@ namespace Nitrogen.GameVariants.Megalo
 		private Parameter ProcessFloatParameter(ParameterDefinition paramDefinition)
 		{
 			throw new NotImplementedException(); // TODO: Implement float parameter type
-		}
+		}*/
 	}
 }

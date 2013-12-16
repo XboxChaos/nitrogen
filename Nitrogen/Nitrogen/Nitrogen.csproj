@@ -123,6 +123,7 @@
     <Compile Include="Enums\GrenadeCount.cs" />
     <Compile Include="Enums\ModelVariant.cs" />
     <Compile Include="Enums\OrdnanceSubstitutionSets.cs" />
+    <Compile Include="Enums\VariantIcon.cs" />
     <Compile Include="Enums\VehicleSet.cs" />
     <Compile Include="Enums\Weapon.cs" />
     <Compile Include="Enums\WeaponSet.cs" />
@@ -133,11 +134,28 @@
     <Compile Include="GameVariants\Megalo\Definitions\ParameterDefinition.cs" />
     <Compile Include="GameVariants\Megalo\Definitions\ScriptDatabase.cs" />
     <Compile Include="GameVariants\Megalo\Definitions\XmlDefinitionsTransport.cs" />
+    <Compile Include="GameVariants\Megalo\IParameter.cs" />
     <Compile Include="GameVariants\Megalo\Parameters.cs" />
+    <Compile Include="GameVariants\Megalo\ParameterTypes\BoundaryData.cs" />
+    <Compile Include="GameVariants\Megalo\ParameterTypes\CubicBoundaryData.cs" />
+    <Compile Include="GameVariants\Megalo\ParameterTypes\CylindricalBoundaryData.cs" />
+    <Compile Include="GameVariants\Megalo\ParameterTypes\EmptyBoundaryData.cs" />
     <Compile Include="GameVariants\Megalo\ParameterTypes\FloatValue.cs" />
     <Compile Include="GameVariants\Megalo\ParameterTypes\Int16Value.cs" />
+    <Compile Include="GameVariants\Megalo\ParameterTypes\IntegerReference.cs" />
+    <Compile Include="GameVariants\Megalo\ParameterTypes\MeterData.cs" />
+    <Compile Include="GameVariants\Megalo\ParameterTypes\ObjectReference.cs" />
     <Compile Include="GameVariants\Megalo\ParameterTypes\OptionalInt16Value.cs" />
     <Compile Include="GameVariants\Megalo\ParameterTypes\OptionalUInt16Value.cs" />
+    <Compile Include="GameVariants\Megalo\ParameterTypes\PlayerReference.cs" />
+    <Compile Include="GameVariants\Megalo\ParameterTypes\SphericalBoundaryData.cs" />
+    <Compile Include="GameVariants\Megalo\ParameterTypes\StringReference.cs" />
+    <Compile Include="GameVariants\Megalo\ParameterTypes\StringReferenceMultiToken.cs" />
+    <Compile Include="GameVariants\Megalo\ParameterTypes\StringReferenceSingleToken.cs" />
+    <Compile Include="GameVariants\Megalo\ParameterTypes\StringToken.cs" />
+    <Compile Include="GameVariants\Megalo\ParameterTypes\TargetReference.cs" />
+    <Compile Include="GameVariants\Megalo\ParameterTypes\TeamReference.cs" />
+    <Compile Include="GameVariants\Megalo\ParameterTypes\TimerReference.cs" />
     <Compile Include="GameVariants\Megalo\ParameterTypes\UInt16Value.cs" />
     <Compile Include="ResourceData\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -159,7 +177,6 @@
     <Compile Include="GameVariants\Base\TeamSettings.cs" />
     <Compile Include="GameVariants\MegaloVariant.cs" />
     <Compile Include="GameVariants\Megalo\GlobalGameOptions.cs" />
-    <Compile Include="GameVariants\Megalo\Parameter.cs" />
     <Compile Include="GameVariants\Megalo\MapLoadout.cs" />
     <Compile Include="GameVariants\Megalo\MapPermissions.cs" />
     <Compile Include="GameVariants\Megalo\MegaloData.cs" />

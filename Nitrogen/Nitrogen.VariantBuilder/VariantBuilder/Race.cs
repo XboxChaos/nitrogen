@@ -24,7 +24,7 @@ namespace Nitrogen.VariantBuilder
 				Description = "Gentlemen, start your engines.",
 				CreatedBy = new ContentAuthor("synth92"),
 				ModifiedBy = new ContentAuthor("synth92"),
-				VariantIcon = 4,
+				VariantIcon = VariantIcon.Race,
 			};
 			gt.Metadata = metadata;
 

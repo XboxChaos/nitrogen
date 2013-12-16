@@ -32,6 +32,16 @@ namespace Nitrogen.GameVariants.Megalo
 
 		public virtual string Name { get { return Database.Definitions.Get(_opcode).Name; } }
 
+		public virtual Parameters Parameters
+		{
+			get { return _parameters; }
+			set
+			{
+				Contract.Requires<ArgumentNullException>(value != null);
+				_parameters = value;
+			}
+		}
+
 		public byte Opcode { get { return _opcode; } }
 
 		public bool IsInverse
@@ -46,20 +56,10 @@ namespace Nitrogen.GameVariants.Megalo
 			set { _unionId = value; }
 		}
 
-		internal ushort StartAction
+		public ushort StartAction
 		{
 			get { return _startAction; }
 			set { _startAction = value; }
-		}
-
-		public Parameters Parameters
-		{
-			get { return _parameters; }
-			set
-			{
-				Contract.Requires<ArgumentNullException>(value != null);
-				_parameters = value;
-			}
 		}
 
 		#region ISerializable<BitStream> Members
