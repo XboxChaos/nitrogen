@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Nitrogen.Enums;
+using System;
 using System.Diagnostics.Contracts;
 
 namespace Nitrogen.Shared
@@ -36,7 +37,7 @@ namespace Nitrogen.Shared
         public static void ApplyGrenadierUpgrade(this PlayerTraits traits)
         {
             Contract.Requires<ArgumentNullException>(traits != null);
-			traits.Equipment.ExtraGrenade = PlayerTraits.TraitFlag.Enabled;
+			traits.Equipment.ExtraGrenade = TraitFlag.Enabled;
         }
         /// <summary>
         /// Applies the properties of the Resupply tactical package to this trait set.
@@ -45,7 +46,7 @@ namespace Nitrogen.Shared
         public static void ApplyResupplyUpgrade(this PlayerTraits traits)
         {
             Contract.Requires<ArgumentNullException>(traits != null);
-			traits.Equipment.GrenadePickup = PlayerTraits.TraitFlag.Enabled;
+			traits.Equipment.GrenadePickup = TraitFlag.Enabled;
         }
 
         /// <summary>
@@ -54,7 +55,7 @@ namespace Nitrogen.Shared
         public static void ApplyRequisitionUpgrade(this PlayerTraits traits)
         {
             Contract.Requires<ArgumentNullException>(traits != null);
-			traits.Equipment.Requisition = PlayerTraits.TraitFlag.Enabled;
+			traits.Equipment.Requisition = TraitFlag.Enabled;
         }
 
         /// <summary>
@@ -85,7 +86,7 @@ namespace Nitrogen.Shared
         public static void ApplyAmmoUpgrade(this PlayerTraits traits)
         {
             Contract.Requires<ArgumentNullException>(traits != null);
-			traits.Equipment.ExtraAmmo = PlayerTraits.TraitFlag.Enabled;
+			traits.Equipment.ExtraAmmo = TraitFlag.Enabled;
         }
 
         /// <summary>
@@ -122,7 +123,7 @@ namespace Nitrogen.Shared
         public static void ApplyAwarenessUpgrade(this PlayerTraits traits)
         {
             Contract.Requires<ArgumentNullException>(traits != null);
-			traits.ScreenAndAudio.MotionSensorWhileScoped = PlayerTraits.TraitFlag.Enabled;
+			traits.ScreenAndAudio.MotionSensorWhileScoped = TraitFlag.Enabled;
         }
 
         /// <summary>
@@ -150,7 +151,7 @@ namespace Nitrogen.Shared
         public static void ApplyStealthUpgrade(this PlayerTraits traits)
         {
             Contract.Requires<ArgumentNullException>(traits != null);
-			traits.Movement.Stealth = PlayerTraits.TraitFlag.Enabled;
+			traits.Movement.Stealth = TraitFlag.Enabled;
             traits.Equipment.AssassinationSpeed = 1.20f;
         }
 
@@ -179,7 +180,7 @@ namespace Nitrogen.Shared
         public static void ApplyNemesisUpgrade(this PlayerTraits traits)
         {
             Contract.Requires<ArgumentNullException>(traits != null);
-			traits.ScreenAndAudio.Nemesis = PlayerTraits.TraitFlag.Enabled;
+			traits.ScreenAndAudio.Nemesis = TraitFlag.Enabled;
             traits.ScreenAndAudio.NemesisDuration = 4.5f;
         }
     }

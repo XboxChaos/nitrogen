@@ -113,6 +113,7 @@
     <Compile Include="Blf\BlobFooter.cs" />
     <Compile Include="Blf\BlobHeader.cs" />
     <Compile Include="Blf\Chunk.cs" />
+    <Compile Include="Enums\ActiveCamoMode.cs" />
     <Compile Include="Enums\ArmorAbility.cs" />
     <Compile Include="Enums\ArmorAbilitySet.cs" />
     <Compile Include="Enums\ArmorEffect.cs" />
@@ -121,10 +122,15 @@
     <Compile Include="Enums\EmblemForeground.cs" />
     <Compile Include="Enums\EmblemColor.cs" />
     <Compile Include="Enums\GrenadeCount.cs" />
+    <Compile Include="Enums\HudVisibility.cs" />
+    <Compile Include="Enums\InfiniteAmmoMode.cs" />
     <Compile Include="Enums\ModelVariant.cs" />
+    <Compile Include="Enums\MotionSensorMode.cs" />
     <Compile Include="Enums\OrdnanceSubstitutionSets.cs" />
+    <Compile Include="Enums\TraitFlag.cs" />
     <Compile Include="Enums\VariantIcon.cs" />
     <Compile Include="Enums\VehicleSet.cs" />
+    <Compile Include="Enums\VehicleUsageMode.cs" />
     <Compile Include="Enums\Weapon.cs" />
     <Compile Include="Enums\WeaponSet.cs" />
     <Compile Include="GameVariants\Megalo\Condition.cs" />
@@ -212,7 +218,6 @@
     <Compile Include="GameVariants\Megalo\MegaloHeader.cs" />
     <Compile Include="GameVariants\MultiplayerVariant.cs" />
     <Compile Include="Shared\StringTable.cs" />
-    <Compile Include="Shared\TraitEnums.cs" />
     <Compile Include="IO\BinaryReader.cs" />
     <Compile Include="IO\BinaryStream.cs" />
     <Compile Include="IO\BinaryStreamExtensions.cs" />

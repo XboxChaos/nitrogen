@@ -81,12 +81,12 @@ namespace Nitrogen.VariantBuilder
 
 			// Base Player Traits -> Appearance
 			baseTraits.Appearance.DeathEffect = ArmorEffect.GruntBirthdayParty;
-			baseTraits.Appearance.GamertagVisibility = PlayerTraits.HudVisibility.VisibleToEveryone;
-			baseTraits.Appearance.WaypointVisibility = PlayerTraits.HudVisibility.VisibleToEveryone;
+			baseTraits.Appearance.GamertagVisibility = HudVisibility.VisibleToEveryone;
+			baseTraits.Appearance.WaypointVisibility = HudVisibility.VisibleToEveryone;
 
 			// Base Player Traits -> Armor
-			baseTraits.Armor.AssassinationImmunity = PlayerTraits.TraitFlag.Enabled;
-			baseTraits.Armor.Invincibility = PlayerTraits.TraitFlag.Enabled;
+			baseTraits.Armor.AssassinationImmunity = TraitFlag.Enabled;
+			baseTraits.Armor.Invincibility = TraitFlag.Enabled;
 
 			// Base Player Traits -> Appearance
 			baseTraits.Equipment.InitialPrimaryWeapon = Weapon.SpartanLaser;
@@ -95,12 +95,12 @@ namespace Nitrogen.VariantBuilder
 			baseTraits.Equipment.SupportUpgrade = ArmorMod.NoSupportUpgrade;
 
 			// Base Player Traits -> Movement
-			baseTraits.Movement.Sprint = PlayerTraits.TraitFlag.Disabled;
-			baseTraits.Movement.VehicleUsage = PlayerTraits.VehicleUsageMode.DriverOnly;
+			baseTraits.Movement.Sprint = TraitFlag.Disabled;
+			baseTraits.Movement.VehicleUsage = VehicleUsageMode.DriverOnly;
 
 			// Base Player Traits -> Screen & Audio
-			baseTraits.ScreenAndAudio.MotionSensor = PlayerTraits.MotionSensorMode.Enhanced;
-			baseTraits.ScreenAndAudio.ShieldHud = PlayerTraits.TraitFlag.Disabled;
+			baseTraits.ScreenAndAudio.MotionSensor = MotionSensorMode.Enhanced;
+			baseTraits.ScreenAndAudio.ShieldHud = TraitFlag.Disabled;
 
 			#endregion
 

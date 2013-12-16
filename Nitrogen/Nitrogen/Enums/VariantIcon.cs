@@ -2,7 +2,7 @@
 {
 	public enum VariantIcon
 	{
-		Shield,
+		Shield, // Mosh?
 		Slayer,
 		CaptureTheFlag,
 		Oddball,

@@ -32,7 +32,7 @@ namespace Nitrogen.GameVariants.Base
 						ShieldAmount = 2.0f,
 						OvershieldRechargeRate = 5.0f,
 						ShieldRechargeRate = 5.0f,
-						NoPowerupStacking = PlayerTraits.TraitFlag.Disabled
+						NoPowerupStacking = TraitFlag.Disabled
 					}
 				},
 
@@ -43,7 +43,7 @@ namespace Nitrogen.GameVariants.Base
 					{
 						OvershieldRechargeRate = -0.30f,
 						DamageResistance = 3.4f,
-						NoPowerupStacking = PlayerTraits.TraitFlag.Enabled
+						NoPowerupStacking = TraitFlag.Enabled
 					},
 
 					Appearance = new PlayerTraits.AppearanceTraits
@@ -111,7 +111,7 @@ namespace Nitrogen.GameVariants.Base
 
 					Appearance = new PlayerTraits.AppearanceTraits
 					{
-						ActiveCamo = PlayerTraits.ActiveCamoMode.Disabled,
+						ActiveCamo = ActiveCamoMode.Disabled,
 						LoopingEffect = ArmorEffect.DamageBoost
 					}
 				}
