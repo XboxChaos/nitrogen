@@ -26,7 +26,7 @@ namespace Nitrogen.GameVariants.Megalo.ParameterTypes
 		{
 			s.StreamPlusOne(ref _stringIndex);
 
-			int bits = MaxTokens == 1 ? 1 : 2; // temp workaround
+			int bits = MaxTokens == 1 ? 1 : 2;
 			int tokenCount = _tokens.Count;
 			s.Stream(ref tokenCount, bits);
 			for ( int i = 0; i < tokenCount; i++ )

@@ -2,9 +2,9 @@
 
 namespace Nitrogen.GameVariants.Megalo.ParameterTypes
 {
-	public sealed class StringReferenceSingleToken
+	public sealed class StringReferenceTwoTokens
 		: StringReference
 	{
-		public override int MaxTokens { get { return 1; } }
+		public override int MaxTokens { get { return 2; } }
 	}
 }
