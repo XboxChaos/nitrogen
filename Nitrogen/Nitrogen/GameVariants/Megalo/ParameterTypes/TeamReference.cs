@@ -45,6 +45,8 @@ namespace Nitrogen.GameVariants.Megalo.ParameterTypes
 
 		#region IParameter Members
 
+		ParameterType IParameter.ParameterType { get { return ParameterType.TeamReference; } }
+
 		void IParameter.SerializeObject (BitStream s, ParameterDefinition definition)
 		{
 			s.Stream(ref _type, 3);

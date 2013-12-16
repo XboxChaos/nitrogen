@@ -21,6 +21,8 @@ namespace Nitrogen.GameVariants.Megalo.ParameterTypes
 
 		#region IParameter Members
 
+		ParameterType IParameter.ParameterType { get { return ParameterType.None; } }
+
 		void IParameter.SerializeObject (BitStream s, ParameterDefinition definition)
 		{
 			sbyte type = -1;

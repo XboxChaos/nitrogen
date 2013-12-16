@@ -1,6 +1,6 @@
 ﻿namespace Nitrogen.GameVariants.Megalo
 {
-	internal enum ParameterType
+	public enum ParameterType
 	{
 		None,
 
@@ -17,8 +17,9 @@
 		TimerReference,
 		TargetReference,
 		StringReference,
-		StringReferenceSingleToken,
-		StringReferenceMultiToken,
+		StringReferenceOneToken,
+		StringReferenceTwoTokens,
+		StringReferenceThreeTokens,
 
 		// Structs
 		VirtualTrigger,

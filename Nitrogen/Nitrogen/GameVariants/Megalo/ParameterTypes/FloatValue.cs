@@ -7,14 +7,16 @@ namespace Nitrogen.GameVariants.Megalo.ParameterTypes
 	public sealed class FloatValue
 		: IParameter
 	{
-		public FloatValue () { }
-
 		public FloatValue (float value)
 		{
 			
 		}
 
+		internal FloatValue () { }
+
 		#region IParameter Members
+
+		ParameterType IParameter.ParameterType { get { return ParameterType.Float; } }
 
 		void IParameter.SerializeObject (BitStream s, ParameterDefinition definition)
 		{

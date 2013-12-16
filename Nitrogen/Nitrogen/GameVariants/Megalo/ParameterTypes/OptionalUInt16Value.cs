@@ -23,6 +23,8 @@ namespace Nitrogen.GameVariants.Megalo.ParameterTypes
 
 		#region IParameter Members
 
+		ParameterType IParameter.ParameterType { get { return ParameterType.Integer; } }
+
 		void IParameter.SerializeObject (BitStream s, Definitions.ParameterDefinition definition)
 		{
 			s.StreamOptional(ref _value);

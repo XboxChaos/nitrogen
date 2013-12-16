@@ -14,8 +14,11 @@ namespace Nitrogen.GameVariants.Megalo.ParameterTypes
 		public GenericReference (ObjectReference objectRef) { _data = objectRef; }
 		public GenericReference (IntegerReference integerRef) { _data = integerRef; }
 		public GenericReference (TimerReference timerRef) { _data = timerRef; }
+		internal GenericReference () { }
 
 		#region IParameter Members
+
+		ParameterType IParameter.ParameterType { get { return ParameterType.GenericReference; } }
 
 		void IParameter.SerializeObject (BitStream s, ParameterDefinition definition)
 		{

@@ -22,6 +22,8 @@ namespace Nitrogen.GameVariants.Megalo.ParameterTypes
 
 		#region IParameter Members
 
+		public virtual ParameterType ParameterType { get { return ParameterType.StringReference; } }
+
 		void IParameter.SerializeObject (BitStream s, ParameterDefinition definition)
 		{
 			s.StreamPlusOne(ref _stringIndex);

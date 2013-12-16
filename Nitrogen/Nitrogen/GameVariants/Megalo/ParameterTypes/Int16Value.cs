@@ -14,6 +14,8 @@ namespace Nitrogen.GameVariants.Megalo.ParameterTypes
 			_value = value;
 		}
 
+		internal Int16Value () { }
+
 		public short Value
 		{
 			get { return _value; }
@@ -21,6 +23,8 @@ namespace Nitrogen.GameVariants.Megalo.ParameterTypes
 		}
 
 		#region IParameter Members
+
+		ParameterType IParameter.ParameterType { get { return ParameterType.Integer; } }
 
 		void IParameter.SerializeObject (BitStream s, ParameterDefinition definition)
 		{

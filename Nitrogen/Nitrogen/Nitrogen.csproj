@@ -144,9 +144,6 @@
     <Compile Include="GameVariants\Megalo\IParameter.cs" />
     <Compile Include="GameVariants\Megalo\Parameters.cs" />
     <Compile Include="GameVariants\Megalo\ParameterTypes\BoundaryData.cs" />
-    <Compile Include="GameVariants\Megalo\ParameterTypes\CubicBoundaryData.cs" />
-    <Compile Include="GameVariants\Megalo\ParameterTypes\CylindricalBoundaryData.cs" />
-    <Compile Include="GameVariants\Megalo\ParameterTypes\EmptyBoundaryData.cs" />
     <Compile Include="GameVariants\Megalo\ParameterTypes\EntityFilter.cs" />
     <Compile Include="GameVariants\Megalo\ParameterTypes\FloatValue.cs" />
     <Compile Include="GameVariants\Megalo\ParameterTypes\GenericReference.cs" />
@@ -157,7 +154,6 @@
     <Compile Include="GameVariants\Megalo\ParameterTypes\OptionalInt16Value.cs" />
     <Compile Include="GameVariants\Megalo\ParameterTypes\OptionalUInt16Value.cs" />
     <Compile Include="GameVariants\Megalo\ParameterTypes\PlayerReference.cs" />
-    <Compile Include="GameVariants\Megalo\ParameterTypes\SphericalBoundaryData.cs" />
     <Compile Include="GameVariants\Megalo\ParameterTypes\StringReference.cs" />
     <Compile Include="GameVariants\Megalo\ParameterTypes\StringReferenceThreeTokens.cs" />
     <Compile Include="GameVariants\Megalo\ParameterTypes\StringReferenceTwoTokens.cs" />

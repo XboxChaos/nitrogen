@@ -23,90 +23,78 @@ namespace Nitrogen.GameVariants.Megalo
 			if ( s.State == StreamState.Write && definition.Parameters.Count != _parameters.Count )
 				throw new Exception(string.Format("Parameter count mismatch for {0}", definition.Name ?? definition.Opcode.ToString()));
 
-			// TODO: REWRITE THIS SHIT
-
-			/*for ( int i = 0; i < definition.Parameters.Count; i++ )
+			for ( int i = 0; i < definition.Parameters.Count; i++ )
 			{
 				if ( s.State == StreamState.Write )
 				{
-					if ( definition.Parameters[i].ParameterType != this[i].ParameterType )
+					if ( definition.Parameters[i].ParameterType != _parameters[i].ParameterType )
 					{
 						throw new Exception(string.Format(
 							"Parameter type mismatch; expected {0} but got {1} (index: {2})",
 							definition.Parameters[i].ParameterType,
-							this[i].ParameterType,
+							_parameters[i].ParameterType,
 							i
 						));
 					}
 
-					s.SerializeObject(this[i]);
+					_parameters[i].SerializeObject(s, definition.Parameters[i]);
 				}
 				else if ( s.State == StreamState.Read )
 				{
-					var type = definition.Parameters[i].ParameterType;
-					Parameter param = null;
-
-					if ( type == ParameterType.Integer )
-					{
-						param = ProcessIntegerParameter(definition.Parameters[i]);
-					}
-					else if ( type == ParameterType.Float )
-					{
-						param = ProcessFloatParameter(definition.Parameters[i]);
-					}
-					else
-					{
-						if ( !ParameterTypes.ContainsKey(type) )
-							throw new Exception("Unhandled parameter type: " + type);
-
-						if ( ParameterTypes[type] != null )
-							param = Activator.CreateInstance(ParameterTypes[type]) as Parameter;
-					}
-
-					this.Add(param);
-					s.SerializeObject(param);
+					var param = ReadParameter(s, definition.Parameters[i]);
+					if ( param != null ) { _parameters.Add(param); }
 				}
-			}*/
+			}
 		}
 
-		/*
-		private Parameter ProcessIntegerParameter(ParameterDefinition paramDefinition)
+		private IParameter ReadParameter (BitStream s, ParameterDefinition paramDefinition)
 		{
-			Parameter param;
+			IParameter param = null;
 
-			if ( paramDefinition.Nullable )
+			switch ( paramDefinition.ParameterType )
 			{
-				if ( paramDefinition.Unsigned )
-				{
-					param = new OptionalUInt16Value();
-				}
-				else
-				{
-					var nullableInt16 = new OptionalInt16Value();
-					nullableInt16.UsePlusOneEncoding = paramDefinition.UsePlusOneEncoding;
-					param = nullableInt16;
-				}
+				case ParameterType.Float: { param = new FloatValue(); } break;
+				case ParameterType.EntityFilter: { param = new EntityFilter(); } break;
+				case ParameterType.GenericReference: { param = new GenericReference(); } break;
+				case ParameterType.IntegerReference: { param = new IntegerReference(); } break;
+				case ParameterType.Meter: { param = new MeterData(); } break;
+				case ParameterType.ObjectReference: { param = new ObjectReference(); } break;
+				case ParameterType.PlayerReference: { param = new PlayerReference(); } break;
+				case ParameterType.Shape: { param = new BoundaryData(); } break;
+				case ParameterType.StringReference: { param = new StringReference(); } break;
+				case ParameterType.StringReferenceOneToken: { param = new StringReferenceOneToken(); } break;
+				case ParameterType.StringReferenceTwoTokens: { param = new StringReferenceTwoTokens(); } break;
+				case ParameterType.StringReferenceThreeTokens: { param = new StringReferenceThreeTokens(); } break;
+				case ParameterType.TargetReference: { param = new TargetReference(); } break;
+				case ParameterType.TeamReference: { param = new TeamReference(); } break;
+				case ParameterType.TimerReference: { param = new TimerReference(); } break;
+				case ParameterType.VirtualTrigger: { param = new VirtualTrigger(); } break;
+				case ParameterType.WaypointIcon: { param = new WaypointIconData(); } break;
+
+				case ParameterType.Integer:
+					{
+						if ( paramDefinition.Unsigned )
+						{
+							if ( paramDefinition.Nullable )
+								param = new OptionalUInt16Value();
+							else
+								param = new UInt16Value();
+						}
+						else
+						{
+							if ( paramDefinition.Nullable )
+								param = new OptionalInt16Value();
+							else
+								param = new Int16Value();
+						}
+					}
+					break;
 			}
-			else
-			{
-				if ( paramDefinition.Unsigned )
-				{
-					param = new UInt16Value();
-				}
-				else
-				{
-					var int16 = new Int16Value();
-					int16.UsePlusOneEncoding = paramDefinition.UsePlusOneEncoding;
-					param = int16;
-				}
-			}
+
+			if ( param != null )
+				param.SerializeObject(s, paramDefinition);
 
 			return param;
 		}
-
-		private Parameter ProcessFloatParameter(ParameterDefinition paramDefinition)
-		{
-			throw new NotImplementedException(); // TODO: Implement float parameter type
-		}*/
 	}
 }
