@@ -12,8 +12,6 @@ namespace Nitrogen.GameVariants.Megalo
 		private static Dictionary<ParameterType, Type> ParameterTypes = new Dictionary<ParameterType, Type>
 		{
 			{ ParameterType.None, null },
-			{ ParameterType.Integer, typeof(IntegerValue) },
-			{ ParameterType.Float, typeof(FloatValue) },
 		};
 
 		internal void Serialize (BitStream s, Definition definition)
@@ -43,18 +41,68 @@ namespace Nitrogen.GameVariants.Megalo
 				else if ( s.State == StreamState.Read )
 				{
 					var type = definition.Parameters[i].ParameterType;
+					Parameter param = null;
 
-					if ( !ParameterTypes.ContainsKey(type) )
-						throw new Exception("Unhandled parameter type: " + type);
-
-					if ( ParameterTypes[type] != null )
+					if ( type == ParameterType.Integer )
 					{
-						var param = Activator.CreateInstance(ParameterTypes[type]) as Parameter;
-						this.Add(param);
-						s.SerializeObject(param);
+						param = ProcessIntegerParameter(definition.Parameters[i]);
 					}
+					else if ( type == ParameterType.Float )
+					{
+						param = ProcessFloatParameter(definition.Parameters[i]);
+					}
+					else
+					{
+						if ( !ParameterTypes.ContainsKey(type) )
+							throw new Exception("Unhandled parameter type: " + type);
+
+						if ( ParameterTypes[type] != null )
+							param = Activator.CreateInstance(ParameterTypes[type]) as Parameter;
+					}
+
+					this.Add(param);
+					s.SerializeObject(param);
 				}
 			}
+		}
+
+		private Parameter ProcessIntegerParameter(ParameterDefinition paramDefinition)
+		{
+			Parameter param;
+
+			if ( paramDefinition.Nullable )
+			{
+				if ( paramDefinition.Unsigned )
+				{
+					param = new OptionalUInt16Value();
+				}
+				else
+				{
+					var nullableInt16 = new OptionalInt16Value();
+					nullableInt16.UsePlusOneEncoding = paramDefinition.UsePlusOneEncoding;
+					param = nullableInt16;
+				}
+			}
+			else
+			{
+				if ( paramDefinition.Unsigned )
+				{
+					param = new UInt16Value();
+				}
+				else
+				{
+					var int16 = new Int16Value();
+					int16.UsePlusOneEncoding = paramDefinition.UsePlusOneEncoding;
+					param = int16;
+				}
+			}
+
+			return param;
+		}
+
+		private Parameter ProcessFloatParameter(ParameterDefinition paramDefinition)
+		{
+			throw new NotImplementedException(); // TODO: Implement float parameter type
 		}
 	}
 }

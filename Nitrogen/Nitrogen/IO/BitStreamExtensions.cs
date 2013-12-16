@@ -69,6 +69,17 @@ namespace Nitrogen.IO
 				s.Writer.Write(value + 1, bits);
 		}
 
+		public static void StreamPlusOneOptional (this BitStream s, ref short? value, int bits = sizeof(short) * 8, bool inverted = true)
+		{
+			Contract.Requires<ArgumentNullException>(s != null);
+
+			s.StreamOptional(ref value, bits, inverted);
+			if ( s.State == StreamState.Read && value != null )
+				value--;
+			else if ( s.State == StreamState.Write && value != null )
+				value++;
+		}
+
 		public static void StreamOptional(this BitStream s, ref byte? value, int bits = sizeof(byte) * 8, bool inverted = true)
 		{
 			Contract.Requires<ArgumentNullException>(s != null);
@@ -87,7 +98,7 @@ namespace Nitrogen.IO
 			}
 		}
 
-		public static void StreamOptional (this BitStream s, ref sbyte? value, int bits = sizeof(byte) * 8, bool inverted = true)
+		public static void StreamOptional (this BitStream s, ref sbyte? value, int bits = sizeof(sbyte) * 8, bool inverted = true)
 		{
 			Contract.Requires<ArgumentNullException>(s != null);
 
@@ -105,7 +116,43 @@ namespace Nitrogen.IO
 			}
 		}
 
-		public static void StreamOptional (this BitStream s, ref int? value, int bits = sizeof(byte) * 8, bool inverted = true)
+		public static void StreamOptional (this BitStream s, ref short? value, int bits = sizeof(short) * 8, bool inverted = true)
+		{
+			Contract.Requires<ArgumentNullException>(s != null);
+
+			bool hasValue = value.HasValue;
+			if ( inverted ) { hasValue = !hasValue; }
+			s.Stream(ref hasValue);
+			if ( inverted ) { hasValue = !hasValue; }
+
+			value = null;
+			if ( hasValue )
+			{
+				short temp = value ?? 0;
+				s.Stream(ref temp, bits);
+				value = temp;
+			}
+		}
+
+		public static void StreamOptional (this BitStream s, ref ushort? value, int bits = sizeof(ushort) * 8, bool inverted = true)
+		{
+			Contract.Requires<ArgumentNullException>(s != null);
+
+			bool hasValue = value.HasValue;
+			if ( inverted ) { hasValue = !hasValue; }
+			s.Stream(ref hasValue);
+			if ( inverted ) { hasValue = !hasValue; }
+
+			value = null;
+			if ( hasValue )
+			{
+				ushort temp = value ?? 0;
+				s.Stream(ref temp, bits);
+				value = temp;
+			}
+		}
+
+		public static void StreamOptional (this BitStream s, ref int? value, int bits = sizeof(int) * 8, bool inverted = true)
 		{
 			Contract.Requires<ArgumentNullException>(s != null);
 

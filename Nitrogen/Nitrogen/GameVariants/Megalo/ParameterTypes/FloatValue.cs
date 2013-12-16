@@ -4,13 +4,13 @@ using System;
 namespace Nitrogen.GameVariants.Megalo.ParameterTypes
 {
 	public sealed class FloatValue
-		: Parameter<float>
+		: Parameter
 	{
 		public FloatValue () { }
 
 		public FloatValue (float value)
 		{
-			Value = value;
+			
 		}
 
 		public override void SerializeObject (BitStream s)
