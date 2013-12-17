@@ -129,6 +129,7 @@
     <Compile Include="Enums\ModelVariant.cs" />
     <Compile Include="Enums\MotionSensorMode.cs" />
     <Compile Include="Enums\MultiplayerObjectType.cs" />
+    <Compile Include="Enums\OperationType.cs" />
     <Compile Include="Enums\OrdnanceSubstitutionSets.cs" />
     <Compile Include="Enums\PlayerKillerTypeFlags.cs" />
     <Compile Include="Enums\TeamDisposition.cs" />

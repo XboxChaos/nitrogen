@@ -126,7 +126,57 @@ namespace Nitrogen.GameVariants.Megalo
 
 				case ParameterType.Incident:
 					s.StreamUnsigned(ref intValue);
+					value = intValue;
 					break;
+
+				case ParameterType.Int32:
+					s.Stream(ref intValue);
+					value = intValue;
+					break;
+
+				case ParameterType.UInt5:
+					s.StreamUnsigned(ref intValue, 5);
+					value = intValue;
+					break;
+
+				case ParameterType.Byte:
+					s.StreamUnsigned(ref intValue, 8);
+					value = (byte) intValue;
+					break;
+
+				case ParameterType.OperationType:
+					s.StreamUnsigned(ref intValue, 4);
+					value = (OperationType) intValue;
+					break;
+
+					/*
+		String, // byte, plus one, unsigned
+		ObjectSpawnFlags, // 3, unsigned
+		Coordinates3d, // 3 bytes, multiply by 1/10, x, y, z
+		WaypointPriority, // uint2
+		ObjectTimer, // uint2 nullable
+		PlayerTraits, // uint4
+		FireteamFilter, // byte
+		Sound, // byte +1
+		TimerRate, // uint5
+		Trigger, // uint7
+		PlayerModes, // uint5
+		WeaponPickupMode, // uint2
+		Widget, // uint2 nullable
+		WidgetIcon, // uint6 nullable
+		HudPosition, // uint1
+		VariantIcon, // uint7 nullable
+		RequisitionPalette, // uint4
+		GrenadeType, // uint3
+		LoadoutPalette, // uint3
+		DeviceAnimation, // byte
+		GiveWeaponMode, // uint2
+		DropWeaponMode, // uint2
+		ObjectPlayer, // uint2 nullable
+		Button, // uint4
+		Medal, // byte, nullable by default
+		PowerupType, // uint2
+*/
 			}
 		}
 	}

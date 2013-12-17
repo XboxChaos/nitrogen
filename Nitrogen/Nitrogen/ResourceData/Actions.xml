@@ -6,37 +6,19 @@
   <Definition Name="score_modify" Opcode="1">
     <Parameters>
       <TargetReference />
-      <Integer Size="4" Unsigned="True" Name="operation">
-        <Constraints>
-          <EnumConstraint>OperationTypes</EnumConstraint>
-        </Constraints>
-      </Integer>
+      <OperationType />
       <IntegerReference />
     </Parameters>
   </Definition>
   <Definition Name="object_spawn" Opcode="2">
     <Parameters>
-      <Integer Size="11" Unsigned="True" Nullable="True" Name="object_type">
-        <Constraints>
-          <EnumConstraint>MultiplayerObjectType</EnumConstraint>
-        </Constraints>
-      </Integer>
+      <MultiplayerObjectType />
       <ObjectReference Usage="Out" IsPrimaryResult="True" Name="result" />
       <ObjectReference Name="parent" />
-      <Integer Size="4" Unsigned="True" Nullable="True" Name="filter_index">
-        <Constraints>
-          <IndexOfConstraint>ObjectFilters</IndexOfConstraint>
-        </Constraints>
-      </Integer>
-      <Integer Size="3" Unsigned="True" Name="flags" />
-      <Integer Size="8" IsCoordinate="True" MultiplyByOneTenth="True" Name="x" />
-      <Integer Size="8" IsCoordinate="True" MultiplyByOneTenth="True" Name="y" />
-      <Integer Size="8" IsCoordinate="True" MultiplyByOneTenth="True" Name="z" />
-      <Integer Size="8" PlusOneEncoding="True" Unsigned="True" Name="variant">
-        <Constraints>
-          <EnumConstraint>MegaloString</EnumConstraint>
-        </Constraints>
-      </Integer>
+      <ObjectFilter />
+      <ObjectSpawnFlags />
+      <Coordinates3d />
+      <String Name="variant"/>
     </Parameters>
   </Definition>
   <Definition Name="object_delete" Opcode="3">
@@ -65,36 +47,21 @@
   <Definition Name="object_waypoint_set_priority" Opcode="7">
     <Parameters>
       <ObjectReference />
-      <Integer Size="2" Unsigned="True" Name="priority">
-        <Constraints>
-          <EnumConstraint>Priority</EnumConstraint>
-        </Constraints>
-      </Integer>
+      <WaypointPriority />
     </Parameters>
   </Definition>
   <Definition Name="object_waypoint_set_timer" Opcode="8">
     <Parameters>
       <ObjectReference />
-      <Integer Size="2" Unsigned="True" Nullable="True" Name="timer_index">
-        <Constraints>
-          <IndexOfConstraint>ObjectMemberTimers</IndexOfConstraint>
-        </Constraints>
-      </Integer>
+      <ObjectTimer />
     </Parameters>
   </Definition>
   <Definition Name="object_waypoint_set_visible_range" Opcode="9">
+    <Remarks>Min: -1, Max: 100</Remarks>
     <Parameters>
       <ObjectReference />
-      <IntegerReference Name="min">
-        <Constraints>
-          <MinValueConstraint>-1</MinValueConstraint>
-        </Constraints>
-      </IntegerReference>
-      <IntegerReference Name="max">
-        <Constraints>
-          <MaxValueConstraint>100</MaxValueConstraint>
-        </Constraints>
-      </IntegerReference>
+      <IntegerReference Name="min" />
+      <IntegerReference Name="max" />
     </Parameters>
   </Definition>
   <Definition Name="object_set_territory" Opcode="10">
@@ -110,56 +77,36 @@
     </Parameters>
   </Definition>
   <Definition Name="object_set_territory_level" Opcode="12">
+    <Remarks>initial_level min: 0, max: 4</Remarks>
     <Parameters>
       <ObjectReference />
-      <IntegerReference Name="initial_level">
-        <Constraints>
-          <MinValueConstraint>0</MinValueConstraint>
-          <MaxValueConstraint>4</MaxValueConstraint>
-        </Constraints>
-      </IntegerReference>
+      <IntegerReference Name="initial_level"/>
     </Parameters>
   </Definition>
   <Definition Name="object_set_territory_max_level" Opcode="13">
+    <Remarks>max_level min: 0, max: 4</Remarks>
     <Parameters>
       <ObjectReference />
-      <IntegerReference Name="max_level">
-        <Constraints>
-          <MinValueConstraint>0</MinValueConstraint>
-          <MaxValueConstraint>4</MaxValueConstraint>
-        </Constraints>
-      </IntegerReference>
+      <IntegerReference Name="max_level" />
     </Parameters>
   </Definition>
   <Definition Name="object_set_territory_sort_order" Opcode="14">
+    <Remarks>sort_order min: 0, max: 255</Remarks>
     <Parameters>
       <ObjectReference />
-      <IntegerReference Name="sort_order">
-        <Constraints>
-          <MinValueConstraint>0</MinValueConstraint>
-          <MaxValueConstraint>255</MaxValueConstraint>
-        </Constraints>
-      </IntegerReference>
+      <IntegerReference Name="sort_order"/>
     </Parameters>
   </Definition>
   <Definition Name="object_set_territory_capture_timer" Opcode="15">
     <Parameters>
       <ObjectReference />
-      <Integer Size="2" Unsigned="True" Nullable="True" Name="timer_index">
-        <Constraints>
-          <IndexOfConstraint>ObjectMemberTimers</IndexOfConstraint>
-        </Constraints>
-      </Integer>
+      <ObjectTimer />
     </Parameters>
   </Definition>
   <Definition Name="object_set_waypoint" Opcode="16">
     <Parameters>
       <ObjectReference />
-      <Integer Size="8" PlusOneEncoding="True" Unsigned="True" Name="waypoint">
-        <Constraints>
-          <EnumConstraint>MegaloStrings</EnumConstraint>
-        </Constraints>
-      </Integer>
+      <String Name="waypoint_name" />
     </Parameters>
   </Definition>
   <Definition Name="object_set_action_team" Opcode="17">
@@ -170,22 +117,14 @@
   </Definition>
   <Definition Name="load_hud" Opcode="18">
     <Parameters>
-      <Integer Size="8" Unsigned="True" Name="hud_name">
-        <Constraints>
-          <EnumConstraint>MegaloString</EnumConstraint>
-        </Constraints>
-      </Integer>
+      <String Name="hud_name"/>
     </Parameters>
   </Definition>
   <Definition Name="var_operation" Opcode="19">
     <Parameters>
       <GenericReference Usage="InOut" IsPrimaryResult="True" Name="result" />
       <GenericReference Name="value" />
-      <Integer Size="4" Unsigned="True" Name="operation">
-        <Constraints>
-          <EnumConstraint>OperationTypes</EnumConstraint>
-        </Constraints>
-      </Integer>
+      <OperationType />
     </Parameters>
   </Definition>
   <Definition Name="object_set_boundary" Opcode="20">
@@ -197,11 +136,7 @@
   <Definition Name="player_set_traits" Opcode="21">
     <Parameters>
       <ObjectReference />
-      <Integer Size="4" Unsigned="True" Name="traits_index">
-        <Constraints>
-          <IndexOfConstraint>MegaloTraits</IndexOfConstraint>
-        </Constraints>
-      </Integer>
+      <PlayerTraits />
     </Parameters>
   </Definition>
   <Definition Name="object_set_interaction_filter" Opcode="22">
@@ -219,33 +154,21 @@
   <Definition Name="respawn_zone_set_fireteam_filter" Opcode="24">
     <Parameters>
       <ObjectReference />
-      <Integer Size="8" Unsigned="True" Name="fireteam_filter">
-        <Constraints>
-          <IndexOfConstraint>FireteamFilters</IndexOfConstraint>
-        </Constraints>
-      </Integer>
+      <FireteamFilter />
     </Parameters>
   </Definition>
   <Definition Name="object_set_progress_bar" Opcode="25">
     <Parameters>
       <ObjectReference />
       <EntityFilter />
-      <Integer Size="2" Unsigned="True" Nullable="True" Name="timer_index">
-        <Constraints>
-          <IndexOfConstraint>ObjectMemberTimers</IndexOfConstraint>
-        </Constraints>
-      </Integer>
+      <ObjectTimer />
     </Parameters>
   </Definition>
   <Definition Opcode="26">
+    <Remarks>min, -128, max: 127</Remarks>
     <Parameters>
       <ObjectReference />
-      <IntegerReference>
-        <Constraints>
-          <MinValueConstraint>-128</MinValueConstraint>
-          <MaxValueConstraint>127</MaxValueConstraint>
-        </Constraints>
-      </IntegerReference>
+      <IntegerReference />
     </Parameters>
   </Definition>
   <Definition Name="killfeed_message" Opcode="27">
@@ -257,13 +180,8 @@
     </Remarks>
     <Parameters>
       <TargetReference />
-      <Integer Size="8" Unsigned="True" PlusOneEncoding="True" Name="sound_index" Default="-1">
-        <Constraints>
-          <MinValueConstraint>-1</MinValueConstraint>
-          <MaxValueConstraint>-1</MaxValueConstraint>
-        </Constraints>
-      </Integer>
-      <StringReferenceMultiToken />
+      <Sound />
+      <StringReferenceTwoTokens />
     </Parameters>
   </Definition>
   <Definition Name="timer_set_rate" Opcode="28">
@@ -272,18 +190,14 @@
     </Description>
     <Parameters>
       <TimerReference Usage="InOut" />
-      <Integer Size="5" Unsigned="True" Name="rate">
-        <Constraints>
-          <EnumConstraint>TimerRate</EnumConstraint>
-        </Constraints>
-      </Integer>
+      <TimerRate />
     </Parameters>
   </Definition>
   <Definition Opcode="29">
     <Deprecated />
     <Remarks>Does nothing.</Remarks>
     <Parameters>
-      <StringReferenceMultiToken />
+      <StringReferenceThreeTokens />
     </Parameters>
   </Definition>
   <Definition Name="object_get_owner_player" Opcode="30">
@@ -295,11 +209,7 @@
   <Definition Name="call_trigger" Opcode="31">
     <Remarks>Do not use this directly.</Remarks>
     <Parameters>
-      <Integer Size="7" Unsigned="True" Name="trigger_index">
-        <Constraints>
-          <IndexOfConstraint>Triggers</IndexOfConstraint>
-        </Constraints>
-      </Integer>
+      <Trigger />
     </Parameters>
   </Definition>
   <Definition Name="call_virtual" Opcode="32">
@@ -324,7 +234,7 @@
   <Definition Name="object_destroy" Opcode="36">
     <Parameters>
       <ObjectReference />
-      <Integer Size="1" Unsigned="True" Name="silent" />
+      <Boolean Name="silent" />
     </Parameters>
   </Definition>
   <Definition Name="object_set_invincibility" Opcode="37">
@@ -382,17 +292,15 @@
   </Definition>
   <Definition Name="disable_join_in_progress" Opcode="46">
     <Parameters>
-      <Integer Size="1" Unsigned="True" Name="disabled" />
+      <Boolean Name="disabled" />
     </Parameters>
   </Definition>
   <Definition Name="object_attach" Opcode="47">
     <Parameters>
       <ObjectReference />
       <ObjectReference Name="parent" />
-      <Integer Size="8" IsCoordinate="True" Name="x" />
-      <Integer Size="8" IsCoordinate="True" Name="y" />
-      <Integer Size="8" IsCoordinate="True" Name="z" />
-      <Integer Size="1" Unsigned="True" Default="False" Name="use_parent_up_vector" />
+      <Coordinates3d />
+      <Boolean Default="False" Name="use_parent_up_vector" />
     </Parameters>
   </Definition>
   <Definition Name="object_detach" Opcode="48">
@@ -408,28 +316,18 @@
   </Definition>
   <Definition Name="teams_tied_for_first" Opcode="50">
     <Parameters>
-      <IntegerReference Usage="Out" IsPrimaryResult="True" Name="result">
-        <Constraints>
-          <MinValueConstraint>0</MinValueConstraint>
-          <MaxValueConstraint>1</MaxValueConstraint>
-        </Constraints>
-      </IntegerReference>
+      <IntegerReference Usage="Out" IsPrimaryResult="True" Name="result" />
     </Parameters>
   </Definition>
   <Definition Name="players_tied_for_first" Opcode="51">
     <Parameters>
-      <IntegerReference Usage="Out" IsPrimaryResult="True" Name="result">
-        <Constraints>
-          <MinValueConstraint>0</MinValueConstraint>
-          <MaxValueConstraint>1</MaxValueConstraint>
-        </Constraints>
-      </IntegerReference>
+      <IntegerReference Usage="Out" IsPrimaryResult="True" Name="result" />
     </Parameters>
   </Definition>
   <Definition Name="player_get_overall_place" Opcode="52">
     <Parameters>
       <PlayerReference />
-      <IntegerReference Usage="Out" IsPrimaryResult="True" Name="result"></IntegerReference>
+      <IntegerReference Usage="Out" IsPrimaryResult="True" Name="result" />
     </Parameters>
   </Definition>
   <Definition Name="team_get_place" Opcode="53">
@@ -454,11 +352,7 @@
     <Deprecated />
     <Parameters>
       <PlayerReference />
-      <Integer Size="4" Unsigned="True" Name="operation">
-        <Constraints>
-          <EnumConstraint>OperationTypes</EnumConstraint>
-        </Constraints>
-      </Integer>
+      <OperationType />
       <IntegerReference />
     </Parameters>
   </Definition>
@@ -466,13 +360,8 @@
     <Deprecated />
     <Remarks>Unused in the retail version of Halo 4.</Remarks>
     <PlayerReference />
-    <IntegerReference>
-      <Constraints>
-        <MinValueConstraint>0</MinValueConstraint>
-        <MaxValueConstraint>1</MaxValueConstraint>
-      </Constraints>
-    </IntegerReference>
-    <Integer Size="5" Unsigned="True" Name="flags" />
+    <IntegerReference />
+    <PlayerModes />
   </Definition>
   <Definition Name="player_get_vehicle" Opcode="58">
     <Parameters>
@@ -501,7 +390,7 @@
   <Definition Name="player_enable_overshield" Opcode="62">
     <Parameters>
       <PlayerReference />
-      <Integer Size="1" Unsigned="True" Name="enabled" />
+      <Boolean Name="enabled" />
     </Parameters>
   </Definition>
   <Definition Name="object_get_owner_player2" Opcode="63">
@@ -519,11 +408,7 @@
   <Definition Name="weapon_set_pickup_mode" Opcode="65">
     <Parameters>
       <ObjectReference Name="weapon" />
-      <Integer Size="2" Unsigned="True" Name="mode">
-        <Constraints>
-          <EnumConstraint>WeaponPickUpMode</EnumConstraint>
-        </Constraints>
-      </Integer>
+      <WeaponPickupMode />
     </Parameters>
   </Definition>
   <Definition Name="object_push_up_random" Opcode="66">
@@ -537,81 +422,48 @@
   </Definition>
   <Definition Name="widget_set_text" Opcode="67">
     <Parameters>
-      <Integer Size="2" Unsigned="True" Nullable="True" Name="widget">
-        <Constraints>
-          <IndexOfConstraint>Widgets</IndexOfConstraint>
-        </Constraints>
-      </Integer>
-      <StringReferenceMultiToken Name="text" />
+      <Widget />
+      <StringReferenceThreeTokens Name="text" />
     </Parameters>
   </Definition>
   <Definition Name="widget_set_secondary_text" Opcode="68">
     <Parameters>
-      <Integer Size="2" Unsigned="True" Nullable="True" Name="widget">
-        <Constraints>
-          <IndexOfConstraint>Widgets</IndexOfConstraint>
-        </Constraints>
-      </Integer>
-      <StringReferenceMultiToken Name="text" />
+      <Widget />
+      <StringReferenceThreeTokens Name="text" />
     </Parameters>
   </Definition>
   <Definition Name="widget_set_meter" Opcode="69">
     <Deprecated />
     <Remarks>Does not appear to work in the retail version of Halo 4.</Remarks>
     <Parameters>
-      <Integer Size="2" Unsigned="True" Nullable="True" Name="widget">
-        <Constraints>
-          <IndexOfConstraint>Widgets</IndexOfConstraint>
-        </Constraints>
-      </Integer>
-      <MeterInfo />
+      <Widget />
+      <Meter />
     </Parameters>
   </Definition>
   <Definition Name="widget_set_icon" Opcode="70">
     <Deprecated />
     <Remarks>Does not appear to work in the retail version of Halo 4.</Remarks>
-    <Integer Size="2" Unsigned="True" Nullable="True" Name="widget">
-      <Constraints>
-        <IndexOfConstraint>Widgets</IndexOfConstraint>
-      </Constraints>
-    </Integer>
-    <Integer Size="6" Unsigned="True" Nullable="True" Name="icon_index">
-      <Constraints>
-        <EnumConstraint>WidgetIcon</EnumConstraint>
-      </Constraints>
-    </Integer>
+    <Widget />
+    <WidgetIcon />
   </Definition>
   <Definition Name="widget_set_visibility" Opcode="71">
     <Parameters>
-      <Integer Size="2" Unsigned="True" Nullable="True" Name="widget">
-        <Constraints>
-          <IndexOfConstraint>Widgets</IndexOfConstraint>
-        </Constraints>
-      </Integer>
+      <Widget />
       <PlayerReference />
-      <Integer Size="1" Unsigned="True" Name="visible" />
+      <Boolean Name="visible" />
     </Parameters>
   </Definition>
   <Definition Name="killfeed_sound_message" Opcode="72">
     <Parameters>
       <Integer Size="8" Unsigned="True" PlusOneEncoding="True" Name="sound_index"/>
-      <Integer Size="1" Unsigned="True" Name="hud_position" Default="1">
-        <Constraints>
-          <MinValueConstraint>1</MinValueConstraint>
-          <MaxValueConstraint>1</MaxValueConstraint>
-        </Constraints>
-      </Integer>
+      <HudPosition Default="1" />
       <TargetReference />
     </Parameters>
   </Definition>
   <Definition Name="object_play_sound" Opcode="73">
     <Parameters>
       <ObjectReference />
-      <Integer Size="8" Unsigned="True" PlusOneEncoding="True" Name="sound_index">
-        <Constraints>
-          <EnumConstraint>MegaloSound</EnumConstraint>
-        </Constraints>
-      </Integer>
+      <Sound />
     </Parameters>
   </Definition>
   <Definition Name="object_set_scale" Opcode="74">
@@ -623,34 +475,34 @@
   <Definition Name="waypoint_set_text" Opcode="75">
     <Parameters>
       <ObjectReference />
-      <StringReferenceMultiToken />
+      <StringReferenceThreeTokens />
     </Parameters>
   </Definition>
   <Definition Name="waypoint_set_secondary_text" Opcode="76">
     <Parameters>
       <ObjectReference />
-      <StringReferenceSingleToken />
+      <StringReferenceOneToken />
     </Parameters>
   </Definition>
   <Definition Name="team_set_text" Opcode="77">
     <Deprecated />
     <Parameters>
       <TeamReference />
-      <StringReferenceMultiToken />
+      <StringReferenceThreeTokens />
     </Parameters>
   </Definition>
   <Definition Name="set_current_round_text" Opcode="78">
     <Deprecated />
-    <StringReferenceMultiToken />
+    <StringReferenceThreeTokens />
   </Definition>
   <Definition Name="set_previous_round_text" Opcode="79">
     <Deprecated />
-    <StringReferenceMultiToken />
+    <StringReferenceThreeTokens />
   </Definition>
   <Definition Name="set_team_respawn_text" Opcode="80">
     <Deprecated />
     <TeamReference />
-    <StringReferenceMultiToken />
+    <StringReferenceThreeTokens />
   </Definition>
   <Definition Name="object_get_shields" Opcode="81">
     <Parameters>
@@ -674,32 +526,28 @@
     <Deprecated />
     <Parameters>
       <PlayerReference />
-      <StringReferenceMultiToken />
+      <StringReferenceThreeTokens />
     </Parameters>
   </Definition>
   <Definition Name="player_set_objective_title" Opcode="85">
     <Deprecated />
     <Parameters>
       <PlayerReference />
-      <StringReferenceMultiToken />
+      <StringReferenceThreeTokens />
     </Parameters>
   </Definition>
   <Definition Name="player_set_objective_icon" Opcode="86">
     <Deprecated />
     <Parameters>
       <PlayerReference />
-      <Integer Size="7" Unsigned="True" Nullable="True" Name="icon_index">
-        <Constraints>
-          <EnumConstraint>GameVariantIcon</EnumConstraint>
-        </Constraints>
-      </Integer>
+      <VariantIcon />
     </Parameters>
   </Definition>
   <Definition Name="team_set_fireteam_spawning" Opcode="87">
     <Deprecated />
     <Parameters>
       <TeamReference />
-      <Integer Size="1" Unsigned="True" Name="enabled" />
+      <Boolean Name="enabled" />
     </Parameters>
   </Definition>
   <Definition Name="team_set_respawn_object" Opcode="88">
@@ -729,22 +577,14 @@
   <Definition Name="object_modify_shields" Opcode="92">
     <Parameters>
       <ObjectReference />
-      <Integer Size="4" Unsigned="True" Name="operation">
-        <Constraints>
-          <EnumConstraint>OperationType</EnumConstraint>
-        </Constraints>
-      </Integer>
+      <OperationType />
       <IntegerReference />
     </Parameters>
   </Definition>
   <Definition Name="object_modify_health" Opcode="93">
     <Parameters>
       <ObjectReference />
-      <Integer Size="4" Unsigned="True" Name="operation">
-        <Constraints>
-          <EnumConstraint>OperationType</EnumConstraint>
-        </Constraints>
-      </Integer>
+      <OperationType />
       <IntegerReference />
     </Parameters>
   </Definition>
@@ -753,28 +593,20 @@
       <ObjectReference Name="object1" />
       <ObjectReference Name="object2" />
       <IntegerReference Usage="Out" IsPrimaryResult="True" Name="result" />
-      <Integer Size="1" Unsigned="True" Default="False" />
+      <Boolean Default="False" />
     </Parameters>
   </Definition>
   <Definition Name="object_modify_max_shield_vitality" Opcode="95">
     <Parameters>
       <ObjectReference />
-      <Integer Size="4" Unsigned="True" Name="operation">
-        <Constraints>
-          <EnumConstraint>OperationType</EnumConstraint>
-        </Constraints>
-      </Integer>
+      <OperationType />
       <IntegerReference />
     </Parameters>
   </Definition>
   <Definition Name="object_modify_max_health_vitality" Opcode="96">
     <Parameters>
       <ObjectReference />
-      <Integer Size="4" Unsigned="True" Name="operation">
-        <Constraints>
-          <EnumConstraint>OperationType</EnumConstraint>
-        </Constraints>
-      </Integer>
+      <OperationType />
       <IntegerReference />
     </Parameters>
   </Definition>
@@ -782,11 +614,7 @@
     <Deprecated />
     <Parameters>
       <PlayerReference />
-      <Integer Size="4" Unsigned="True" Name="palette">
-        <Constraints>
-          <IndexOfConstraint>RequisitionPalettes</IndexOfConstraint>
-        </Constraints>
-      </Integer>
+      <RequisitionPalette />
     </Parameters>
   </Definition>
   <Definition Name="device_set_power" Opcode="98">
@@ -816,37 +644,21 @@
   <Definition Name="player_modify_grenades" Opcode="102">
     <Parameters>
       <PlayerReference />
-      <Integer Size="3" Unsigned="True" Name="grenade_type">
-        <Constraints>
-          <EnumConstraint>GrenadeType</EnumConstraint>
-        </Constraints>
-      </Integer>
-      <Integer Size="4" Unsigned="True" Name="operation">
-        <Constraints>
-          <EnumConstraint>OperationTypes</EnumConstraint>
-        </Constraints>
-      </Integer>
+      <GrenadeType />
+      <OperationType />
       <IntegerReference />
     </Parameters>
   </Definition>
   <Definition Name="incident_submit" Opcode="103">
     <Parameters>
-      <Integer Size="10" Unsigned="True" PlusOneEncoding="True" Name="incident_index">
-        <Constraints>
-          <EnumConstraint>Incident</EnumConstraint>
-        </Constraints>
-      </Integer>
+      <Incident />
       <TargetReference Name="cause" />
       <TargetReference Name="effect" />
     </Parameters>
   </Definition>
   <Definition Name="incident_submit_with_value" Opcode="104">
     <Parameters>
-      <Integer Size="10" Unsigned="True" PlusOneEncoding="True" Name="incident_index">
-        <Constraints>
-          <EnumConstraint>Incident</EnumConstraint>
-        </Constraints>
-      </Integer>
+      <Incident />
       <TargetReference Name="cause" />
       <TargetReference Name="effect" />
       <IntegerReference />
@@ -855,17 +667,13 @@
   <Definition Name="loadout_set_palette" Opcode="105">
     <Parameters>
       <TargetReference />
-      <Integer Size="3" Unsigned="True" Name="palette">
-        <Constraints>
-          <IndexOfConstraint>LoadoutPalettes</IndexOfConstraint>
-        </Constraints>
-      </Integer>
+      <LoadoutPalette />
     </Parameters>
   </Definition>
   <Definition Name="device_set_position_track" Opcode="106">
     <Parameters>
       <ObjectReference Name="device" />
-      <Integer Size="8" Unsigned="True" Name="animation" />
+      <DeviceAnimation />
       <IntegerReference Name="position" />
     </Parameters>
   </Definition>
@@ -886,7 +694,7 @@
   </Definition>
   <Definition Opcode="109">
     <IntegerReference />
-    <StringReferenceMultiToken />
+    <StringReferenceThreeTokens />
   </Definition>
   <Definition Name="respawn_zone_set_enabled" Opcode="110">
     <Parameters>
@@ -897,7 +705,7 @@
   <Definition Name="player_get_weapon" Opcode="111">
     <Parameters>
       <PlayerReference />
-      <Integer Size="1" Unsigned="True" Name="primary" />
+      <Boolean Name="primary" />
       <ObjectReference Usage="Out" IsPrimaryResult="True" Name="result" />
     </Parameters>
   </Definition>
@@ -914,7 +722,6 @@
     </Parameters>
   </Definition>
   <Definition Opcode="114">
-    <Remarks>Matt: Doesn't do anything noticeable when the object ref is an AA on the ground.</Remarks>
     <Parameters>
       <PlayerReference />
       <ObjectReference />
@@ -927,11 +734,7 @@
     <Parameters>
       <ObjectReference Name="object1" />
       <ObjectReference Name="object2" />
-      <Integer Size="11" Unsigned="True" Nullable="True" Name="object_type">
-        <Constraints>
-          <EnumConstraint>MultiplayerObjectType</EnumConstraint>
-        </Constraints>
-      </Integer>
+      <MultiplayerObjectType />
       <IntegerReference Default="0" />
       <ObjectReference Usage="Out" IsPrimaryResult="True" Name="result" />
     </Parameters>
@@ -951,52 +754,38 @@
     </Parameters>
   </Definition>
   <Definition Opcode="118">
-    <Remarks>Used in Reach's standard race gametype.</Remarks>
+    <Remarks>Used in Reach's standard race gametype (does not disable hijacking).</Remarks>
     <Parameters>
       <PlayerReference />
-      <Integer Size="1" Unsigned="True" />
+      <Boolean />
     </Parameters>
   </Definition>
   <Definition Name="object_copy_rotation" Opcode="119">
     <Parameters>
       <ObjectReference />
       <ObjectReference Name="target" />
-      <Integer Size="1" Unsigned="True" Name="copy_target_axis" />
+      <Boolean Name="copy_target_axis" />
     </Parameters>
   </Definition>
   <Definition Name="object_point_relative_2d" Opcode="120">
     <Parameters>
       <ObjectReference />
       <ObjectReference Name="target" />
-      <Integer Size="8" IsCoordinate="True" Name="x_offset" />
-      <Integer Size="8" IsCoordinate="True" Name="y_offset" />
-      <Integer Size="8" IsCoordinate="True" Name="z_offset" />
+      <Coordinates3d />
     </Parameters>
   </Definition>
   <Definition Name="biped_give_weapon" Opcode="121">
     <Parameters>
       <ObjectReference Name="biped" />
-      <Integer Size="11" Unsigned="True" Nullable="True" Name="weapon_type">
-        <Constraints>
-          <EnumConstraint>WeaponType</EnumConstraint>
-        </Constraints>
-      </Integer>
-      <Integer Size="2" Unsigned="True" Name="mode">
-        <Constraints>
-          <EnumConstraint>GiveWeaponMode</EnumConstraint>
-        </Constraints>
-      </Integer>
+      <MultiplayerObjectType />
+      <GiveWeaponMode />
     </Parameters>
   </Definition>
   <Definition Name="biped_drop_weapon" Opcode="122">
     <Parameters>
       <ObjectReference Name="biped" />
-      <Integer Size="2" Unsigned="True" Name="mode">
-        <Constraints>
-          <EnumConstraint>DropWeaponMode</EnumConstraint>
-        </Constraints>
-      </Integer>
-      <Integer Size="1" Unsigned="True" Name="delete" />
+      <DropWeaponMode />
+      <Boolean Name="delete" />
     </Parameters>
   </Definition>
   <Definition Name="scenario_set_interpolator_state" Opcode="123">
@@ -1009,7 +798,7 @@
     <Parameters>
       <ObjectReference Name="excluded_object" />
       <ObjectReference Usage="Out" IsPrimaryResult="True" Name="result" />
-      <Integer Size="4" Unsigned="True" Nullable="True" Name="filter_index"/>
+      <ObjectFilter />
     </Parameters>
   </Definition>
   <Definition Opcode="125">
@@ -1021,63 +810,43 @@
   <Definition Name="object_show_boundary_to_player" Opcode="126">
     <Parameters>
       <ObjectReference />
-      <Integer Size="2" Unsigned="True" Nullable="True" Name="player_variable_index">
-        <Constraints>
-          <IndexOfConstraint>ObjectPlayerMemberVariables</IndexOfConstraint>
-        </Constraints>
-      </Integer>
+      <ObjectPlayer />
     </Parameters>
   </Definition>
   <Definition Name="execute_script" Opcode="127">
     <Description>Executes a BlamScript function.</Description>
     <Parameters>
-      <Integer Size="8" PlusOneEncoding="True" Unsigned="True" Name="function">
-        <Constraints>
-          <EnumConstraint>MegaloString</EnumConstraint>
-        </Constraints>
-      </Integer>
+      <String Name="function"/>
     </Parameters>
   </Definition>
   <Definition Name="player_test_action" Opcode="128">
     <Parameters>
       <PlayerReference />
-      <Integer Size="4" Unsigned="True" Name="action">
-        <Constraints>
-          <EnumConstraint>PlayerAction</EnumConstraint>
-        </Constraints>
-      </Integer>
+      <Button />
       <IntegerReference Usage="Out" IsPrimaryResult="True" Name="result" />
     </Parameters>
   </Definition>
   <Definition Name="team_toggle_respawn_in_vehicle" Opcode="129">
     <Parameters>
       <TeamReference />
-      <Integer Size="1" Unsigned="True" Name="enabled" />
+      <Boolean Name="enabled" />
     </Parameters>
   </Definition>
   <Definition Name="player_toggle_respawn_in_vehicle" Opcode="130">
     <Parameters>
       <PlayerReference />
-      <Integer Size="1" Unsigned="True" Name="enabled" />
+      <Boolean Name="enabled" />
     </Parameters>
   </Definition>
   <Definition Name="player_set_respawn_vehicle" Opcode="131">
     <Parameters>
-      <Integer Size="11" Unsigned="True" Nullable="True" Name="vehicle_type">
-        <Constraints>
-          <EnumConstraint>VehicleType</EnumConstraint>
-        </Constraints>
-      </Integer>
+      <MultiplayerObjectType />
       <PlayerReference />
     </Parameters>
   </Definition>
   <Definition Name="team_set_respawn_vehicle" Opcode="132">
     <Parameters>
-      <Integer Size="11" Unsigned="True" Nullable="True" Name="vehicle_type">
-        <Constraints>
-          <EnumConstraint>VehicleType</EnumConstraint>
-        </Constraints>
-      </Integer>
+      <MultiplayerObjectType />
       <TeamReference />
     </Parameters>
   </Definition>
@@ -1085,7 +854,7 @@
     <Remarks>Should be used in a local trigger.</Remarks>
     <Parameters>
       <ObjectReference />
-      <Integer Size="1" Unsigned="True" Name="visible" />
+      <Boolean Name="visible" />
     </Parameters>
   </Definition>
   <Definition Name="vehicle_set_auto_turret" Opcode="134">
@@ -1113,8 +882,8 @@
     <Remarks>Candy spawner related</Remarks>
     <Parameters>
       <ObjectReference />
-      <Integer Size="1" Unsigned="True" />
-      <Integer Size="1" Unsigned="True" />
+      <Boolean />
+      <Boolean />
       <PlayerReference />
     </Parameters>
   </Definition>
@@ -1127,20 +896,20 @@
   <Definition Opcode="139">
     <Parameters>
       <PlayerReference />
-      <Integer Size="1" Unsigned="True" Name="enabled" />
+      <Boolean Name="enabled" />
     </Parameters>
   </Definition>
   <Definition Name="player_toggle_base_spawning" Opcode="140">
     <Parameters>
       <PlayerReference />
-      <Integer Size="1" Unsigned="True" Name="enabled" />
+      <Boolean Name="enabled" />
     </Parameters>
   </Definition>
   <Definition Opcode="141">
     <Remarks>Used in Dominion</Remarks>
     <Parameters>
       <PlayerReference />
-      <Integer Size="1" Unsigned="True" Name="enabled" />
+      <Boolean Name="enabled" />
     </Parameters>
   </Definition>
   <Definition Opcode="142">
@@ -1159,7 +928,7 @@
     <Parameters>
       <PlayerReference />
       <IntegerReference Usage="Out" IsPrimaryResult="True" />
-      <!-- boolean; bet this is "player is interacting with device" or something -->
+      <!-- boolean; I bet this is "player is interacting with device" or something -->
     </Parameters>
   </Definition>
   <Definition Name="device_get_player_user" Opcode="145">
@@ -1181,21 +950,17 @@
     </Parameters>
   </Definition>
   <Definition Name="device_set_activation_time" Opcode="148">
+    <Remarks>time min: 0, max: 20,000</Remarks>
     <Parameters>
       <ObjectReference Name="device" />
-      <IntegerReference Name="time">
-        <Constraints>
-          <MinValueConstraint>0</MinValueConstraint>
-          <MaxValueConstraint>20000</MaxValueConstraint>
-        </Constraints>
-      </IntegerReference>
+      <IntegerReference Name="time" />
     </Parameters>
   </Definition>
   <Definition Name="object_get_teleporter_channel" Opcode="149">
     <Parameters>
       <ObjectReference />
       <IntegerReference Usage="Out" IsPrimaryResult="True" Name="result" />
-      <Integer Size="1" Unsigned="True" Name="no_mp_properties" />
+      <Boolean Name="no_mp_properties" />
     </Parameters>
   </Definition>
   <Definition Name="object_set_teleporter_channel" Opcode="150">
@@ -1212,78 +977,75 @@
     </Parameters>
   </Definition>
   <Definition Name="get_digit" Opcode="152">
+    <Remarks>position >= 1</Remarks>
     <Parameters>
       <IntegerReference />
-      <Integer Size="5" Unsigned="True" Name="position">
-        <Constraints>
-          <MinValueConstraint>1</MinValueConstraint>
-        </Constraints>
-      </Integer>
+      <UInt5 Name="position" />
       <IntegerReference Usage="Out" IsPrimaryResult="True" Name="result" />
     </Parameters>
   </Definition>
   <Definition Name="datamine_value" Opcode="153">
     <Deprecated />
     <Parameters>
-      <Integer Size="8" Unsigned="True" />
+      <Byte />
     </Parameters>
   </Definition>
   <Definition Name="datamine_category" Opcode="154">
     <Deprecated />
     <Remarks>This action does nothing.</Remarks>
     <Parameters>
-      <Integer Size="8" Unsigned="True" />
+      <Byte />
     </Parameters>
   </Definition>
   <Definition Name="datamine_real" Opcode="155">
     <Deprecated />
     <Parameters>
-      <Integer Size="8" Unsigned="True" />
+      <Byte />
       <IntegerReference />
     </Parameters>
   </Definition>
   <Definition Name="datamine_integer" Opcode="156">
     <Deprecated />
     <Parameters>
-      <Integer Size="8" Unsigned="True" />
+      <Byte />
       <IntegerReference />
     </Parameters>
   </Definition>
   <Definition Name="datamine_ticks" Opcode="157">
     <Deprecated />
     <Parameters>
-      <Integer Size="8" Unsigned="True" />
+      <Byte />
       <TimerReference />
     </Parameters>
   </Definition>
   <Definition Name="datamine_string" Opcode="158">
     <Deprecated />
     <Parameters>
-      <Integer Size="8" Unsigned="True" />
+      <Byte />
       <StringReferenceMultiToken />
     </Parameters>
   </Definition>
   <Definition Name="datamine_player" Opcode="159">
     <Parameters>
-      <Integer Size="8" Unsigned="True" />
+      <Byte />
       <PlayerReference />
     </Parameters>
   </Definition>
   <Definition Name="datamine_team" Opcode="159">
     <Parameters>
-      <Integer Size="8" Unsigned="True" />
+      <Byte />
       <TeamReference />
     </Parameters>
   </Definition>
   <Definition Name="datamine_player_position" Opcode="159">
     <Parameters>
-      <Integer Size="8" Unsigned="True" />
+      <Byte />
       <PlayerReference />
     </Parameters>
   </Definition>
   <Definition Name="datamine_object_position" Opcode="159">
     <Parameters>
-      <Integer Size="8" Unsigned="True" />
+      <Byte />
       <ObjectReference />
     </Parameters>
   </Definition>
@@ -1303,14 +1065,10 @@
     <Parameters>
       <ObjectReference />
       <ObjectReference />
-      <Integer Size="8" Unsigned="True" MultiplyByOneTenth="True" />
-      <Integer Size="8" Unsigned="True" MultiplyByOneTenth="True" />
-      <Integer Size="8" Unsigned="True" MultiplyByOneTenth="True">
-        <Constraints>
-          <MaxValueConstraint>180</MaxValueConstraint>
-        </Constraints>
-      </Integer>
-      <Integer Size="8" Unsigned="True" MultiplyByOneTenth="True" />
+      <Byte MultiplyByOneTenth="True" />
+      <Byte MultiplyByOneTenth="True" />
+      <Byte MultiplyByOneTenth="True" /> <!-- max 180 -->
+      <Byte MultiplyByOneTenth="True" />
       <ObjectReference />
     </Parameters>
   </Definition>
@@ -1340,7 +1098,7 @@
   <Definition Opcode="170">
     <Parameters>
       <ObjectReference Name="vehicle" />
-      <Integer Size="1" Unsigned="True" Name="flag" />
+      <Boolean Name="flag" />
       <IntegerReference />
     </Parameters>
   </Definition>
@@ -1362,34 +1120,21 @@
     <Remarks>kornman: src value is multiplied by 256f then converted to an int and streamed as a byte</Remarks>
     <Parameters>
       <PlayerReference />
-      <Float Size="8" Unsigned="True" FloatFlag="False">
-        <Constraints>
-          <MinValueConstraint>0.0</MinValueConstraint>
-          <MaxValueConstraint>1.0</MaxValueConstraint>
-        </Constraints>
-      </Float>
+      <Float Size="8" Unsigned="True" FloatFlag="False" MinFloat="0.0" MaxFloat="1.0" />
     </Parameters>
   </Definition>
   <Definition Name="medal_award" Opcode="174">
     <Parameters>
       <TargetReference />
-      <Integer Size="8" Unsigned="True" Nullable="True" Name="medal">
-        <Constraints>
-          <EnumConstraint>Medal</EnumConstraint>
-        </Constraints>
-      </Integer>
+      <Medal Nullable="False" />
       <IntegerReference Name="points" />
-      <Integer Size="1" Unsigned="True" Name="override_points" />
+      <Boolean Name="override_points" />
     </Parameters>
   </Definition>
   <Definition Name="points_modify" Opcode="175">
     <Parameters>
       <TargetReference />
-      <Integer Size="4" Unsigned="True" Name="operation">
-        <Constraints>
-          <EnumConstraint>OperationTypes</EnumConstraint>
-        </Constraints>
-      </Integer>
+      <OperationType />
       <IntegerReference />
     </Parameters>
   </Definition>
@@ -1408,14 +1153,14 @@
   <Definition Name="device_control_toggle_state" Opcode="178">
     <Parameters>
       <ObjectReference Name="control" />
-      <Integer Size="1" Unsigned="True" Name="activated" />
+      <Boolean Name="activated" />
     </Parameters>
   </Definition>
   <Definition Name="dispenser_toggle_state" Opcode="179">
     <Parameters>
       <ObjectReference Name="dispenser" />
       <IntegerReference />
-      <Integer Size="1" Unsigned="True" Name="activated" />
+      <Boolean Name="activated" />
     </Parameters>
   </Definition>
   <Definition Name="device_activate_with_cause_player" Opcode="180">
@@ -1428,35 +1173,26 @@
     <Parameters>
       <ObjectReference Name="device" />
       <IntegerReference />
-      <Integer Size="1" Unsigned="True" Name="activated" />
+      <Boolean Name="activated" />
     </Parameters>
   </Definition>
   <Definition Name="object_toggle_function" Opcode="182">
-    <Remarks>See the 'Functions' tag block in Assembly.</Remarks>
+    <Remarks>See the 'Functions' tag block in Assembly. 0-7</Remarks>
     <Parameters>
       <ObjectReference />
-      <IntegerReference Name="function">
-        <Constraints>
-          <MinValueConstraint>0</MinValueConstraint>
-          <MaxValueConstraint>7</MaxValueConstraint>
-        </Constraints>
-      </IntegerReference>
-      <Integer Size="1" Unsigned="True" Name="enabled" />
+      <IntegerReference Name="function" />
+      <Boolean Name="enabled" />
     </Parameters>
   </Definition>
   <Definition Name="object_set_resupply_timer" Opcode="183">
     <Parameters>
       <ObjectReference />
-      <Integer Size="2" Unsigned="True" Nullable="True" Name="timer_index">
-        <Constraints>
-          <IndexOfConstraint>ObjectTimerMembers</IndexOfConstraint>
-        </Constraints>
-      </Integer>
+      <ObjectTimer />
     </Parameters>
   </Definition>
   <Definition Name="ordnance_random_set_state" Opcode="184">
     <Parameters>
-      <Integer Size="1" Unsigned="True" Name="enabled" />
+      <Boolean Name="enabled" />
     </Parameters>
   </Definition>
   <Definition Name="ordnance_random_get_state" Opcode="185">
@@ -1480,13 +1216,8 @@
   <Definition Name="ordnance_drop_random" Opcode="188">
     <Parameters>
       <StringReference Name="drop_location" />
-      <Integer Size="1" Unsigned="True" />
-      <Float Size="7" Unsigned="True" FloatFlag="True" Name="weight">
-        <Constraints>
-          <MinValueConstraint>0.0</MinValueConstraint>
-          <MaxValueConstraint>10.0</MaxValueConstraint>
-        </Constraints>
-      </Float>
+      <Boolean />
+      <Float Size="7" Unsigned="True" FloatFlag="True" MinFloat="0.0" MaxFloat="10.0" Name="weight" />
     </Parameters>
   </Definition>
   <Definition Name="ordnance_drop" Opcode="189">
@@ -1495,17 +1226,17 @@
     </Parameters>
   </Definition>
   <Definition Name="waypoint_toggle_blink" Opcode="190">
-    <PossiblyDeprecated />
+    <Deprecated />
     <Parameters>
       <ObjectReference />
-      <Integer Size="1" Unsigned="True" Name="enabled" />
+      <Boolean Name="enabled" />
     </Parameters>
   </Definition>
-  <Definition Name="waypoint_toggle_blink" Opcode="191">
-    <PossiblyDeprecated />
+  <Definition Name="waypoint_toggle_pulse" Opcode="191">
+    <Deprecated />
     <Parameters>
       <ObjectReference />
-      <Integer Size="1" Unsigned="True" Name="enabled" />
+      <Boolean Name="enabled" />
     </Parameters>
   </Definition>
   <Definition Name="player_set_hud_banner" Opcode="192">
@@ -1524,11 +1255,11 @@
       <Integer Size="1" Unsigned="True" Name="automatic" />
     </Parameters>
   </Definition>
-  <Definition Name="waypoint_toggle_blip" Opcode="194">
-    <Remarks>Slower blinking.</Remarks>
+  <Definition Name="waypoint_toggle_pulse_slow" Opcode="194">
+    <Remarks>Slower pulsing.</Remarks>
     <Parameters>
       <ObjectReference />
-      <Integer Size="1" Unsigned="True" Name="enabled" />
+      <Boolean Name="enabled" />
     </Parameters>
   </Definition>
   <Definition Name="incident_get_cause_player" Opcode="195">
@@ -1574,17 +1305,9 @@
   <Definition Name="object_attach_to_marker" Opcode="203">
     <Parameters>
       <ObjectReference Name="child" />
-      <Integer Size="8" PlusOneEncoding="True" Name="child_marker">
-        <Constraints>
-          <EnumConstraint>MegaloString</EnumConstraint>
-        </Constraints>
-      </Integer>
+      <String Name="child_marker" />
       <ObjectReference Name="parent" />
-      <Integer Size="8" PlusOneEncoding="True" Name="parent_marker">
-        <Constraints>
-          <EnumConstraint>MegaloString</EnumConstraint>
-        </Constraints>
-      </Integer>
+      <String Name="parent_marker" />
     </Parameters>
   </Definition>
   <Definition Name="player_set_respawn_delay" Opcode="204">
@@ -1596,7 +1319,7 @@
     </Remarks>
     <Parameters>
       <PlayerReference />
-      <Integer Size="32" Name="duration_multiplier" />
+      <Int32 Name="duration_multiplier" />
     </Parameters>
   </Definition>
   <Definition Name="player_is_getting_assassinated" Opcode="205">
@@ -1609,11 +1332,7 @@
   <Definition Name="player_apply_powerup" Opcode="206">
     <Parameters>
       <PlayerReference />
-      <Integer Size="2" Unsigned="True" Name="powerup">
-        <Constraints>
-          <EnumConstraint>PowerupType</EnumConstraint>
-        </Constraints>
-      </Integer>
+      <PowerupType />
     </Parameters>
   </Definition>
   <Definition Name="player_set_personal_ordnance_points" Opcode="207">
@@ -1632,22 +1351,14 @@
   </Definition>
   <Definition Name="medal_set_points" Opcode="209">
     <Parameters>
-      <Integer Size="8" Unsigned="True" Nullable="True" Name="medal">
-        <Constraints>
-          <EnumConstraint>Medal</EnumConstraint>
-        </Constraints>
-      </Integer>
+      <Medal />
       <IntegerReference Name="points" />
       <IntegerReference Name="override" />
     </Parameters>
   </Definition>
   <Definition Name="medal_restore_points" Opcode="210">
     <Parameters>
-      <Integer Size="8" Unsigned="True" Nullable="True" Name="medal">
-        <Constraints>
-          <EnumConstraint>Medal</EnumConstraint>
-        </Constraints>
-      </Integer>
+      <Medal />
     </Parameters>
   </Definition>
 </Definitions>

@@ -4,10 +4,12 @@
 	{
 		None,
 
-		// Primitive types
+		Boolean,
 		Float,
+		UInt5,
+		Byte,
+		Int32,
 
-		// Reference types
 		GenericReference,
 		PlayerReference,
 		ObjectReference,
@@ -20,19 +22,44 @@
 		StringReferenceTwoTokens,
 		StringReferenceThreeTokens,
 
-		// Structs
 		VirtualTrigger,
 		Shape,
 		Meter,
 		EntityFilter,
 		WaypointIcon,
 
-		// Enums
-		ComparisonType, // 3 bits, unsigned
-		PlayerKillerTypeFlags, // 5 bits, unsigned
-		TeamDisposition, // 2 bits, unsigned
-		MultiplayerObjectType, // nullable, 11 bits, unsigned
-		ObjectFilter, // 4 bits, unsigned, nullable
-		Incident, // 32 bits, unsigned
+		ComparisonType,
+		PlayerKillerTypeFlags,
+		TeamDisposition,
+		MultiplayerObjectType,
+		ObjectFilter,
+		Incident,
+		OperationType,
+		String,
+		ObjectSpawnFlags,
+		Coordinates3d,
+		WaypointPriority,
+		ObjectTimer,
+		PlayerTraits,
+		FireteamFilter,
+		Sound,
+		TimerRate,
+		Trigger,
+		PlayerModes,
+		WeaponPickupMode,
+		Widget,
+		WidgetIcon,
+		HudPosition,
+		VariantIcon,
+		RequisitionPalette,
+		GrenadeType,
+		LoadoutPalette,
+		DeviceAnimation,
+		GiveWeaponMode,
+		DropWeaponMode,
+		ObjectPlayer,
+		Button,
+		Medal,
+		PowerupType,
 	}
 }
