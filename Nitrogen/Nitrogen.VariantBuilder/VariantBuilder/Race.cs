@@ -11,7 +11,7 @@ namespace Nitrogen.VariantBuilder
 	[OutputPath("C:/Users/Matt/Desktop/race.game")]
 	public sealed class Race : IMegaloVariant
 	{
-		void IMegaloVariant.Create (MegaloVariant gt)
+		void IMegaloVariant.Create (GameVariant gt, MegaloData megalo)
 		{
 			gt.HasWeaponTuning = false;
 			

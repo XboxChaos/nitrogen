@@ -156,7 +156,7 @@ namespace Nitrogen.GameVariants
 			}
 		}
 
-		protected ISerializable<BitStream> EngineData
+		public ISerializable<BitStream> EngineData
 		{
 			get { return _engineData; }
 			set { _engineData = value; }

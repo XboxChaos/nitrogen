@@ -1,4 +1,5 @@
-﻿using Nitrogen.GameVariants.Megalo.Definitions;
+﻿using Nitrogen.Enums;
+using Nitrogen.GameVariants.Megalo.Definitions;
 using Nitrogen.GameVariants.Megalo.ParameterTypes;
 using Nitrogen.IO;
 using System;
@@ -8,11 +9,11 @@ namespace Nitrogen.GameVariants.Megalo
 {
 	public sealed class Parameters
 	{
-		private List<IParameter> _parameters;
+		private List<object> _parameters;
 
 		public Parameters ()
 		{
-			_parameters = new List<IParameter>();
+			_parameters = new List<object>();
 		}
 
 		internal void Serialize (BitStream s, Definition definition)
@@ -27,17 +28,25 @@ namespace Nitrogen.GameVariants.Megalo
 			{
 				if ( s.State == StreamState.Write )
 				{
-					if ( definition.Parameters[i].ParameterType != _parameters[i].ParameterType )
+					if ( _parameters[i] is IParameter )
 					{
-						throw new Exception(string.Format(
-							"Parameter type mismatch; expected {0} but got {1} (index: {2})",
-							definition.Parameters[i].ParameterType,
-							_parameters[i].ParameterType,
-							i
-						));
-					}
+						if ( definition.Parameters[i].ParameterType != ( _parameters[i] as IParameter ).ParameterType )
+						{
+							throw new Exception(string.Format(
+								"Parameter type mismatch; expected {0} but got {1} (index: {2})",
+								definition.Parameters[i].ParameterType,
+								( _parameters[i] as IParameter ).ParameterType,
+								i
+							));
+						}
 
-					_parameters[i].SerializeObject(s, definition.Parameters[i]);
+						( _parameters[i] as IParameter ).SerializeObject(s, definition.Parameters[i]);
+					}
+					else // Enum/Index
+					{
+						object value = (int) _parameters[i];
+						StreamIntegerValue(s, definition.Parameters[i].ParameterType, ref value);
+					}
 				}
 				else if ( s.State == StreamState.Read )
 				{
@@ -47,7 +56,7 @@ namespace Nitrogen.GameVariants.Megalo
 			}
 		}
 
-		private IParameter ReadParameter (BitStream s, ParameterDefinition paramDefinition)
+		private object ReadParameter (BitStream s, ParameterDefinition paramDefinition)
 		{
 			IParameter param = null;
 
@@ -71,30 +80,54 @@ namespace Nitrogen.GameVariants.Megalo
 				case ParameterType.VirtualTrigger: { param = new VirtualTrigger(); } break;
 				case ParameterType.WaypointIcon: { param = new WaypointIconData(); } break;
 
-				case ParameterType.Integer:
-					{
-						if ( paramDefinition.Unsigned )
-						{
-							if ( paramDefinition.Nullable )
-								param = new OptionalUInt16Value();
-							else
-								param = new UInt16Value();
-						}
-						else
-						{
-							if ( paramDefinition.Nullable )
-								param = new OptionalInt16Value();
-							else
-								param = new Int16Value();
-						}
-					}
-					break;
+				default:
+					object value = 0;
+					StreamIntegerValue(s, paramDefinition.ParameterType, ref value);
+					return value;
 			}
 
 			if ( param != null )
 				param.SerializeObject(s, paramDefinition);
 
 			return param;
+		}
+
+		private void StreamIntegerValue (BitStream s, ParameterType type, ref object value)
+		{
+			int intValue = (int) ( value ?? 0 );
+			switch ( type )
+			{
+				case ParameterType.ComparisonType:
+					s.StreamUnsigned(ref intValue, 3);
+					value = (ComparisonType) intValue;
+					break;
+
+				case ParameterType.PlayerKillerTypeFlags:
+					s.StreamUnsigned(ref intValue, 5);
+					value = (PlayerKillerTypeFlags) intValue;
+					break;
+
+				case ParameterType.TeamDisposition:
+					s.StreamUnsigned(ref intValue, 2);
+					value = (TeamDisposition) intValue;
+					break;
+
+				case ParameterType.MultiplayerObjectType:
+					int? nullableValue = (int?) value;
+					s.StreamOptional(ref nullableValue, 11);
+					value = (MultiplayerObjectType) ( nullableValue ?? -1 );
+					break;
+
+				case ParameterType.ObjectFilter:
+					byte? filterIndex = (byte?) value;
+					s.StreamOptional(ref filterIndex, 4);
+					value = filterIndex;
+					break;
+
+				case ParameterType.Incident:
+					s.StreamUnsigned(ref intValue);
+					break;
+			}
 		}
 	}
 }

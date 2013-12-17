@@ -12,7 +12,7 @@ namespace Nitrogen.VariantBuilder
 	//[OutputPath("C:/Users/Matt/Desktop/blank.game")]
 	public sealed class Blank : IMegaloVariant
 	{
-		void IMegaloVariant.Create (MegaloVariant gt)
+		void IMegaloVariant.Create (GameVariant gt, MegaloData megalo)
 		{
 			// make your gametype here
 

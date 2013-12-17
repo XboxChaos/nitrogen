@@ -43,8 +43,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="_Builder\IGameVariant.cs" />
-    <Compile Include="_Builder\OutputPathAttribute.cs" />
     <Compile Include="_Builder\IMegaloVariant.cs" />
+    <Compile Include="_Builder\OutputPathAttribute.cs" />
     <Compile Include="_Builder\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="_Blank.cs" />

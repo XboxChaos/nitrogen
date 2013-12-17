@@ -66,7 +66,7 @@ namespace Nitrogen.GameVariants.Megalo
 
 		void ISerializable<BitStream>.SerializeObject (BitStream s)
 		{
-			s.Stream(ref _opcode);
+			s.Stream(ref _opcode, 5);
 			if ( _opcode == 0 )
 				return;
 

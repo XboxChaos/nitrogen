@@ -5,7 +5,6 @@
 		None,
 
 		// Primitive types
-		Integer,
 		Float,
 
 		// Reference types
@@ -27,5 +26,13 @@
 		Meter,
 		EntityFilter,
 		WaypointIcon,
+
+		// Enums
+		ComparisonType, // 3 bits, unsigned
+		PlayerKillerTypeFlags, // 5 bits, unsigned
+		TeamDisposition, // 2 bits, unsigned
+		MultiplayerObjectType, // nullable, 11 bits, unsigned
+		ObjectFilter, // 4 bits, unsigned, nullable
+		Incident, // 32 bits, unsigned
 	}
 }

@@ -14,12 +14,12 @@ namespace Nitrogen.Test
 		[TestMethod]
 		public void ReadGametype ()
 		{
-			MegaloVariant gt;
+			GameVariant gt;
 
 			using ( var fs = File.OpenRead("C:/Users/Matt/Desktop/h4_rumble_tu.game") )
-				gt = (MegaloVariant) ContentFactory.ReadGameVariant(fs);
+				gt = ContentFactory.ReadGameVariant(fs);
 
-
+			var data = gt.EngineData as MegaloData;
 		}
 	}
 }

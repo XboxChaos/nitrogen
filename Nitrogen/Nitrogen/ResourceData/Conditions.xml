@@ -8,7 +8,7 @@
     <Parameters>
       <GenericReference/>
       <GenericReference/>
-      <Integer Size="3" Unsigned="True" Name="comparison_type"/>
+      <ComparisonType/>
     </Parameters>
   </Definition>
   <Definition Name="is_object_in_boundary" Opcode="2">
@@ -21,7 +21,7 @@
   <Definition Name="check_player_killer_type" Opcode="3">
     <Parameters>
       <PlayerReference/>
-      <Integer Size="5" Unsigned="True" Name="flags"/>
+      <PlayerKillerTypeFlags/>
     </Parameters>
   </Definition>
   <Definition Name="player_recently_damaged" Opcode="4">
@@ -37,7 +37,7 @@
     <Parameters>
       <TeamReference/>
       <TeamReference/>
-      <Integer Size="2" Unsigned="True" Name="disposition"/>
+      <TeamDisposition/>
     </Parameters>
   </Definition>
   <Definition Name="timer_is_zero" Opcode="6">
@@ -50,11 +50,7 @@
     <Description>Checks if an object matches a multiplayer object type.</Description>
     <Parameters>
       <ObjectReference/>
-      <Integer Size="11" Unsigned="True" Nullable="True" Name="object_type">
-        <Constraints>
-          <EnumConstraint>MultiplayerObjectType</EnumConstraint>
-        </Constraints>
-      </Integer>
+      <MultiplayerObjectType/>
     </Parameters>
   </Definition>
   <Definition Name="team_has_players" Opcode="8">
@@ -87,11 +83,7 @@
     <Description>Checks if an object matches a certain filter (including Forge labels).</Description>
     <Parameters>
       <ObjectReference/>
-      <Integer Size="4" Unsigned="True" Nullable="True" Name="filter_index">
-        <Constraints>
-          <IndexOfConstraint>ObjectFilters</IndexOfConstraint>
-        </Constraints>
-      </Integer>
+      <ObjectFilter/>
     </Parameters>
   </Definition>
   <Definition Name="player_is_not_respawning" Opcode="13">
@@ -184,7 +176,7 @@
     <Description>Returns true if the submitted incident matches the specified index.</Description>
     <Remarks>Must be used in an Incident trigger.</Remarks>
     <Parameters>
-      <Integer Size="32" Unsigned="True" Name="incident_index"/>
+      <Incident/>
     </Parameters>
   </Definition>
   <Definition Name="object_has_normal_physics" Opcode="24">

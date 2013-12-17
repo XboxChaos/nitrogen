@@ -171,6 +171,13 @@ namespace Nitrogen.IO
 			value = (sbyte) temp;
 		}
 
+		public void StreamUnsigned (ref int value, int bits = sizeof(uint) * 8)
+		{
+			uint temp = (uint) value;
+			Stream(ref temp, bits);
+			value = (int) temp;
+		}
+
 		public void Dispose ()
 		{
 			Dispose(true);
