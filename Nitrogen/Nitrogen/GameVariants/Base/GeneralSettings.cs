@@ -14,7 +14,7 @@ namespace Nitrogen.GameVariants.Base
             _teamsEnabled,
             _roundsResetPlayers,
             _roundsResetMap,
-            _roundsResetEverythingElse,
+            _unknownFlag3,
             _deathCamEnabled,
             _pointsSystemEnabled,
             _finalKillCamEnabled,
@@ -121,17 +121,17 @@ namespace Nitrogen.GameVariants.Base
             s.Stream(ref _teamsEnabled);
             s.Stream(ref _roundsResetPlayers);
             s.Stream(ref _roundsResetMap);
-            s.Stream(ref _roundsResetEverythingElse);
+            s.Stream(ref _unknownFlag3);
             s.Stream(ref _roundTimeLimit);
-            s.Stream(ref _numberOfRounds, bits: 5);
-            s.Stream(ref _earlyVictoryWinCount, bits: 4);
+            s.Stream(ref _numberOfRounds, 5);
+            s.Stream(ref _earlyVictoryWinCount, 4);
             s.Stream(ref _deathCamEnabled);
             s.Stream(ref _pointsSystemEnabled);
             s.Stream(ref _finalKillCamEnabled);
             s.Stream(ref _suddenDeathDuration);
             s.Stream(ref _unknownFlag1);
             s.Stream(ref _unknownFlag2);
-            s.Stream(ref _moshDifficulty, bits: 2);
+            s.Stream(ref _moshDifficulty, 2);
 		}
 
 		#endregion
