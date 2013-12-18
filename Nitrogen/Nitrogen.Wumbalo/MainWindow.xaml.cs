@@ -44,7 +44,7 @@ namespace Nitrogen.Wumbalo
 				hwndSource.AddHook(WindowProc);
 
 			// Scroll to Home
-			HomePage.ScrollToSection(HomePage.ViewModel.Headers.First(h => h.HeaderType == HeaderType.Home));
+			//HomePage.ScrollToSection(HomePage.ViewModel.Headers.First(h => h.HeaderType == HeaderType.Home));
 
 			// Le Save
 			LeStorage.MainWindow = this;
