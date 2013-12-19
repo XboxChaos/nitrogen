@@ -96,6 +96,7 @@
     </ApplicationDefinition>
     <Compile Include="Converters\CreateApplicationTitle.cs" />
     <Compile Include="Converters\EnumToString.cs" />
+    <Compile Include="Converters\InverseBooleanToVisibilityConverter.cs" />
     <Compile Include="Helpers\LeStorage.cs" />
     <Compile Include="Models\Home\Header.cs" />
     <Compile Include="Models\Home\Recent.cs" />
@@ -115,12 +116,20 @@
     </Compile>
     <Compile Include="ViewModels\Dialogs\ModernMessageBoxViewModel.cs" />
     <Compile Include="ViewModels\GameVariants\GameVariantViewModel.cs" />
+    <Compile Include="ViewModels\GameVariants\GeneralSettingsViewModel.cs" />
     <Compile Include="ViewModels\GameVariants\MetadataViewModel.cs" />
+    <Compile Include="ViewModels\GameVariants\RespawnSettingsViewModel.cs" />
     <Compile Include="ViewModels\HomeViewModel.cs" />
     <Compile Include="ViewModels\Inpc.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
-    <Compile Include="Views\Apps\GametypeEditor.xaml.cs">
+    <Compile Include="Views\Apps\GametypeEditor\GametypeEditor.xaml.cs">
       <DependentUpon>GametypeEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Apps\GametypeEditor\GeneralSettingsEditor.xaml.cs">
+      <DependentUpon>GeneralSettingsEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Apps\GametypeEditor\MetadataEditor.xaml.cs">
+      <DependentUpon>MetadataEditor.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Home.xaml.cs">
       <DependentUpon>Home.xaml</DependentUpon>
@@ -206,7 +215,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Apps\GametypeEditor.xaml">
+    <Page Include="Views\Apps\GametypeEditor\GametypeEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Apps\GametypeEditor\GeneralSettingsEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Apps\GametypeEditor\MetadataEditor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

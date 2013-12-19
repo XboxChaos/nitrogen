@@ -88,6 +88,9 @@ namespace Nitrogen.GameVariants.Megalo
 			}
 		}
 
+		/// <summary>
+		/// Gets or sets the localized variant name.
+		/// </summary>
 		public LocalizedString Name
 		{
 			get { return _localizedName.Count > 0 ? _localizedName[0] : null; }
@@ -101,6 +104,9 @@ namespace Nitrogen.GameVariants.Megalo
 			}
 		}
 
+		/// <summary>
+		/// Gets or sets the localized variant description.
+		/// </summary>
 		public LocalizedString Description
 		{
 			get { return _localizedDescription.Count > 0 ? _localizedDescription[0] : null; }
@@ -111,6 +117,22 @@ namespace Nitrogen.GameVariants.Megalo
 					_localizedDescription.Add(value);
 				else
 					_localizedDescription[0] = value;
+			}
+		}
+
+		/// <summary>
+		/// Gets or sets the category name.
+		/// </summary>
+		public LocalizedString CategoryName
+		{
+			get { return _categoryName.Count > 0 ? _categoryName[0] : null; }
+
+			set
+			{
+				if ( _categoryName.Count == 0 )
+					_categoryName.Add(value);
+				else
+					_categoryName[0] = value;
 			}
 		}
 

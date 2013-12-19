@@ -3,6 +3,7 @@ using Nitrogen.GameVariants;
 using Nitrogen.GameVariants.Megalo;
 using Nitrogen.Metadata;
 using System;
+using System.Text;
 using System.Threading;
 
 namespace Nitrogen.Wumbalo.ViewModels.GameVariants
@@ -10,6 +11,8 @@ namespace Nitrogen.Wumbalo.ViewModels.GameVariants
 	public class MetadataViewModel
 		: Inpc
 	{
+		private Timer _dateModifiedTimer;
+
 		private ContentMetadata _metadata;
 		private GameVariant _variant;
 
@@ -18,7 +21,7 @@ namespace Nitrogen.Wumbalo.ViewModels.GameVariants
 			_variant = variant;
 			_metadata = _variant.Metadata;
 
-			Timer t = new Timer((object state) =>
+			_dateModifiedTimer = new Timer((object state) =>
 			{
 				( state as MetadataViewModel ).DateModified = DateTime.Now;
 			}, this, 0, 1000);
@@ -110,6 +113,34 @@ namespace Nitrogen.Wumbalo.ViewModels.GameVariants
 		public GameEngine Engine
 		{
 			get { return _metadata.Engine; }
+		}
+
+		public string Category
+		{
+			get
+			{
+				if ( !IsMegalo )
+					return "";
+				else
+					return ( _variant.EngineData as MegaloData ).CategoryName.Get(Language.English);
+			}
+		}
+
+		public string CategoryLocalized
+		{
+			get
+			{
+				if ( !IsMegalo )
+					return "";
+
+				var category = ( _variant.EngineData as MegaloData ).CategoryName;
+				var builder = new StringBuilder();
+				foreach ( Language language in Enum.GetValues(typeof(Language)) )
+				{
+					builder.AppendLine(language + "\t\t" + category.Get(language));
+				}
+				return builder.ToString();
+			}
 		}
 
 	}

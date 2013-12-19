@@ -11,11 +11,11 @@
             <RowDefinition />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="400"/>
-            <ColumnDefinition Width="250"/>
+            <ColumnDefinition Width="300"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <TextBlock Grid.ColumnSpan="2" HorizontalAlignment="Left" TextWrapping="NoWrap" Text="{Binding Title, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type appControls:EditorRow}}}" VerticalAlignment="Top" Foreground="{DynamicResource TextblockForegroundBrush}" FontSize="18" TextTrimming="CharacterEllipsis"/>
+        <TextBlock Grid.ColumnSpan="2" HorizontalAlignment="Stretch" TextWrapping="NoWrap" Text="{Binding Title, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type appControls:EditorRow}}}" VerticalAlignment="Top" Foreground="{DynamicResource TextblockForegroundBrush}" FontSize="18" TextTrimming="CharacterEllipsis"/>
         <TextBlock Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,0,0,0" Text="{Binding Description, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type appControls:EditorRow}}}" TextWrapping="Wrap" Foreground="{DynamicResource TextblockDescriptionForegroundBrush}" FontSize="14"/>
 
         <ContentControl Grid.Row="0" Grid.RowSpan="2" Grid.Column="1" HorizontalContentAlignment="Left" VerticalAlignment="Top" Content="{Binding EditorContent, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type appControls:EditorRow}}}"/>

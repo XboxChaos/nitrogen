@@ -10,7 +10,11 @@ namespace Nitrogen.Wumbalo.ViewModels.GameVariants
 		/// <summary>
 		/// Initializes a new instance of the <see cref="GameVariantViewModel"/> class.
 		/// </summary>
-		public GameVariantViewModel () : this(new GameVariant()) { }
+		public GameVariantViewModel ()
+			: this(new GameVariant())
+		{
+			IsOriginal = true;
+		}
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="GameVariantViewModel"/> class based on the
@@ -20,14 +24,42 @@ namespace Nitrogen.Wumbalo.ViewModels.GameVariants
 		public GameVariantViewModel (GameVariant variant)
 		{
 			_variant = variant;
-			_variant = ContentFactory.ReadGameVariant(System.IO.File.OpenRead("C:/users/matt/desktop/h4_rumble_tu.game"));
 			Metadata = new MetadataViewModel(_variant);
+			General = new GeneralSettingsViewModel(_variant);
+			Respawn = new RespawnSettingsViewModel(_variant);
 		}
 
 		/// <summary>
 		/// Gets or sets the metadata view model.
 		/// </summary>
 		public MetadataViewModel Metadata
+		{
+			get { return Get(); }
+			set { Set(value); }
+		}
+
+		/// <summary>
+		/// Gets or sets the general settings view model.
+		/// </summary>
+		public GeneralSettingsViewModel General
+		{
+			get { return Get(); }
+			set { Set(value); }
+		}
+
+		/// <summary>
+		/// Gets or sets the respawn settings view model.
+		/// </summary>
+		public RespawnSettingsViewModel Respawn
+		{
+			get { return Get(); }
+			set { Set(value); }
+		}
+
+		/// <summary>
+		/// Gets a value indicating whether the variant is original.
+		/// </summary>
+		public bool IsOriginal
 		{
 			get { return Get(); }
 			set { Set(value); }

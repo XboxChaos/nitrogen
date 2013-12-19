@@ -8,8 +8,9 @@ using Nitrogen.Wumbalo.ViewModels;
 using Nitrogen.Wumbalo.Modern.Dialogs;
 using Nitrogen.Wumbalo.ViewModels.Dialogs;
 using Nitrogen.Wumbalo.ViewModels.GameVariants;
+using System.IO;
 
-namespace Nitrogen.Wumbalo.Views.Apps
+namespace Nitrogen.Wumbalo.Views.Apps.GametypeEditor
 {
 	/// <summary>
 	/// Interaction logic for GametypeEditor.xaml
@@ -22,7 +23,11 @@ namespace Nitrogen.Wumbalo.Views.Apps
 		{
 			InitializeComponent();
 
+#if DEBUG
+			ViewModel = new GameVariantViewModel(ContentFactory.ReadGameVariant(File.OpenRead("C:/users/matt/desktop/h4_rumble_tu.game")));
+#else
 			ViewModel = new GameVariantViewModel();
+#endif
 			DataContext = ViewModel;
 		}
 	}
