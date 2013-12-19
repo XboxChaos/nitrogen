@@ -145,7 +145,11 @@ namespace Nitrogen.Metadata
 		/// <summary>
 		/// Gets or sets the modification timestamp of this content.
 		/// </summary>
-		public DateTime DateModified { get { return _dateModified; } }
+		public DateTime DateModified
+		{
+			get { return _dateModified; }
+			set { _dateModified = value; }
+		}
 
 		/// <summary>
 		/// Gets the underlying game engine of this content.

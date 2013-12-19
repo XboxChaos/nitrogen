@@ -20,8 +20,8 @@ namespace Nitrogen.Wumbalo.ViewModels.GameVariants
 		public GameVariantViewModel (GameVariant variant)
 		{
 			_variant = variant;
-			//_variant = ContentFactory.ReadGameVariant(System.IO.File.OpenRead("C:/users/matt/desktop/h4_rumble_tu.game"));
-			Metadata = new MetadataViewModel(_variant.Metadata);
+			_variant = ContentFactory.ReadGameVariant(System.IO.File.OpenRead("C:/users/matt/desktop/h4_rumble_tu.game"));
+			Metadata = new MetadataViewModel(_variant);
 		}
 
 		/// <summary>

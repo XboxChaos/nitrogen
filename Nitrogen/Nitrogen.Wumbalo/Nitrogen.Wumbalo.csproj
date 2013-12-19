@@ -99,6 +99,9 @@
     <Compile Include="Helpers\LeStorage.cs" />
     <Compile Include="Models\Home\Header.cs" />
     <Compile Include="Models\Home\Recent.cs" />
+    <Compile Include="Modern\AppControls\EditorRow.xaml.cs">
+      <DependentUpon>EditorRow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Modern\Controls\CustomControls\LiveButton.cs" />
     <Compile Include="Modern\Controls\CustomControls\ModernButton.cs" />
     <Compile Include="Modern\Controls\CustomControls\ScrollViewerOffsetMedior.cs" />
@@ -162,6 +165,10 @@
     <Page Include="Modern\Accents\Purple.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Modern\AppControls\EditorRow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Modern\Controls\Borders.xaml">
       <SubType>Designer</SubType>

@@ -21,6 +21,7 @@ namespace Nitrogen
 
 			gameVariant.Metadata.ContentType = ContentType.GameVariant;
 			gameVariant.Metadata.FileLength = 0x7F29;
+			gameVariant.Metadata.DateModified = DateTime.Now;
 
 			if ( gameVariant.Metadata.Engine == GameEngine.None )
 				gameVariant.Metadata.Engine = GameEngine.PVP;

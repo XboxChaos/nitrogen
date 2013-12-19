@@ -1,0 +1,23 @@
+﻿<UserControl x:Class="Nitrogen.Wumbalo.Modern.AppControls.EditorRow"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:appControls="clr-namespace:Nitrogen.Wumbalo.Modern.AppControls"
+             mc:Ignorable="d" d:DesignWidth="700">
+    <Grid Margin="8,0,0,8">
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="400"/>
+            <ColumnDefinition Width="250"/>
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Grid.ColumnSpan="2" HorizontalAlignment="Left" TextWrapping="NoWrap" Text="{Binding Title, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type appControls:EditorRow}}}" VerticalAlignment="Top" Foreground="{DynamicResource TextblockForegroundBrush}" FontSize="18" TextTrimming="CharacterEllipsis"/>
+        <TextBlock Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,0,0,0" Text="{Binding Description, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type appControls:EditorRow}}}" TextWrapping="Wrap" Foreground="{DynamicResource TextblockDescriptionForegroundBrush}" FontSize="14"/>
+
+        <ContentControl Grid.Row="0" Grid.RowSpan="2" Grid.Column="1" HorizontalContentAlignment="Left" VerticalAlignment="Top" Content="{Binding EditorContent, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type appControls:EditorRow}}}"/>
+    </Grid>
+</UserControl>

@@ -15,11 +15,15 @@
 	<SolidColorBrush x:Key="WindowButtonInnerBorderBrush" Color="#FF000000" />
 	
 	<SolidColorBrush x:Key="ModernButtonBackgroundSpecialBrush" Color="#414141" />
-	<Color x:Key="ModernButtonBackgroundSpecialBrushColour" A="#FF" R="#41" G="#41" B="#41" />
+    <Color x:Key="ModernButtonBackgroundSpecialBrushColour" A="#FF" R="#41" G="#41" B="#41" />
 
-	<!-- Textbox -->
+    <!-- Textbox -->
 	<SolidColorBrush x:Key="TextboxBackgroundBrush" Color="#FFFFFFFF" />
 	<SolidColorBrush x:Key="TextboxForegroundBrush" Color="#FF1E1E1E" />
+    
+    <!-- TextBlock -->
+    <SolidColorBrush x:Key="TextblockForegroundBrush" Color="#FFFFFFFF" />
+    <SolidColorBrush x:Key="TextblockDescriptionForegroundBrush" Color="#FF9e9e9e" />
 
 	<!-- Scrollbar -->
 	<SolidColorBrush x:Key="ScollbarUnActiveBrush" Color="#FF686868" />
@@ -45,6 +49,6 @@
 	<SolidColorBrush x:Key="WindowHomeHeaderNoFocusBrush" Color="#FF6b6b6b" />
 	<Color x:Key="WindowHomeHeaderNoFocusBrushColour" A="#FF" R="#6b" G="#6b" B="#6b" />
 	<SolidColorBrush x:Key="WindowPoweredByBrandBrush" Color="#FFFFFFFF" />
-	<SolidColorBrush x:Key="WindowPoweredByBrush" Color="#FF6b6b6b" />
+    <SolidColorBrush x:Key="WindowPoweredByBrush" Color="#FF6b6b6b" />
 
 </ResourceDictionary>

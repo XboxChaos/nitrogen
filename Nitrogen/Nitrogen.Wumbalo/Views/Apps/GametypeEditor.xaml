@@ -4,8 +4,12 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:controls="clr-namespace:Nitrogen.Wumbalo.Modern.Controls.CustomControls"
+             xmlns:appControls="clr-namespace:Nitrogen.Wumbalo.Modern.AppControls"
              mc:Ignorable="d" 
-             d:DesignHeight="720" d:DesignWidth="650">
+             d:DesignHeight="720" d:DesignWidth="1000">
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+    </UserControl.Resources>
     <Grid Margin="4">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -15,14 +19,65 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
-
-        <controls:WatermarkTextBox Watermark="Search" Margin="0,12" Style="{DynamicResource OnyxSearchTextBoxStyle}"/>
-
-        <TabControl Grid.Column="0" Grid.Row="1" Background="Transparent" TabStripPlacement="Left">
+        
+        <TabControl Grid.Column="0" Grid.Row="1" Background="Transparent" TabStripPlacement="Left" Margin="8">
             <TabItem Header="Metadata">
                 <StackPanel>
-                    <TextBox Margin="4" HorizontalAlignment="Stretch" VerticalAlignment="Top" DataContext="{Binding Metadata}" Text="{Binding Name}" />
-                    <TextBox Margin="4" HorizontalAlignment="Stretch" VerticalAlignment="Top" MaxLines="3" Height="60" DataContext="{Binding Metadata}" Text="{Binding Description}" />
+                    <!-- name -->
+                    <appControls:EditorRow DataContext="{Binding Metadata}"
+                                           Title="Name" >
+                        <TextBox Text="{Binding Name}" MaxLength="128"/>
+                    </appControls:EditorRow>
+                    
+                    <!-- desc -->
+                    <appControls:EditorRow DataContext="{Binding Metadata}"
+                                           Title="Description"
+                                           Description="This is a description, motherfucker.">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            
+                            <TextBox Text="{Binding Description}" MaxLines="3" MaxLength="128" Height="60" ScrollViewer.VerticalScrollBarVisibility="Visible" HorizontalAlignment="Stretch"/>
+                            
+                            <!-- inline symbols -->
+                            <ComboBox Grid.Column="1" Width="40" Height="25" Margin="4,0,0,0" VerticalAlignment="Top"></ComboBox>
+                        </Grid>
+                    </appControls:EditorRow>
+                    
+                    <!-- creation info -->
+                    <appControls:EditorRow DataContext="{Binding Metadata}"
+                                           Title="Created By"
+                                           Description="TODO: Make this editable only if the gametype was created as new">
+                        <StackPanel>
+                            <TextBox Text="{Binding Creator}" MaxLength="16"/>
+                            <TextBlock Text="{Binding DateCreated, Mode=OneWay}" Foreground="{DynamicResource TextblockForegroundBrush}"/>
+                        </StackPanel>
+                    </appControls:EditorRow>
+
+                    <!-- modification info -->
+                    <appControls:EditorRow DataContext="{Binding Metadata}"
+                                           Title="Modified By" >
+                        <StackPanel>
+                            <TextBox Text="{Binding Modifier}" MaxLength="16"/>
+                            <TextBlock Text="{Binding DateModified, Mode=OneWay}" Foreground="{DynamicResource TextblockForegroundBrush}"/>
+                        </StackPanel>
+                    </appControls:EditorRow>
+
+                    <!-- game engine -->
+                    <appControls:EditorRow DataContext="{Binding Metadata}"
+                                           Title="Target Game Engine"
+                                           Description="Create a new gametype to change the target engine.">
+                        <TextBlock Text="{Binding Engine, Mode=OneWay}" Foreground="{DynamicResource TextblockForegroundBrush}"/>
+                    </appControls:EditorRow>
+
+                    <!-- variant icons -->
+                    <appControls:EditorRow DataContext="{Binding Metadata}" Visibility="{Binding IsMegalo, Converter={StaticResource BooleanToVisibilityConverter}, Mode=OneWay}"
+                                           Title="Variant Icon"
+                                           Description="TODO: show a scrollable listview with each variant icon image (like in Sunburst)">
+                        <TextBlock Text="{Binding Icon, Mode=OneWay}" Foreground="{DynamicResource TextblockForegroundBrush}"/>
+                    </appControls:EditorRow>
                 </StackPanel>
             </TabItem>
             <TabItem Header="General"/>
@@ -35,7 +90,7 @@
             <TabItem Header="Teams"/>
         </TabControl>
         
-        <Grid Grid.Row="0" Grid.RowSpan="2" Grid.Column="1" Margin="10">
+        <Grid Grid.Row="0" Grid.RowSpan="2" Grid.Column="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="150"/>
             </Grid.ColumnDefinitions>
