@@ -16,7 +16,7 @@ namespace Nitrogen.Wumbalo.ViewModels.GameVariants
 		public GeneralSettingsViewModel (GameVariant variant)
 		{
 			_variant = variant;
-			_metadata = _variant.GeneralSettings;
+			_general = _variant.GeneralSettings;
 		}
 	}
 }

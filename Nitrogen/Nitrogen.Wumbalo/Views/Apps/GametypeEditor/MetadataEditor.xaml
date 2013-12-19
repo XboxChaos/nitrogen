@@ -17,20 +17,20 @@
 
     <StackPanel>
         <!-- name -->
-        <appControls:EditorRow DataContext="{Binding Metadata}"
+        <appControls:EditorRow
 						Title="Name" >
-            <TextBox Text="{Binding Name}" MaxLength="128"/>
+            <TextBox Text="{Binding Metadata.Name}" MaxLength="128"/>
         </appControls:EditorRow>
 
         <!-- desc -->
-        <appControls:EditorRow DataContext="{Binding Metadata}"
+        <appControls:EditorRow
 						Title="Description"
 						Description="">
-            <TextBox Text="{Binding Description}" MaxLines="3" MaxLength="128" Height="60" ScrollViewer.VerticalScrollBarVisibility="Visible" HorizontalAlignment="Stretch" TextWrapping="Wrap"/>
+            <TextBox Text="{Binding Metadata.Description}" MaxLines="3" MaxLength="128" Height="60" ScrollViewer.VerticalScrollBarVisibility="Visible" HorizontalAlignment="Stretch" TextWrapping="Wrap"/>
         </appControls:EditorRow>
 
         <!-- creation info -->
-        <appControls:EditorRow DataContext="{Binding}"
+        <appControls:EditorRow
 						Title="Created By"
 						Description="">
             <StackPanel>
@@ -41,33 +41,33 @@
         </appControls:EditorRow>
 
         <!-- modification info -->
-        <appControls:EditorRow DataContext="{Binding Metadata}"
+        <appControls:EditorRow
 						Title="Modified By" >
             <StackPanel>
-                <TextBox Text="{Binding Modifier}" MaxLength="16"/>
-                <TextBlock Text="{Binding DateModified, Mode=OneWay}" Foreground="{DynamicResource TextblockForegroundBrush}"/>
+                <TextBox Text="{Binding Metadata.Modifier}" MaxLength="16"/>
+                <TextBlock Text="{Binding Metadata.DateModified, Mode=OneWay}" Foreground="{DynamicResource TextblockForegroundBrush}"/>
             </StackPanel>
         </appControls:EditorRow>
 
         <!-- game engine -->
-        <appControls:EditorRow DataContext="{Binding Metadata}"
+        <appControls:EditorRow
 						Title="Target Game Engine"
 						Description="">
-            <TextBlock Text="{Binding Engine, Mode=OneWay}" Foreground="{DynamicResource TextblockForegroundBrush}"/>
+            <TextBlock Text="{Binding Metadata.Engine, Mode=OneWay}" Foreground="{DynamicResource TextblockForegroundBrush}"/>
         </appControls:EditorRow>
 
         <!-- category -->
-        <appControls:EditorRow DataContext="{Binding Metadata}"
+        <appControls:EditorRow
 						Title="Category"
 						Description="">
-            <TextBlock Text="{Binding Category, Mode=OneWay}" Foreground="{DynamicResource TextblockForegroundBrush}" ToolTip="{Binding CategoryLocalized, Mode=OneWay}"/>
+            <TextBlock Text="{Binding Metadata.Category, Mode=OneWay}" Foreground="{DynamicResource TextblockForegroundBrush}" ToolTip="{Binding CategoryLocalized, Mode=OneWay}"/>
         </appControls:EditorRow>
 
         <!-- variant icons -->
-        <appControls:EditorRow DataContext="{Binding Metadata}" Visibility="{Binding IsMegalo, Converter={StaticResource BooleanToVisibilityConverter}, Mode=OneWay}"
+        <appControls:EditorRow Visibility="{Binding Metadata.IsMegalo, Converter={StaticResource BooleanToVisibilityConverter}, Mode=OneWay}"
 						Title="Variant Icon"
 						Description="TODO: show a scrollable listview with each variant icon image (like in Sunburst)">
-            <TextBlock Text="{Binding Icon, Mode=OneWay}" Foreground="{DynamicResource TextblockForegroundBrush}"/>
+            <TextBlock Text="{Binding Metadata.Icon, Mode=OneWay}" Foreground="{DynamicResource TextblockForegroundBrush}"/>
         </appControls:EditorRow>
     </StackPanel>
 </UserControl>

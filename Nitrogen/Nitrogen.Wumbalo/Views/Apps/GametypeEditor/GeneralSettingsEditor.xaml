@@ -7,7 +7,8 @@
              xmlns:appControls="clr-namespace:Nitrogen.Wumbalo.Modern.AppControls"
              xmlns:Converters="clr-namespace:Nitrogen.Wumbalo.Converters"
              mc:Ignorable="d" 
-             d:DesignWidth="600">
+             d:DesignWidth="600"
+             DataContext="{Binding General}">
     <UserControl.Resources>
         <Converters:InverseBooleanToVisibilityConverter x:Key="InverseBooleanToVisibilityConverter"/>
         <Converters:InverseBooleanToVisibilityConverter x:Key="InverseBooleanConverter"/>
@@ -16,7 +17,7 @@
 
     <StackPanel>
         <!-- name -->
-        <appControls:EditorRow DataContext="{Binding Metadata}"
+        <appControls:EditorRow
 						Title="Name" >
             <TextBox Text="{Binding Name}" MaxLength="128"/>
         </appControls:EditorRow>
