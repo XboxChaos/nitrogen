@@ -19,7 +19,12 @@
         <controls:WatermarkTextBox Watermark="Search" Margin="0,12" Style="{DynamicResource OnyxSearchTextBoxStyle}"/>
 
         <TabControl Grid.Column="0" Grid.Row="1" Background="Transparent" TabStripPlacement="Left">
-            <TabItem Header="Metadata"/>
+            <TabItem Header="Metadata">
+                <StackPanel>
+                    <TextBox Margin="4" HorizontalAlignment="Stretch" VerticalAlignment="Top" DataContext="{Binding Metadata}" Text="{Binding Name}" />
+                    <TextBox Margin="4" HorizontalAlignment="Stretch" VerticalAlignment="Top" MaxLines="3" Height="60" DataContext="{Binding Metadata}" Text="{Binding Description}" />
+                </StackPanel>
+            </TabItem>
             <TabItem Header="General"/>
             <TabItem Header="Respawn"/>
             <TabItem Header="Social"/>
@@ -38,17 +43,12 @@
                 <RowDefinition Height="150"/>
                 <RowDefinition Height="150"/>
                 <RowDefinition Height="150"/>
-                <RowDefinition Height="150"/>
             </Grid.RowDefinitions>
             
             <controls:ModernButton Grid.Row="0" Style="{DynamicResource ModernButtonWithNameStyle}"
-                                   ButtonName="New Gametype"/>
+                                   ButtonName="New"/>
             <controls:ModernButton Grid.Row="1" Style="{DynamicResource ModernButtonWithNameStyle}"
-                                   ButtonName="Open Gametype"/>
-            <controls:ModernButton Grid.Row="2" Style="{DynamicResource ModernButtonWithNameStyle}"
-                                   ButtonName="Send to Xbox"/>
-            <controls:ModernButton Grid.Row="3" Style="{DynamicResource ModernButtonWithNameStyle}"
-                                   ButtonName="Wumbalo Home"/>
+                                   ButtonName="Save"/>
         </Grid>
     </Grid>
 </UserControl>

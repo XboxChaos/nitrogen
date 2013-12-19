@@ -111,6 +111,8 @@
       <DependentUpon>Resize.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\Dialogs\ModernMessageBoxViewModel.cs" />
+    <Compile Include="ViewModels\GameVariants\GameVariantViewModel.cs" />
+    <Compile Include="ViewModels\GameVariants\MetadataViewModel.cs" />
     <Compile Include="ViewModels\HomeViewModel.cs" />
     <Compile Include="ViewModels\Inpc.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
