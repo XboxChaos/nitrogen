@@ -4,23 +4,64 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:gtEditor="clr-namespace:Nitrogen.Wumbalo.Views.Apps.GametypeEditor"
-             xmlns:appControls="clr-namespace:Nitrogen.Wumbalo.Modern.AppControls"
              xmlns:Converters="clr-namespace:Nitrogen.Wumbalo.Converters"
-             mc:Ignorable="d" 
-             d:DesignWidth="600"
-             DataContext="{Binding General}">
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             xmlns:controls="clr-namespace:Nitrogen.Wumbalo.Modern.Controls.CustomControls"
+             mc:Ignorable="d"
+             d:DesignWidth="600">
     <UserControl.Resources>
+        <Converters:InverseBooleanConverter x:Key="InverseBooleanConverter1"/>
         <Converters:InverseBooleanToVisibilityConverter x:Key="InverseBooleanToVisibilityConverter"/>
         <Converters:InverseBooleanToVisibilityConverter x:Key="InverseBooleanConverter"/>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
     </UserControl.Resources>
+    <Grid>
+        <StackPanel>
+            <controls:ModernEditorRow Title="Teams" >
+                <CheckBox IsChecked="{Binding General.TeamsEnabled}"/>
+            </controls:ModernEditorRow>
 
-    <StackPanel>
-        <!-- name -->
-        <appControls:EditorRow
-						Title="Name" >
-            <TextBox Text="{Binding Name}" MaxLength="128"/>
-        </appControls:EditorRow>
+            <controls:ModernEditorRow Title="Round Duration">
+                <StackPanel Orientation="Horizontal">
+                    <xctk:ByteUpDown Value="{Binding General.RoundDuration}"/>
+                    <TextBlock Margin="8,0,0,0" Foreground="{DynamicResource TextblockForegroundBrush}">seconds</TextBlock>
+                </StackPanel>
+            </controls:ModernEditorRow>
 
-    </StackPanel>
+            <controls:ModernEditorRow Title="Number of Rounds" Description="Set to 0 for unlimited rounds">
+                <StackPanel>
+                    <!--<CheckBox x:Name="cbUnlimitedRounds" Margin="0,5,0,5" 
+                              Foreground="{DynamicResource TextblockForegroundBrush}">Unlimited</CheckBox>-->
+                    <StackPanel Orientation="Horizontal">
+                        <xctk:ByteUpDown Maximum="31" Value="{Binding General.NumberOfRounds}" IsEnabled="{Binding IsChecked, ElementName=cbUnlimitedRounds}"/>
+                        <TextBlock Margin="8,0,0,0" Foreground="{DynamicResource TextblockForegroundBrush}">rounds</TextBlock>
+                    </StackPanel>
+                </StackPanel>
+            </controls:ModernEditorRow>
+            
+            <controls:ModernEditorRow Title="Individual Scoring System">
+                <CheckBox IsChecked="{Binding General.PointsSystemEnabled}"/>
+            </controls:ModernEditorRow>
+            
+            <controls:ModernEditorRow Title="Final Kill Cam">
+                <CheckBox IsChecked="{Binding General.FinalKillCam}"/>
+            </controls:ModernEditorRow>
+
+            <controls:ModernEditorRow Title="Victory Mode">
+                <StackPanel Orientation="Horizontal">
+                    <ComboBox SelectedIndex="{Binding General.EarlyVictoryWinMode}" Width="150">
+                        <ComboBoxItem>Standard</ComboBoxItem>
+                        <ComboBoxItem>First to Majority</ComboBoxItem>
+                    </ComboBox>
+                </StackPanel>
+            </controls:ModernEditorRow>
+
+            <controls:ModernEditorRow Title="Overtime Duration">
+                <StackPanel Orientation="Horizontal">
+                    <xctk:ByteUpDown Value="{Binding General.OvertimeDuration}"/>
+                    <TextBlock Margin="8,0,0,0" Foreground="{DynamicResource TextblockForegroundBrush}">seconds</TextBlock>
+                </StackPanel>
+            </controls:ModernEditorRow>
+        </StackPanel>
+    </Grid>
 </UserControl>

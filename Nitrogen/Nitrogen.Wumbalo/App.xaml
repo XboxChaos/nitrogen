@@ -20,6 +20,7 @@
 				<ResourceDictionary Source="Modern\Controls\TextBlock.xaml" />
 				<ResourceDictionary Source="Modern\Controls\TextBox.xaml" />
 				<ResourceDictionary Source="Modern\Controls\ScrollBar.xaml" />
+                <ResourceDictionary Source="Modern\Controls\EditorControls.xaml" />
 			</ResourceDictionary.MergedDictionaries>
 			
 			<s:String x:Key="AppTitle">Wumbalo</s:String>

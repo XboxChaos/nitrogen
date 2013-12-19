@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:gtEditor="clr-namespace:Nitrogen.Wumbalo.Views.Apps.GametypeEditor"
-             xmlns:appControls="clr-namespace:Nitrogen.Wumbalo.Modern.AppControls"
+             xmlns:controls="clr-namespace:Nitrogen.Wumbalo.Modern.Controls.CustomControls"
              xmlns:Converters="clr-namespace:Nitrogen.Wumbalo.Converters"
              mc:Ignorable="d" 
              d:DesignWidth="600"
@@ -16,21 +16,19 @@
     </UserControl.Resources>
 
     <StackPanel>
-        <!-- name -->
-        <appControls:EditorRow
-						Title="Name" >
-            <TextBox Text="{Binding Metadata.Name}" MaxLength="128"/>
-        </appControls:EditorRow>
 
-        <!-- desc -->
-        <appControls:EditorRow
+        <controls:ModernEditorRow
+						Title="Name" >
+            <TextBox Text="{Binding Metadata.Name, FallbackValue=Untitled}" MaxLength="128"/>
+        </controls:ModernEditorRow>
+
+        <controls:ModernEditorRow
 						Title="Description"
 						Description="">
             <TextBox Text="{Binding Metadata.Description}" MaxLines="3" MaxLength="128" Height="60" ScrollViewer.VerticalScrollBarVisibility="Visible" HorizontalAlignment="Stretch" TextWrapping="Wrap"/>
-        </appControls:EditorRow>
+        </controls:ModernEditorRow>
 
-        <!-- creation info -->
-        <appControls:EditorRow
+        <controls:ModernEditorRow
 						Title="Created By"
 						Description="">
             <StackPanel>
@@ -38,36 +36,32 @@
                 <TextBlock Text="{Binding Metadata.Creator}" Foreground="{DynamicResource TextblockForegroundBrush}" Visibility="{Binding IsOriginal, Converter={StaticResource InverseBooleanToVisibilityConverter}}"/>
                 <TextBlock Text="{Binding Metadata.DateCreated, Mode=OneWay}" Foreground="{DynamicResource TextblockForegroundBrush}"/>
             </StackPanel>
-        </appControls:EditorRow>
+        </controls:ModernEditorRow>
 
-        <!-- modification info -->
-        <appControls:EditorRow
+        <controls:ModernEditorRow
 						Title="Modified By" >
             <StackPanel>
                 <TextBox Text="{Binding Metadata.Modifier}" MaxLength="16"/>
                 <TextBlock Text="{Binding Metadata.DateModified, Mode=OneWay}" Foreground="{DynamicResource TextblockForegroundBrush}"/>
             </StackPanel>
-        </appControls:EditorRow>
+        </controls:ModernEditorRow>
 
-        <!-- game engine -->
-        <appControls:EditorRow
+        <controls:ModernEditorRow
 						Title="Target Game Engine"
 						Description="">
             <TextBlock Text="{Binding Metadata.Engine, Mode=OneWay}" Foreground="{DynamicResource TextblockForegroundBrush}"/>
-        </appControls:EditorRow>
+        </controls:ModernEditorRow>
 
-        <!-- category -->
-        <appControls:EditorRow
+        <controls:ModernEditorRow
 						Title="Category"
 						Description="">
             <TextBlock Text="{Binding Metadata.Category, Mode=OneWay}" Foreground="{DynamicResource TextblockForegroundBrush}" ToolTip="{Binding CategoryLocalized, Mode=OneWay}"/>
-        </appControls:EditorRow>
+        </controls:ModernEditorRow>
 
-        <!-- variant icons -->
-        <appControls:EditorRow Visibility="{Binding Metadata.IsMegalo, Converter={StaticResource BooleanToVisibilityConverter}, Mode=OneWay}"
+        <controls:ModernEditorRow Visibility="{Binding Metadata.IsMegalo, Converter={StaticResource BooleanToVisibilityConverter}, Mode=OneWay}"
 						Title="Variant Icon"
 						Description="TODO: show a scrollable listview with each variant icon image (like in Sunburst)">
             <TextBlock Text="{Binding Metadata.Icon, Mode=OneWay}" Foreground="{DynamicResource TextblockForegroundBrush}"/>
-        </appControls:EditorRow>
+        </controls:ModernEditorRow>
     </StackPanel>
 </UserControl>

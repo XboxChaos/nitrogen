@@ -4,8 +4,8 @@ using System.Windows.Data;
 
 namespace Nitrogen.Wumbalo.Converters
 {
-	[ValueConversion(typeof(bool), typeof(Visibility))]
-	public class InverseBooleanConverter
+	[ValueConversion(typeof(bool), typeof(bool))]
+	public class InverseBooleanToVisibilityConverter
 		: IValueConverter
 	{
 		#region IValueConverter Members
@@ -13,7 +13,7 @@ namespace Nitrogen.Wumbalo.Converters
 		public object Convert (object value, Type targetType, object parameter,
 			System.Globalization.CultureInfo culture)
 		{
-			return ( !(bool) value ) ? Visibility.Visible : Visibility.Collapsed;
+			return !(bool) value;
 		}
 
 		public object ConvertBack (object value, Type targetType, object parameter,

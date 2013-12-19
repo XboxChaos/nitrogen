@@ -114,6 +114,15 @@ namespace Nitrogen.GameVariants.Base
             set { _suddenDeathDuration = value; }
         }
 
+		/// <summary>
+		/// Gets or sets the duration of each round.
+		/// </summary>
+		public byte RoundTimeLimit
+		{
+			get { return _roundTimeLimit; }
+			set { _roundTimeLimit = value; }
+		}
+
 		#region ISerializable<BitStream> Members
 
 		void ISerializable<BitStream>.SerializeObject(BitStream s)
