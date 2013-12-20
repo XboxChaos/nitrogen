@@ -79,13 +79,12 @@ namespace Nitrogen.Wumbalo.ViewModels.GameVariants
 			}
 		}
 
-
-		public int EarlyVictoryWinMode
+		public byte EarlyVictoryWinCount
 		{
-			get { return (_general.EarlyVictoryWinCount == 0) ? 0 : 1; }
+			get { return _general.EarlyVictoryWinCount; }
 			set
 			{
-				// TODO: Change the victory win count based on number of rounds
+				_general.EarlyVictoryWinCount = value;
 				OnPropertyChanged();
 			}
 		}

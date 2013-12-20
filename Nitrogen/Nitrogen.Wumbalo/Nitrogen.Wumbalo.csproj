@@ -130,6 +130,9 @@
     <Compile Include="Views\Apps\GametypeEditor\MetadataEditor.xaml.cs">
       <DependentUpon>MetadataEditor.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Apps\GametypeEditor\RespawnSettingsEditor.xaml.cs">
+      <DependentUpon>RespawnSettingsEditor.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Home.xaml.cs">
       <DependentUpon>Home.xaml</DependentUpon>
     </Compile>
@@ -223,6 +226,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Apps\GametypeEditor\MetadataEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Apps\GametypeEditor\RespawnSettingsEditor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

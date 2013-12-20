@@ -1,0 +1,73 @@
+﻿<UserControl x:Class="Nitrogen.Wumbalo.Views.Apps.GametypeEditor.RespawnSettingsEditor"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:gtEditor="clr-namespace:Nitrogen.Wumbalo.Views.Apps.GametypeEditor"
+             xmlns:Converters="clr-namespace:Nitrogen.Wumbalo.Converters"
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             xmlns:controls="clr-namespace:Nitrogen.Wumbalo.Modern.Controls.CustomControls"
+             mc:Ignorable="d"
+             d:DesignWidth="600">
+    <UserControl.Resources>
+        <Converters:InverseBooleanConverter x:Key="InverseBooleanConverter1"/>
+        <Converters:InverseBooleanToVisibilityConverter x:Key="InverseBooleanToVisibilityConverter"/>
+        <Converters:InverseBooleanToVisibilityConverter x:Key="InverseBooleanConverter"/>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+    </UserControl.Resources>
+    <Grid>
+        <StackPanel>
+            <controls:ModernEditorRow Title="Initial Respawn Time">
+                <StackPanel Orientation="Horizontal">
+                    <xctk:ByteUpDown Value="{Binding Respawn.InitialRespawnTime}"/>
+                    <TextBlock Margin="8,0,0,0" Foreground="{DynamicResource TextblockForegroundBrush}">seconds</TextBlock>
+                </StackPanel>
+            </controls:ModernEditorRow>
+
+            <controls:ModernEditorRow Title="Minimum Respawn Time" Description="Set to 0 to enable instant respawn">
+                <StackPanel Orientation="Horizontal">
+                    <xctk:ByteUpDown Value="{Binding Respawn.MinimumRespawnTime}"/>
+                    <TextBlock Margin="8,0,0,0" Foreground="{DynamicResource TextblockForegroundBrush}">seconds</TextBlock>
+                </StackPanel>
+            </controls:ModernEditorRow>
+            
+            <controls:ModernEditorRow Title="Suicide Penalty">
+                <StackPanel Orientation="Horizontal">
+                    <xctk:ByteUpDown Value="{Binding Respawn.SuicidePenalty}"/>
+                    <TextBlock Margin="8,0,0,0" Foreground="{DynamicResource TextblockForegroundBrush}">seconds</TextBlock>
+                </StackPanel>
+            </controls:ModernEditorRow>
+
+            <controls:ModernEditorRow Title="Betrayal Penalty">
+                <StackPanel Orientation="Horizontal">
+                    <xctk:ByteUpDown Value="{Binding Respawn.BetrayalPenalty}"/>
+                    <TextBlock Margin="8,0,0,0" Foreground="{DynamicResource TextblockForegroundBrush}">seconds</TextBlock>
+                </StackPanel>
+            </controls:ModernEditorRow>
+
+            <controls:ModernEditorRow Title="Respawn Time Growth" Description="Duration added to respawn time each time a player dies">
+                <StackPanel Orientation="Horizontal">
+                    <xctk:ByteUpDown Value="{Binding Respawn.RespawnTimeGrowth}" Maximum="15"/>
+                    <TextBlock Margin="8,0,0,0" Foreground="{DynamicResource TextblockForegroundBrush}">seconds</TextBlock>
+                </StackPanel>
+            </controls:ModernEditorRow>
+
+            <controls:ModernEditorRow Title="Player Lives" Description="Set to 0 for no limit">
+                <xctk:ByteUpDown Value="{Binding Respawn.Lives}" Maximum="63" HorizontalAlignment="Left"/>
+            </controls:ModernEditorRow>
+
+            <controls:ModernEditorRow Title="Team Lives" Description="Set to 0 for no limit">
+                <xctk:ByteUpDown Value="{Binding Respawn.TeamLives}" Maximum="127" HorizontalAlignment="Left"/>
+            </controls:ModernEditorRow>
+
+            <controls:ModernEditorRow Title="Sync with Team" Description="Players respawn at the same time as their teammates">
+                <CheckBox IsChecked="{Binding General.SyncWithTeam}"/>
+            </controls:ModernEditorRow>
+
+            <controls:ModernEditorRow Title="Respawn on Kills" Description="Players respawn when a teammate gets a kill">
+                <CheckBox IsChecked="{Binding General.RespawnOnKill}"/>
+            </controls:ModernEditorRow>
+
+        </StackPanel>
+    </Grid>
+</UserControl>

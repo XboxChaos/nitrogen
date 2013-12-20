@@ -137,7 +137,15 @@ namespace Nitrogen.Wumbalo.ViewModels.GameVariants
 				var builder = new StringBuilder();
 				foreach ( Language language in Enum.GetValues(typeof(Language)) )
 				{
-					builder.AppendLine(language + "\t\t" + category.Get(language));
+					if ( language == Language.Unused )
+						continue;
+
+					if ( language != Language.English )
+						builder.AppendLine();
+
+					//string langName = language == Language.SpanishMexican ? "Spanish (Mexican)" : language.ToString();
+					//builder.AppendLine(langName.PadRight(19) + category.Get(language));
+					builder.Append(category.Get(language));
 				}
 				return builder.ToString();
 			}

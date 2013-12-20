@@ -47,12 +47,10 @@
                 <CheckBox IsChecked="{Binding General.FinalKillCam}"/>
             </controls:ModernEditorRow>
 
-            <controls:ModernEditorRow Title="Victory Mode">
+            <controls:ModernEditorRow Title="Wins for an Early Victory">
                 <StackPanel Orientation="Horizontal">
-                    <ComboBox SelectedIndex="{Binding General.EarlyVictoryWinMode}" Width="150">
-                        <ComboBoxItem>Standard</ComboBoxItem>
-                        <ComboBoxItem>First to Majority</ComboBoxItem>
-                    </ComboBox>
+                    <xctk:ByteUpDown Value="{Binding General.EarlyVictoryWinCount}" Maximum="15"/>
+                    <TextBlock Margin="8,0,0,0" Foreground="{DynamicResource TextblockForegroundBrush}"> wins</TextBlock>
                 </StackPanel>
             </controls:ModernEditorRow>
 

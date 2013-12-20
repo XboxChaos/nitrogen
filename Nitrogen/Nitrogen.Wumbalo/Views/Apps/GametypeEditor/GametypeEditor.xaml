@@ -32,7 +32,7 @@
                 <gtEditor:GeneralSettingsEditor/>
             </TabItem>
             <TabItem Header="Respawn">
-                
+                <gtEditor:RespawnSettingsEditor/>
             </TabItem>
             <TabItem Header="Social"/>
             <TabItem Header="Map Overrides"/>
