@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace Nitrogen.Wumbalo.Views.Apps.GametypeEditor
 {
 	/// <summary>
-	/// Interaction logic for SocialSettingsEditor.xaml
+	/// Interaction logic for LoadoutsEditor.xaml
 	/// </summary>
-	public partial class SocialSettingsEditor : UserControl
+	public partial class LoadoutsEditor : UserControl
 	{
-		public SocialSettingsEditor ()
+		public LoadoutsEditor ()
 		{
 			InitializeComponent();
 		}

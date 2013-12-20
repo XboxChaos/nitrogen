@@ -79,6 +79,16 @@ namespace Nitrogen.Wumbalo.ViewModels.GameVariants
 			}
 		}
 
+		public bool DeathCam
+		{
+			get { return _general.DeathCamEnabled; }
+			set
+			{
+				_general.DeathCamEnabled = value;
+				OnPropertyChanged();
+			}
+		}
+
 		public byte EarlyVictoryWinCount
 		{
 			get { return _general.EarlyVictoryWinCount; }

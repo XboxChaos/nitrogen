@@ -9,6 +9,9 @@
              xmlns:controls="clr-namespace:Nitrogen.Wumbalo.Modern.Controls.CustomControls"
              mc:Ignorable="d"
              d:DesignWidth="600">
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+    </UserControl.Resources>
     <Grid>
         <StackPanel>
 
@@ -20,11 +23,11 @@
                 <CheckBox IsChecked="{Binding Social.GrenadesOnMap}"/>
             </controls:ModernEditorRow>
 
-            <controls:ModernEditorRow Title="Armor Abilities on Map">
+            <controls:ModernEditorRow Title="Armor Abilities on Map" Visibility="{Binding Metadata.IsMegalo, Converter={StaticResource BooleanToVisibilityConverter}}" >
                 <CheckBox IsChecked="{Binding Social.ArmorAbilitiesOnMap}"/>
             </controls:ModernEditorRow>
 
-            <controls:ModernEditorRow Title="Weapon Set" Description="">
+            <controls:ModernEditorRow Title="Weapon Set" Description="" Visibility="{Binding Metadata.IsMegalo, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <ComboBox SelectedIndex="{Binding MapOverrides.WeaponSet}" Width="150" HorizontalAlignment="Left">
                     <ComboBoxItem>Default</ComboBoxItem>
                     <ComboBoxItem IsEnabled="False" Visibility="Collapsed">Disabled</ComboBoxItem>
@@ -51,7 +54,7 @@
                 </ComboBox>
             </controls:ModernEditorRow>
 
-            <controls:ModernEditorRow Title="Vehicle Set" Description="">
+            <controls:ModernEditorRow Title="Vehicle Set" Description="" Visibility="{Binding Metadata.IsMegalo, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <ComboBox SelectedIndex="{Binding MapOverrides.VehicleSet}" Width="150" HorizontalAlignment="Left">
                     <ComboBoxItem>Default</ComboBoxItem>
                     <ComboBoxItem IsEnabled="False" Visibility="Collapsed">None</ComboBoxItem>
@@ -76,7 +79,25 @@
                 </ComboBox>
             </controls:ModernEditorRow>
 
-            <controls:ModernEditorRow Title="Base Player Traits"/>
+            <Grid Visibility="{Binding Metadata.IsMegalo, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="150"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="150"/>
+                    <ColumnDefinition Width="150"/>
+                    <ColumnDefinition Width="150"/>
+                    <ColumnDefinition Width="150"/>
+                </Grid.ColumnDefinitions>
+
+                <controls:ModernButton Grid.Column="0" Style="{DynamicResource ModernButtonWithNameStyle}"
+                                   ButtonName="Map Restrictions" />
+                
+                <controls:ModernButton Grid.Column="1" Style="{DynamicResource ModernButtonWithNameStyle}"
+                                   Visibility="{Binding Loadouts.MapLoadoutsEnabled, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                   ButtonName="Map Loadouts" />
+            </Grid>
+            
         </StackPanel>
     </Grid>
 </UserControl>

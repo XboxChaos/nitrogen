@@ -30,7 +30,11 @@
                     <TextBlock Margin="8,0,0,0" Foreground="{DynamicResource TextblockForegroundBrush}">seconds</TextBlock>
                 </StackPanel>
             </controls:ModernEditorRow>
-            
+
+            <controls:ModernEditorRow Title="Death Cam" Description="">
+                <CheckBox IsChecked="{Binding General.DeathCam}"/>
+            </controls:ModernEditorRow>
+
             <controls:ModernEditorRow Title="Suicide Penalty">
                 <StackPanel Orientation="Horizontal">
                     <xctk:ByteUpDown Value="{Binding Respawn.SuicidePenalty}"/>
@@ -68,7 +72,9 @@
                 <CheckBox IsChecked="{Binding General.RespawnOnKill}"/>
             </controls:ModernEditorRow>
 
-            <controls:ModernEditorRow Title="Respawn Traits"/>
+            <controls:ModernButton Width="150" Height="150" Style="{DynamicResource ModernButtonWithNameStyle}"
+                                   HorizontalAlignment="Left"
+                                   ButtonName="Respawn Traits" />
 
         </StackPanel>
     </Grid>

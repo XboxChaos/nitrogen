@@ -29,6 +29,8 @@ namespace Nitrogen.Wumbalo.ViewModels.GameVariants
 			Respawn = new RespawnSettingsViewModel(_variant);
 			Social = new SocialSettingsViewModel(_variant);
 			MapOverrides = new MapOverridesViewModel(_variant);
+			Loadouts = new LoadoutSettingsViewModel(_variant);
+			Ordnance = new OrdnanceSettingsViewModel(_variant);
 		}
 
 		/// <summary>
@@ -71,6 +73,24 @@ namespace Nitrogen.Wumbalo.ViewModels.GameVariants
 		/// Gets or sets the map overrides view model.
 		/// </summary>
 		public MapOverridesViewModel MapOverrides
+		{
+			get { return Get(); }
+			set { Set(value); }
+		}
+
+		/// <summary>
+		/// Gets or sets the loadout settings view model.
+		/// </summary>
+		public LoadoutSettingsViewModel Loadouts
+		{
+			get { return Get(); }
+			set { Set(value); }
+		}
+
+		/// <summary>
+		/// Gets or sets the ordnance settings view model.
+		/// </summary>
+		public OrdnanceSettingsViewModel Ordnance
 		{
 			get { return Get(); }
 			set { Set(value); }

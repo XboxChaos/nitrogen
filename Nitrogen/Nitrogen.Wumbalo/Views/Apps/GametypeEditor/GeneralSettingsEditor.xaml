@@ -21,6 +21,14 @@
                 <CheckBox IsChecked="{Binding General.TeamsEnabled}"/>
             </controls:ModernEditorRow>
 
+            <controls:ModernEditorRow Title="Team Changing" Description="">
+                <ComboBox SelectedIndex="{Binding Social.TeamChanging}" Width="150" HorizontalAlignment="Left">
+                    <ComboBoxItem>Disabled</ComboBoxItem>
+                    <ComboBoxItem>Enabled</ComboBoxItem>
+                    <ComboBoxItem>Balancing Only</ComboBoxItem>
+                </ComboBox>
+            </controls:ModernEditorRow>
+
             <controls:ModernEditorRow Title="Round Duration">
                 <StackPanel Orientation="Horizontal">
                     <xctk:ByteUpDown Value="{Binding General.RoundDuration}"/>
@@ -59,6 +67,26 @@
                     <xctk:ByteUpDown Value="{Binding General.OvertimeDuration}"/>
                     <TextBlock Margin="8,0,0,0" Foreground="{DynamicResource TextblockForegroundBrush}">seconds</TextBlock>
                 </StackPanel>
+            </controls:ModernEditorRow>
+
+            <controls:ModernEditorRow Title="Friendly Fire">
+                <CheckBox IsChecked="{Binding Social.FriendlyFire}"/>
+            </controls:ModernEditorRow>
+
+            <controls:ModernEditorRow Title="Betrayal Booting">
+                <CheckBox IsChecked="{Binding Social.BetrayalBooting}"/>
+            </controls:ModernEditorRow>
+
+            <controls:ModernEditorRow Title="Proximity Voice" Description="Hear nearby enemy players">
+                <CheckBox IsChecked="{Binding Social.EnemyVoice}"/>
+            </controls:ModernEditorRow>
+
+            <!--<controls:ModernEditorRow Title="Dead Player Voice" Description="">
+                <CheckBox IsChecked="{Binding Social.DeadPlayerVoice}"/>
+            </controls:ModernEditorRow>-->
+
+            <controls:ModernEditorRow Title="Open Game Chat" Description="Everyone can hear each other regardless of which team they belong to">
+                <CheckBox IsChecked="{Binding Social.OpenVoiceChannel}"/>
             </controls:ModernEditorRow>
         </StackPanel>
     </Grid>

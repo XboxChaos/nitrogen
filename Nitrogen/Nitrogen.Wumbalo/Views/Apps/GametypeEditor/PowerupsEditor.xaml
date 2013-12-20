@@ -1,0 +1,39 @@
+﻿<UserControl x:Class="Nitrogen.Wumbalo.Views.Apps.GametypeEditor.PowerupsEditor"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:gtEditor="clr-namespace:Nitrogen.Wumbalo.Views.Apps.GametypeEditor"
+             xmlns:Converters="clr-namespace:Nitrogen.Wumbalo.Converters"
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             xmlns:controls="clr-namespace:Nitrogen.Wumbalo.Modern.Controls.CustomControls"
+             mc:Ignorable="d" d:DesignWidth="800">
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+    </UserControl.Resources>
+    <StackPanel>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="150"/>
+                <RowDefinition Height="150"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="150"/>
+                <ColumnDefinition Width="150"/>
+                <ColumnDefinition Width="150"/>
+            </Grid.ColumnDefinitions>
+
+            <controls:ModernButton Grid.Column="0" Style="{DynamicResource ModernButtonWithNameStyle}"
+                                   ButtonName="Damage Boost" />
+
+            <controls:ModernButton Grid.Column="1" Style="{DynamicResource ModernButtonWithNameStyle}"
+                                   ButtonName="Speed Boost" />
+
+            <controls:ModernButton Grid.Column="2" Style="{DynamicResource ModernButtonWithNameStyle}"
+                                   ButtonName="Overshield" />
+
+            <controls:ModernButton Grid.Column="0" Grid.Row="1" Style="{DynamicResource ModernButtonWithNameStyle}"
+                                   ButtonName="Custom" />
+        </Grid>
+    </StackPanel>
+</UserControl>

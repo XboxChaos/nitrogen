@@ -46,21 +46,22 @@
             </StackPanel>
         </controls:ModernEditorRow>
 
+        <!--
         <controls:ModernEditorRow
 						Title="Target Game Engine"
 						Description="">
             <TextBlock Text="{Binding Metadata.Engine, Mode=OneWay}" Foreground="{DynamicResource TextblockForegroundBrush}"/>
-        </controls:ModernEditorRow>
+        </controls:ModernEditorRow>-->
 
         <controls:ModernEditorRow
 						Title="Category"
-						Description="">
+						Description="Modifying the script will automatically place this gametype under ''Community''">
             <TextBlock Text="{Binding Metadata.Category, Mode=OneWay}" Foreground="{DynamicResource TextblockForegroundBrush}" ToolTip="{Binding Metadata.CategoryLocalized, Mode=OneWay}"/>
         </controls:ModernEditorRow>
 
         <controls:ModernEditorRow Visibility="{Binding Metadata.IsMegalo, Converter={StaticResource BooleanToVisibilityConverter}, Mode=OneWay}"
-						Title="Variant Icon"
-						Description="TODO: show a scrollable listview with each variant icon image (like in Sunburst)">
+						Title="Variant Icon" Description="">
+            <!-- TODO: show scrollable image list box -->
             <TextBlock Text="{Binding Metadata.Icon, Mode=OneWay}" Foreground="{DynamicResource TextblockForegroundBrush}"/>
         </controls:ModernEditorRow>
     </StackPanel>
