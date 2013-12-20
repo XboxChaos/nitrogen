@@ -116,8 +116,10 @@
     <Compile Include="ViewModels\Dialogs\ModernMessageBoxViewModel.cs" />
     <Compile Include="ViewModels\GameVariants\GameVariantViewModel.cs" />
     <Compile Include="ViewModels\GameVariants\GeneralSettingsViewModel.cs" />
+    <Compile Include="ViewModels\GameVariants\MapOverridesViewModel.cs" />
     <Compile Include="ViewModels\GameVariants\MetadataViewModel.cs" />
     <Compile Include="ViewModels\GameVariants\RespawnSettingsViewModel.cs" />
+    <Compile Include="ViewModels\GameVariants\SocialSettingsViewModel.cs" />
     <Compile Include="ViewModels\HomeViewModel.cs" />
     <Compile Include="ViewModels\Inpc.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
@@ -127,11 +129,17 @@
     <Compile Include="Views\Apps\GametypeEditor\GeneralSettingsEditor.xaml.cs">
       <DependentUpon>GeneralSettingsEditor.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Apps\GametypeEditor\MapOverridesEditor.xaml.cs">
+      <DependentUpon>MapOverridesEditor.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Apps\GametypeEditor\MetadataEditor.xaml.cs">
       <DependentUpon>MetadataEditor.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Apps\GametypeEditor\RespawnSettingsEditor.xaml.cs">
       <DependentUpon>RespawnSettingsEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Apps\GametypeEditor\SocialSettingsEditor.xaml.cs">
+      <DependentUpon>SocialSettingsEditor.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Home.xaml.cs">
       <DependentUpon>Home.xaml</DependentUpon>
@@ -225,11 +233,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Apps\GametypeEditor\MapOverridesEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Apps\GametypeEditor\MetadataEditor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Apps\GametypeEditor\RespawnSettingsEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Apps\GametypeEditor\SocialSettingsEditor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

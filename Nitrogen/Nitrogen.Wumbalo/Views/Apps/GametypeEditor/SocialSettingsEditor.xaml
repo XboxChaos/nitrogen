@@ -1,0 +1,44 @@
+﻿<UserControl x:Class="Nitrogen.Wumbalo.Views.Apps.GametypeEditor.SocialSettingsEditor"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:gtEditor="clr-namespace:Nitrogen.Wumbalo.Views.Apps.GametypeEditor"
+             xmlns:Converters="clr-namespace:Nitrogen.Wumbalo.Converters"
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             xmlns:controls="clr-namespace:Nitrogen.Wumbalo.Modern.Controls.CustomControls"
+             mc:Ignorable="d"
+             d:DesignWidth="600">
+    <Grid>
+        <StackPanel>
+
+            <controls:ModernEditorRow Title="Team Changing" Description="">
+                <ComboBox SelectedIndex="{Binding Social.TeamChanging}" Width="150" HorizontalAlignment="Left">
+                    <ComboBoxItem>Disabled</ComboBoxItem>
+                    <ComboBoxItem>Enabled</ComboBoxItem>
+                    <ComboBoxItem>Balancing Only</ComboBoxItem>
+                </ComboBox>
+            </controls:ModernEditorRow>
+
+            <controls:ModernEditorRow Title="Friendly Fire">
+                <CheckBox IsChecked="{Binding Social.FriendlyFire}"/>
+            </controls:ModernEditorRow>
+
+            <controls:ModernEditorRow Title="Betrayal Booting">
+                <CheckBox IsChecked="{Binding Social.BetrayalBooting}"/>
+            </controls:ModernEditorRow>
+
+            <controls:ModernEditorRow Title="Proximity Voice" Description="Hear nearby enemy players">
+                <CheckBox IsChecked="{Binding Social.EnemyVoice}"/>
+            </controls:ModernEditorRow>
+
+            <controls:ModernEditorRow Title="Dead Player Voice" Description="Hear the whines of your victims as you teabag their corpse (and vice-versa)">
+                <CheckBox IsChecked="{Binding Social.DeadPlayerVoice}"/>
+            </controls:ModernEditorRow>
+
+            <controls:ModernEditorRow Title="Open Game Chat" Description="Everyone in the match can hear each other">
+                <CheckBox IsChecked="{Binding Social.OpenVoiceChannel}"/>
+            </controls:ModernEditorRow>
+        </StackPanel>
+    </Grid>
+</UserControl>

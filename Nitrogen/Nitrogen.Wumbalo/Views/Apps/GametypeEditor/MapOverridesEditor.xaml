@@ -1,0 +1,82 @@
+﻿<UserControl x:Class="Nitrogen.Wumbalo.Views.Apps.GametypeEditor.MapOverridesEditor"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:gtEditor="clr-namespace:Nitrogen.Wumbalo.Views.Apps.GametypeEditor"
+             xmlns:Converters="clr-namespace:Nitrogen.Wumbalo.Converters"
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             xmlns:controls="clr-namespace:Nitrogen.Wumbalo.Modern.Controls.CustomControls"
+             mc:Ignorable="d"
+             d:DesignWidth="600">
+    <Grid>
+        <StackPanel>
+
+            <controls:ModernEditorRow Title="Indestructible Vehicles">
+                <CheckBox IsChecked="{Binding Social.IndestructibleVehicles}"/>
+            </controls:ModernEditorRow>
+
+            <controls:ModernEditorRow Title="Grenades on Map">
+                <CheckBox IsChecked="{Binding Social.GrenadesOnMap}"/>
+            </controls:ModernEditorRow>
+
+            <controls:ModernEditorRow Title="Armor Abilities on Map">
+                <CheckBox IsChecked="{Binding Social.ArmorAbilitiesOnMap}"/>
+            </controls:ModernEditorRow>
+
+            <controls:ModernEditorRow Title="Weapon Set" Description="">
+                <ComboBox SelectedIndex="{Binding MapOverrides.WeaponSet}" Width="150" HorizontalAlignment="Left">
+                    <ComboBoxItem>Default</ComboBoxItem>
+                    <ComboBoxItem IsEnabled="False" Visibility="Collapsed">Disabled</ComboBoxItem>
+                    <ComboBoxItem>Human</ComboBoxItem>
+                    <ComboBoxItem>Covenant</ComboBoxItem>
+                    <ComboBoxItem>Forerunner</ComboBoxItem>
+                    <ComboBoxItem>Snipers</ComboBoxItem>
+                    <ComboBoxItem>No Snipers</ComboBoxItem>
+                    <ComboBoxItem>Rockets</ComboBoxItem>
+                    <ComboBoxItem>No Power Weapons</ComboBoxItem>
+                    <ComboBoxItem IsEnabled="False" Visibility="Collapsed">Juggernaut</ComboBoxItem>
+                    <ComboBoxItem>Slayer Pro</ComboBoxItem>
+                    <ComboBoxItem>Rifles</ComboBoxItem>
+                    <ComboBoxItem>Mid-Range</ComboBoxItem>
+                    <ComboBoxItem>Long-Range</ComboBoxItem>
+                    <ComboBoxItem>Sniper Rifle</ComboBoxItem>
+                    <ComboBoxItem>Melee Weapons</ComboBoxItem>
+                    <ComboBoxItem>Swords</ComboBoxItem>
+                    <ComboBoxItem>Hammers</ComboBoxItem>
+                    <ComboBoxItem>WMD's</ComboBoxItem>
+                    <ComboBoxItem>No Weapons</ComboBoxItem>
+                    <ComboBoxItem>Power Weapons</ComboBoxItem>
+                    <ComboBoxItem IsEnabled="False" Visibility="Collapsed">Spartan Ops</ComboBoxItem>
+                </ComboBox>
+            </controls:ModernEditorRow>
+
+            <controls:ModernEditorRow Title="Vehicle Set" Description="">
+                <ComboBox SelectedIndex="{Binding MapOverrides.VehicleSet}" Width="150" HorizontalAlignment="Left">
+                    <ComboBoxItem>Default</ComboBoxItem>
+                    <ComboBoxItem IsEnabled="False" Visibility="Collapsed">None</ComboBoxItem>
+                    <ComboBoxItem>All Vehicles</ComboBoxItem>
+                    <ComboBoxItem>Mongooses</ComboBoxItem>
+                    <ComboBoxItem>Warthogs</ComboBoxItem>
+                    <ComboBoxItem>Light Ground</ComboBoxItem>
+                    <ComboBoxItem>Tanks</ComboBoxItem>
+                    <ComboBoxItem>Aircraft</ComboBoxItem>
+                    <ComboBoxItem>Mantis</ComboBoxItem>
+                    <ComboBoxItem>Human</ComboBoxItem>
+                    <ComboBoxItem>Covenant</ComboBoxItem>
+                    <ComboBoxItem>No Human</ComboBoxItem>
+                    <ComboBoxItem>No Covenant</ComboBoxItem>
+                    <ComboBoxItem>No Light Ground</ComboBoxItem>
+                    <ComboBoxItem>No Tanks</ComboBoxItem>
+                    <ComboBoxItem>No Aircraft</ComboBoxItem>
+                    <ComboBoxItem>No Mantis</ComboBoxItem>
+                    <ComboBoxItem>No Heavy Vehicles</ComboBoxItem>
+                    <ComboBoxItem>No Vehicles</ComboBoxItem>
+                    <ComboBoxItem>Mongooses Only</ComboBoxItem>
+                </ComboBox>
+            </controls:ModernEditorRow>
+
+            <controls:ModernEditorRow Title="Base Player Traits"/>
+        </StackPanel>
+    </Grid>
+</UserControl>

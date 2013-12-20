@@ -34,8 +34,12 @@
             <TabItem Header="Respawn">
                 <gtEditor:RespawnSettingsEditor/>
             </TabItem>
-            <TabItem Header="Social"/>
-            <TabItem Header="Map Overrides"/>
+            <TabItem Header="Social">
+                <gtEditor:SocialSettingsEditor/>
+            </TabItem>
+            <TabItem Header="Map Overrides">
+                <gtEditor:MapOverridesEditor/>
+            </TabItem>
             <TabItem Header="Powerups"/>
             <TabItem Header="Loadouts"/>
             <TabItem Header="Ordnance"/>

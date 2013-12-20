@@ -27,6 +27,8 @@ namespace Nitrogen.Wumbalo.ViewModels.GameVariants
 			Metadata = new MetadataViewModel(_variant);
 			General = new GeneralSettingsViewModel(_variant);
 			Respawn = new RespawnSettingsViewModel(_variant);
+			Social = new SocialSettingsViewModel(_variant);
+			MapOverrides = new MapOverridesViewModel(_variant);
 		}
 
 		/// <summary>
@@ -51,6 +53,24 @@ namespace Nitrogen.Wumbalo.ViewModels.GameVariants
 		/// Gets or sets the respawn settings view model.
 		/// </summary>
 		public RespawnSettingsViewModel Respawn
+		{
+			get { return Get(); }
+			set { Set(value); }
+		}
+
+		/// <summary>
+		/// Gets or sets the social settings view model.
+		/// </summary>
+		public SocialSettingsViewModel Social
+		{
+			get { return Get(); }
+			set { Set(value); }
+		}
+
+		/// <summary>
+		/// Gets or sets the map overrides view model.
+		/// </summary>
+		public MapOverridesViewModel MapOverrides
 		{
 			get { return Get(); }
 			set { Set(value); }

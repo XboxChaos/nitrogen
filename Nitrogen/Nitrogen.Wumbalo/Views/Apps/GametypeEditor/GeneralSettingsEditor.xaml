@@ -47,7 +47,7 @@
                 <CheckBox IsChecked="{Binding General.FinalKillCam}"/>
             </controls:ModernEditorRow>
 
-            <controls:ModernEditorRow Title="Wins for an Early Victory">
+            <controls:ModernEditorRow Title="Wins for an Early Victory" Description="Set to 0 to suppress an early victory">
                 <StackPanel Orientation="Horizontal">
                     <xctk:ByteUpDown Value="{Binding General.EarlyVictoryWinCount}" Maximum="15"/>
                     <TextBlock Margin="8,0,0,0" Foreground="{DynamicResource TextblockForegroundBrush}"> wins</TextBlock>
