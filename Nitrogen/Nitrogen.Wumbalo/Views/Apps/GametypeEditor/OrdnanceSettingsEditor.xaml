@@ -41,7 +41,7 @@
                 </StackPanel>
             </controls:ModernEditorRow>
 
-            <controls:ModernEditorRow Title="Initial Drop Label">
+            <controls:ModernEditorRow Title="Initial Drop Label" Description="Initial ordnance will land on all objects with this label">
                 <TextBox MaxLength="16" Text="{Binding Ordnance.InitialDropLabel}" HorizontalAlignment="Left" Width="200" TextChanged="TextBox_TextChanged"/>
             </controls:ModernEditorRow>
 

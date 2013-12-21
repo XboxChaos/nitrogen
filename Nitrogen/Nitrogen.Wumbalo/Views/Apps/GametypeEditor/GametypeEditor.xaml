@@ -31,9 +31,6 @@
             <TabItem Header="General">
                 <gtEditor:GeneralSettingsEditor/>
             </TabItem>
-            <TabItem Header="Base Traits">
-                <gtEditor:TraitsEditor IsRespawnTraits="False" UseRuntimeTemplate="False"/>
-            </TabItem>
             <TabItem Header="Respawn">
                 <gtEditor:RespawnSettingsEditor/>
             </TabItem>
@@ -49,7 +46,12 @@
             <TabItem Header="Ordnance" Visibility="{Binding Metadata.IsMegalo, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <gtEditor:OrdnanceSettingsEditor/>
             </TabItem>
-            <TabItem Header="Teams" Visibility="{Binding Metadata.IsMegalo, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+            <TabItem Header="Teams" Visibility="{Binding Metadata.IsMegalo, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <gtEditor:TeamsEditor/>
+            </TabItem>
+            <TabItem Header="Traits" Visibility="{Binding Metadata.IsMegalo, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <gtEditor:CustomTraitsEditor/>
+            </TabItem>
         </TabControl>
 
         <Grid Grid.Row="0" Grid.RowSpan="2" Grid.Column="1">

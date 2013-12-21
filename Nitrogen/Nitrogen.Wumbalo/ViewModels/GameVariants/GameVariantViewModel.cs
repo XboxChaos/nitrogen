@@ -31,6 +31,7 @@ namespace Nitrogen.Wumbalo.ViewModels.GameVariants
 			MapOverrides = new MapOverridesViewModel(_variant);
 			Loadouts = new LoadoutSettingsViewModel(_variant);
 			Ordnance = new OrdnanceSettingsViewModel(_variant);
+			Teams = new TeamsViewModel(_variant);
 		}
 
 		/// <summary>
@@ -91,6 +92,15 @@ namespace Nitrogen.Wumbalo.ViewModels.GameVariants
 		/// Gets or sets the ordnance settings view model.
 		/// </summary>
 		public OrdnanceSettingsViewModel Ordnance
+		{
+			get { return Get(); }
+			set { Set(value); }
+		}
+
+		/// <summary>
+		/// Gets or sets the team settings view model.
+		/// </summary>
+		public TeamsViewModel Teams
 		{
 			get { return Get(); }
 			set { Set(value); }

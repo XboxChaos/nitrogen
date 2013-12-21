@@ -53,6 +53,30 @@ namespace Nitrogen.GameVariants.Base
 			}
 		}
 
+		public bool OverridePrimaryColor
+		{
+			get { return _overridePrimary; }
+			set { _overridePrimary = value; }
+		}
+
+		public bool OverrideSecondaryColor
+		{
+			get { return _overrideSecondary; }
+			set { _overrideSecondary = value; }
+		}
+
+		public Color PrimaryColor
+		{
+			get { return _primaryColor; }
+			set { _primaryColor = value; }
+		}
+
+		public Color SecondaryColor
+		{
+			get { return _secondaryColor; }
+			set { _secondaryColor = value; }
+		}
+
 		#region ISerializable<BitStream> Members
 
 		void ISerializable<BitStream>.SerializeObject (BitStream s)

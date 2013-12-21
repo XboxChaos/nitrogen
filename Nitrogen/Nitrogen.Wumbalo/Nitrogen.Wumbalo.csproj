@@ -123,9 +123,13 @@
     <Compile Include="ViewModels\GameVariants\OrdnanceSettingsViewModel.cs" />
     <Compile Include="ViewModels\GameVariants\RespawnSettingsViewModel.cs" />
     <Compile Include="ViewModels\GameVariants\SocialSettingsViewModel.cs" />
+    <Compile Include="ViewModels\GameVariants\TeamsViewModel.cs" />
     <Compile Include="ViewModels\HomeViewModel.cs" />
     <Compile Include="ViewModels\Inpc.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="Views\Apps\GametypeEditor\CustomTraitsEditor.xaml.cs">
+      <DependentUpon>CustomTraitsEditor.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Apps\GametypeEditor\GametypeEditor.xaml.cs">
       <DependentUpon>GametypeEditor.xaml</DependentUpon>
     </Compile>
@@ -149,6 +153,9 @@
     </Compile>
     <Compile Include="Views\Apps\GametypeEditor\RespawnSettingsEditor.xaml.cs">
       <DependentUpon>RespawnSettingsEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Apps\GametypeEditor\TeamsEditor.xaml.cs">
+      <DependentUpon>TeamsEditor.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Apps\GametypeEditor\TraitsEditor.xaml.cs">
       <DependentUpon>TraitsEditor.xaml</DependentUpon>
@@ -237,6 +244,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Apps\GametypeEditor\CustomTraitsEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Apps\GametypeEditor\GametypeEditor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -266,6 +277,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Apps\GametypeEditor\RespawnSettingsEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Apps\GametypeEditor\TeamsEditor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
