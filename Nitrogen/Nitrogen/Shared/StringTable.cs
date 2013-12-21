@@ -142,6 +142,7 @@ namespace Nitrogen.Shared
 			}
 
 			// Extract strings from the table.
+			_table.Clear();
 			var tableStream = new MemoryStream(uncompressedData);
 			using ( var tableReader = new System.IO.BinaryReader(tableStream) )
 			{
