@@ -38,3 +38,4 @@ Nitrogen is licensed under GPLv3. The full license text is available in the LICE
 ####other contributors;
 + TJ ([ThunderWaffle](http://github.com/ThunderWaffle))
 + The [XboxChaos](http://xboxchaos.com) Community
++ SK Crisis for the team emblems
