@@ -23,7 +23,7 @@
                 <CheckBox IsChecked="{Binding Social.GrenadesOnMap}"/>
             </controls:ModernEditorRow>
 
-            <controls:ModernEditorRow Title="Armor Abilities on Map" Visibility="{Binding Metadata.IsMegalo, Converter={StaticResource BooleanToVisibilityConverter}}" >
+            <controls:ModernEditorRow Title="Armor Abilities on Map">
                 <CheckBox IsChecked="{Binding Social.ArmorAbilitiesOnMap}"/>
             </controls:ModernEditorRow>
 
