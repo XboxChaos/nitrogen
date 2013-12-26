@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="Nitrogen.Wumbalo.Views.Apps.GametypeEditor.TeamsEditor"
+﻿<UserControl x:Class="Nitrogen.Wumbalo.Views.Apps.GametypeEditor.TeamSettingsEditor"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -21,35 +21,43 @@
         </Grid.ColumnDefinitions>
 
         <controls:ModernButton Grid.Row="0" Grid.Column="0" Style="{DynamicResource ModernButtonWithNameStyle}"
-                               Background="{Binding Teams.Team0Color, Mode=OneWay}"
-                               ButtonName="{Binding Teams.Team0DisplayName, Mode=OneWay}" />
+                               Background="{Binding Teams.Team0.PrimaryColor, Mode=OneWay}"
+                               ButtonName="{Binding Teams.Team0.DisplayName, Mode=OneWay}">
+            <Image Stretch="UniformToFill" Source="{Binding Teams.Team0.Emblem}"/>
+        </controls:ModernButton>
 
         <controls:ModernButton Grid.Row="0" Grid.Column="1" Style="{DynamicResource ModernButtonWithNameStyle}"
-                               Background="{Binding Teams.Team1Color, Mode=OneWay}"
-                               ButtonName="{Binding Teams.Team1DisplayName, Mode=OneWay}" />
+                               Background="{Binding Teams.Team1.PrimaryColor, Mode=OneWay}"
+                               ButtonName="{Binding Teams.Team1.DisplayName, Mode=OneWay}">
+            <Image Stretch="UniformToFill">
+                <Image.OpacityMask>
+                    <ImageBrush/>
+                </Image.OpacityMask>
+            </Image>
+        </controls:ModernButton>
 
         <controls:ModernButton Grid.Row="0" Grid.Column="2" Style="{DynamicResource ModernButtonWithNameStyle}"
-                               Background="{Binding Teams.Team2Color, Mode=OneWay}"
-                               ButtonName="{Binding Teams.Team2DisplayName, Mode=OneWay}" />
+                               Background="{Binding Teams.Team2.PrimaryColor, Mode=OneWay}"
+                               ButtonName="{Binding Teams.Team2.DisplayName, Mode=OneWay}" />
 
         <controls:ModernButton Grid.Row="1" Grid.Column="0" Style="{DynamicResource ModernButtonWithNameStyle}"
-                               Background="{Binding Teams.Team3Color, Mode=OneWay}"
-                               ButtonName="{Binding Teams.Team3DisplayName, Mode=OneWay}" />
+                               Background="{Binding Teams.Team3.PrimaryColor, Mode=OneWay}"
+                               ButtonName="{Binding Teams.Team3.DisplayName, Mode=OneWay}" />
 
         <controls:ModernButton Grid.Row="1" Grid.Column="1" Style="{DynamicResource ModernButtonWithNameStyle}"
-                               Background="{Binding Teams.Team4Color, Mode=OneWay}"
-                               ButtonName="{Binding Teams.Team4DisplayName, Mode=OneWay}" />
+                               Background="{Binding Teams.Team4.PrimaryColor, Mode=OneWay}"
+                               ButtonName="{Binding Teams.Team4.DisplayName, Mode=OneWay}" />
 
         <controls:ModernButton Grid.Row="1" Grid.Column="2" Style="{DynamicResource ModernButtonWithNameStyle}"
-                               Background="{Binding Teams.Team5Color, Mode=OneWay}"
-                               ButtonName="{Binding Teams.Team5DisplayName, Mode=OneWay}" />
+                               Background="{Binding Teams.Team5.PrimaryColor, Mode=OneWay}"
+                               ButtonName="{Binding Teams.Team5.DisplayName, Mode=OneWay}" />
 
         <controls:ModernButton Grid.Row="2" Grid.Column="0" Style="{DynamicResource ModernButtonWithNameStyle}"
-                               Background="{Binding Teams.Team6Color, Mode=OneWay}"
-                               ButtonName="{Binding Teams.Team6DisplayName, Mode=OneWay}" />
+                               Background="{Binding Teams.Team6.PrimaryColor, Mode=OneWay}"
+                               ButtonName="{Binding Teams.Team6.DisplayName, Mode=OneWay}" />
 
         <controls:ModernButton Grid.Row="2" Grid.Column="1" Style="{DynamicResource ModernButtonWithNameStyle}"
-                               Background="{Binding Teams.Team7Color, Mode=OneWay}"
-                               ButtonName="{Binding Teams.Team7DisplayName, Mode=OneWay}" />
+                               Background="{Binding Teams.Team7.PrimaryColor, Mode=OneWay}"
+                               ButtonName="{Binding Teams.Team7.DisplayName, Mode=OneWay}" />
     </Grid>
 </UserControl>

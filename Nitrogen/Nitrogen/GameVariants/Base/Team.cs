@@ -53,6 +53,16 @@ namespace Nitrogen.GameVariants.Base
 			}
 		}
 
+		public TeamEmblem Emblem
+		{
+			get { return _emblem; }
+			set
+			{
+				Contract.Requires<ArgumentNullException>(value != null);
+				_emblem = value;
+			}
+		}
+
 		public bool OverridePrimaryColor
 		{
 			get { return _overridePrimary; }
@@ -65,6 +75,18 @@ namespace Nitrogen.GameVariants.Base
 			set { _overrideSecondary = value; }
 		}
 
+		public bool OverrideUIColor
+		{
+			get { return _overrideUI; }
+			set { _overrideUI = value; }
+		}
+
+		public bool OverrideTextColor
+		{
+			get { return _overrideText; }
+			set { _overrideText = value; }
+		}
+
 		public Color PrimaryColor
 		{
 			get { return _primaryColor; }
@@ -75,6 +97,34 @@ namespace Nitrogen.GameVariants.Base
 		{
 			get { return _secondaryColor; }
 			set { _secondaryColor = value; }
+		}
+
+		public Color UIColor
+		{
+			get { return _uiColor; }
+			set { _uiColor = value; }
+		}
+
+		public Color TextColor
+		{
+			get { return _textColor; }
+			set { _textColor = value; }
+		}
+
+		public bool IsEnabled
+		{
+			get { return _isEnabled; }
+			set { _isEnabled = value; }
+		}
+
+		public byte DesginatorId
+		{
+			get { return _index; }
+			set
+			{
+				Contract.Requires<ArgumentOutOfRangeException>(value <= 15);
+				_index = value;
+			}
 		}
 
 		#region ISerializable<BitStream> Members

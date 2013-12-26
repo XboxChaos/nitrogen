@@ -47,7 +47,7 @@
                 <gtEditor:OrdnanceSettingsEditor/>
             </TabItem>
             <TabItem Header="Teams" Visibility="{Binding Metadata.IsMegalo, Converter={StaticResource BooleanToVisibilityConverter}}">
-                <gtEditor:TeamsEditor/>
+                <gtEditor:TeamSettingsEditor/>
             </TabItem>
             <TabItem Header="Traits" Visibility="{Binding Metadata.IsMegalo, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <gtEditor:CustomTraitsEditor/>
@@ -61,13 +61,38 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="150"/>
                 <RowDefinition Height="150"/>
-                <RowDefinition Height="150"/>
+                <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
             <controls:ModernButton Grid.Row="0" Style="{DynamicResource ModernButtonWithNameStyle}"
 				ButtonName="New"/>
             <controls:ModernButton Grid.Row="1" Style="{DynamicResource ModernButtonWithNameStyle}"
 				ButtonName="Save"/>
+
+            <Grid Grid.Row="2" Margin="0,150,0,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="75"/>
+                    <RowDefinition Height="75"/>
+                    <RowDefinition Height="75"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="75"/>
+                    <ColumnDefinition Width="75"/>
+                </Grid.ColumnDefinitions>
+
+                <controls:ModernButton Grid.Column="0" Grid.Row="0" Style="{DynamicResource ModernButtonWithNameStyle}"
+                                       ButtonName="Traits" />
+                <controls:ModernButton Grid.Column="1" Grid.Row="0" Style="{DynamicResource ModernButtonWithNameStyle}"
+                                       ButtonName="Options" />
+                <controls:ModernButton Grid.Column="0" Grid.Row="1" Style="{DynamicResource ModernButtonWithNameStyle}"
+                                       ButtonName="Strings" />
+                <controls:ModernButton Grid.Column="1" Grid.Row="1" Style="{DynamicResource ModernButtonWithNameStyle}"
+                                       ButtonName="Stats" />
+                <controls:ModernButton Grid.Column="0" Grid.Row="2" Style="{DynamicResource ModernButtonWithNameStyle}"
+                                       ButtonName="Events" />
+                <controls:ModernButton Grid.Column="1" Grid.Row="2" Style="{DynamicResource ModernButtonWithNameStyle}"
+                                       ButtonName="Filters" />
+            </Grid>
         </Grid>
     </Grid>
 </UserControl>

@@ -110,7 +110,8 @@
     <Compile Include="ViewModels\GameVariants\OrdnanceSettingsViewModel.cs" />
     <Compile Include="ViewModels\GameVariants\RespawnSettingsViewModel.cs" />
     <Compile Include="ViewModels\GameVariants\SocialSettingsViewModel.cs" />
-    <Compile Include="ViewModels\GameVariants\TeamsViewModel.cs" />
+    <Compile Include="ViewModels\GameVariants\TeamSettingsViewModel.cs" />
+    <Compile Include="ViewModels\GameVariants\TeamViewModel.cs" />
     <Compile Include="ViewModels\HomeViewModel.cs" />
     <Compile Include="ViewModels\Inpc.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
@@ -141,8 +142,8 @@
     <Compile Include="Views\Apps\GametypeEditor\RespawnSettingsEditor.xaml.cs">
       <DependentUpon>RespawnSettingsEditor.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Apps\GametypeEditor\TeamsEditor.xaml.cs">
-      <DependentUpon>TeamsEditor.xaml</DependentUpon>
+    <Compile Include="Views\Apps\GametypeEditor\TeamSettingsEditor.xaml.cs">
+      <DependentUpon>TeamSettingsEditor.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Apps\GametypeEditor\TraitsEditor.xaml.cs">
       <DependentUpon>TraitsEditor.xaml</DependentUpon>
@@ -267,7 +268,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Apps\GametypeEditor\TeamsEditor.xaml">
+    <Page Include="Views\Apps\GametypeEditor\TeamSettingsEditor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -308,7 +309,9 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Effects\" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Nitrogen\Nitrogen.csproj">
       <Project>{8445eaa1-bdc9-47f4-bb77-469d3e3105dd}</Project>

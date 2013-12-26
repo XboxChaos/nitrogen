@@ -119,8 +119,6 @@
     <Compile Include="Enums\ArmorEffect.cs" />
     <Compile Include="Enums\ArmorMod.cs" />
     <Compile Include="Enums\ComparisonType.cs" />
-    <Compile Include="Enums\EmblemBackground.cs" />
-    <Compile Include="Enums\EmblemForeground.cs" />
     <Compile Include="Enums\EmblemColor.cs" />
     <Compile Include="Enums\GrenadeCount.cs" />
     <Compile Include="Enums\HudVisibility.cs" />

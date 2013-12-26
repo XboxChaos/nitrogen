@@ -21,36 +21,22 @@ namespace Nitrogen.GameVariants.Base
 			_secondaryColor,
 			_bgColor;
 
-		public bool BackgroundToggle
-		{
-			get { return _backgroundToggle; }
-			set { _backgroundToggle = value; }
-		}
-
 		public bool ForegroundToggle
 		{
 			get { return _foregroundToggle; }
 			set { _foregroundToggle = value; }
 		}
 
-		public EmblemForeground Foreground
+		public byte Foreground
 		{
-			get { return (EmblemForeground) _foreground; }
-			set
-			{
-				Contract.Requires(value.IsDefined());
-				_foreground = (byte) value;
-			}
+			get { return _foreground; }
+			set { _foreground = value; }
 		}
 
-		public EmblemBackground Background
+		public byte Background
 		{
-			get { return (EmblemBackground) _background; }
-			set
-			{
-				Contract.Requires(value.IsDefined());
-				_background = (byte) value;
-			}
+			get { return _foreground; }
+			set { _foreground = value; }
 		}
 
 		public EmblemColor PrimaryColor
