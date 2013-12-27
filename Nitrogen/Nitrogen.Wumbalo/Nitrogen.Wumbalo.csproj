@@ -38,6 +38,8 @@
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
     <UseVSHostingProcess>false</UseVSHostingProcess>
   </PropertyGroup>
+  <PropertyGroup />
+  <PropertyGroup />
   <ItemGroup>
     <Reference Include="Microsoft.Expression.Drawing, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -147,6 +149,9 @@
     </Compile>
     <Compile Include="Views\Apps\GametypeEditor\TraitsEditor.xaml.cs">
       <DependentUpon>TraitsEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Apps\GametypeEditor\WeaponTuningEditor.xaml.cs">
+      <DependentUpon>WeaponTuningEditor.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Home.xaml.cs">
       <DependentUpon>Home.xaml</DependentUpon>
@@ -276,6 +281,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Apps\GametypeEditor\WeaponTuningEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Home.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -309,9 +318,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Effects\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Nitrogen\Nitrogen.csproj">
       <Project>{8445eaa1-bdc9-47f4-bb77-469d3e3105dd}</Project>
@@ -319,299 +326,979 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\0_recruit_1.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\0_recruit_2.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\100_corbulo_1.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\100_corbulo_2.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\101_prime_1.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\101_prime_2.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\102_unicorn_1.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\102_unicorn_2.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\103_falcon_1.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\103_falcon_2.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\104_bonebreaker_1.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\104_bonebreaker_2.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\105_assassin_1.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\105_assassin_2.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\106_bulletproof_1.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\106_bulletproof_2.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\107_spartan_1.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\107_spartan_2.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\108_mjolnir_1.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\108_mjolnir_2.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\109_teamred_1.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\109_teamred_2.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\10_drone_1.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\10_drone_2.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\110_teamblue_1.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\110_teamblue_2.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\111_teamgold_1.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\111_teamgold_2.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\112_teamgreen_1.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\112_teamgreen_2.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\113_teamlime_1.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\113_teamlime_2.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\114_teampurple_1.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\114_teampurple_2.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\115_teamorange_1.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\115_teamorange_2.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\116_teamcyan_1.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\116_teamcyan_2.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\11_atomic_1.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\11_atomic_2.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\12_grunt_1.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\12_grunt_2.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\13_dogtags_1.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\13_dogtags_2.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\14_yinyang_1.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\14_yinyang_2.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\15_nocamping_1.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\15_nocamping_2.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\16_radioact_1.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\16_radioact_2.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\17_crosshairs_1.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\17_crosshairs_2.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\18_anchor_1.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\18_anchor_2.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\19_runes_1.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\19_runes_2.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\1_tomcat_1.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\1_tomcat_2.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\20_coned_1.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\20_coned_2.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\21_flameninja_1.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\21_flameninja_2.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\22_stuck_1.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\22_stuck_2.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\23_halt_1.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\23_halt_2.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\24_spider_1.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\24_spider_2.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\25_flamehorns_1.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\25_flamehorns_2.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\26_wolf_1.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\26_wolf_2.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\27_valkyrie_1.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\27_valkyrie_2.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\28_sparthelmet_1.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\28_sparthelmet_2.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\29_pirate_1.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\29_pirate_2.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\2_triad_1.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\2_triad_2.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\30_snake_1.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\30_snake_2.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\31_headshot_1.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\31_headshot_2.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\32_skullking_1.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\32_skullking_2.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\33_spartan_1.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\33_spartan_2.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\34_horse_1.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\34_horse_2.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\35_swords_1.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\35_swords_2.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\36_helmet_1.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\36_helmet_2.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\37_jollyrog_1.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\37_jollyrog_2.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\38_spartleague_1.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\38_spartleague_2.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\39_rankup_1.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\39_rankup_2.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\3_bearclaw_1.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\3_bearclaw_2.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\40_wetworks_1.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\40_wetworks_2.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\41_stealth_1.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\41_stealth_2.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\42_ontarget_1.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\42_ontarget_2.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\43_bee_1.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\43_bee_2.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\44_operator_1.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\44_operator_2.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\45_winged_1.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\45_winged_2.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\46_anchored_1.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\46_anchored_2.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\47_hogtire_1.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\47_hogtire_2.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\48_pioneer_1.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\48_pioneer_2.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\49_arrow_1.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\49_arrow_2.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\4_wasp_1.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\4_wasp_2.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\50_compass_1.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\50_compass_2.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\51_missile_1.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\51_missile_2.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\52_pathfinder_1.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\52_pathfinder_2.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\53_lens_1.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\53_lens_2.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\54_grid_1.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\54_grid_2.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\55_reconbot_1.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\55_reconbot_2.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\56_engineer_1.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\56_engineer_2.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\57_screw_1.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\57_screw_2.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\58_wrench_1.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\58_wrench_2.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\59_network_1.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\59_network_2.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\5_campfire_1.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\5_campfire_2.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\60_rogue_1.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\60_rogue_2.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\61_muzzled_1.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\61_muzzled_2.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\62_patch_1.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\62_patch_2.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\63_avian_1.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\63_avian_2.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\64_tracker_1.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\64_tracker_2.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\65_planetary_1.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\65_planetary_2.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\66_trail_1.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\66_trail_2.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\67_celestial_1.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\67_celestial_2.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\68_stalker_1.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\68_stalker_2.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\69_foxed_1.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\69_foxed_2.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\6_cupodeath_1.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\6_cupodeath_2.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\70_evilstare_1.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\70_evilstare_2.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\71_eye_1.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\71_eye_2.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\72_mastery_1.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\72_mastery_2.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\73_projectile_1.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\73_projectile_2.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\74_energy_1.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\74_energy_2.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\75_hardlight_1.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\75_hardlight_2.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\76_splatter_1.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\76_splatter_2.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\77_covenant_1.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\77_covenant_2.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\78_promethean_1.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\78_promethean_2.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\79_vehicular_1.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\79_vehicular_2.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\7_rooster_1.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\7_rooster_2.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\80_117_1.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\80_117_2.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\81_ordnance_1.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\81_ordnance_2.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\82_slayer_1.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\82_slayer_2.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\83_kingslayer_1.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\83_kingslayer_2.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\84_flag_1.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\84_flag_2.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\85_extracted_1.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\85_extracted_2.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\86_hill_1.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\86_hill_2.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\87_baller_1.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\87_baller_2.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\88_infected_1.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\88_infected_2.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\89_dominated_1.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\89_dominated_2.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\8_bulltrue_1.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\8_bulltrue_2.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\90_onshield_1.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\90_onshield_2.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\91_raider_1.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\91_raider_2.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\92_distort_1.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\92_distort_2.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\93_wiseguy_1.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\93_wiseguy_2.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\94_1kclub_1.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\94_1kclub_2.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\95_laso_1.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\95_laso_2.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\96_overach_1.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\96_overach_2.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\97_oni_1.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\97_oni_2.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\98_guilty_1.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\98_guilty_2.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\99_flyingcolors_1.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\99_flyingcolors_2.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\9_leo_1.png" />
-    <EmbeddedResource Include="Assets\Images\ForegroundEmblems\9_leo_2.png" />
+    <Content Include="Assets\Images\ForegroundEmblems\0_recruit_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\0_recruit_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\100_corbulo_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\100_corbulo_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\101_prime_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\101_prime_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\102_unicorn_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\102_unicorn_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\103_falcon_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\103_falcon_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\104_bonebreaker_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\104_bonebreaker_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\105_assassin_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\105_assassin_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\106_bulletproof_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\106_bulletproof_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\107_spartan_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\107_spartan_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\108_mjolnir_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\108_mjolnir_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\109_teamred_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\109_teamred_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\10_drone_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\10_drone_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\110_teamblue_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\110_teamblue_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\111_teamgold_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\111_teamgold_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\112_teamgreen_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\112_teamgreen_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\113_teamlime_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\113_teamlime_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\114_teampurple_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\114_teampurple_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\115_teamorange_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\115_teamorange_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\116_teamcyan_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\116_teamcyan_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\11_atomic_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\11_atomic_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\12_grunt_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\12_grunt_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\13_dogtags_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\13_dogtags_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\14_yinyang_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\14_yinyang_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\15_nocamping_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\15_nocamping_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\16_radioact_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\16_radioact_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\17_crosshairs_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\17_crosshairs_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\18_anchor_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\18_anchor_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\19_runes_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\19_runes_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\1_tomcat_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\1_tomcat_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\20_coned_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\20_coned_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\21_flameninja_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\21_flameninja_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\22_stuck_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\22_stuck_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\23_halt_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\23_halt_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\24_spider_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\24_spider_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\25_flamehorns_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\25_flamehorns_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\26_wolf_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\26_wolf_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\27_valkyrie_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\27_valkyrie_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\28_sparthelmet_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\28_sparthelmet_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\29_pirate_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\29_pirate_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\2_triad_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\2_triad_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\30_snake_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\30_snake_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\31_headshot_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\31_headshot_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\32_skullking_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\32_skullking_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\33_spartan_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\33_spartan_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\34_horse_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\34_horse_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\35_swords_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\35_swords_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\36_helmet_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\36_helmet_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\37_jollyrog_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\37_jollyrog_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\38_spartleague_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\38_spartleague_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\39_rankup_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\39_rankup_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\3_bearclaw_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\3_bearclaw_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\40_wetworks_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\40_wetworks_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\41_stealth_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\41_stealth_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\42_ontarget_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\42_ontarget_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\43_bee_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\43_bee_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\44_operator_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\44_operator_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\45_winged_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\45_winged_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\46_anchored_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\46_anchored_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\47_hogtire_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\47_hogtire_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\48_pioneer_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\48_pioneer_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\49_arrow_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\49_arrow_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\4_wasp_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\4_wasp_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\50_compass_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\50_compass_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\51_missile_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\51_missile_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\52_pathfinder_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\52_pathfinder_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\53_lens_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\53_lens_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\54_grid_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\54_grid_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\55_reconbot_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\55_reconbot_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\56_engineer_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\56_engineer_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\57_screw_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\57_screw_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\58_wrench_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\58_wrench_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\59_network_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\59_network_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\5_campfire_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\5_campfire_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\60_rogue_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\60_rogue_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\61_muzzled_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\61_muzzled_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\62_patch_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\62_patch_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\63_avian_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\63_avian_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\64_tracker_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\64_tracker_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\65_planetary_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\65_planetary_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\66_trail_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\66_trail_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\67_celestial_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\67_celestial_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\68_stalker_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\68_stalker_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\69_foxed_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\69_foxed_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\6_cupodeath_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\6_cupodeath_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\70_evilstare_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\70_evilstare_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\71_eye_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\71_eye_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\72_mastery_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\72_mastery_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\73_projectile_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\73_projectile_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\74_energy_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\74_energy_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\75_hardlight_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\75_hardlight_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\76_splatter_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\76_splatter_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\77_covenant_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\77_covenant_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\78_promethean_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\78_promethean_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\79_vehicular_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\79_vehicular_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\7_rooster_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\7_rooster_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\80_117_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\80_117_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\81_ordnance_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\81_ordnance_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\82_slayer_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\82_slayer_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\83_kingslayer_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\83_kingslayer_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\84_flag_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\84_flag_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\85_extracted_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\85_extracted_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\86_hill_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\86_hill_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\87_baller_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\87_baller_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\88_infected_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\88_infected_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\89_dominated_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\89_dominated_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\8_bulltrue_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\8_bulltrue_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\90_onshield_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\90_onshield_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\91_raider_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\91_raider_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\92_distort_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\92_distort_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\93_wiseguy_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\93_wiseguy_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\94_1kclub_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\94_1kclub_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\95_laso_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\95_laso_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\96_overach_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\96_overach_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\97_oni_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\97_oni_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\98_guilty_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\98_guilty_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\99_flyingcolors_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\99_flyingcolors_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\9_leo_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\ForegroundEmblems\9_leo_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Assets\Images\BackgroundEmblems\10_saw.png" />
-    <EmbeddedResource Include="Assets\Images\BackgroundEmblems\11_star.png" />
-    <EmbeddedResource Include="Assets\Images\BackgroundEmblems\12_hat.png" />
-    <EmbeddedResource Include="Assets\Images\BackgroundEmblems\13_4diamonds.png" />
-    <EmbeddedResource Include="Assets\Images\BackgroundEmblems\14_sun.png" />
-    <EmbeddedResource Include="Assets\Images\BackgroundEmblems\15_hexagon.png" />
-    <EmbeddedResource Include="Assets\Images\BackgroundEmblems\16_chalice.png" />
-    <EmbeddedResource Include="Assets\Images\BackgroundEmblems\17_cog.png" />
-    <EmbeddedResource Include="Assets\Images\BackgroundEmblems\18_octagon.png" />
-    <EmbeddedResource Include="Assets\Images\BackgroundEmblems\19_crown.png" />
-    <EmbeddedResource Include="Assets\Images\BackgroundEmblems\1_circle.png" />
-    <EmbeddedResource Include="Assets\Images\BackgroundEmblems\20_cancel.png" />
-    <EmbeddedResource Include="Assets\Images\BackgroundEmblems\21_horizstripes.png" />
-    <EmbeddedResource Include="Assets\Images\BackgroundEmblems\22_gradient.png" />
-    <EmbeddedResource Include="Assets\Images\BackgroundEmblems\23_horizgradient.png" />
-    <EmbeddedResource Include="Assets\Images\BackgroundEmblems\24_oval.png" />
-    <EmbeddedResource Include="Assets\Images\BackgroundEmblems\25_vertoval.png" />
-    <EmbeddedResource Include="Assets\Images\BackgroundEmblems\26_bluntdiamnd.png" />
-    <EmbeddedResource Include="Assets\Images\BackgroundEmblems\27_tallbluntdiamnd.png" />
-    <EmbeddedResource Include="Assets\Images\BackgroundEmblems\28_asterisk.png" />
-    <EmbeddedResource Include="Assets\Images\BackgroundEmblems\29_shield.png" />
-    <EmbeddedResource Include="Assets\Images\BackgroundEmblems\2_diamond.png" />
-    <EmbeddedResource Include="Assets\Images\BackgroundEmblems\30_ballofire.png" />
-    <EmbeddedResource Include="Assets\Images\BackgroundEmblems\31_movingup.png" />
-    <EmbeddedResource Include="Assets\Images\BackgroundEmblems\32_doused.png" />
-    <EmbeddedResource Include="Assets\Images\BackgroundEmblems\33_operated.png" />
-    <EmbeddedResource Include="Assets\Images\BackgroundEmblems\34_pie.png" />
-    <EmbeddedResource Include="Assets\Images\BackgroundEmblems\35_astar.png" />
-    <EmbeddedResource Include="Assets\Images\BackgroundEmblems\36_engineered.png" />
-    <EmbeddedResource Include="Assets\Images\BackgroundEmblems\37_rogue.png" />
-    <EmbeddedResource Include="Assets\Images\BackgroundEmblems\38_foundyou.png" />
-    <EmbeddedResource Include="Assets\Images\BackgroundEmblems\39_stalkyou.png" />
-    <EmbeddedResource Include="Assets\Images\BackgroundEmblems\3_plus.png" />
-    <EmbeddedResource Include="Assets\Images\BackgroundEmblems\40_maximum.png" />
-    <EmbeddedResource Include="Assets\Images\BackgroundEmblems\41_live.png" />
-    <EmbeddedResource Include="Assets\Images\BackgroundEmblems\42_limited.png" />
-    <EmbeddedResource Include="Assets\Images\BackgroundEmblems\43_fotus.png" />
-    <EmbeddedResource Include="Assets\Images\BackgroundEmblems\44_structure.png" />
-    <EmbeddedResource Include="Assets\Images\BackgroundEmblems\45_vortex.png" />
-    <EmbeddedResource Include="Assets\Images\BackgroundEmblems\46_chevron.png" />
-    <EmbeddedResource Include="Assets\Images\BackgroundEmblems\47_angles.png" />
-    <EmbeddedResource Include="Assets\Images\BackgroundEmblems\48_panels.png" />
-    <EmbeddedResource Include="Assets\Images\BackgroundEmblems\49_power.png" />
-    <EmbeddedResource Include="Assets\Images\BackgroundEmblems\4_square.png" />
-    <EmbeddedResource Include="Assets\Images\BackgroundEmblems\50_teamred.png" />
-    <EmbeddedResource Include="Assets\Images\BackgroundEmblems\51_teamblue.png" />
-    <EmbeddedResource Include="Assets\Images\BackgroundEmblems\52_teamgold.png" />
-    <EmbeddedResource Include="Assets\Images\BackgroundEmblems\53_teamgreen.png" />
-    <EmbeddedResource Include="Assets\Images\BackgroundEmblems\54_teampurple.png" />
-    <EmbeddedResource Include="Assets\Images\BackgroundEmblems\55_teamlime.png" />
-    <EmbeddedResource Include="Assets\Images\BackgroundEmblems\56_teamorange.png" />
-    <EmbeddedResource Include="Assets\Images\BackgroundEmblems\57_teamcyan.png" />
-    <EmbeddedResource Include="Assets\Images\BackgroundEmblems\5_triangle.png" />
-    <EmbeddedResource Include="Assets\Images\BackgroundEmblems\6_vertstripe.png" />
-    <EmbeddedResource Include="Assets\Images\BackgroundEmblems\7_horizstripe.png" />
-    <EmbeddedResource Include="Assets\Images\BackgroundEmblems\8_cleft.png" />
-    <EmbeddedResource Include="Assets\Images\BackgroundEmblems\9_crisscross.png" />
+    <Content Include="Assets\Images\BackgroundEmblems\10_saw.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\BackgroundEmblems\11_star.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\BackgroundEmblems\12_hat.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\BackgroundEmblems\13_4diamonds.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\BackgroundEmblems\14_sun.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\BackgroundEmblems\15_hexagon.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\BackgroundEmblems\16_chalice.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\BackgroundEmblems\17_cog.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\BackgroundEmblems\18_octagon.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\BackgroundEmblems\19_crown.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\BackgroundEmblems\1_circle.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\BackgroundEmblems\20_cancel.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\BackgroundEmblems\21_horizstripes.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\BackgroundEmblems\22_gradient.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\BackgroundEmblems\23_horizgradient.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\BackgroundEmblems\24_oval.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\BackgroundEmblems\25_vertoval.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\BackgroundEmblems\26_bluntdiamnd.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\BackgroundEmblems\27_tallbluntdiamnd.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\BackgroundEmblems\28_asterisk.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\BackgroundEmblems\29_shield.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\BackgroundEmblems\2_diamond.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\BackgroundEmblems\30_ballofire.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\BackgroundEmblems\31_movingup.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\BackgroundEmblems\32_doused.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\BackgroundEmblems\33_operated.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\BackgroundEmblems\34_pie.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\BackgroundEmblems\35_astar.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\BackgroundEmblems\36_engineered.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\BackgroundEmblems\37_rogue.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\BackgroundEmblems\38_foundyou.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\BackgroundEmblems\39_stalkyou.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\BackgroundEmblems\3_plus.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\BackgroundEmblems\40_maximum.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\BackgroundEmblems\41_live.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\BackgroundEmblems\42_limited.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\BackgroundEmblems\43_fotus.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\BackgroundEmblems\44_structure.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\BackgroundEmblems\45_vortex.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\BackgroundEmblems\46_chevron.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\BackgroundEmblems\47_angles.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\BackgroundEmblems\48_panels.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\BackgroundEmblems\49_power.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\BackgroundEmblems\4_square.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\BackgroundEmblems\50_teamred.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\BackgroundEmblems\51_teamblue.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\BackgroundEmblems\52_teamgold.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\BackgroundEmblems\53_teamgreen.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\BackgroundEmblems\54_teampurple.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\BackgroundEmblems\55_teamlime.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\BackgroundEmblems\56_teamorange.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\BackgroundEmblems\57_teamcyan.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\BackgroundEmblems\5_triangle.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\BackgroundEmblems\6_vertstripe.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\BackgroundEmblems\7_horizstripe.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\BackgroundEmblems\8_cleft.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\BackgroundEmblems\9_crisscross.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\Images\Weapons\assault-rifle.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\Weapons\banshee.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\Weapons\battle-rifle.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\Weapons\beam-rifle.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\Weapons\binary-rifle.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\Weapons\boltshot.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\Weapons\concussion-rifle.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\Weapons\covenant-carbine.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\Weapons\dmr.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\Weapons\fuel-rod.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\Weapons\ghost.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\Weapons\incineration-cannon.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\Weapons\lightrifle.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\Weapons\magnum.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\Weapons\mantis.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\Weapons\needler.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\Weapons\plasma-pistol.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\Weapons\railgun.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\Weapons\rocket-launcher.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\Weapons\saw.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\Weapons\scattershot.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\Weapons\scorpion.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\Weapons\shotgun.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\Weapons\sniper-rifle.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\Weapons\spartan-laser.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\Weapons\sticky-detonator.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\Weapons\storm-rifle.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\Weapons\suppressor.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\Weapons\warthog-gauss.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\Weapons\warthog-rocket.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\Weapons\warthog.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Images\Weapons\wraith.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Expression\Blend\.NETFramework\v4.5\Microsoft.Expression.Blend.WPF.targets" />

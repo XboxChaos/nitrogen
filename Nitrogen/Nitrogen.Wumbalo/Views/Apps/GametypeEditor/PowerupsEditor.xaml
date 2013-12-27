@@ -15,9 +15,9 @@
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="150"/>
-                <RowDefinition Height="150"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="150"/>
                 <ColumnDefinition Width="150"/>
                 <ColumnDefinition Width="150"/>
                 <ColumnDefinition Width="150"/>
@@ -32,7 +32,7 @@
             <controls:ModernButton Grid.Column="2" Style="{DynamicResource ModernButtonWithNameStyle}"
                                    ButtonName="Overshield" />
 
-            <controls:ModernButton Grid.Column="0" Grid.Row="1" Style="{DynamicResource ModernButtonWithNameStyle}"
+            <controls:ModernButton Grid.Column="3" Grid.Row="0" Style="{DynamicResource ModernButtonWithNameStyle}"
                                    ButtonName="Custom" />
         </Grid>
     </StackPanel>

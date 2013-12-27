@@ -1,0 +1,220 @@
+﻿<UserControl x:Class="Nitrogen.Wumbalo.Views.Apps.GametypeEditor.WeaponTuningEditor"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:gtEditor="clr-namespace:Nitrogen.Wumbalo.Views.Apps.GametypeEditor"
+             xmlns:Converters="clr-namespace:Nitrogen.Wumbalo.Converters"
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             xmlns:controls="clr-namespace:Nitrogen.Wumbalo.Modern.Controls.CustomControls"
+             mc:Ignorable="d" d:DesignWidth="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="75"/>
+            <RowDefinition Height="75"/>
+            <RowDefinition Height="75"/>
+            <RowDefinition Height="75"/>
+            <RowDefinition Height="75"/>
+            <RowDefinition Height="75"/>
+            <RowDefinition Height="75"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="75"/>
+            <ColumnDefinition Width="75"/>
+            <ColumnDefinition Width="75"/>
+            <ColumnDefinition Width="75"/>
+            <ColumnDefinition Width="75"/>
+            <ColumnDefinition Width="75"/>
+            <ColumnDefinition Width="75"/>
+            <ColumnDefinition Width="75"/>
+        </Grid.ColumnDefinitions>
+
+        <controls:ModernButton Grid.Column="0" Grid.Row="0" Style="{DynamicResource ModernButtonWithNameStyle}" >
+            <controls:ModernButton.Background>
+                <SolidColorBrush Color="#FF343434"/>
+            </controls:ModernButton.Background>
+            <Image Source="/Assets/Images/Weapons/assault-rifle.png" Stretch="Uniform" RenderOptions.BitmapScalingMode="HighQuality"/>
+        </controls:ModernButton>
+        <controls:ModernButton Grid.Column="1" Grid.Row="0" Style="{DynamicResource ModernButtonWithNameStyle}">
+            <controls:ModernButton.Background>
+                <SolidColorBrush Color="#FF343434"/>
+            </controls:ModernButton.Background>
+            <Image Source="/Assets/Images/Weapons/magnum.png" Stretch="Uniform" RenderOptions.BitmapScalingMode="HighQuality"/>
+        </controls:ModernButton>
+        <controls:ModernButton Grid.Column="2" Grid.Row="0" Style="{DynamicResource ModernButtonWithNameStyle}">
+            <controls:ModernButton.Background>
+                <SolidColorBrush Color="#FF343434"/>
+            </controls:ModernButton.Background>
+            <Image Source="/Assets/Images/Weapons/dmr.png" Stretch="Uniform" RenderOptions.BitmapScalingMode="HighQuality"/>
+        </controls:ModernButton>
+        <controls:ModernButton Grid.Column="3" Grid.Row="0" Style="{DynamicResource ModernButtonWithNameStyle}">
+        <controls:ModernButton.Background>
+            <SolidColorBrush Color="#FF343434"/>
+        </controls:ModernButton.Background>
+        <Image Source="/Assets/Images/Weapons/battle-rifle.png" Stretch="Uniform" RenderOptions.BitmapScalingMode="HighQuality"/>
+        </controls:ModernButton>
+        <controls:ModernButton Grid.Column="4" Grid.Row="0" Style="{DynamicResource ModernButtonWithNameStyle}">
+            <controls:ModernButton.Background>
+                <SolidColorBrush Color="#FF343434"/>
+            </controls:ModernButton.Background>
+            <Image Source="/Assets/Images/Weapons/railgun.png" Stretch="Uniform" RenderOptions.BitmapScalingMode="HighQuality"/>
+        </controls:ModernButton>
+        <controls:ModernButton Grid.Column="5" Grid.Row="0" Style="{DynamicResource ModernButtonWithNameStyle}">
+            <controls:ModernButton.Background>
+                <SolidColorBrush Color="#FF343434"/>
+            </controls:ModernButton.Background>
+            <Image Source="/Assets/Images/Weapons/rocket-launcher.png" Stretch="Uniform" RenderOptions.BitmapScalingMode="HighQuality"/>
+        </controls:ModernButton>
+        <controls:ModernButton Grid.Column="6" Grid.Row="0" Style="{DynamicResource ModernButtonWithNameStyle}">
+            <controls:ModernButton.Background>
+                <SolidColorBrush Color="#FF343434"/>
+            </controls:ModernButton.Background>
+            <Image Source="/Assets/Images/Weapons/saw.png" Stretch="Uniform" RenderOptions.BitmapScalingMode="HighQuality"/>
+        </controls:ModernButton>
+        <controls:ModernButton Grid.Column="7" Grid.Row="0" Style="{DynamicResource ModernButtonWithNameStyle}">
+            <controls:ModernButton.Background>
+                <SolidColorBrush Color="#FF343434"/>
+            </controls:ModernButton.Background>
+            <Image Source="/Assets/Images/Weapons/shotgun.png" Stretch="Uniform" RenderOptions.BitmapScalingMode="HighQuality"/>
+        </controls:ModernButton>
+
+        <controls:ModernButton Grid.Column="0" Grid.Row="1" Style="{DynamicResource ModernButtonWithNameStyle}">
+            <controls:ModernButton.Background>
+                <SolidColorBrush Color="#FF343434"/>
+            </controls:ModernButton.Background>
+            <Image Source="/Assets/Images/Weapons/sniper-rifle.png" Stretch="Uniform" RenderOptions.BitmapScalingMode="HighQuality"/>
+        </controls:ModernButton>
+        <controls:ModernButton Grid.Column="1" Grid.Row="1" Style="{DynamicResource ModernButtonWithNameStyle}">
+            <controls:ModernButton.Background>
+                <SolidColorBrush Color="#FF343434"/>
+            </controls:ModernButton.Background>
+            <Image Source="/Assets/Images/Weapons/sticky-detonator.png" Stretch="Uniform" RenderOptions.BitmapScalingMode="HighQuality"/>
+        </controls:ModernButton>
+        <controls:ModernButton Grid.Column="2" Grid.Row="1" Style="{DynamicResource ModernButtonWithNameStyle}">
+            <controls:ModernButton.Background>
+                <SolidColorBrush Color="#FF343434"/>
+            </controls:ModernButton.Background>
+            <Image Source="/Assets/Images/Weapons/spartan-laser.png" Stretch="Uniform" RenderOptions.BitmapScalingMode="HighQuality"/>
+        </controls:ModernButton>
+        <controls:ModernButton Grid.Column="3" Grid.Row="1" Style="{DynamicResource ModernButtonWithNameStyle}">
+            <controls:ModernButton.Background>
+                <SolidColorBrush Color="#FF343434"/>
+            </controls:ModernButton.Background>
+            <Image Source="/Assets/Images/Weapons/beam-rifle.png" Stretch="Uniform" RenderOptions.BitmapScalingMode="HighQuality"/>
+        </controls:ModernButton>
+        <controls:ModernButton Grid.Column="4" Grid.Row="1" Style="{DynamicResource ModernButtonWithNameStyle}">
+            <controls:ModernButton.Background>
+                <SolidColorBrush Color="#FF343434"/>
+            </controls:ModernButton.Background>
+            <Image Source="/Assets/Images/Weapons/concussion-rifle.png" Stretch="Uniform" RenderOptions.BitmapScalingMode="HighQuality"/>
+        </controls:ModernButton>
+        <controls:ModernButton Grid.Column="5" Grid.Row="1" Style="{DynamicResource ModernButtonWithNameStyle}">
+            <controls:ModernButton.Background>
+                <SolidColorBrush Color="#FF343434"/>
+            </controls:ModernButton.Background>
+            <Image Source="/Assets/Images/Weapons/fuel-rod.png" Stretch="Uniform" RenderOptions.BitmapScalingMode="HighQuality"/>
+        </controls:ModernButton>
+        <controls:ModernButton Grid.Column="6" Grid.Row="1" Style="{DynamicResource ModernButtonWithNameStyle}">
+            <controls:ModernButton.Background>
+                <SolidColorBrush Color="#FF343434"/>
+            </controls:ModernButton.Background>
+            <Image Source="/Assets/Images/Weapons/needler.png" Stretch="Uniform" RenderOptions.BitmapScalingMode="HighQuality"/>
+        </controls:ModernButton>
+        <controls:ModernButton Grid.Column="7" Grid.Row="1" Style="{DynamicResource ModernButtonWithNameStyle}">
+            <controls:ModernButton.Background>
+                <SolidColorBrush Color="#FF343434"/>
+            </controls:ModernButton.Background>
+            <Image Source="/Assets/Images/Weapons/plasma-pistol.png" Stretch="Uniform" RenderOptions.BitmapScalingMode="HighQuality"/>
+        </controls:ModernButton>
+
+        <controls:ModernButton Grid.Column="0" Grid.Row="2" Style="{DynamicResource ModernButtonWithNameStyle}">
+            <controls:ModernButton.Background>
+                <SolidColorBrush Color="#FF343434"/>
+            </controls:ModernButton.Background>
+            <Image Source="/Assets/Images/Weapons/storm-rifle.png" Stretch="Uniform" RenderOptions.BitmapScalingMode="HighQuality"/>
+        </controls:ModernButton>
+        <controls:ModernButton Grid.Column="1" Grid.Row="2" Style="{DynamicResource ModernButtonWithNameStyle}">
+            <controls:ModernButton.Background>
+                <SolidColorBrush Color="#FF343434"/>
+            </controls:ModernButton.Background>
+            <Image Source="/Assets/Images/Weapons/binary-rifle.png" Stretch="Uniform" RenderOptions.BitmapScalingMode="HighQuality"/>
+        </controls:ModernButton>
+        <controls:ModernButton Grid.Column="2" Grid.Row="2" Style="{DynamicResource ModernButtonWithNameStyle}">
+            <controls:ModernButton.Background>
+                <SolidColorBrush Color="#FF343434"/>
+            </controls:ModernButton.Background>
+            <Image Source="/Assets/Images/Weapons/boltshot.png" Stretch="Uniform" RenderOptions.BitmapScalingMode="HighQuality"/>
+        </controls:ModernButton>
+        <controls:ModernButton Grid.Column="3" Grid.Row="2" Style="{DynamicResource ModernButtonWithNameStyle}">
+            <controls:ModernButton.Background>
+                <SolidColorBrush Color="#FF343434"/>
+            </controls:ModernButton.Background>
+            <Image Source="/Assets/Images/Weapons/incineration-cannon.png" Stretch="Uniform" RenderOptions.BitmapScalingMode="HighQuality"/>
+        </controls:ModernButton>
+        <controls:ModernButton Grid.Column="4" Grid.Row="2" Style="{DynamicResource ModernButtonWithNameStyle}">
+            <controls:ModernButton.Background>
+                <SolidColorBrush Color="#FF343434"/>
+            </controls:ModernButton.Background>
+            <Image Source="/Assets/Images/Weapons/lightrifle.png" Stretch="Uniform" RenderOptions.BitmapScalingMode="HighQuality"/>
+        </controls:ModernButton>
+        <controls:ModernButton Grid.Column="5" Grid.Row="2" Style="{DynamicResource ModernButtonWithNameStyle}">
+            <controls:ModernButton.Background>
+                <SolidColorBrush Color="#FF343434"/>
+            </controls:ModernButton.Background>
+            <Image Source="/Assets/Images/Weapons/scattershot.png" Stretch="Uniform" RenderOptions.BitmapScalingMode="HighQuality"/>
+        </controls:ModernButton>
+        <controls:ModernButton Grid.Column="6" Grid.Row="2" Style="{DynamicResource ModernButtonWithNameStyle}">
+            <controls:ModernButton.Background>
+                <SolidColorBrush Color="#FF343434"/>
+            </controls:ModernButton.Background>
+            <Image Source="/Assets/Images/Weapons/suppressor.png" Stretch="Uniform" RenderOptions.BitmapScalingMode="HighQuality"/>
+        </controls:ModernButton>
+        <controls:ModernButton Grid.Column="7" Grid.Row="2" Style="{DynamicResource ModernButtonWithNameStyle}"> <!-- flagnum -->
+            <controls:ModernButton.Background>
+                <SolidColorBrush Color="#FF343434"/>
+            </controls:ModernButton.Background>
+        </controls:ModernButton> 
+
+        <controls:ModernButton Grid.Column="0" Grid.Row="4" Style="{DynamicResource ModernButtonWithNameStyle}"> <!-- autoturret -->
+            <controls:ModernButton.Background>
+                <SolidColorBrush Color="#FF343434"/>
+            </controls:ModernButton.Background>
+        </controls:ModernButton> 
+        <controls:ModernButton Grid.Column="1" Grid.Row="4" Style="{DynamicResource ModernButtonWithNameStyle}">
+            <controls:ModernButton.Background>
+                <SolidColorBrush Color="#FF343434"/>
+            </controls:ModernButton.Background>
+            <Image Source="/Assets/Images/Weapons/warthog.png" Stretch="Uniform" RenderOptions.BitmapScalingMode="HighQuality"/>
+        </controls:ModernButton>
+        <controls:ModernButton Grid.Column="2" Grid.Row="4" Style="{DynamicResource ModernButtonWithNameStyle}">
+            <controls:ModernButton.Background>
+                <SolidColorBrush Color="#FF343434"/>
+            </controls:ModernButton.Background>
+            <Image Source="/Assets/Images/Weapons/mantis.png" Stretch="Uniform" RenderOptions.BitmapScalingMode="HighQuality"/>
+        </controls:ModernButton>
+        <controls:ModernButton Grid.Column="3" Grid.Row="4" Style="{DynamicResource ModernButtonWithNameStyle}">
+            <controls:ModernButton.Background>
+                <SolidColorBrush Color="#FF343434"/>
+            </controls:ModernButton.Background>
+            <Image Source="/Assets/Images/Weapons/scorpion.png" Stretch="Uniform" RenderOptions.BitmapScalingMode="HighQuality"/>
+        </controls:ModernButton>
+        <controls:ModernButton Grid.Column="4" Grid.Row="4" Style="{DynamicResource ModernButtonWithNameStyle}">
+            <controls:ModernButton.Background>
+                <SolidColorBrush Color="#FF343434"/>
+            </controls:ModernButton.Background>
+            <Image Source="/Assets/Images/Weapons/ghost.png" Stretch="Uniform" RenderOptions.BitmapScalingMode="HighQuality"/>
+        </controls:ModernButton>
+        <controls:ModernButton Grid.Column="5" Grid.Row="4" Style="{DynamicResource ModernButtonWithNameStyle}">
+            <controls:ModernButton.Background>
+                <SolidColorBrush Color="#FF343434"/>
+            </controls:ModernButton.Background>
+            <Image Source="/Assets/Images/Weapons/banshee.png" Stretch="Uniform" RenderOptions.BitmapScalingMode="HighQuality"/>
+        </controls:ModernButton>
+        <controls:ModernButton Grid.Column="6" Grid.Row="4" Style="{DynamicResource ModernButtonWithNameStyle}">
+            <controls:ModernButton.Background>
+                <SolidColorBrush Color="#FF343434"/>
+            </controls:ModernButton.Background>
+            <Image Source="/Assets/Images/Weapons/wraith.png" Stretch="Uniform" RenderOptions.BitmapScalingMode="HighQuality"/>
+        </controls:ModernButton>
+    </Grid>
+</UserControl>

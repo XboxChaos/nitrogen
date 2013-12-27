@@ -107,7 +107,7 @@ namespace Nitrogen.Wumbalo.ViewModels.GameVariants
 		}
 
 		/// <summary>
-		/// Gets a value indicating whether the variant is original.
+		/// Gets or sets a value indicating whether the variant is original.
 		/// </summary>
 		public bool IsOriginal
 		{

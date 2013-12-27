@@ -52,6 +52,14 @@
             <TabItem Header="Traits" Visibility="{Binding Metadata.IsMegalo, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <gtEditor:CustomTraitsEditor/>
             </TabItem>
+            <TabItem Header="Weapons" Visibility="{Binding Metadata.IsMegalo, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <gtEditor:WeaponTuningEditor/>
+            </TabItem>
+            <TabItem Header="User Options" Visibility="{Binding Metadata.IsMegalo, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+            <TabItem Header="Strings" Visibility="{Binding Metadata.IsMegalo, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+            <TabItem Header="Statistics" Visibility="{Binding Metadata.IsMegalo, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+            <TabItem Header="Object Filters" Visibility="{Binding Metadata.IsMegalo, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+            <TabItem Header="Script" Visibility="{Binding Metadata.IsMegalo, Converter={StaticResource BooleanToVisibilityConverter}}"/>
         </TabControl>
 
         <Grid Grid.Row="0" Grid.RowSpan="2" Grid.Column="1">
@@ -69,6 +77,7 @@
             <controls:ModernButton Grid.Row="1" Style="{DynamicResource ModernButtonWithNameStyle}"
 				ButtonName="Save"/>
 
+            <!-- 
             <Grid Grid.Row="2" Margin="0,150,0,0">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="75"/>
@@ -93,6 +102,7 @@
                 <controls:ModernButton Grid.Column="1" Grid.Row="2" Style="{DynamicResource ModernButtonWithNameStyle}"
                                        ButtonName="Filters" />
             </Grid>
+            -->
         </Grid>
     </Grid>
 </UserControl>
