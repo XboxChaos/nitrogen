@@ -1,0 +1,16 @@
+﻿<UserControl x:Class="Nitrogen.Wumbalo.Views.Apps.GametypeEditor.ScriptEditor"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:gtEditor="clr-namespace:Nitrogen.Wumbalo.Views.Apps.GametypeEditor"
+             xmlns:controls="clr-namespace:Nitrogen.Wumbalo.Modern.Controls.CustomControls"
+             xmlns:Converters="clr-namespace:Nitrogen.Wumbalo.Converters"
+             mc:Ignorable="d" 
+             d:DesignWidth="600"
+             d:DesignHeight="400"
+             HorizontalAlignment="Left">
+    <Grid>
+        <RichTextBox Background="#FF212121" Foreground="#FFEAEAEA"/>
+    </Grid>
+</UserControl>

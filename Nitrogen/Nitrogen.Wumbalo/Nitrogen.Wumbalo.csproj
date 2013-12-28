@@ -111,9 +111,11 @@
     <Compile Include="ViewModels\GameVariants\MetadataViewModel.cs" />
     <Compile Include="ViewModels\GameVariants\OrdnanceSettingsViewModel.cs" />
     <Compile Include="ViewModels\GameVariants\RespawnSettingsViewModel.cs" />
+    <Compile Include="ViewModels\GameVariants\RespawnTraitsViewModel.cs" />
     <Compile Include="ViewModels\GameVariants\SocialSettingsViewModel.cs" />
     <Compile Include="ViewModels\GameVariants\TeamSettingsViewModel.cs" />
     <Compile Include="ViewModels\GameVariants\TeamViewModel.cs" />
+    <Compile Include="ViewModels\GameVariants\TraitsViewModel.cs" />
     <Compile Include="ViewModels\HomeViewModel.cs" />
     <Compile Include="ViewModels\Inpc.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
@@ -143,6 +145,9 @@
     </Compile>
     <Compile Include="Views\Apps\GametypeEditor\RespawnSettingsEditor.xaml.cs">
       <DependentUpon>RespawnSettingsEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Apps\GametypeEditor\ScriptEditor.xaml.cs">
+      <DependentUpon>ScriptEditor.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Apps\GametypeEditor\TeamSettingsEditor.xaml.cs">
       <DependentUpon>TeamSettingsEditor.xaml</DependentUpon>
@@ -270,6 +275,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Apps\GametypeEditor\RespawnSettingsEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Apps\GametypeEditor\ScriptEditor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

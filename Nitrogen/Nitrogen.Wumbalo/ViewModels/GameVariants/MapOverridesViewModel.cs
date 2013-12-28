@@ -12,11 +12,13 @@ namespace Nitrogen.Wumbalo.ViewModels.GameVariants
 	{
 		private MapOverrides _map;
 		private GameVariant _variant;
+		private TraitsViewModel _baseTraits;
 
 		public MapOverridesViewModel (GameVariant variant)
 		{
 			_variant = variant;
 			_map = _variant.MapOverrides;
+			_baseTraits = new TraitsViewModel(_map.BasePlayerTraits);
 		}
 
 		public bool IndestructibleVehicles
@@ -65,6 +67,16 @@ namespace Nitrogen.Wumbalo.ViewModels.GameVariants
 			set
 			{
 				_map.VehicleSet = (VehicleSet) ( value - 2 );
+				OnPropertyChanged();
+			}
+		}
+
+		public TraitsViewModel BaseTraits
+		{
+			get { return _baseTraits; }
+			set
+			{
+				_baseTraits = value;
 				OnPropertyChanged();
 			}
 		}

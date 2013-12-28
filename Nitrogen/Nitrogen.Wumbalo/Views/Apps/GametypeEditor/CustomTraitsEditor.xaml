@@ -7,48 +7,73 @@
              xmlns:Converters="clr-namespace:Nitrogen.Wumbalo.Converters"
              xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
              xmlns:controls="clr-namespace:Nitrogen.Wumbalo.Modern.Controls.CustomControls"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" 
+             xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
              mc:Ignorable="d" d:DesignWidth="800">
-    <StackPanel>
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="150"/>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="150"/>
-                <ColumnDefinition Width="150"/>
-            </Grid.ColumnDefinitions>
+    <Grid>
+        <StackPanel x:Name="traitsEditor">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="150"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="150"/>
+                    <ColumnDefinition Width="150"/>
+                </Grid.ColumnDefinitions>
 
-            <controls:ModernButton Grid.Column="0" Style="{DynamicResource ModernButtonWithNameStyle}"
-                                   ButtonName="Base Traits" />
-            <controls:ModernButton Grid.Column="1" Style="{DynamicResource ModernButtonWithNameStyle}"
-                                   ButtonName="Respawn Traits" />
-        </Grid>
+                <controls:ModernButton Grid.Column="0" Style="{DynamicResource ModernButtonWithNameStyle}"
+                                   ButtonName="Base Traits">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Click">
+                            <ei:ChangePropertyAction TargetName="traitsEditor" PropertyName="Opacity" Value="0.2"/>
+                            <ei:ChangePropertyAction TargetName="traitsEditor" PropertyName="IsEnabled" Value="False"/>
+                            <ei:ChangePropertyAction TargetName="baseTraitsEditor" PropertyName="Visibility" Value="Visible"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </controls:ModernButton>
+                <controls:ModernButton Grid.Column="1" Style="{DynamicResource ModernButtonWithNameStyle}"
+                                   ButtonName="Respawn Traits">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Click">
+                            <ei:ChangePropertyAction TargetName="traitsEditor" PropertyName="Opacity" Value="0.2"/>
+                            <ei:ChangePropertyAction TargetName="traitsEditor" PropertyName="IsEnabled" Value="False"/>
+                            <ei:ChangePropertyAction TargetName="respawnTraitsEditor" PropertyName="Visibility" Value="Visible"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </controls:ModernButton>
+            </Grid>
 
-        <TextBlock Margin="0,25,0,0" Text="Custom Traits" Foreground="{DynamicResource TextblockForegroundBrush}" FontSize="18"/>
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="75"/>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="75"/>
-                <ColumnDefinition Width="75"/>
-                <ColumnDefinition Width="75"/>
-            </Grid.ColumnDefinitions>
+            <TextBlock Margin="0,25,0,0" Text="Custom Traits" Foreground="{DynamicResource TextblockForegroundBrush}" FontSize="18"/>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="75"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="75"/>
+                    <ColumnDefinition Width="75"/>
+                    <ColumnDefinition Width="75"/>
+                </Grid.ColumnDefinitions>
 
-            <controls:ModernButton Grid.Column="0" Style="{DynamicResource ModernButtonWithNameStyle}"
-                                   ButtonName="New" /> <!-- hide if custom traits is less than 16 -->
+                <controls:ModernButton Grid.Column="0" Style="{DynamicResource ModernButtonWithNameStyle}"
+                                   ButtonName="New" />
+                <!-- hide if custom traits is less than 16 -->
 
-            <!-- show these buttons if a custom trait is selected in the listbox -->
-            <controls:ModernButton Grid.Column="1" Style="{DynamicResource ModernButtonWithNameStyle}"
+                <!-- show these buttons if a custom trait is selected in the listbox -->
+                <controls:ModernButton Grid.Column="1" Style="{DynamicResource ModernButtonWithNameStyle}"
                                    ButtonName="Delete" />
 
-            <controls:ModernButton Grid.Column="2" Style="{DynamicResource ModernButtonWithNameStyle}"
-                                   ButtonName="Toggle Visibility" /> <!-- replace with icon -->
-        </Grid>
-        
-        <!-- Whether the trait set should use the runtime template should be automatically determined by Nitrogen -->
-        <!-- if the traits can be applied after a player spawns, then it will use the runtime trait set -->
+                <controls:ModernButton Grid.Column="2" Style="{DynamicResource ModernButtonWithNameStyle}"
+                                   ButtonName="Toggle Visibility" />
+                <!-- replace with icon -->
+            </Grid>
 
-        <TextBlock Foreground="{DynamicResource TextblockForegroundBrush}">TODO: display list of custom traits here. up to 4 traits can be visible in-game and should be placed at the top here</TextBlock>
-    </StackPanel>
+            <!-- Whether the trait set should use the runtime template should be automatically determined by Nitrogen -->
+            <!-- if the traits can be applied after a player spawns, then it will use the runtime trait set -->
+
+            <TextBlock Foreground="{DynamicResource TextblockForegroundBrush}">TODO: display list of custom traits here. up to 4 traits can be visible in-game and should be placed at the top here</TextBlock>
+        </StackPanel>
+        
+        <gtEditor:TraitsEditor DataContext="{Binding Respawn.RespawnTraits}" IsRespawnTraits="True"  x:Name="respawnTraitsEditor" Margin="75,50,0,0" Visibility="Collapsed"/>
+        <gtEditor:TraitsEditor DataContext="{Binding MapOverrides.BaseTraits}" x:Name="baseTraitsEditor" Margin="75,50,0,0" Visibility="Collapsed"/>
+    </Grid>
 </UserControl>

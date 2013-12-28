@@ -14,7 +14,7 @@
     <StackPanel>
         <controls:ModernEditorRow Title="Duration" Visibility="{Binding IsRespawnTraits, Converter={StaticResource BooleanToVisibilityConverter}, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type gtEditor:TraitsEditor}}}" >
             <StackPanel Orientation="Horizontal">
-                <xctk:ByteUpDown Value="{Binding Respawn.InitialRespawnTime}"/>
+                <xctk:ByteUpDown Value="{Binding Duration, FallbackValue=0}" Maximum="60"/>
                 <TextBlock Margin="8,0,0,0" Foreground="{DynamicResource TextblockForegroundBrush}">seconds</TextBlock>
             </StackPanel>
         </controls:ModernEditorRow>
@@ -39,7 +39,7 @@
                 <ColumnDefinition Width="75"/>
             </Grid.ColumnDefinitions>
 
-            <controls:ModernButton Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="2" Style="{DynamicResource ModernButtonWithNameStyle}"
+            <controls:ModernButton DataContext="{Binding }" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="2" Style="{DynamicResource ModernButtonWithNameStyle}"
                                    ButtonName="Armor" />
 
             <controls:ModernButton Grid.Column="2" Grid.RowSpan="2" Grid.ColumnSpan="2" Style="{DynamicResource ModernButtonWithNameStyle}"

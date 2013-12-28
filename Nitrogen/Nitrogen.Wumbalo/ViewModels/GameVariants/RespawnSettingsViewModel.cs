@@ -3,6 +3,7 @@ using Nitrogen.GameVariants;
 using Nitrogen.GameVariants.Base;
 using Nitrogen.GameVariants.Megalo;
 using Nitrogen.Metadata;
+using Nitrogen.Shared;
 using System;
 
 namespace Nitrogen.Wumbalo.ViewModels.GameVariants
@@ -12,11 +13,13 @@ namespace Nitrogen.Wumbalo.ViewModels.GameVariants
 	{
 		private RespawnSettings _respawn;
 		private GameVariant _variant;
+		private RespawnTraitsViewModel _traits;
 
 		public RespawnSettingsViewModel (GameVariant variant)
 		{
 			_variant = variant;
 			_respawn = _variant.RespawnSettings;
+			_traits = new RespawnTraitsViewModel(_respawn);
 		}
 
 		public byte SuicidePenalty
@@ -111,6 +114,16 @@ namespace Nitrogen.Wumbalo.ViewModels.GameVariants
 				if ( value < MinimumRespawnTime )
 					MinimumRespawnTime = value;
 
+				OnPropertyChanged();
+			}
+		}
+
+		public RespawnTraitsViewModel RespawnTraits
+		{
+			get { return _traits; }
+			set
+			{
+				_traits = value;
 				OnPropertyChanged();
 			}
 		}

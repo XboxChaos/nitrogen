@@ -26,40 +26,64 @@
 
         <TabControl Grid.Column="0" Grid.Row="1" Background="Transparent" TabStripPlacement="Left" Margin="8">
             <TabItem Header="Metadata">
-                <gtEditor:MetadataEditor/>
+                <ScrollViewer>
+                    <gtEditor:MetadataEditor/>
+                </ScrollViewer>
             </TabItem>
             <TabItem Header="General">
-                <gtEditor:GeneralSettingsEditor/>
+                <ScrollViewer>
+                    <gtEditor:GeneralSettingsEditor/>
+                </ScrollViewer>
             </TabItem>
             <TabItem Header="Respawn">
-                <gtEditor:RespawnSettingsEditor/>
+                <ScrollViewer>
+                    <gtEditor:RespawnSettingsEditor/>
+                </ScrollViewer>
             </TabItem>
             <TabItem Header="Map">
-                <gtEditor:MapOverridesEditor/>
+                <ScrollViewer>
+                    <gtEditor:MapOverridesEditor/>
+                </ScrollViewer>
             </TabItem>
             <TabItem Header="Powerups" Visibility="{Binding Metadata.IsMegalo, Converter={StaticResource BooleanToVisibilityConverter}}">
-                <gtEditor:PowerupsEditor/>
+                <ScrollViewer>
+                    <gtEditor:PowerupsEditor/>
+                </ScrollViewer>
             </TabItem>
             <TabItem Header="Loadouts" Visibility="{Binding Metadata.IsMegalo, Converter={StaticResource BooleanToVisibilityConverter}}">
-                <gtEditor:LoadoutsEditor/>
+                <ScrollViewer>
+                    <gtEditor:LoadoutsEditor/>
+                </ScrollViewer>
             </TabItem>
             <TabItem Header="Ordnance" Visibility="{Binding Metadata.IsMegalo, Converter={StaticResource BooleanToVisibilityConverter}}">
-                <gtEditor:OrdnanceSettingsEditor/>
+                <ScrollViewer>
+                    <gtEditor:OrdnanceSettingsEditor/>
+                </ScrollViewer>
             </TabItem>
             <TabItem Header="Teams" Visibility="{Binding Metadata.IsMegalo, Converter={StaticResource BooleanToVisibilityConverter}}">
-                <gtEditor:TeamSettingsEditor/>
+                <ScrollViewer>
+                    <gtEditor:TeamSettingsEditor/>
+                </ScrollViewer>
             </TabItem>
             <TabItem Header="Traits" Visibility="{Binding Metadata.IsMegalo, Converter={StaticResource BooleanToVisibilityConverter}}">
-                <gtEditor:CustomTraitsEditor/>
+                <ScrollViewer>
+                    <gtEditor:CustomTraitsEditor/>
+                </ScrollViewer>
             </TabItem>
             <TabItem Header="Weapons" Visibility="{Binding Metadata.IsMegalo, Converter={StaticResource BooleanToVisibilityConverter}}">
-                <gtEditor:WeaponTuningEditor/>
+                <ScrollViewer>
+                    <gtEditor:WeaponTuningEditor/>
+                </ScrollViewer>
             </TabItem>
             <TabItem Header="User Options" Visibility="{Binding Metadata.IsMegalo, Converter={StaticResource BooleanToVisibilityConverter}}"/>
             <TabItem Header="Strings" Visibility="{Binding Metadata.IsMegalo, Converter={StaticResource BooleanToVisibilityConverter}}"/>
             <TabItem Header="Statistics" Visibility="{Binding Metadata.IsMegalo, Converter={StaticResource BooleanToVisibilityConverter}}"/>
             <TabItem Header="Object Filters" Visibility="{Binding Metadata.IsMegalo, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-            <TabItem Header="Script" Visibility="{Binding Metadata.IsMegalo, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+            <TabItem Header="Script" Visibility="{Binding Metadata.IsMegalo, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <ScrollViewer>
+                    <gtEditor:ScriptEditor/>
+                </ScrollViewer>
+            </TabItem>
         </TabControl>
 
         <Grid Grid.Row="0" Grid.RowSpan="2" Grid.Column="1">
@@ -69,40 +93,16 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="150"/>
                 <RowDefinition Height="150"/>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="150"/>
+                <RowDefinition Height="150"/>
             </Grid.RowDefinitions>
 
             <controls:ModernButton Grid.Row="0" Style="{DynamicResource ModernButtonWithNameStyle}"
 				ButtonName="New"/>
             <controls:ModernButton Grid.Row="1" Style="{DynamicResource ModernButtonWithNameStyle}"
 				ButtonName="Save"/>
-
-            <!-- 
-            <Grid Grid.Row="2" Margin="0,150,0,0">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="75"/>
-                    <RowDefinition Height="75"/>
-                    <RowDefinition Height="75"/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="75"/>
-                    <ColumnDefinition Width="75"/>
-                </Grid.ColumnDefinitions>
-
-                <controls:ModernButton Grid.Column="0" Grid.Row="0" Style="{DynamicResource ModernButtonWithNameStyle}"
-                                       ButtonName="Traits" />
-                <controls:ModernButton Grid.Column="1" Grid.Row="0" Style="{DynamicResource ModernButtonWithNameStyle}"
-                                       ButtonName="Options" />
-                <controls:ModernButton Grid.Column="0" Grid.Row="1" Style="{DynamicResource ModernButtonWithNameStyle}"
-                                       ButtonName="Strings" />
-                <controls:ModernButton Grid.Column="1" Grid.Row="1" Style="{DynamicResource ModernButtonWithNameStyle}"
-                                       ButtonName="Stats" />
-                <controls:ModernButton Grid.Column="0" Grid.Row="2" Style="{DynamicResource ModernButtonWithNameStyle}"
-                                       ButtonName="Events" />
-                <controls:ModernButton Grid.Column="1" Grid.Row="2" Style="{DynamicResource ModernButtonWithNameStyle}"
-                                       ButtonName="Filters" />
-            </Grid>
-            -->
+            <controls:ModernButton Grid.Row="2" Style="{DynamicResource ModernButtonWithNameStyle}"
+				ButtonName="Send to Xbox"/>
         </Grid>
     </Grid>
 </UserControl>

@@ -6,6 +6,8 @@
              xmlns:gtEditor="clr-namespace:Nitrogen.Wumbalo.Views.Apps.GametypeEditor"
              xmlns:Converters="clr-namespace:Nitrogen.Wumbalo.Converters"
              xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" 
+             xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
              xmlns:controls="clr-namespace:Nitrogen.Wumbalo.Modern.Controls.CustomControls"
              mc:Ignorable="d"
              d:DesignWidth="600">
@@ -16,7 +18,7 @@
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
     </UserControl.Resources>
     <Grid>
-        <StackPanel>
+        <StackPanel x:Name="respawnSettingsEditor" OpacityMask="Red">
             <controls:ModernEditorRow Title="Initial Respawn Time">
                 <StackPanel Orientation="Horizontal">
                     <xctk:ByteUpDown Value="{Binding Respawn.InitialRespawnTime}"/>
@@ -74,8 +76,17 @@
 
             <controls:ModernButton Width="150" Height="150" Style="{DynamicResource ModernButtonWithNameStyle}"
                                    HorizontalAlignment="Left"
-                                   ButtonName="Respawn Traits" />
-
+                                   ButtonName="Respawn Traits">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="Click">
+                        <ei:ChangePropertyAction TargetName="respawnSettingsEditor" PropertyName="Opacity" Value="0.2"/>
+                        <ei:ChangePropertyAction TargetName="respawnSettingsEditor" PropertyName="IsEnabled" Value="False"/>
+                        <ei:ChangePropertyAction TargetName="respawnTraitsEditor" PropertyName="Visibility" Value="Visible"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </controls:ModernButton>
         </StackPanel>
+
+        <gtEditor:TraitsEditor DataContext="{Binding Respawn.RespawnTraits}" IsRespawnTraits="True"  x:Name="respawnTraitsEditor" Margin="75,50,0,0" Visibility="Collapsed"/>
     </Grid>
 </UserControl>
