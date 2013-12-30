@@ -21,6 +21,7 @@ namespace Nitrogen.GameVariants.Megalo
 		private int _disabledUserDefinedOptions, _hiddenUserDefinedOptions;
 		private List<MegaloCondition> _conditions;
 		private List<MegaloAction> _actions;
+		private List<MegaloTrigger> _triggers;
 
 		public MegaloData()
 		{
@@ -41,6 +42,7 @@ namespace Nitrogen.GameVariants.Megalo
 			_categoryName = new StringTable();
 			_conditions = new List<MegaloCondition>();
 			_actions = new List<MegaloAction>();
+			_triggers = new List<MegaloTrigger>();
 		}
 
 		#region Properties
@@ -164,52 +166,16 @@ namespace Nitrogen.GameVariants.Megalo
 			s.Stream(ref _hiddenUserDefinedOptions);
 			s.SerializeObjects(_conditions, countBitLength: 10);
 			s.SerializeObjects(_actions, countBitLength: 11);
+			s.SerializeObjects(_triggers, countBitLength: 8);
 
-
-			/*byte count = Register<byte>("Count");
-			for (var i = 0; i < count; i++)
-			{
-				Group("Trigger[" + i + "]", () =>
-				{
-					var enumType = Register<byte>("EnumType", n: 3);
-					Register<byte>("Type", n: 4);
-
-					switch (enumType)
-					{
-						case 5:
-							bool isFilterIndexNull = Register<bool>("IsFilterIndexNull");
-							if (!isFilterIndexNull)
-								Register<byte>("FilterIndex", n: 4);
-							break;
-
-						case 6:
-							Register<bool>("GameObjectType");
-
-							bool isGameObjectFilterIndexNull = Register<bool>("IsGameObjectFilterIndexNull");
-							if (!isGameObjectFilterIndexNull)
-								Register<byte>("GameObjectFilterIndex", n: 2);
-							break;
-					}
-
-					Register<uint>("ConditionIndex", n: 10);
-					Register<uint>("ConditionCount", n: 10);
-					Register<uint>("ActionIndex", n: 11);
-					Register<uint>("ActionCount", n: 11);
-					Register<byte>("FrameUpdateFrequency");
-					Register<byte>("FrameUpdateOffset");
-				});
-			}*/
-			/* 
-				{ "Conditions", DefineConditions },
-				{ "Actions", DefineActions },
-				{ "Triggers", DefineTriggers },
-				{ "CustomStats", DefineCustomStats },
-				{ "Variables", DefineVariables },
-				{ "Widgets", DefineHudWidgets },
-				{ "Events", DefineEvents },
-				{ "RequiredObjectTypes", DefineRequiredObjectTypes },
-				{ "ObjectFilters", DefineObjectFilters },
-				{ "CandySpawnerFilters", DefineCandySpawnersFilters },*/
+			// CustomStats
+			// Variables
+			// Widgets
+			// Events
+			// Required object types
+			// Filters
+			// Candy Spawner Filters
+			// Weapon Tuning
 		}
 
 		#endregion

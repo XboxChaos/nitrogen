@@ -157,6 +157,7 @@
     <Compile Include="GameVariants\Megalo\Definitions\XmlDefinitionsTransport.cs" />
     <Compile Include="GameVariants\Megalo\IParameter.cs" />
     <Compile Include="GameVariants\Megalo\MegaloAction.cs" />
+    <Compile Include="GameVariants\Megalo\MegaloTrigger.cs" />
     <Compile Include="GameVariants\Megalo\Parameters.cs" />
     <Compile Include="GameVariants\Megalo\ParameterTypes\BoundaryData.cs" />
     <Compile Include="GameVariants\Megalo\ParameterTypes\Coordinates3d.cs" />
