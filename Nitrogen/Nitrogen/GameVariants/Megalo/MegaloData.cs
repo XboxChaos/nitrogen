@@ -19,7 +19,8 @@ namespace Nitrogen.GameVariants.Megalo
 		private List<MapLoadout> _mapLoadouts;
 		private int[] _disabledOptions, _hiddenOptions;
 		private int _disabledUserDefinedOptions, _hiddenUserDefinedOptions;
-		private List<Condition> _conditions;
+		private List<MegaloCondition> _conditions;
+		private List<MegaloAction> _actions;
 
 		public MegaloData()
 		{
@@ -38,7 +39,8 @@ namespace Nitrogen.GameVariants.Megalo
 			_localizedDescription = new StringTable();
 			_introDescription = new StringTable();
 			_categoryName = new StringTable();
-			_conditions = new List<Condition>();
+			_conditions = new List<MegaloCondition>();
+			_actions = new List<MegaloAction>();
 		}
 
 		#region Properties
@@ -161,24 +163,8 @@ namespace Nitrogen.GameVariants.Megalo
 			s.Stream(ref _disabledUserDefinedOptions);
 			s.Stream(ref _hiddenUserDefinedOptions);
 			s.SerializeObjects(_conditions, countBitLength: 10);
-			
+			s.SerializeObjects(_actions, countBitLength: 11);
 
-			/*ushort count = Register<ushort>("Count", n: 11);
-			for (var i = 0; i < count; i++)
-			{
-				Group("Action[" + i + "]", () =>
-				{
-					byte opcode = Register<byte>("Opcode");
-					if (opcode > 0)
-					{
-						Group("Parameters", () =>
-						{
-							var action = GameRegistry.Halo4.MegaloActionsDatabase.GetDefinition(opcode);
-							Import<DefinitionParameters>(new Context { { "Definition", action } });
-						});
-					}
-				});
-			}*/
 
 			/*byte count = Register<byte>("Count");
 			for (var i = 0; i < count; i++)

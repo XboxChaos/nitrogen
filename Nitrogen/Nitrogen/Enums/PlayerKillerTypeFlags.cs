@@ -1,7 +1,14 @@
-﻿namespace Nitrogen.Enums
+﻿using System;
+
+namespace Nitrogen.Enums
 {
+	[Flags]
 	public enum PlayerKillerTypeFlags
 	{
-		None,
+		Guardians,
+		Suicide,
+		Kill,
+		Betrayal,
+		Quit
 	}
 }

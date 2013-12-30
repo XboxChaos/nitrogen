@@ -135,7 +135,7 @@
   </Definition>
   <Definition Name="player_set_traits" Opcode="21">
     <Parameters>
-      <ObjectReference />
+      <PlayerReference />
       <PlayerTraits />
     </Parameters>
   </Definition>
@@ -287,7 +287,7 @@
   </Definition>
   <Definition Opcode="45">
     <Parameters>
-      <Integer Size="1" Unsigned="True" />
+      <Boolean />
     </Parameters>
   </Definition>
   <Definition Name="disable_join_in_progress" Opcode="46">
@@ -455,7 +455,7 @@
   </Definition>
   <Definition Name="killfeed_sound_message" Opcode="72">
     <Parameters>
-      <Integer Size="8" Unsigned="True" PlusOneEncoding="True" Name="sound_index"/>
+      <Sound/>
       <HudPosition Default="1" />
       <TargetReference />
     </Parameters>
@@ -651,14 +651,14 @@
   </Definition>
   <Definition Name="incident_submit" Opcode="103">
     <Parameters>
-      <Incident />
+      <Incident PlusOneEncoding="True" />
       <TargetReference Name="cause" />
       <TargetReference Name="effect" />
     </Parameters>
   </Definition>
   <Definition Name="incident_submit_with_value" Opcode="104">
     <Parameters>
-      <Incident />
+      <Incident PlusOneEncoding="True" />
       <TargetReference Name="cause" />
       <TargetReference Name="effect" />
       <IntegerReference />
@@ -1022,7 +1022,7 @@
     <Deprecated />
     <Parameters>
       <Byte />
-      <StringReferenceMultiToken />
+      <StringReferenceTwoTokens />
     </Parameters>
   </Definition>
   <Definition Name="datamine_player" Opcode="159">
@@ -1126,7 +1126,7 @@
   <Definition Name="medal_award" Opcode="174">
     <Parameters>
       <TargetReference />
-      <Medal Nullable="False" />
+      <Medal Nullable="True" />
       <IntegerReference Name="points" />
       <Boolean Name="override_points" />
     </Parameters>
@@ -1242,17 +1242,13 @@
   <Definition Name="player_set_hud_banner" Opcode="192">
     <Parameters>
       <PlayerReference />
-      <Integer Size="32" Name="banner_name">
-        <Constraints>
-          <EnumConstraint>MegaloString</EnumConstraint>
-        </Constraints>
-      </Integer>
+      <String Name="banner_name" />
     </Parameters>
   </Definition>
   <Definition Name="automatic_scoring_toggle" Opcode="193">
     <Remarks>If set to false, the script has to manage scoring and winning.</Remarks>
     <Parameters>
-      <Integer Size="1" Unsigned="True" Name="automatic" />
+      <Boolean Name="automatic" Default="True" />
     </Parameters>
   </Definition>
   <Definition Name="waypoint_toggle_pulse_slow" Opcode="194">
@@ -1351,14 +1347,14 @@
   </Definition>
   <Definition Name="medal_set_points" Opcode="209">
     <Parameters>
-      <Medal />
+      <Medal Nullable="True" />
       <IntegerReference Name="points" />
       <IntegerReference Name="override" />
     </Parameters>
   </Definition>
   <Definition Name="medal_restore_points" Opcode="210">
     <Parameters>
-      <Medal />
+      <Medal Nullable="True" />
     </Parameters>
   </Definition>
 </Definitions>

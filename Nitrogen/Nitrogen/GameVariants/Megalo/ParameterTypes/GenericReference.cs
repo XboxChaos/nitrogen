@@ -23,6 +23,7 @@ namespace Nitrogen.GameVariants.Megalo.ParameterTypes
 		void IParameter.SerializeObject (BitStream s, ParameterDefinition definition)
 		{
 			sbyte type = -1;
+
 			if ( s.State == StreamState.Write )
 			{
 				if ( _data is IntegerReference ) { type = 0; }
@@ -31,6 +32,7 @@ namespace Nitrogen.GameVariants.Megalo.ParameterTypes
 				if ( _data is TeamReference ) { type = 3; }
 				if ( _data is TimerReference ) { type = 4; }
 			}
+
 			s.StreamUnsigned(ref type, 3);
 
 			if ( s.State == StreamState.Read )

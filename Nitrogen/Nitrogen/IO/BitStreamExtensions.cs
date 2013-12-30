@@ -69,6 +69,16 @@ namespace Nitrogen.IO
 				s.Writer.Write(value + 1, bits);
 		}
 
+		public static void StreamPlusOne (this BitStream s, ref int value, int bits = sizeof(int) * 8)
+		{
+			Contract.Requires<ArgumentNullException>(s != null);
+
+			if ( s.State == StreamState.Read )
+				value = (sbyte) ( s.Reader.ReadUIntN(bits) - 1 );
+			else if ( s.State == StreamState.Write )
+				s.Writer.Write(value + 1, bits);
+		}
+
 		public static void StreamPlusOneOptional (this BitStream s, ref short? value, int bits = sizeof(short) * 8, bool inverted = true)
 		{
 			Contract.Requires<ArgumentNullException>(s != null);

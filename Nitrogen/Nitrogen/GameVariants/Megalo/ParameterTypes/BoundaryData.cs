@@ -20,6 +20,15 @@ namespace Nitrogen.GameVariants.Megalo.ParameterTypes
 		private byte _shape;
 		private IntegerReference _top, _bottom, _length, _width, _radius;
 
+		public BoundaryData()
+		{
+			_top = new IntegerReference();
+			_bottom = new IntegerReference();
+			_length = new IntegerReference();
+			_width = new IntegerReference();
+			_radius = new IntegerReference();
+		}
+
 		#region IParameter Members
 
 		ParameterType IParameter.ParameterType { get { return ParameterType.Shape; } }

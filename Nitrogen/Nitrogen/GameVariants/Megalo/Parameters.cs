@@ -4,6 +4,7 @@ using Nitrogen.GameVariants.Megalo.ParameterTypes;
 using Nitrogen.IO;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 
 namespace Nitrogen.GameVariants.Megalo
 {
@@ -42,10 +43,15 @@ namespace Nitrogen.GameVariants.Megalo
 
 						( _parameters[i] as IParameter ).SerializeObject(s, definition.Parameters[i]);
 					}
-					else // Enum/Index
+					else if ( _parameters[i] is bool ) // Bit
+					{
+						bool value = (bool) _parameters[i];
+						s.Writer.WriteBit(value);
+					}
+					else // Enum/Index/Flags
 					{
 						object value = (int) _parameters[i];
-						StreamIntegerValue(s, definition.Parameters[i].ParameterType, ref value);
+						StreamIntegerValue(s, definition.Parameters[i], ref value);
 					}
 				}
 				else if ( s.State == StreamState.Read )
@@ -79,10 +85,14 @@ namespace Nitrogen.GameVariants.Megalo
 				case ParameterType.TimerReference: { param = new TimerReference(); } break;
 				case ParameterType.VirtualTrigger: { param = new VirtualTrigger(); } break;
 				case ParameterType.WaypointIcon: { param = new WaypointIconData(); } break;
+				case ParameterType.Coordinates3d: { param = new Coordinates3d(); } break;
+
+				case ParameterType.Boolean:
+					return s.Reader.ReadBit();
 
 				default:
 					object value = 0;
-					StreamIntegerValue(s, paramDefinition.ParameterType, ref value);
+					StreamIntegerValue(s, paramDefinition, ref value);
 					return value;
 			}
 
@@ -92,10 +102,10 @@ namespace Nitrogen.GameVariants.Megalo
 			return param;
 		}
 
-		private void StreamIntegerValue (BitStream s, ParameterType type, ref object value)
+		private void StreamIntegerValue (BitStream s, ParameterDefinition paramDefinition, ref object value)
 		{
 			int intValue = (int) ( value ?? 0 );
-			switch ( type )
+			switch ( paramDefinition.ParameterType )
 			{
 				case ParameterType.ComparisonType:
 					s.StreamUnsigned(ref intValue, 3);
@@ -119,13 +129,18 @@ namespace Nitrogen.GameVariants.Megalo
 					break;
 
 				case ParameterType.ObjectFilter:
-					byte? filterIndex = (byte?) value;
+					byte? filterIndex = null;
+					if ( value != null )
+						filterIndex = Convert.ToByte(value);
 					s.StreamOptional(ref filterIndex, 4);
 					value = filterIndex;
 					break;
 
 				case ParameterType.Incident:
-					s.StreamUnsigned(ref intValue);
+					if ( paramDefinition.UsePlusOneEncoding )
+						s.StreamPlusOne(ref intValue, 10);
+					else
+						s.StreamUnsigned(ref intValue);
 					value = intValue;
 					break;
 
@@ -149,34 +164,159 @@ namespace Nitrogen.GameVariants.Megalo
 					value = (OperationType) intValue;
 					break;
 
-					/*
-		String, // byte, plus one, unsigned
-		ObjectSpawnFlags, // 3, unsigned
-		Coordinates3d, // 3 bytes, multiply by 1/10, x, y, z
-		WaypointPriority, // uint2
-		ObjectTimer, // uint2 nullable
-		PlayerTraits, // uint4
-		FireteamFilter, // byte
-		Sound, // byte +1
-		TimerRate, // uint5
-		Trigger, // uint7
-		PlayerModes, // uint5
-		WeaponPickupMode, // uint2
-		Widget, // uint2 nullable
-		WidgetIcon, // uint6 nullable
-		HudPosition, // uint1
-		VariantIcon, // uint7 nullable
-		RequisitionPalette, // uint4
-		GrenadeType, // uint3
-		LoadoutPalette, // uint3
-		DeviceAnimation, // byte
-		GiveWeaponMode, // uint2
-		DropWeaponMode, // uint2
-		ObjectPlayer, // uint2 nullable
-		Button, // uint4
-		Medal, // byte, nullable by default
-		PowerupType, // uint2
-*/
+				case ParameterType.Sound:
+					s.StreamPlusOne(ref intValue, 8);
+					value = intValue;
+					break;
+
+				case ParameterType.String:
+					s.StreamPlusOne(ref intValue, 32);
+					value = intValue;
+					break;
+
+				case ParameterType.ObjectSpawnFlags:
+					s.StreamUnsigned(ref intValue, 3);
+					value = (ObjectSpawnFlags) intValue;
+					break;
+
+				case ParameterType.WaypointPriority:
+					s.StreamUnsigned(ref intValue, 2);
+					value = (WaypointPriority) intValue;
+					break;
+
+				case ParameterType.ObjectTimer:
+					byte? timerIndex = null;
+					if ( value != null )
+						timerIndex = Convert.ToByte(value);
+					s.StreamOptional(ref timerIndex, 2);
+					value = timerIndex;
+				break;
+
+				case ParameterType.ObjectPlayer:
+					byte? playerIndex = null;
+					if ( value != null )
+						playerIndex = Convert.ToByte(value);
+					s.StreamOptional(ref playerIndex, 2);
+					value = playerIndex;
+				break;
+
+				case ParameterType.PlayerTraits:
+					s.StreamUnsigned(ref intValue, 4);
+					value = intValue;
+				break;
+
+				case ParameterType.FireteamFilter:
+					s.StreamUnsigned(ref intValue, 8);
+					value = intValue;
+				break;
+					
+				case ParameterType.TimerRate:
+					s.StreamUnsigned(ref intValue, 5);
+					value = (TimerRate) intValue;
+				break;
+
+				case ParameterType.Trigger:
+					s.StreamUnsigned(ref intValue, 7);
+					value = intValue;
+				break;
+
+				case ParameterType.PlayerModes:
+					s.StreamUnsigned(ref intValue, 5);
+					value = intValue;
+				break;
+
+				case ParameterType.WeaponPickupMode:
+					s.StreamUnsigned(ref intValue, 2);
+					value = (WeaponPickupMode) intValue;
+				break;
+
+				case ParameterType.Widget:
+					byte? widgetIndex = null;
+					if ( value != null )
+						widgetIndex = Convert.ToByte(value);
+					s.StreamOptional(ref widgetIndex, 2);
+					value = widgetIndex;
+				break;
+
+				case ParameterType.WidgetIcon:
+					byte? widgetIcon = null;
+					if ( value != null )
+						widgetIcon = Convert.ToByte(value);
+					s.StreamOptional(ref widgetIcon, 6);
+					value = widgetIcon;
+				break;
+
+				case ParameterType.HudPosition:
+					s.StreamUnsigned(ref intValue, 1);
+					value = intValue;
+				break;
+
+				case ParameterType.VariantIcon:
+					byte? variantIcon = null;
+					if ( value != null )
+						variantIcon = Convert.ToByte(value);
+					s.StreamOptional(ref variantIcon, 7);
+					value = (VariantIcon) variantIcon;
+				break;
+
+				case ParameterType.RequisitionPalette:
+					s.StreamUnsigned(ref intValue, 4);
+					value = intValue;
+				break;
+
+				case ParameterType.GrenadeType:
+					s.StreamUnsigned(ref intValue, 3);
+					value = (GrenadeType) intValue;
+				break;
+
+				case ParameterType.LoadoutPalette:
+					s.StreamUnsigned(ref intValue, 3);
+					value = intValue;
+				break;
+
+				case ParameterType.DeviceAnimation:
+					s.StreamUnsigned(ref intValue, 8);
+					value = (byte) intValue;
+				break;
+
+				case ParameterType.GiveWeaponMode:
+					s.StreamUnsigned(ref intValue, 2);
+					value = (GiveWeaponMode) intValue;
+				break;
+
+				case ParameterType.DropWeaponMode:
+					s.StreamUnsigned(ref intValue, 2);
+					value = (DropWeaponMode) intValue;
+				break;
+
+				case ParameterType.Button:
+					s.Stream(ref intValue, 4);
+					value = (Button) intValue;
+				break;
+
+				case ParameterType.Medal:
+					if ( paramDefinition.Nullable )
+					{
+						byte? medal = null;
+						if ( value != null )
+							medal = Convert.ToByte(value);
+						s.StreamOptional(ref medal, 8);
+						value = medal;
+					}
+					else
+					{
+						s.StreamUnsigned(ref intValue, 8);
+						value = (Medal) intValue;
+					}
+				break;
+
+				case ParameterType.PowerupType:
+					s.StreamUnsigned(ref intValue, 2);
+					value = (PowerupType) intValue;
+				break;
+
+				default:
+					throw new Exception("Unhandled parameter type '" + paramDefinition.ParameterType + "'");
 			}
 		}
 	}

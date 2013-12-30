@@ -23,6 +23,12 @@ namespace Nitrogen.GameVariants.Megalo.ParameterTypes
 		private PlayerReference _playerRef;
 		private IntegerReference _enabled;
 
+		public EntityFilter()
+		{
+			_playerRef = new PlayerReference();
+			_enabled = new IntegerReference();
+		}
+
 		public EntityFilterType FilterType
 		{
 			get { return (EntityFilterType) _type; }
