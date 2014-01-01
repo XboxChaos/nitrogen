@@ -148,6 +148,7 @@
     <Compile Include="Enums\Weapon.cs" />
     <Compile Include="Enums\WeaponPickupMode.cs" />
     <Compile Include="Enums\WeaponSet.cs" />
+    <Compile Include="GameVariants\Megalo\GameStatistic.cs" />
     <Compile Include="GameVariants\Megalo\MegaloCondition.cs" />
     <Compile Include="GameVariants\Megalo\Definitions\Definition.cs" />
     <Compile Include="GameVariants\Megalo\Definitions\DefinitionDatabase.cs" />

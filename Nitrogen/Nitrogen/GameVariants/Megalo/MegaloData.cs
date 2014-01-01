@@ -22,6 +22,7 @@ namespace Nitrogen.GameVariants.Megalo
 		private List<MegaloCondition> _conditions;
 		private List<MegaloAction> _actions;
 		private List<MegaloTrigger> _triggers;
+		private List<GameStatistic> _stats;
 
 		public MegaloData()
 		{
@@ -43,6 +44,7 @@ namespace Nitrogen.GameVariants.Megalo
 			_conditions = new List<MegaloCondition>();
 			_actions = new List<MegaloAction>();
 			_triggers = new List<MegaloTrigger>();
+			_stats = new List<GameStatistic>();
 		}
 
 		#region Properties
@@ -167,8 +169,8 @@ namespace Nitrogen.GameVariants.Megalo
 			s.SerializeObjects(_conditions, countBitLength: 10);
 			s.SerializeObjects(_actions, countBitLength: 11);
 			s.SerializeObjects(_triggers, countBitLength: 8);
+			s.SerializeObjects(_stats, countBitLength: 3);
 
-			// CustomStats
 			// Variables
 			// Widgets
 			// Events
