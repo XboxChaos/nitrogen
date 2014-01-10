@@ -149,6 +149,7 @@
     <Compile Include="Enums\WeaponPickupMode.cs" />
     <Compile Include="Enums\WeaponSet.cs" />
     <Compile Include="GameVariants\Megalo\GameStatistic.cs" />
+    <Compile Include="GameVariants\Megalo\VariableDefinitions\IntegerVariableDefinition.cs" />
     <Compile Include="GameVariants\Megalo\MegaloCondition.cs" />
     <Compile Include="GameVariants\Megalo\Definitions\Definition.cs" />
     <Compile Include="GameVariants\Megalo\Definitions\DefinitionDatabase.cs" />
@@ -179,6 +180,11 @@
     <Compile Include="GameVariants\Megalo\ParameterTypes\TimerReference.cs" />
     <Compile Include="GameVariants\Megalo\ParameterTypes\VirtualTrigger.cs" />
     <Compile Include="GameVariants\Megalo\ParameterTypes\WaypointIconData.cs" />
+    <Compile Include="GameVariants\Megalo\VariableDefinitions\ObjectVariableDefinition.cs" />
+    <Compile Include="GameVariants\Megalo\VariableDefinitions\PlayerVariableDefinition.cs" />
+    <Compile Include="GameVariants\Megalo\VariableDefinitions\TeamVariableDefinition.cs" />
+    <Compile Include="GameVariants\Megalo\VariableDefinitions\TimerVariableDefinition.cs" />
+    <Compile Include="GameVariants\Megalo\VariableTable.cs" />
     <Compile Include="ResourceData\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

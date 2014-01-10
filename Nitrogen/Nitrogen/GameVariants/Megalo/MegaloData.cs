@@ -23,6 +23,7 @@ namespace Nitrogen.GameVariants.Megalo
 		private List<MegaloAction> _actions;
 		private List<MegaloTrigger> _triggers;
 		private List<GameStatistic> _stats;
+		private VariableTable _globalVars, _playerVars, _objectVars, _teamVars;
 
 		public MegaloData()
 		{
@@ -45,6 +46,10 @@ namespace Nitrogen.GameVariants.Megalo
 			_actions = new List<MegaloAction>();
 			_triggers = new List<MegaloTrigger>();
 			_stats = new List<GameStatistic>();
+			_globalVars = new VariableTable(5, 4, 4, 4, 5);
+			_playerVars = new VariableTable(4, 3, 3, 3, 3);
+			_objectVars = new VariableTable(4, 3, 2, 3, 3);
+			_teamVars = new VariableTable(4, 3, 3, 3, 3);
 		}
 
 		#region Properties
@@ -170,8 +175,11 @@ namespace Nitrogen.GameVariants.Megalo
 			s.SerializeObjects(_actions, countBitLength: 11);
 			s.SerializeObjects(_triggers, countBitLength: 8);
 			s.SerializeObjects(_stats, countBitLength: 3);
+			s.SerializeObject(_globalVars);
+			s.SerializeObject(_playerVars);
+			s.SerializeObject(_objectVars);
+			s.SerializeObject(_teamVars);
 
-			// Variables
 			// Widgets
 			// Events
 			// Required object types
