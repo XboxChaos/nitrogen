@@ -13,12 +13,10 @@ In order to compile Nitrogen, you will need the latest version of the .NET Frame
 ##how do I use this?
 Visit the [wiki](https://github.com/ProjectGuiltySpark/nitrogen/wiki) for reference guides, tutorials, and more.
 
-##disclaimer;
-We strongly discourage bringing modified files online. Unauthorized modifications to data files violate the Xbox LIVE ToS. We are not responsible for anything that happens to your console, account, and/or your dignity. 
-
+##license;
 Nitrogen is licensed under GPLv3. The full license text is available in the LICENSE file.
 
-##subz n viewz;
+##credits;
 ####lead developers;
 + Matt ([msaville8](http://github.com/msaville8))
 + Aaron ([amd7](http://github.com/amd7))
