@@ -13,6 +13,13 @@ In order to compile Nitrogen, you will need the latest version of the .NET Frame
 ##how do I use this?
 Visit the [wiki](https://github.com/ProjectGuiltySpark/nitrogen/wiki) for reference guides, tutorials, and more.
 
+##WumboScript Viewer
+We also made a small tool using Nitrogen that will output the Megalo script to a human readable format. Use it to verify that your script is correct. [More information is available on my blog](https://msaville8.wordpress.com/projects/wumboscript-viewer/).
+![alt tag](https://msaville8.files.wordpress.com/2014/11/tg9kug5.png?w=1200&h=&crop=1)
+![alt tag](https://msaville8.files.wordpress.com/2014/11/skqinpc.png?w=1200&h=&crop=1)
+
+[Download it here](http://www.xboxchaos.com/files/file/153-wumboscript-viewer/) (Registration required)
+
 ##license;
 Nitrogen is licensed under GPLv3. The full license text is available in the LICENSE file.
 
